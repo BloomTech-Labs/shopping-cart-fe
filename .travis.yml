@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - '10.13'
+services:
+  - mongodb
+cache: false
+env:
+  global:
+    - CC_TEST_REPORTER_ID=bc1bad42cc5bfaaf79c3a35e749f93835b91910b29049cbcc0905f04d5c19fac
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - npm install
+  - npm run test
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+after_success:
+  - npm run coverage
+  - npm run coveralls
+
+notifications:
+  email: true
