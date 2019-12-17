@@ -7,10 +7,9 @@
 
 .form {
   margin: 20px;
-  height: 50vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .flex-container .inline {
@@ -38,7 +37,7 @@
 
 input,
 input::placeholder {
-  text-align: center;
+  text-align: start;
   color: #0b3954 !important;
   font-family: "Lato", sans-serif;
 }
