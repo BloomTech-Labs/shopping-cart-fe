@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { List, InputItem, Button, WhiteSpace, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
+import logo from '../../images/PureRetail_Logo.png'
 import './Register.css'
 
 const BasicInputExample = props => {
@@ -16,7 +17,7 @@ const BasicInputExample = props => {
       }
     })
   }
-  function showToast (error) {
+  function showToast(error) {
     Toast.info(error, 1)
   }
   const { getFieldProps, getFieldError } = props.form
@@ -40,7 +41,9 @@ const BasicInputExample = props => {
   return (
     <form>
       <div className='flex-container'>
-        <div>PureRetail Logo</div>
+        <div id='logo'>
+          <img src={logo} alt='PureRetail Logo' />
+        </div>
         <div className='form'>
           <List
             renderHeader={() => (

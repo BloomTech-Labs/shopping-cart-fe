@@ -69,3 +69,7 @@ div > div:nth-child(n) >
 div > div.am-input-label {
   width: 2rem;
 }
+
+#logo img {
+  width: 7rem;
+}
