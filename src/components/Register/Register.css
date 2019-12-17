@@ -4,21 +4,25 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .form {
   margin: 20px;
   height: 50vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
+
 .flex-container .inline {
   width: 80px !important;
   margin: 9px 9px 9px 0;
 }
+
 .flex-container .small {
   height: 20px !important;
   line-height: 20px !important;
 }
+
 .sub-title {
   color: #888;
   font-size: 14px;
@@ -30,9 +34,6 @@
   font-weight: bold;
   color: #0b3954;
   font-size: 1.3rem;
-  margin-bottom: 40px;
-  margin-left: 6px;
-  margin-top: 11px;
 }
 
 input,
@@ -49,6 +50,14 @@ input::placeholder {
 
 .am-button {
   background-color: #131115;
-  border-radius: 5rem !important;
+  border-radius: 3rem !important;
   width: 70%;
+}
+
+#or-log-in {
+  font-size: 1rem;
+}
+
+#or-log-in a {
+  text-decoration: underline;
 }

@@ -40,13 +40,16 @@ const BasicInputExample = props => {
   return (
     <form>
       <div className="flex-container">
-        <div style={{ textAlign: "center" }}>
-          PureRetail Logo
-        </div>
+        <div>PureRetail Logo</div>
         <div className="form">
           <List
-            // renderHeader={() => "Register new account"}
-            renderHeader={() => <div>Register new<br/>account</div>}
+            renderHeader={() => (
+              <div>
+                Register new
+                <br />
+                account
+              </div>
+            )}
             renderFooter={() =>
               getFieldError("number", "confirm") &&
               getFieldError("number", "confirm").join(",")
@@ -107,16 +110,16 @@ const BasicInputExample = props => {
             />
             <WhiteSpace />
           </List>
-          <Flex justify="center">
-            <Button type="primary" size="medium" inline onClick={handleSubmit}>
-              Register
-            </Button>
-          </Flex>
-          <WhiteSpace />
         </div>
+        <Flex justify="center">
+          <Button type="primary" size="medium" inline onClick={handleSubmit}>
+            Register
+          </Button>
+        </Flex>
+        <WhiteSpace />
         <div>{errMessage}</div>
-        <div>
-          or <a href="www">login</a> instead
+        <div id="or-log-in">
+          or <a href="#">login</a> instead
         </div>
       </div>
     </form>
