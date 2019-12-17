@@ -72,7 +72,7 @@ const BasicInputExample = props => {
                 type='number'
                 placeholder='Phone number'
               >
-                <div style={{ backgroundImage: 'url(https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/phone1-512.png)', backgroundSize: 'cover', height: '1.5rem', width: '1.5rem' }} />
+                <div style={{ backgroundImage: 'url(https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/phone1-512.png)', backgroundSize: 'cover', height: '1.2rem', width: '1.2rem' }} />
               </InputItem>
               <WhiteSpace />
               <InputItem
