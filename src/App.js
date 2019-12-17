@@ -1,12 +1,13 @@
 import React from 'react'
-import logo from './logo.svg'
+// import logo from './logo.svg'
 import './App.css'
-import { Button } from 'antd-mobile'
+// import { Button } from 'antd-mobile'
+import Signup from './components/Signup'
 
 function App () {
   return (
     <div className='App'>
-      <header className='App-header'>
+      {/* <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>
           @mogwai, @shaunorpen and @kvothe waz here.
@@ -20,7 +21,8 @@ function App () {
           Learn React
         </a>
       </header>
-      <Button>Start!</Button>
+      <Button>Start!</Button> */}
+      <Signup />
     </div>
   )
 }
