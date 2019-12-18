@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { List, InputItem, Button, WhiteSpace, Flex, Toast } from 'antd-mobile'
+import { List, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import './Register.css'
+import { ConfirmButton, InputFieldWithIcon } from '../Reusable'
 
 const BasicInputExample = props => {
   const [confirmDirty] = useState(false)
@@ -55,6 +56,12 @@ const BasicInputExample = props => {
               getFieldError('number', 'confirm').join(',')}
           >
             <Flex direction='column'>
+              {/* <InputFieldWithIcon
+                check={props.form}
+                showToast={showToast} message='Please input phone number'
+                required name='number' placeholder='Phone number'
+                iconurl='url(https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/phone1-512.png)'
+              /> */}
               <InputItem
                 {...getFieldProps('number', {
                   rules: [
@@ -118,11 +125,7 @@ const BasicInputExample = props => {
             </Flex>
           </List>
         </div>
-        <Flex justify='center'>
-          <Button type='primary' size='medium' inline onClick={handleSubmit}>
-            Register
-          </Button>
-        </Flex>
+        <ConfirmButton text='Register' handleSubmit={handleSubmit} />
         <WhiteSpace />
         <div>{errMessage}</div>
         <div id='or-log-in'>
