@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { List, InputItem, Button, WhiteSpace, Flex, Toast } from 'antd-mobile'
+import { List, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
 import './Register.css'
+import { ConfirmButton } from '../Reusable'
 
 const BasicInputExample = props => {
   const [confirmDirty] = useState(false)
@@ -121,11 +122,7 @@ const BasicInputExample = props => {
             </Flex>
           </List>
         </div>
-        <Flex justify='center'>
-          <Button type='primary' size='medium' inline onClick={handleSubmit}>
-            Register
-          </Button>
-        </Flex>
+        <ConfirmButton text='Register' handleSubmit={handleSubmit} />
         <WhiteSpace />
         <div>{errMessage}</div>
         <div id='or-log-in'>
