@@ -1,25 +1,39 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { List, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
 import './Register.css'
 import { ConfirmButton } from '../Reusable'
 
+const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
+
 const BasicInputExample = props => {
   const [confirmDirty] = useState(false)
   const [errMessage, setErrMessage] = useState('')
+  function showToast (error) {
+    Toast.info(error, 1)
+  }
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFields({ force: true }, (err, values) => {
+      const payload = {
+        phone: values.number,
+        password: values.password
+      }
       if (!err) {
-        console.log(values)
+        axios.post(signupURL, payload)
+          .then(res => {
+            showToast('Signed Up')
+            props.form.resetFields()
+          })
+          .catch(error => {
+            window.alert(error.message)
+          })
       } else {
         window.alert('Validation failed')
       }
     })
-  }
-  function showToast(error) {
-    Toast.info(error, 1)
   }
   const { getFieldProps, getFieldError } = props.form
   const compareToFirstPassword = (rule, value, callback) => {
