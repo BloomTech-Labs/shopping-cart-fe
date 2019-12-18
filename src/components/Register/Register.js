@@ -24,7 +24,7 @@ const BasicInputExample = props => {
       if (!err) {
         axios.post(signupURL, payload)
           .then(res => {
-            showToast('Signed In')
+            showToast('Signed Up')
             props.form.resetFields()
           })
           .catch(error => {
