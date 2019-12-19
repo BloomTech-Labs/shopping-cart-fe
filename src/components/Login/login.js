@@ -9,6 +9,9 @@ function Login () {
       <img src={logo} className='logo' alt='Logo' />
       <p className='headers'>Log in</p>
       <List />
+      <div id='or-log-in'>
+          or <a href='/register'>register</a> instead
+        </div>
     </div>
   )
 }
