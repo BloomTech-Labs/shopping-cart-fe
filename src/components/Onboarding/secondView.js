@@ -1,28 +1,26 @@
-import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
-import { List, InputItem, WhiteSpace, Flex, Toast, ImagePicker } from 'antd-mobile'
+import React, { useState } from 'react'
+import { List, InputItem, WhiteSpace, Flex, ImagePicker } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import '../Reusable/index.css'
-import * as creators from '../../state/actionCreators'
 import { ConfirmButton } from '../Reusable'
-import { types } from '@babel/core'
 
 const SecondView = props => {
   const [files, setFiles] = useState([])
-  const [multiple, setMultiple] = useState(false)
+  const [multiple] = useState(false)
   const onChange = (files, type, index) => {
     console.log(files, type, index)
     setFiles(files)
   }
-  const dispatch = useDispatch()
-  function showToast (error) {
-    Toast.info(error, 1)
-  }
+
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFields({ force: true }, (err, values) => {
+      const payload = {
+        image_url: files[0].url,
+        store: values.store
+      }
       if (!err) {
-        console.log(values)
+        console.log(payload)
       } else {
         window.alert('Validation failed')
       }
@@ -70,9 +68,6 @@ const SecondView = props => {
         </div>
         <ConfirmButton text='Done' handleSubmit={handleSubmit} />
         <WhiteSpace />
-        <div id='or-log-in'>
-          or <a href='#'>login</a> instead
-        </div>
       </div>
     </form>
   )

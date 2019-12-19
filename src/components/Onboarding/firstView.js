@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { List, Picker, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
+import { List, Picker, InputItem, WhiteSpace, Flex } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
 import '../Reusable/index.css'
@@ -15,9 +14,6 @@ const money = [{ label: 'Euro', value: 'Euro' },
 
 const FirstView = props => {
   const dispatch = useDispatch()
-  function showToast (error) {
-    Toast.info(error, 1)
-  }
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFields({ force: true }, (err, values) => {

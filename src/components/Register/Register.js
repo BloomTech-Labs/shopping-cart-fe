@@ -12,7 +12,7 @@ const BasicInputExample = props => {
   const [confirmDirty] = useState(false)
   const [errMessage, setErrMessage] = useState('')
   function showToast (error) {
-    Toast.info(error, 1)
+    Toast.info(error, 2)
   }
   const handleSubmit = e => {
     e.preventDefault()
@@ -28,10 +28,10 @@ const BasicInputExample = props => {
             props.form.resetFields()
           })
           .catch(error => {
-            window.alert(error.message)
+            showToast(error.message)
           })
       } else {
-        window.alert('Validation failed')
+        showToast('Validation failed')
       }
     })
   }
