@@ -11,7 +11,7 @@ function Login () {
       <List />
       <div id='or-log-in'>
           or <a href='/register'>register</a> instead
-        </div>
+      </div>
     </div>
   )
 }
