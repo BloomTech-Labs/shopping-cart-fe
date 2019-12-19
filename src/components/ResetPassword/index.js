@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { List, InputItem, Flex, Toast } from 'antd-mobile'
+import { List, InputItem, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
 import '../Reusable/index.css'
