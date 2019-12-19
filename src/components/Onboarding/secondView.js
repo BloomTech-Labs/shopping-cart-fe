@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { List, InputItem, WhiteSpace, Flex, ImagePicker } from 'antd-mobile'
+import { useSelector } from 'react-redux'
 import { createForm } from 'rc-form'
 import '../Reusable/index.css'
 import { ConfirmButton } from '../Reusable'
@@ -7,6 +8,7 @@ import { ConfirmButton } from '../Reusable'
 const SecondView = props => {
   const [files, setFiles] = useState([])
   const [multiple] = useState(false)
+  const formState = useSelector(state => state.form)
   const onChange = (files, type, index) => {
     console.log(files, type, index)
     setFiles(files)
@@ -16,6 +18,8 @@ const SecondView = props => {
     e.preventDefault()
     props.form.validateFields({ force: true }, (err, values) => {
       const payload = {
+        name: formState.name,
+        currency: formState.currency,
         image_url: files[0].url,
         store: values.store
       }
@@ -30,8 +34,18 @@ const SecondView = props => {
   return (
     <form>
       <div className='flex-container'>
+        <div style={{ marginBottom: '2em' }}>
+                Upload store
+          <br />
+                 logo
+        </div>
         <div id='logo'>
           <ImagePicker
+            style={{
+              width: '7rem',
+              height: '7rem',
+              backgroundColor: 'white'
+            }}
             files={files}
             onChange={onChange}
             onImageClick={(index, fs) => console.log(index, fs)}

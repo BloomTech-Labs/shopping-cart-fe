@@ -140,7 +140,7 @@ const BasicInputExample = props => {
         <WhiteSpace />
         <div>{errMessage}</div>
         <div id='or-log-in'>
-          or <a href='#'>login</a> instead
+          or <a href='/login'>login</a> instead
         </div>
       </div>
     </form>

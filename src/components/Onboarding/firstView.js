@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { List, Picker, InputItem, WhiteSpace, Flex } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
@@ -65,7 +66,9 @@ const FirstView = props => {
             </Flex>
           </List>
         </div>
-        <ConfirmButton text='Next' handleSubmit={handleSubmit} />
+        <NavLink to='/addlogo'>
+          <ConfirmButton text='Next' handleSubmit={handleSubmit} />
+        </NavLink>
         <WhiteSpace />
         <div id='or-log-in'>
           or <a href='#'>login</a> instead
