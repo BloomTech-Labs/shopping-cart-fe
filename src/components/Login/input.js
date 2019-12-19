@@ -1,4 +1,4 @@
-import { List, InputItem, Button } from 'antd-mobile';
+import { List, InputItem } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import React from 'react';
 import './login.css';
@@ -29,11 +29,7 @@ class BasicInputExample extends React.Component {
           type="password"
           style={{background:'transparent', border:'none', borderBottom: '2px solid #BFD7EA', textAlign: 'center'}}
           ></InputItem>
-          
-          {/* <Button
-          type="primary"
-          style={{backgroundColor:'#000', color:'#fff', borderRadius: '50px', marginTop: '20px' }}
-          >Log in</Button> */}
+
           <ConfirmButton text = 'Log in'/>
         </List>
         </div>
