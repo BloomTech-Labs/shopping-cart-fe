@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { List, InputItem, WhiteSpace, Flex, ImagePicker } from 'antd-mobile'
 import { useSelector } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -14,17 +15,31 @@ const SecondView = props => {
     setFiles(files)
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
+    const image = new FormData()
+    image.append('file', files[0])
+    image.append('upload_preset', 'pure-retail')
+    console.log(image)
+    console.log(files[0])
+    try {
+      const res = await axios.post(
+        `	https://api.cloudinary.com/v1_1/pureretail`,
+        image
+      )
+      console.log(res)
+    } catch (err) {
+      console.log(err)
+    }
     props.form.validateFields({ force: true }, (err, values) => {
-      const payload = {
-        name: formState.name,
-        currency: formState.currency,
-        image_url: files[0].url,
-        store: values.store
-      }
+    //   const payload = {
+    //     name: formState.name,
+    //     currency: formState.currency,
+    //     image_url: files[0].url,
+    //     store: values.store
+    //   }
       if (!err) {
-        console.log(payload)
+        console.log(files)
       } else {
         window.alert('Validation failed')
       }

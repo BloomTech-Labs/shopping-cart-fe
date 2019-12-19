@@ -16,7 +16,7 @@ const money = [{ label: 'Euro', value: 'Euro' },
 const FirstView = props => {
   const dispatch = useDispatch()
   const handleSubmit = e => {
-    e.preventDefault()
+    // e.preventDefault()
     props.form.validateFields({ force: true }, (err, values) => {
       const payload = {
         name: values.name,

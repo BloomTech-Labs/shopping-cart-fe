@@ -1,4 +1,13 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .App {
   text-align: center;
   background-color: white;
+  height: 100vh;
 }
