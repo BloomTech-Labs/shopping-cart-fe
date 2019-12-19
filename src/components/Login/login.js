@@ -1,7 +1,7 @@
 import React from 'react';
 import './login.css';
-import logo from './shoplogo.gif';
-import List from './input';
+import logo from '../../images/PureRetail_Logo.png'
+import List from './input'
 
 function Login () {
   return (

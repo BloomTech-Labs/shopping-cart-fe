@@ -2,6 +2,7 @@ import { List, InputItem, Button } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import React from 'react';
 import './login.css';
+import { ConfirmButton } from '../Reusable/index'
 
 class BasicInputExample extends React.Component {
   componentDidMount() {
@@ -29,10 +30,11 @@ class BasicInputExample extends React.Component {
           style={{background:'transparent', border:'none', borderBottom: '2px solid #BFD7EA', textAlign: 'center'}}
           ></InputItem>
           
-          <Button
+          {/* <Button
           type="primary"
           style={{backgroundColor:'#000', color:'#fff', borderRadius: '50px', marginTop: '20px' }}
-          >Log in</Button>
+          >Log in</Button> */}
+          <ConfirmButton text = 'Log in'/>
         </List>
         </div>
     )
