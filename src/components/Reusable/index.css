@@ -73,4 +73,24 @@
   #logo img {
     width: 7rem;
   }
-  
+
+  #root > 
+  div > form:nth-child(1) > 
+  div > div.form > div > 
+  div.am-list-body > div > 
+  div:nth-child(3) > div > 
+  div.am-list-line > div.am-list-extra {
+    width: 3em;
+    font-size: 1.5rem;
+    color: #888;
+    text-align: right;
+  }
+
+  #root > div > 
+  form:nth-child(1) > div > 
+  div.form > div > div.am-list-body > 
+  div > div:nth-child(3) > div > 
+  div.am-list-line > div.am-list-content {
+    font-size: 1.5rem;
+    text-align: right;
+  }

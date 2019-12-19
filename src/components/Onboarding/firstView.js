@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { List, Picker, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
-import '../Register/Register.css'
+import '../Reusable/index.css'
 import * as creators from '../../state/actionCreators'
 import { ConfirmButton } from '../Reusable'
 
@@ -61,14 +62,14 @@ const FirstView = props => {
                 placeholder='My name is...'
               />
               <WhiteSpace />
-              <Picker data={money} cols={1} values={1} triggerType='onClick' okText='OK' extra='more' dismissText='Dismiss' {...getFieldProps('currency')} className='forss'>
-                <List.Item arrow='vertical'>Currency</List.Item>
+              <Picker data={money} cols={1} values={1} triggerType='onClick' okText='OK' extra='.' dismissText='Dismiss' {...getFieldProps('currency')} className='forss'>
+                <List.Item arrow='vertical'>Currency:</List.Item>
               </Picker>
               <WhiteSpace />
             </Flex>
           </List>
         </div>
-        <ConfirmButton text='Register' handleSubmit={handleSubmit} />
+        <ConfirmButton text='Next' handleSubmit={handleSubmit} />
         <WhiteSpace />
         <div id='or-log-in'>
           or <a href='#'>login</a> instead
