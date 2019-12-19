@@ -1,9 +1,10 @@
 import React from 'react'
 import axios from 'axios'
-import { List, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
+import { List, InputItem, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
 import '../Reusable/index.css'
+import './index.css'
 import { ConfirmButton } from '../Reusable'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
@@ -36,51 +37,45 @@ const ResetPassword = props => {
   const { getFieldProps, getFieldError } = props.form
   return (
     <form>
-      <div className='flex-container'>
-        <div id='logo'>
-          <img src={logo} alt='PureRetail Logo' />
-        </div>
-        <WhiteSpace />
-        <div className='form'>
-          <List
-            renderHeader={() => (
-              <div style={{ marginBottom: '2em' }}>Reset Password</div>
-            )}
-            renderFooter={() =>
-              getFieldError('number', 'confirm') && getFieldError('number', 'confirm').join(',')}
+      <div id='logo'>
+        <img src={logo} alt='PureRetail Logo' />
+      </div>
+      <div id='formContent'>
+        <List
+          renderHeader={() => (
+            <div style={{ marginBottom: '2em' }}>Reset Password</div>
+          )}
+          renderFooter={() =>
+            getFieldError('number', 'confirm') && getFieldError('number', 'confirm').join(',')}
+        >
+          <div className='instructions'>Enter your registered phone number to receive a password reset link via SMS:</div>
+          <InputItem
+            {...getFieldProps('number', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input number'
+                }
+              ]
+            })}
+            clear
+            error={!!getFieldError('number')}
+            onErrorClick={() => {
+              showToast(getFieldError('number').join('、'))
+            }}
+            type='number'
+            placeholder='Phone number'
           >
-            <Flex direction='column'>
-              <div>Enter your registered phone number to receive a password reset link via SMS:</div>
-              <InputItem
-                {...getFieldProps('number', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please input number'
-                    }
-                  ]
-                })}
-                clear
-                error={!!getFieldError('number')}
-                onErrorClick={() => {
-                  showToast(getFieldError('number').join('、'))
-                }}
-                type='number'
-                placeholder='Phone number'
-              >
-                <div style={{ backgroundImage: 'url(https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/phone1-512.png)', backgroundSize: 'cover', height: '1.2rem', width: '1.2rem' }} />
-              </InputItem>
-            </Flex>
-          </List>
-        </div>
-        <ConfirmButton text='Get link' handleSubmit={handleSubmit} />
-        <WhiteSpace />
-        <div>
-          <a href='/login'>Back to login</a>
-        </div>
-        <div>
-          <a href='/login'>Contact support</a>
-        </div>
+            <div style={{ backgroundImage: 'url(https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/phone1-512.png)', backgroundSize: 'cover', height: '1.2rem', width: '1.2rem' }} />
+          </InputItem>
+        </List>
+      </div>
+      <ConfirmButton text='Get link' handleSubmit={handleSubmit} />
+      <div>
+        <a href='/login'>Back to login</a>
+      </div>
+      <div>
+        <a href='/login'>Contact support</a>
       </div>
     </form>
   )
