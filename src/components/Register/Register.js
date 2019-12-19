@@ -3,7 +3,7 @@ import axios from 'axios'
 import { List, InputItem, WhiteSpace, Flex, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
 import logo from '../../images/PureRetail_Logo.png'
-import './Register.css'
+import '../Reusable/index.css'
 import { ConfirmButton } from '../Reusable'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
