@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import './App.css'
 import Register from './components/Register/Register'
 import Login from './components/Login/login'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <div className='App'>
