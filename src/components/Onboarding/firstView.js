@@ -23,7 +23,6 @@ const FirstView = props => {
         currency: values.currency[0]
       }
       if (!err) {
-        console.log(payload)
         dispatch(creators.updateForm(payload))
       } else {
         window.alert('Validation failed')

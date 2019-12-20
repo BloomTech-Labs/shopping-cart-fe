@@ -11,38 +11,36 @@ const SecondView = props => {
   const [multiple] = useState(false)
   const formState = useSelector(state => state.form)
   const onChange = (files, type, index) => {
-    console.log(files, type, index)
     setFiles(files)
   }
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    const image = new FormData()
-    image.append('file', files[0])
-    image.append('upload_preset', 'pure-retail')
-    console.log(image)
-    console.log(files[0])
-    try {
-      const res = await axios.post(
-        `	https://api.cloudinary.com/v1_1/pureretail`,
-        image
-      )
-      console.log(res)
-    } catch (err) {
-      console.log(err)
-    }
     props.form.validateFields({ force: true }, (err, values) => {
-    //   const payload = {
-    //     name: formState.name,
-    //     currency: formState.currency,
-    //     image_url: files[0].url,
-    //     store: values.store
-    //   }
-      if (!err) {
-        console.log(files)
-      } else {
-        window.alert('Validation failed')
+      const image = new FormData()
+      image.append('upload_preset', 'pure-retail')
+      image.append('file', files[0].file)
+      const config = {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
       }
+      axios.post(
+        'https://api.cloudinary.com/v1_1/pureretail/upload',
+        image, config
+      )
+        .then(res => {
+          const secureUrl = res.data.secure_url
+          const payload = {
+            name: formState.name,
+            currency: formState.currency,
+            image_url: secureUrl,
+            store: values.store
+          }
+          if (!err) {
+            console.log(payload)
+          } else {
+            window.alert('Validation failed')
+          }
+        })
     })
   }
   const { getFieldProps } = props.form
