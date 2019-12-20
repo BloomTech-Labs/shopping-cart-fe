@@ -1,3 +1,5 @@
+
+
 .flex-container {
     height: 100vh;
     display: flex;
@@ -5,11 +7,14 @@
     justify-content: center;
   }
   
+
+
   .form {
     margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
   }
   
   .flex-container .inline {
@@ -106,7 +111,43 @@
     font-size: 1.5rem;
     text-align: right;
   }
+  
 
-  #logo > div > div > div > div:nth-child(1) > div {
+  @media screen and (min-width: 992px) {
+    .flex-container {
+      background-color: rgb(255, 255, 255);
+    }
+
+    .form {
+      margin: 0 30vw;
+      box-shadow: #0b3954;
+    }
+
+    .am-button {
+      width: 30vw;
+      border-radius: 5px !important;
+    }
+
+    .form {
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
+      padding: 3em;
+    }
+
+    #root > 
+  div > form > 
+  div > div.form > 
+  div > div.am-list-body > 
+  div > div:nth-child(n) > 
+  div > div.am-input-label {
+    width: 15rem;
+  }
+
+  .am-list-header {
+    font-family: "Montserrat", sans-serif;
+    color: #0b3954;
+    font-size: 2rem;
+  }
 
   }
