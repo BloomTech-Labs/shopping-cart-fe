@@ -93,7 +93,7 @@ const ResetPassword = (props) => {
         <p>Back to log in</p>
       </div>
       <div id="contact-support">
-        <p><a>Contact support</a></p>
+        <p>Contact support</p>
       </div>
     </div>
   )
