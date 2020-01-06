@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import './index.css'
+import store from './state/store/index.js'
+import history from './history'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import store from './state/store/index.js'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux'
 
 ReactDOM.render(
-  <Router>
+  <Router history={history}>
     <Provider store={store}>
       <App />
     </Provider>

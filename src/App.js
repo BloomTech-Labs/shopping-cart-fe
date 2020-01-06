@@ -1,25 +1,25 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import './App.css'
-import FirstViewWrapper from './components/Onboarding/firstView'
-import Register from './components/Register/Register'
-import Login from './components/Login/login'
-import SecondViewWrapper from './components/Onboarding/secondView'
+import WrappedRegistrationForm from './components/register'
+import LoginForm from './components/login'
+import CreateStoreForm from './components/createStore/firstView'
+import AddLogoForm from './components/createStore/addLogo'
 
 function App () {
   return (
     <Switch>
       <Route path='/register'>
-        <Register />
+        <WrappedRegistrationForm />
       </Route>
       <Route path='/login'>
-        <Login />
+        <LoginForm />
       </Route>
       <Route path='/createstore'>
-        <FirstViewWrapper />
+        <CreateStoreForm />
       </Route>
       <Route path='/addlogo'>
-        <SecondViewWrapper />
+        <AddLogoForm />
       </Route>
     </Switch>
   )
