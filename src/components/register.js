@@ -9,12 +9,13 @@ import {
 } from 'antd';
 import '../less/index.less'
 import logo from '../images/PureRetail_Logo.png'
+import history from '../history'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
 const RegistrationForm = (props) => {
-  const [confirmDirty, setConfirmDirty] = useState(false)  
+  const [confirmDirty, setConfirmDirty] = useState(false)
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
       const payload = {
         phone: values.number,
@@ -25,7 +26,8 @@ const RegistrationForm = (props) => {
         axios.post(signupURL, payload)
           .then(res => {
             message.success('Signed Up')
-            props.form.resetFields()
+            localStorage.setItem('token', res.data.token)
+            history.push('/createstore')
           })
           .catch(error => {
             message.error(error.message)

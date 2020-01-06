@@ -9,6 +9,7 @@ import {
 } from 'antd'
 import '../less/index.less'
 import logo from '../images/PureRetail_Logo.png'
+import history from '../history'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
 const Login = (props) => {
@@ -24,7 +25,7 @@ const Login = (props) => {
           .then(res => {
             message.success('Logged!')
             localStorage.setItem('token', res.data.token)
-            props.history.push('/dashboard')
+            history.push('/createstore')
           })
           .catch(error => {
             message.error(error.message)
