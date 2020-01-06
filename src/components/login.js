@@ -64,7 +64,7 @@ const Login = (props) => {
         <img src={logo} alt='PureRetail Logo' />
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id='header'>
+        <div id='header' data-testid='log-in'>
           <h2>Log in</h2>
         </div>
         <Form.Item>

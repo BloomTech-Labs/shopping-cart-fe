@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, getByTestId } from '@testing-library/react'
 import Login from '../components/login'
 
 describe('login screen', () => {
@@ -9,15 +9,11 @@ describe('login screen', () => {
         const logo = getByAltText(/pureretail logo/i)
         expect(logo).toBeVisible()
     })
-    // Need to add a test for the title, but this is difficult because
-    // 'Log in' appears in two places on the page (title and button). Need
-    // to add a data-testid to the title to resolve this.
-    //
-    // test('renders the title', () => {
-    //     const { getByText } = render(<Login />)
-    //     const title = getByText(/^log in$/i)
-    //     expect(title).toBeVisible()
-    // })
+    test('renders the title', () => {
+        const { getByTestId } = render(<Login />)
+        const title = getByTestId('log-in')
+        expect(title).toBeVisible()
+    })
     test('renders the phone number input', () => {
         const { getByPlaceholderText } = render(<Login />)
         const phoneNumberField = getByPlaceholderText(/phone number/i)
