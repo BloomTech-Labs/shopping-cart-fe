@@ -28,7 +28,7 @@ const ResetPassword = (props) => {
             message.error(error.message)
           })
       } else {
-        message.error('Validation failed')
+        message.error('Please enter a valid phone number to proceed.')
       }
     })
   }
@@ -71,11 +71,11 @@ const ResetPassword = (props) => {
           {getFieldDecorator('number', {
             rules: [
               {
-                message: 'Enter valid phone number',
+                message: 'Enter a valid phone number',
               },
               {
                 required: true,
-                message: 'Enter valid phone number',
+                message: 'Enter a valid phone number',
               }
             ]
           })(<Input
