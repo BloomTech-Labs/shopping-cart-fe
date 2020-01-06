@@ -10,21 +10,19 @@ import {
 import '../less/index.less'
 import logo from '../images/PureRetail_Logo.png'
 
-const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
-const Login = (props) => {
+const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
+const ResetPassword = (props) => {
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
       const payload = {
-        phone: values.number,
-        password: values.password
+        phone: values.number
       }
       if (!err) {
-        axios.post(loginURL, payload)
+        axios.post(URL, payload)
           .then(res => {
-            message.success('Logged!')
-            localStorage.setItem('token', res.data.token)
-            props.history.push('/dashboard')
+            message.success('Your password reset is on its way!')
+            props.history.push('/login')
           })
           .catch(error => {
             message.error(error.message)
@@ -100,6 +98,6 @@ const Login = (props) => {
     </div>
   )
 }
-const LoginForm = Form.create({ name: 'register' })(Login)
+const ResetPasswordForm = Form.create({ name: 'resetPassword' })(ResetPassword)
 
-export default LoginForm
+export default ResetPasswordForm
