@@ -3,7 +3,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import Register from '../components/register'
 
-describe('login screen', () => {
+describe('register screen', () => {
     test('renders the logo', () => {
         const { getByAltText } = render(<Register />)
         const logo = getByAltText(/pureretail logo/i)
