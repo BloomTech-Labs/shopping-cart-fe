@@ -9,6 +9,7 @@ import {
 } from 'antd'
 import '../less/index.less'
 import logo from '../images/PureRetail_Logo.png'
+import history from '../history'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
 const Login = (props) => {
@@ -24,7 +25,7 @@ const Login = (props) => {
           .then(res => {
             message.success('Logged!')
             localStorage.setItem('token', res.data.token)
-            props.history.push('/dashboard')
+            history.push('/createstore')
           })
           .catch(error => {
             message.error(error.message)
@@ -58,28 +59,28 @@ const Login = (props) => {
     }
   }
   return (
-    <div className="cover">
+    <div className='cover'>
       <div id='logo'>
         <img src={logo} alt='PureRetail Logo' />
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id="header">
+        <div id='header'>
           <h2>Log in</h2>
         </div>
         <Form.Item>
           {getFieldDecorator('number', {
             rules: [
               {
-                message: 'Enter valid phone number',
+                message: 'Enter valid phone number'
               },
               {
                 required: true,
-                message: 'Enter valid phone number',
+                message: 'Enter valid phone number'
               }
             ]
           })(<Input
-            placeholder="Phone number"
-            prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder='Phone number'
+            prefix={<Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />}
           />)}
         </Form.Item>
         <Form.Item hasFeedback>
@@ -87,24 +88,24 @@ const Login = (props) => {
             rules: [
               {
                 required: true,
-                message: 'Please input your password!',
+                message: 'Please input your password!'
               }
             ]
-          })(<Input.Password 
-            placeholder="Password"
-            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          })(<Input.Password
+            placeholder='Password'
+            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
           />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type='primary' htmlType='submit'>
               Log in
           </Button>
         </Form.Item>
       </Form>
-      <div id="or_login">
+      <div id='or_login'>
         <p>or <a>register</a> instead</p>
       </div>
-      <div id="or_login">
+      <div id='or_login'>
         <p><a>Forgot password?</a></p>
       </div>
     </div>
