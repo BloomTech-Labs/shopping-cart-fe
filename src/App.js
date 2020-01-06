@@ -5,6 +5,7 @@ import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
+import CreateItem from './components/CreateItem'
 
 function App () {
   return (
@@ -20,6 +21,9 @@ function App () {
       </Route>
       <Route path='/addlogo'>
         <AddLogoForm />
+      </Route>
+      <Route path='/createItem'>
+        <CreateItem />
       </Route>
     </Switch>
   )
