@@ -64,7 +64,7 @@ const ResetPassword = (props) => {
         <div id="header">
           <h2>Reset Password</h2>
         </div>
-        <div id="instruction_text">
+        <div id="instruction-text">
           <p>Enter your registered phone number to receive a password reset link via SMS:</p>
         </div>
         <Form.Item>
