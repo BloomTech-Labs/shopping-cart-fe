@@ -170,9 +170,10 @@ const AddLogo = (props) => {
                 message: 'Enter your store name'
               }
             ]
-          })(<Input
-            placeholder="My store's name is..."
-             />)}
+          })(
+            <Input
+              placeholder="My store's name is..."
+            />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
