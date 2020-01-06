@@ -3,8 +3,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
+import SellerProflePage from './components/SellerProfile/SellerProfile'
 
-function App () {
+function App() {
   return (
     <BrowserRouter>
       <div className='App'>
@@ -15,6 +16,7 @@ function App () {
           <Route path='/login'>
             <Login />
           </Route>
+          <Route path='/profile' component={SellerProflePage} />
         </Switch>
       </div>
     </BrowserRouter>
