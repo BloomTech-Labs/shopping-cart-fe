@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, Input, Tabs } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
+import Expanded from './expand'
 
 const { TabPane } = Tabs
 const { Search } = Input
@@ -19,7 +20,7 @@ const Inventory = () => {
       <div className='top'>
         <div className='search'>
           <Search
-            placeholder='input search text'
+            placeholder='search'
             onSearch={value => console.log(value)}
             style={{ width: 200 }}
           />
@@ -34,7 +35,7 @@ const Inventory = () => {
                 <Items inventory={inventory} />
               </TabPane>
               <TabPane tab='Expand' key='2'>
-                Expanded
+                <Expanded inventory={inventory} />
               </TabPane>
             </Tabs>
           </div>
