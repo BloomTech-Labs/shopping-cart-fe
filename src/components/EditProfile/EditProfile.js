@@ -56,10 +56,9 @@ const EditProfile = props => {
 
   const editProfile = (
     <div className='edit-form'>
-      <h2>Edit your store</h2>
+      <h2 className='header-text'>Profile</h2>
       <form onSubmit={handleSubmit}>
-        <img src={store.imageUrl} alt='store logo' />
-
+        <label className='label'>Owner name</label>
         <input
           name='ownerName'
           type='text'
@@ -69,6 +68,7 @@ const EditProfile = props => {
         />
         {errors.ownerName && <p className='error-text'>{errors.ownerName}</p>}
 
+        <label className='label'>Currency</label>
         <input
           name='currency'
           type='text'
@@ -78,6 +78,7 @@ const EditProfile = props => {
         />
         {errors.currency && <p className='error-text'>{errors.currency}</p>}
 
+        <label className='label'>Store name</label>
         <input
           name='storeName'
           type='text'
@@ -87,7 +88,11 @@ const EditProfile = props => {
         />
         {errors.storeName && <p className='error-text'>{errors.storeName}</p>}
 
-        <input className='btn' type='submit' value='Edit Profile' />
+        <input className='btn' type='submit' value='Update' />
+        <input className='btn' type='button' value='Logout' />
+        <button type='button' className='btn-del'>
+          Delete account
+        </button>
       </form>
     </div>
   )

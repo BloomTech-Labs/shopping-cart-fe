@@ -1,10 +1,31 @@
 .edit-form {
-    width: 350px;
+    /* width: 350px;
     height: 400px;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: auto;
+    margin: auto; */
+    text-align: center;
+    padding-top: 25px;
+    height: 100%;
+    width: 100%;
     
+}
+
+.header-text {
+    color: #ff6663;
+    font-size: 3.2rem;
+    padding-bottom: 50px;
+}
+
+.btn-del {
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.label {
+    color: #ff6663;
+    font-size: 2.0rem;
 }
 
 .error-text {
@@ -17,6 +38,8 @@
     border: none;
     font-weight: bolder;
     border-radius: 20px;
+    height: 35px;
+    cursor: pointer;
 }
 
 input {
@@ -27,6 +50,8 @@ input {
     height: 40px;
     font-size: large;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
 }
 
