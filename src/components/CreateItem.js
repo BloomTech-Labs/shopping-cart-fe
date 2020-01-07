@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   Form,
   Input,
@@ -6,36 +6,35 @@ import {
   Button,
   message,
   Upload
-} from 'antd';
-import '../less/index.less';
-import axios from 'axios';
-import AxiosAuth from './Auth/axiosWithAuth';
+} from 'antd'
+import '../less/index.less'
+import axios from 'axios'
+import AxiosAuth from './Auth/axiosWithAuth'
 
 const productURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
 
-function CreateItem(props) {
-
+function CreateItem (props) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 
-const handleChange = info => {
-    let fileList = [...info.fileList];
+  const handleChange = info => {
+    let fileList = [...info.fileList]
 
     // 1. Limit the number of uploaded files
     // Only to show two recent uploaded files, and old ones will be replaced by the new
-    fileList = fileList.slice(-4);
+    fileList = fileList.slice(-4)
 
     // 2. Read from response and show file link
     fileList = fileList.map(file => {
       if (file.response) {
         // Component will show file.url as link
-        file.url = file.response.url;
+        file.url = file.response.url
       }
-      return file;
-    });
+      return file
+    })
 
     setFileList(fileList)
-  };
+  }
 
   const dummyRequest = ({ file, onSuccess }) => {
     const image = new FormData()
@@ -87,46 +86,47 @@ const handleChange = info => {
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
-      sm: { span: 8 },
+      sm: { span: 8 }
     },
     wrapperCol: {
       xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
+      sm: { span: 16 }
+    }
+  }
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
         span: 24,
-        offset: 0,
+        offset: 0
       },
       sm: {
         span: 16,
-        offset: 8,
-      },
-    },
-  };
+        offset: 8
+      }
+    }
+  }
 
   return (
-    <div className="cover">
-      <div id="header">
+    <div className='cover'>
+      <div id='header'>
         <h2 id='get-started'>Upload new
-              <br />
+          <br />
           store item
-          </h2>
+        </h2>
       </div>
       <div>
 
-        <Upload 
+        <Upload
           fileList={fileList}
           customRequest={dummyRequest}
           action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-          multiple={true}
-          onChange={handleChange}>
-        <Button>
-          <Icon type="upload" /> Upload Photos
-        </Button>
-      </Upload>
+          multiple
+          onChange={handleChange}
+        >
+          <Button>
+            <Icon type='upload' /> Upload Photos
+          </Button>
+        </Upload>
 
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -134,64 +134,64 @@ const handleChange = info => {
           {getFieldDecorator('name', {
             rules: [
               {
-                message: 'Name',
+                message: 'Name'
               },
               {
                 required: true,
-                message: 'Enter a Name',
-              },
-            ],
+                message: 'Enter a Name'
+              }
+            ]
           })(<Input
-            placeholder="Name"
-          />)}
+            placeholder='Name'
+             />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('description', {
             rules: [
               {
-                message: 'Enter a description',
+                message: 'Enter a description'
               },
               {
                 required: true,
-                message: 'Enter a description',
-              },
-            ],
+                message: 'Enter a description'
+              }
+            ]
           })(<Input
-            placeholder="Description"
-          />)}
+            placeholder='Description'
+             />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('price', {
             rules: [
               {
-                message: 'Enter a price',
+                message: 'Enter a price'
               },
               {
                 required: true,
-                message: 'Enter a price',
-              },
-            ],
+                message: 'Enter a price'
+              }
+            ]
           })(<Input
-            placeholder="Price"
-          />)}
+            placeholder='Price'
+             />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('stock', {
             rules: [
               {
-                message: 'Enter stock',
+                message: 'Enter stock'
               }
-            ],
+            ]
           })(<Input
-            placeholder="Stock"
-          />)}
+            placeholder='Stock'
+             />)}
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type='primary' htmlType='submit'>
             Done
           </Button>
         </Form.Item>
