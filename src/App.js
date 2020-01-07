@@ -3,7 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 import './App.css'
 import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
-import ResetPassword from './components/resetPassword'
+import ResetPasswordForm from './components/resetPassword'
+import SetNewPasswordForm from './components/setNewPassword'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 
@@ -17,7 +18,10 @@ function App () {
         <LoginForm />
       </Route>
       <Route path='/resetpassword'>
-        <ResetPassword />
+        <ResetPasswordForm />
+      </Route>
+      <Route path='/setnewpassword'>
+        <SetNewPasswordForm />
       </Route>
       <Route path='/createstore'>
         <CreateStoreForm />
