@@ -9,15 +9,35 @@ import Container from '../../components/createStore/firstView'
 
 function renderWithRedux(ui, { initialState, store = createStore(formReducer, initialState)} = {}) {
     return {
-        ...render(<Provider store={store}>ui</Provider>), 
+        ...render(<Provider store={store}>{ui}</Provider>), 
         store,
     }
 }
 
-describe('login screen', () => {
+describe('create store screen', () => {
     test('renders the logo', () => {
         const { getByAltText } = renderWithRedux(<Container />)
         const logo = getByAltText(/pureretail logo/i)
         expect(logo).toBeVisible()
+    })
+    test('renders the title', () => {
+        const { getByText } = renderWithRedux(<Container />)
+        const title = getByText(/lets get started!/i)
+        expect(title).toBeVisible()
+    })
+    test('renders the description', () => {
+        const { getByText } = renderWithRedux(<Container />)
+        const description = getByText(/you're in! let's get/i)
+        expect(description).toBeVisible()
+    })
+    test('renders the name input', () => {
+        const { getByPlaceholderText } = renderWithRedux(<Container />)
+        const inputfield = getByPlaceholderText(/my name is/i)
+        expect(inputfield).toBeVisible()
+    })
+    test('renders the currency input', () => {
+        const { getByPlaceholderText } = renderWithRedux(<Container />)
+        const inputfield = getByPlaceholderText(/and i prefer to sell in/i)
+        expect(inputfield).toBeVisible()
     })
 })
