@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, Input, Tabs } from 'antd'
 import '../../less/index.less'
@@ -9,19 +9,30 @@ const { TabPane } = Tabs
 const { Search } = Input
 
 const Inventory = () => {
+  const [searchString, setSearchString] = useState('')
+  const search = (value) => {
+    setSearchString(value)
+  }
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCurrentUser())
   }, [dispatch])
   const inventory = useSelector(state => state.store)
-  console.log(inventory)
+  function searchObj (obj, string) {
+    const regExpFlags = 'gi'
+    const regExp = new RegExp(string, regExpFlags)
+    return JSON.stringify(obj).match(regExp)
+  }
+  var searchFilter = inventory.filter(function (obj) {
+    return searchObj(obj, searchString)
+  })
   return (
     <div className='cover inventory'>
       <div className='top'>
         <div className='search'>
           <Search
+            onSearch={search}
             placeholder='search'
-            onSearch={value => console.log(value)}
             style={{ width: 200 }}
           />
         </div>
@@ -32,10 +43,16 @@ const Inventory = () => {
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Collapse' key='1'>
-                <Items inventory={inventory} />
+                <Items inventory={
+                  searchString ? searchFilter : inventory
+                }
+                />
               </TabPane>
               <TabPane tab='Expand' key='2'>
-                <Expanded inventory={inventory} />
+                <Expanded inventory={
+                  searchString ? searchFilter : inventory
+                }
+                />
               </TabPane>
             </Tabs>
           </div>
