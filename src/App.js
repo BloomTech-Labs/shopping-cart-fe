@@ -7,7 +7,11 @@ import ResetPasswordForm from './components/resetPassword'
 import SetNewPasswordForm from './components/setNewPassword'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
+<<<<<<< HEAD
 import EditProfile from './components/EditProfile/EditProfile'
+=======
+import CreateItem from './components/CreateItem'
+>>>>>>> f218f8a62f7e196cfa50824c26d774b71e2e92ac
 import Inventory from './components/inventory/inventory'
 
 function App() {
@@ -34,7 +38,13 @@ function App() {
       <Route path='/addlogo'>
         <AddLogoForm />
       </Route>
+<<<<<<< HEAD
       <Route path='/profile' component={EditProfile} />
+=======
+      <Route path='/createitem'>
+        <CreateItem />
+      </Route>
+>>>>>>> f218f8a62f7e196cfa50824c26d774b71e2e92ac
     </Switch>
   )
 }
