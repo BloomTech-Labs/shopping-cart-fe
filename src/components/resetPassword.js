@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
+import { Route } from 'react-router-dom'
 import {
   Form,
   Input,
@@ -33,6 +34,26 @@ const ResetPassword = (props) => {
     })
   }
   const { getFieldDecorator } = props.form
+  const handleConfirmBlur = e => {
+    const { value } = e.target
+    setConfirmDirty(!!value)
+  }
+  const compareToFirstPassword = (rule, value, callback) => {
+    const { form } = props
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Two passwords that you enter is inconsistent!')
+    } else {
+      callback()
+    }
+  }
+  const validateToNextPassword = (rule, value, callback) => {
+    const { form } = props
+    if (value && confirmDirty) {
+      form.validateFields(['confirm'], { force: true });
+      }
+      callback();
+    };
+    const [confirmDirty, setConfirmDirty] = useState(false)  
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -64,30 +85,71 @@ const ResetPassword = (props) => {
         <div id="header">
           <h2>Reset Password</h2>
         </div>
-        <div id="instruction-text">
-          <p>Enter your registered phone number to receive a password reset link via SMS:</p>
-        </div>
-        <Form.Item>
-          {getFieldDecorator('number', {
-            rules: [
-              {
-                message: 'Enter a valid phone number',
-              },
-              {
-                required: true,
-                message: 'Enter a valid phone number',
-              }
-            ]
-          })(<Input
-            placeholder="Phone number"
-            prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          />)}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-              Get link
-          </Button>
-        </Form.Item>
+        <Route exact path='/resetpassword'>
+          <div id="instruction-text">
+            <p>Enter your registered phone number to receive a password reset link via SMS:</p>
+          </div>
+          <Form.Item>
+            {getFieldDecorator('number', {
+              rules: [
+                {
+                  message: 'Enter a valid phone number',
+                },
+                {
+                  required: true,
+                  message: 'Enter a valid phone number',
+                }
+              ]
+            })(<Input
+              placeholder="Phone number"
+              prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />)}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">
+                Get link
+            </Button>
+          </Form.Item>
+        </Route>
+        <Route path='/resetpassword/:token'>
+        <Form.Item hasFeedback>
+            {getFieldDecorator('password', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+                {
+                  validator: validateToNextPassword,
+                },
+              ],
+            })(<Input.Password 
+                placeholder="Password"
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                />)}
+          </Form.Item>
+          <Form.Item hasFeedback>
+            {getFieldDecorator('confirm', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please confirm your password!',
+                },
+                {
+                  validator: compareToFirstPassword,
+                },
+              ],
+            })(<Input.Password onBlur={handleConfirmBlur} 
+                placeholder="Confirm Password"
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                />)}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
+          </Form.Item>
+        </Route>
       </Form>
       <div id="back-to-login">
         <p>Back to log in</p>
