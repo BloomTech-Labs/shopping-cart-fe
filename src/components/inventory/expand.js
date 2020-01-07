@@ -11,7 +11,7 @@ const Expanded = ({ inventory }) => {
           <Card
             key={item.name}
             hoverable
-            style={{ width: 240, height: '40%' }}
+            style={{ width: 240, height: '45%' }}
             cover={<img alt='item' src={item.images[0]} />}
           >
             <Meta

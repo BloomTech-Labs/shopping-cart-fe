@@ -64,13 +64,13 @@ const Items = ({ inventory }) => {
         <List.Item className='block'>
           <List.Item.Meta
             title={
-              <div className='list title'>
+              <div className='list title short'>
                 <h3>{item.name}</h3>
                 <div>{item.price}</div>
               </div>
             }
             description={
-              <div className='list'>
+              <div className='list short'>
                 <div>{item.description}</div>
                 <div>Edit</div>
               </div>
