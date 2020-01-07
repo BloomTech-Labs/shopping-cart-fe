@@ -3,9 +3,12 @@ import { Switch, Route } from 'react-router-dom'
 import './App.css'
 import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
+import ResetPasswordForm from './components/resetPassword'
+import SetNewPasswordForm from './components/setNewPassword'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 import EditProfile from './components/EditProfile/EditProfile'
+import Inventory from './components/inventory/inventory'
 
 function App() {
   return (
@@ -13,8 +16,17 @@ function App() {
       <Route path='/register'>
         <WrappedRegistrationForm />
       </Route>
+      <Route path='/inventory'>
+        <Inventory />
+      </Route>
       <Route path='/login'>
         <LoginForm />
+      </Route>
+      <Route path='/resetpassword'>
+        <ResetPasswordForm />
+      </Route>
+      <Route path='/setnewpassword'>
+        <SetNewPasswordForm />
       </Route>
       <Route path='/createstore'>
         <CreateStoreForm />
