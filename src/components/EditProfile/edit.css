@@ -1,0 +1,32 @@
+.edit-form {
+    width: 350px;
+    height: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    
+}
+
+.error-text {
+    color: red;
+}
+
+.btn {
+    width: 300px;
+    background-color: #108ee9;
+    border: none;
+    font-weight: bolder;
+    border-radius: 20px;
+}
+
+input {
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 300px;
+    height: 40px;
+    font-size: large;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+

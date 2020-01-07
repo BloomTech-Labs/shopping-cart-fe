@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
-import { ConfirmButton as Button } from '../Reusable/index'
 import { Link } from 'react-router-dom'
+import './edit.css'
 
 const getStoreUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 const editStoreUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
 
-const SellerProflePage = () => {
+const EditProfile = props => {
   const [store, setStore] = useState({
     ownerName: '',
     currency: '',
-    storeName: ''
+    storeName: '',
+    imageUrl: ''
   })
 
   useEffect(() => {
@@ -48,16 +49,17 @@ const SellerProflePage = () => {
     <div>
       <p>You currently haven't created a store yet</p>
       <p>
-        Click <Link to='/createStore'>here</Link> to create one
+        Click <Link to='/createstore'>here</Link> to create one
       </p>
     </div>
   )
 
   const editProfile = (
-    <div>
-      <h2>Seller profile page</h2>
+    <div className='edit-form'>
+      <h2>Edit your store</h2>
       <form onSubmit={handleSubmit}>
-        <label>Owner name</label>
+        <img src={store.imageUrl} alt='store logo' />
+
         <input
           name='ownerName'
           type='text'
@@ -65,9 +67,8 @@ const SellerProflePage = () => {
           value={store.ownerName}
           onChange={handleChange}
         />
-        {errors.ownerName && <p>{errors.ownerName}</p>}
+        {errors.ownerName && <p className='error-text'>{errors.ownerName}</p>}
 
-        <label>Currency</label>
         <input
           name='currency'
           type='text'
@@ -75,9 +76,8 @@ const SellerProflePage = () => {
           value={store.currency}
           onChange={handleChange}
         />
-        {errors.currency && <p>{errors.currency}</p>}
+        {errors.currency && <p className='error-text'>{errors.currency}</p>}
 
-        <label>Store name</label>
         <input
           name='storeName'
           type='text'
@@ -85,14 +85,14 @@ const SellerProflePage = () => {
           value={store.storeName}
           onChange={handleChange}
         />
-        {errors.storeName && <p>{errors.storeName}</p>}
+        {errors.storeName && <p className='error-text'>{errors.storeName}</p>}
 
-        <input type='submit' value='Edit Profile' />
+        <input className='btn' type='submit' value='Edit Profile' />
       </form>
     </div>
   )
 
-  return editProfile
+  return errors.message ? createStore : editProfile
 }
 
-export default SellerProflePage
+export default EditProfile

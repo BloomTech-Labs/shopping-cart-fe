@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
-import SellerProflePage from './components/SellerProfile/SellerProfile'
+import EditProfile from './components/EditProfile/EditProfile'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route path='/login'>
             <Login />
           </Route>
-          <Route path='/profile' component={SellerProflePage} />
+          <Route path='/profile' component={EditProfile} />
         </Switch>
       </div>
     </BrowserRouter>
