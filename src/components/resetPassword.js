@@ -18,6 +18,7 @@ const ResetPassword = (props) => {
       const payload = {
         phone: values.number
       }
+      console.log(payload)
       if (!err) {
         axios.post(URL, payload)
           .then(res => {

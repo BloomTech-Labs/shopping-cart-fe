@@ -12,9 +12,10 @@ import '../less/index.less'
 import logo from '../images/PureRetail_Logo.png'
 import history from '../history'
 
-const URL = ''
 const SetNewPassword = (props) => {
   const [confirmDirty, setConfirmDirty] = useState(false)
+  const token = window.location.href.split('=')[1];
+  const URL = `https://shopping-cart-eu3.herokuapp.com/api/auth/reset/${token}`
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
