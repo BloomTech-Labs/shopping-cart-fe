@@ -9,45 +9,33 @@ import {
 } from 'antd';
 import '../less/index.less';
 import axios from 'axios';
-
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-}
+import AxiosAuth from './Auth/axiosWithAuth';
 
 const productURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
 
 function CreateItem(props) {
 
-  const [imageUrl, setImageUrl] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [fileList, setFileList] = useState([])
+  const [cloudList, setCloudList] = useState([])
 
-  const handleChange = info => {
-    if (info.file.status === 'uploading') {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
-        setImageUrl(imageUrl),
-        setLoading(false)
-      );
-    }
-  }
+const handleChange = info => {
+    let fileList = [...info.fileList];
+
+    // 1. Limit the number of uploaded files
+    // Only to show two recent uploaded files, and old ones will be replaced by the new
+    fileList = fileList.slice(-4);
+
+    // 2. Read from response and show file link
+    fileList = fileList.map(file => {
+      if (file.response) {
+        // Component will show file.url as link
+        file.url = file.response.url;
+      }
+      return file;
+    });
+
+    setFileList(fileList)
+  };
 
   const dummyRequest = ({ file, onSuccess }) => {
     const image = new FormData()
@@ -62,9 +50,8 @@ function CreateItem(props) {
     )
       .then(res => {
         const secureUrl = res.data.secure_url
-        console.log(secureUrl)
-        setImageUrl(secureUrl)
-        console.log(imageUrl)
+        const newList = [...cloudList, secureUrl]
+        setCloudList(newList)
       })
     setTimeout(() => {
       onSuccess('ok')
@@ -74,19 +61,17 @@ function CreateItem(props) {
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
-      debugger
       const payload = {
         name: values.name,
         description: values.description,
         price: values.price,
-        image_url: imageUrl
+        stock: values.stock || 0,
+        images: cloudList
       }
       if (!err) {
-        axios.post(productURL, payload)
+        AxiosAuth().post(productURL, payload)
           .then(res => {
             message.success('item added')
-            localStorage.setItem('token', res.data.token)
-            props.history.push('/dashboard')
           })
           .catch(error => {
             message.error(error.message)
@@ -96,13 +81,6 @@ function CreateItem(props) {
       }
     })
   }
-
-  const uploadButton = (
-    <div>
-      <Icon type={loading ? 'loading' : 'plus'} />
-      <div className="ant-upload-text">Upload</div>
-    </div>
-  )
 
   const { getFieldDecorator } = props.form
 
@@ -138,31 +116,20 @@ function CreateItem(props) {
           </h2>
       </div>
       <div>
-        <Upload
-          name="avatar"
+
+        <Upload 
+          fileList={fileList}
           customRequest={dummyRequest}
-          listType="picture-card"
-          className="avatar-uploader"
-          showUploadList={false}
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-        </Upload>
-        <div id='upload-text'>
-          <p>Tap to upload
-              <br />
-            photos
-          </p>
-        </div>
+          action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
+          multiple={true}
+          onChange={handleChange}>
+        <Button>
+          <Icon type="upload" /> Upload Photos
+        </Button>
+      </Upload>
+
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
-        {/* <div id="header">
-          <h2 id='get-started'>Give your store
-              <br />
-            a name
-          </h2>
-        </div> */}
         <Form.Item>
           {getFieldDecorator('name', {
             rules: [
@@ -211,6 +178,18 @@ function CreateItem(props) {
           />)}
         </Form.Item>
 
+        <Form.Item>
+          {getFieldDecorator('stock', {
+            rules: [
+              {
+                message: 'Enter stock',
+              }
+            ],
+          })(<Input
+            placeholder="Stock"
+          />)}
+        </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Done
@@ -227,4 +206,3 @@ function CreateItem(props) {
 const CreateItemForm = Form.create({ name: 'createItem' })(CreateItem)
 
 export default CreateItemForm
-
