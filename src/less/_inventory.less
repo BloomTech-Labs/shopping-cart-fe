@@ -1,12 +1,45 @@
+.inventory {
+    background-color: @grey;
+}
+
 .top {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 
+    .search {
+        margin: 1.5rem;
+    }
+
+    .content {
+        
+        h2 {
+            font-size: 2rem;
+            color: @blue;
+        }
+
+        .ant-tabs-tab-active {
+            color: @navy;
+        }
+
+        .tabs {
+            color: @navy;
+        }
+
+        .block {
+            background-color: white;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+    }
+
     .list {
         display: flex;
         justify-content: space-between;
+        color: @black;
+        font-size: 1.5rem;
+        font-weight: bold;
     }
 
     .title {
@@ -49,3 +82,4 @@
         }
     }
 }
+

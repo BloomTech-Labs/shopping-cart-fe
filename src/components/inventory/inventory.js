@@ -15,7 +15,7 @@ const Inventory = () => {
   const inventory = useSelector(state => state.store)
   console.log(inventory)
   return (
-    <div className='cover'>
+    <div className='cover inventory'>
       <div className='top'>
         <div className='search'>
           <Search
@@ -29,7 +29,7 @@ const Inventory = () => {
             <h2>Your Store</h2>
           </div>
           <div>
-            <Tabs defaultActiveKey='1'>
+            <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Collapse' key='1'>
                 <Items inventory={inventory} />
               </TabPane>
@@ -60,7 +60,7 @@ const Items = ({ inventory }) => {
       itemLayout='horizontal'
       dataSource={inventory}
       renderItem={item => (
-        <List.Item>
+        <List.Item className='block'>
           <List.Item.Meta
             title={
               <div className='list title'>
