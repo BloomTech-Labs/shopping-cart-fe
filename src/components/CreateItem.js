@@ -10,6 +10,7 @@ import {
 import '../less/index.less'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
+import history from '../history'
 
 const productURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
 
@@ -81,6 +82,11 @@ function CreateItem (props) {
     })
   }
 
+  const toStore = e => {
+    e.preventDefault()
+    history.push('/createstore')
+  }
+
   const { getFieldDecorator } = props.form
 
   const formItemLayout = {
@@ -119,7 +125,6 @@ function CreateItem (props) {
         <Upload
           fileList={fileList}
           customRequest={dummyRequest}
-          action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
           multiple
           onChange={handleChange}
         >
@@ -196,7 +201,7 @@ function CreateItem (props) {
           </Button>
         </Form.Item>
         <div>
-          <p><a>cancel</a></p>
+          <p onClick={toStore}>cancel</p>
         </div>
       </Form>
     </div>

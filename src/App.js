@@ -22,7 +22,7 @@ function App () {
       <Route path='/addlogo'>
         <AddLogoForm />
       </Route>
-      <Route path='/createItem'>
+      <Route path='/createitem'>
         <CreateItem />
       </Route>
     </Switch>
