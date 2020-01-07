@@ -1,0 +1,51 @@
+.top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .list {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .title {
+        text-transform: uppercase;
+    }
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    position: sticky;
+
+    #nav_ul {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+
+        #add {
+            color: @secondary;
+            font-size: 1.4rem;
+            align-self: center;
+        }
+
+        li {
+            width: 20%;
+            height: 90%;
+            margin: 0.5rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+
+            .icon {
+                font-size: 3rem;
+            }
+        }
+    }
+}
