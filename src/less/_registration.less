@@ -1,0 +1,77 @@
+.cover {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+
+    input::placeholder {
+        color: @primary;
+    }
+}
+
+.ant-upload.ant-upload-select-picture-card {
+    border-radius: 10rem !important;
+    background-color: lightgray !important;
+}
+
+.ant-form.ant-form-horizontal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ant-row.ant-form-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-row.ant-form-item:nth-child(n) > div {
+    margin-left: 0;
+}
+
+.ant-btn.ant-btn-primary {
+    background-color: @primary;
+    border-color: @primary;
+    border-radius: 10px;
+    width: 90%;
+}
+
+#header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+
+    #get-started {
+        color: @secondary;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+}
+
+#upload-text {
+    font-size: small;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 15rem;
+      }
+}
+
+#or_login {
+    font-size: medium;
+}

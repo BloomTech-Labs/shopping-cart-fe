@@ -1,14 +1,13 @@
 import axios from 'axios'
 
-const axiosWithAuth = () => {
+export default function AxiosAuth() {
   const token = localStorage.getItem('token')
 
-  return axios.create({
+  const instance = axios.create({
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`
+      Authorization: token
     }
   })
+  return instance
 }
-
-export default axiosWithAuth
