@@ -3,8 +3,7 @@ import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import './edit.css'
 
-const getStoreUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
-const editStoreUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
+const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 
 const EditProfile = props => {
   const [store, setStore] = useState({
@@ -16,7 +15,7 @@ const EditProfile = props => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(getStoreUrl)
+      .get(storeUrl)
       .then(res => {
         const { ownerName, currency, storeName } = res.data
         setStore({ ownerName, currency, storeName })
@@ -36,7 +35,7 @@ const EditProfile = props => {
     e.preventDefault()
     setErrors({})
     axiosWithAuth()
-      .put(editStoreUrl, store)
+      .put(storeUrl, store)
       .then(res => {
         console.log(res.data)
       })
