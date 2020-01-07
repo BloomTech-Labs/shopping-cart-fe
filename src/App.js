@@ -7,6 +7,7 @@ import ResetPasswordForm from './components/resetPassword'
 import SetNewPasswordForm from './components/setNewPassword'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
+import CreateItem from './components/CreateItem'
 import Inventory from './components/inventory/inventory'
 
 function App () {
@@ -32,6 +33,9 @@ function App () {
       </Route>
       <Route path='/addlogo'>
         <AddLogoForm />
+      </Route>
+      <Route path='/createitem'>
+        <CreateItem />
       </Route>
     </Switch>
   )
