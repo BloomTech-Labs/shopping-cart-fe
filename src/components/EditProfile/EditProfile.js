@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import '../../less/edit.less'
+import { Form, Input, Select, Button, message } from 'antd'
+import '../../less/index.less'
+import logo from '../../images/PureRetail_Logo.png'
 import { logout } from '../../state/actionCreators'
 
 const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
+
+const { Option } = Select
 
 const EditProfile = props => {
   const [store, setStore] = useState({
@@ -42,19 +46,62 @@ const EditProfile = props => {
   const handleSubmit = e => {
     e.preventDefault()
     setErrors({})
-    axiosWithAuth()
-      .put(storeUrl, store)
-      .then(res => {
-        alert('Your store has been updated')
-        props.history.push('/dashboard')
-      })
-      .catch(err => {
-        setErrors(err.response.data)
-      })
+    props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
+      if (!err) {
+        axiosWithAuth()
+          .put(storeUrl, store)
+          .then(res => {
+            alert('Your store has been updated')
+            props.history.push('/dashboard')
+          })
+          .catch(err => {
+            message.error('Validation failed')
+            setErrors(err.response.data)
+          })
+      }
+    })
+    // axiosWithAuth()
+    //   .put(storeUrl, store)
+    //   .then(res => {
+    //     alert('Your store has been updated')
+    //     props.history.push('/dashboard')
+    //   })
+    //   .catch(err => {
+    //     message.error('Validation failed')
+    //     setErrors(err.response.data)
+    //   })
+  }
+
+  const { getFieldDecorator } = props.form
+
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 8 }
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 }
+    }
+  }
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0
+      },
+      sm: {
+        span: 16,
+        offset: 8
+      }
+    }
   }
 
   const createStore = (
-    <div>
+    <div className='cover'>
+      <div id='logo'>
+        <img src={logo} alt='PureRetail Logo' />
+      </div>
       <p>You currently haven't created a store yet</p>
       <p>
         Click <Link to='/createstore'>here</Link> to create one
@@ -63,69 +110,83 @@ const EditProfile = props => {
   )
 
   const editProfile = (
-    <div className='edit-form'>
-      <h2 className='header-text'>Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label className='label'>Owner name</label>
-        <input
-          name='ownerName'
-          type='text'
-          placeholder='Enter owner name'
-          value={store.ownerName}
-          onChange={handleChange}
-        />
-        {errors.ownerName && <p className='error-text'>{errors.ownerName}</p>}
+    <div className='cover'>
+      <div id='logo'>
+        <img src={logo} alt='PureRetail Logo' />
+      </div>
+      <Form {...formItemLayout} onSubmit={handleSubmit}>
+        <div id='header'>Edit your profile</div>
 
-        <label className='label'>Currency</label>
-        <br></br>
-        <select
-          className='currency'
-          value={store.currency}
-          name='currency'
-          onChange={handleChange}
-        >
-          <option value='DOL'>DOL</option>
-          <option value='POU'>POU</option>
-          <option value='EUR'>EUR</option>
-          <option value='YEN'>YEN</option>
-        </select>
-        {errors.currency && <p className='error-text'>{errors.currency}</p>}
+        <Form.Item>
+          {getFieldDecorator('ownerName', {
+            rules: [
+              {
+                message: 'Enter your name'
+              },
+              {
+                required: true,
+                message: 'Enter your name'
+              }
+            ]
+          })(<Input name='ownerName' placeholder='Name of Store owner' />)}
+        </Form.Item>
 
-        {/* <input
-          name='currency'
-          type='text'
-          placeholder='Enter currency'
-          value={store.currency}
-          onChange={handleChange}
-        />
-        {errors.currency && <p className='error-text'>{errors.currency}</p>} */}
+        <Form.Item hasFeedback>
+          {getFieldDecorator('currency', {
+            rules: [
+              {
+                required: true,
+                message: 'Select preferred currency'
+              }
+            ]
+          })(
+            <Select placeholder='Select your currency'>
+              <Option value='DOL'>DOL</Option>
+              <Option value='POU'>POU</Option>
+              <Option value='EUR'>EUR</Option>
+              <Option value='YEN'>YEN</Option>
+            </Select>
+          )}
+        </Form.Item>
 
-        <label className='label'>Store name</label>
-        <input
-          name='storeName'
-          type='text'
-          placeholder='Enter store name'
-          value={store.storeName}
-          onChange={handleChange}
-        />
-        {errors.storeName && <p className='error-text'>{errors.storeName}</p>}
+        <Form.Item>
+          {getFieldDecorator('storeName', {
+            rules: [
+              {
+                message: 'Store name is required'
+              },
+              {
+                required: true,
+                message: 'Store name is required'
+              }
+            ]
+          })(<Input name='storeName' placeholder='Store name' />)}
+        </Form.Item>
 
-        <input id='black-btn' className='btn' type='submit' value='Update' />
-        <input
-          id='black-btn'
-          className='btn'
-          type='button'
-          value='Logout'
-          onClick={handleLogout}
-        />
-        <button type='button' className='btn-del'>
-          Delete account
-        </button>
-      </form>
+        <Form.Item {...tailFormItemLayout}>
+          <Button type='primary' htmlType='submit'>
+            Update
+          </Button>
+        </Form.Item>
+
+        <Form.Item {...tailFormItemLayout}>
+          <Button onClick={handleLogout} type='primary' htmlType='button'>
+            Logout
+          </Button>
+        </Form.Item>
+
+        <Form.Item {...tailFormItemLayout}>
+          <Button type='primary' htmlType='button'>
+            Delete account
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   )
 
   return errors.message ? createStore : editProfile
 }
 
-export default connect(null, null)(EditProfile)
+const EditForm = Form.create()(EditProfile)
+
+export default connect(null, null)(EditForm)
