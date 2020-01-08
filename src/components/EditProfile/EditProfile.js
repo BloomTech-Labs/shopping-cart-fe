@@ -6,6 +6,7 @@ import { Form, Input, Select, Button, message } from 'antd'
 import '../../less/index.less'
 import logo from '../../images/PureRetail_Logo.png'
 import { logout } from '../../state/actionCreators'
+import history from '../../history'
 
 const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 
@@ -40,25 +41,29 @@ const EditProfile = props => {
   const handleLogout = () => {
     // delete token from local storage and redirect to login
     props.dispatch(logout())
-    props.history.push('/login')
+    history.push('/login')
   }
 
   const handleSubmit = e => {
     e.preventDefault()
     setErrors({})
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
-      if (!err) {
-        axiosWithAuth()
-          .put(storeUrl, store)
-          .then(res => {
-            alert('Your store has been updated')
-            props.history.push('/dashboard')
-          })
-          .catch(err => {
-            message.error('Validation failed')
-            setErrors(err.response.data)
-          })
+      console.log(err)
+      console.log(values)
+      if (err) {
+        return console.log('errors found')
       }
+
+      axiosWithAuth()
+        .put(storeUrl, values)
+        .then(res => {
+          alert('Your store has been updated')
+          history.push('/dashboard')
+        })
+        .catch(errors => {
+          message.error('Validation failed')
+          setErrors(errors.response.data)
+        })
     })
   }
 
@@ -92,9 +97,13 @@ const EditProfile = props => {
       <div id='logo'>
         <img src={logo} alt='PureRetail Logo' />
       </div>
-      <p>You currently haven't created a store yet</p>
-      <p>
-        Click <Link to='/createstore'>here</Link> to create one
+      <p className='text'>You currently haven't created a store yet</p>
+      <p className='text'>
+        Click{' '}
+        <Link className='link' to='/createstore'>
+          here
+        </Link>{' '}
+        to create one
       </p>
     </div>
   )
@@ -109,6 +118,7 @@ const EditProfile = props => {
 
         <Form.Item>
           {getFieldDecorator('ownerName', {
+            initialValue: store.ownerName,
             rules: [
               {
                 message: 'Enter your name'
@@ -118,11 +128,18 @@ const EditProfile = props => {
                 message: 'Enter your name'
               }
             ]
-          })(<Input name='ownerName' placeholder='Name of Store owner' />)}
+          })(
+            <Input
+              onChange={handleChange}
+              name='ownerName'
+              placeholder='Name of Store owner'
+            />
+          )}
         </Form.Item>
 
         <Form.Item hasFeedback>
           {getFieldDecorator('currency', {
+            initialValue: store.currency,
             rules: [
               {
                 required: true,
@@ -130,7 +147,11 @@ const EditProfile = props => {
               }
             ]
           })(
-            <Select placeholder='Select your currency'>
+            <Select
+              onChange={handleChange}
+              name='currency'
+              placeholder='Select your currency'
+            >
               <Option value='DOL'>DOL</Option>
               <Option value='POU'>POU</Option>
               <Option value='EUR'>EUR</Option>
@@ -141,6 +162,7 @@ const EditProfile = props => {
 
         <Form.Item>
           {getFieldDecorator('storeName', {
+            initialValue: store.storeName,
             rules: [
               {
                 message: 'Store name is required'
@@ -150,7 +172,13 @@ const EditProfile = props => {
                 message: 'Store name is required'
               }
             ]
-          })(<Input name='storeName' placeholder='Store name' />)}
+          })(
+            <Input
+              onChange={handleChange}
+              name='storeName'
+              placeholder='Store name'
+            />
+          )}
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
@@ -166,7 +194,7 @@ const EditProfile = props => {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='button'>
+          <Button id='delete-btn' type='link' htmlType='button'>
             Delete account
           </Button>
         </Form.Item>
@@ -174,7 +202,8 @@ const EditProfile = props => {
     </div>
   )
 
-  return errors.message ? createStore : editProfile
+  // return errors.message ? createStore : editProfile
+  return editProfile
 }
 
 const EditForm = Form.create()(EditProfile)
