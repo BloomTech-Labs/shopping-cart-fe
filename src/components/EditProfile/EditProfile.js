@@ -48,8 +48,6 @@ const EditProfile = props => {
     e.preventDefault()
     setErrors({})
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
-      console.log(err)
-      console.log(values)
       if (err) {
         return console.log('errors found')
       }
