@@ -1,7 +1,23 @@
 import React from 'react'
-import { Card, Carousel } from 'antd'
-
+import { Card, Carousel, Modal, message } from 'antd'
+import AxiosAuth from '../Auth/axiosWithAuth'
+const { confirm } = Modal
 const { Meta } = Card
+
+function showDeleteConfirm() {
+  confirm({
+    title: 'Are you sure you want to delete this item?',
+    okText: 'Yes',
+    okType: 'danger',
+    cancelText: 'No',
+    onOk() {
+      console.log('OK');
+    },
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
+}
 
 const Expanded = ({ inventory }) => {
   return (
@@ -27,7 +43,7 @@ const Expanded = ({ inventory }) => {
               description={
                 <div className='list'>
                   <div>{item.price}</div>
-                  <div id='delete'>DELETE</div>
+                  <div id='delete' onClick={showDeleteConfirm} >DELETE</div>
                 </div>
               }
             />
