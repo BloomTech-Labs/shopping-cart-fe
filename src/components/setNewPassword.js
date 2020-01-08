@@ -14,7 +14,7 @@ import history from '../history'
 
 const SetNewPassword = (props) => {
   const [confirmDirty, setConfirmDirty] = useState(false)
-  const token = window.location.href.split('=')[1];
+  const token = window.location.href.split('=')[1]
   const URL = `https://shopping-cart-eu3.herokuapp.com/api/auth/reset/${token}`
   const handleSubmit = e => {
     e.preventDefault()
