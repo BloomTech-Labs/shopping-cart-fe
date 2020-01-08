@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import {
   Form,
   Input,
@@ -91,10 +92,10 @@ const ResetPassword = (props) => {
         </Form.Item>
       </Form>
       <div id='back-to-login'>
-        <p>Back to log in</p>
+        <Link to='/login'>Back to login</Link>
       </div>
       <div id='contact-support'>
-        <p>Contact support</p>
+        <Link to='/support'>Contact support</Link>
       </div>
     </div>
   )
