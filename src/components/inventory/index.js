@@ -6,8 +6,8 @@ import Nav from './nav'
 function Main () {
   return (
     <div>
-        <Inventory/>
-        <Nav/>
+      <Inventory />
+      <Nav />
     </div>
   )
 }
