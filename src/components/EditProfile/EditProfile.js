@@ -145,11 +145,7 @@ const EditProfile = props => {
               }
             ]
           })(
-            <Select
-              onChange={handleChange}
-              name='currency'
-              placeholder='Select your currency'
-            >
+            <Select name='currency' placeholder='Select your currency'>
               <Option value='DOL'>DOL</Option>
               <Option value='POU'>POU</Option>
               <Option value='EUR'>EUR</Option>
