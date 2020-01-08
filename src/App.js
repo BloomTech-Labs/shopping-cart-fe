@@ -36,7 +36,9 @@ function App() {
       <Route path='/addlogo'>
         <AddLogoForm />
       </Route>
-      <Route path='/profile' component={EditProfile} />
+      <Route path='/profile'>
+        <EditProfile />
+      </Route>
       <Route path='/createitem'>
         <CreateItem />
       </Route>

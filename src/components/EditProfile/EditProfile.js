@@ -60,16 +60,6 @@ const EditProfile = props => {
           })
       }
     })
-    // axiosWithAuth()
-    //   .put(storeUrl, store)
-    //   .then(res => {
-    //     alert('Your store has been updated')
-    //     props.history.push('/dashboard')
-    //   })
-    //   .catch(err => {
-    //     message.error('Validation failed')
-    //     setErrors(err.response.data)
-    //   })
   }
 
   const { getFieldDecorator } = props.form
