@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, Input, Tabs } from 'antd'
-import '../../less/index.less'
+// import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
 
@@ -58,15 +58,6 @@ const Inventory = () => {
             </Tabs>
           </div>
         </div>
-      </div>
-      <div className='nav'>
-        <ul id='nav_ul'>
-          <li><Icon className='icon' type='home' />Home</li>
-          <li><NavLink to='inventory'><Icon className='icon' type='shop' />Store</NavLink></li>
-          <li id='add'><NavLink className='navlink' to='createItem'><Icon className='icon' theme='filled' type='plus-circle' /></NavLink></li>
-          <li><Icon className='icon' type='wallet' />Account</li>
-          <li><Icon className='icon' type='user' />Profile</li>
-        </ul>
       </div>
     </div>
   )
