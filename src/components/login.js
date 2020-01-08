@@ -4,6 +4,7 @@ import { Form, Input, Icon, Button, message } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
+import { Link } from 'react-router-dom'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
 const Login = props => {
@@ -103,7 +104,7 @@ const Login = props => {
       </Form>
       <div id='or_login'>
         <p>
-          or <a>register</a> instead
+          or <Link to='/register'>register</Link> instead
         </p>
       </div>
       <div id='or_login'>
