@@ -7,9 +7,7 @@ import {
   Icon,
   Button,
   message,
-  Upload,
-  Carousel,
-  Card
+  Upload
 } from "antd";
 
 import "../less/index.less";
@@ -17,13 +15,12 @@ import axios from "axios";
 import AxiosAuth from "./Auth/axiosWithAuth";
 import history from "../history";
 
-const productURL =
-  "https://shopping-cart-eu3-staging.herokuapp.com/api/store/products";
-const { Meta } = Card;
 function UpdateItem(props) {
   const [item, setItem] = useState([]);
   console.log(item)
   const itemId = props.match.params.id;
+  const productURL =
+  `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`;
   useEffect(() => {
     AxiosAuth()
       .get(
@@ -34,7 +31,36 @@ function UpdateItem(props) {
       });
   }, [itemId]);
 
-  const [fileList, setFileList] = useState([]);
+
+const test = item && item.images && item.images.length && item.images.map(i=>{
+  return i
+})
+const myArray = test && test.length && test.map((str, index) => ({ url: str, id: index + 1 , name:'image.png'}));
+console.log(myArray)
+
+
+  const [fileList, setFileList] = useState(
+[    {
+      uid: '-1',
+      name: 'image.png',
+     
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+    {
+      uid: '-2',
+      name: 'image.png',
+     
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+    {
+      uid: '-3',
+      name: 'image.png',
+     
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },]
+
+  );
+  console.log(fileList)
   const [cloudList, setCloudList] = useState([]);
 
   const handleChange = info => {
@@ -87,7 +113,7 @@ function UpdateItem(props) {
       };
       if (!err) {
         AxiosAuth()
-          .post(productURL, payload)
+          .put(productURL, payload)
           .then(res => {
             message.success("item added");
           })
@@ -143,33 +169,13 @@ function UpdateItem(props) {
         <Upload
             fileList={fileList}
             customRequest={dummyRequest}
-            multiple
+            //multiple
             onChange={handleChange}
           >
             <Button>
               <Icon type='upload' /> Upload Photos
             </Button>
           </Upload>
-        {/* <Carousel>
-          <div style={{ backgroundColor: "red" }}>
-            {item &&
-              item.images &&
-              item.images.length &&
-              item.images.map((item, index) => {
-                console.log(item);
-                return (
-                  <div
-                    key={index}
-                    // hoverable='true'
-                    //style={{ width: 240, height: "45%" }}
-                    // cover={<img alt="example" src={item} />}
-                  >
-                    <img style={{ width: "30px" }} src={item} />
-                  </div>
-                );
-              })}
-          </div>
-        </Carousel> */}
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item>
