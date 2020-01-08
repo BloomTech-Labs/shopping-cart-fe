@@ -21,13 +21,8 @@ const productURL =
   "https://shopping-cart-eu3-staging.herokuapp.com/api/store/products";
 const { Meta } = Card;
 function UpdateItem(props) {
-  // const dispatch = useDispatch()
-  // useEffect(()=>{
-  //     dispatch(creators.getCurrentUser)
-  // },[dispatch])
-  // const items = useSelector(state=>state.store)
   const [item, setItem] = useState([]);
-  console.log(item);
+  console.log(item)
   const itemId = props.match.params.id;
   useEffect(() => {
     AxiosAuth()
@@ -35,13 +30,9 @@ function UpdateItem(props) {
         `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`
       )
       .then(res => {
-        //console.log(res.data)
         setItem(res.data);
       });
   }, [itemId]);
-
-  // const filteredItem = items.find(({_id})=> _id === itemId)
-  //console.log(filteredItem)
 
   const [fileList, setFileList] = useState([]);
   const [cloudList, setCloudList] = useState([]);
@@ -149,7 +140,7 @@ function UpdateItem(props) {
         </h2>
       </div>
       <div>
-        {/* <Upload
+        <Upload
             fileList={fileList}
             customRequest={dummyRequest}
             multiple
@@ -158,8 +149,8 @@ function UpdateItem(props) {
             <Button>
               <Icon type='upload' /> Upload Photos
             </Button>
-          </Upload> */}
-        <Carousel>
+          </Upload>
+        {/* <Carousel>
           <div style={{ backgroundColor: "red" }}>
             {item &&
               item.images &&
@@ -178,7 +169,7 @@ function UpdateItem(props) {
                 );
               })}
           </div>
-        </Carousel>
+        </Carousel> */}
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item>
