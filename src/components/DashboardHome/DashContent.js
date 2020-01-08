@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import './Dashboard.css';
 import Pane1 from './Pane1';
-
+import './Dashboard.css'
 
 const { TabPane } = Tabs;
 
@@ -14,7 +14,7 @@ const Content = ()=> {
       <Pane1/>
     </TabPane>
     <TabPane tab="Sales History" key="2">
-      Content of Tab Pane 2
+      No earnings yet!
     </TabPane>
   </Tabs>
   </div>
