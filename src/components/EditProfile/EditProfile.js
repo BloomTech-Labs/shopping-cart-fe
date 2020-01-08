@@ -33,6 +33,8 @@ const EditProfile = props => {
 
   const handleLogout = () => {
     // delete token from local storage and redirect to login
+    localStorage.removeItem('token')
+    props.history.push('/login')
   }
 
   const handleSubmit = e => {
@@ -107,8 +109,14 @@ const EditProfile = props => {
         {errors.storeName && <p className='error-text'>{errors.storeName}</p>}
 
         <input id='black-btn' className='btn' type='submit' value='Update' />
-        <input id='black-btn' className='btn' type='button' value='Logout' />
-        <button onClick={handleLogout} type='button' className='btn-del'>
+        <input
+          id='black-btn'
+          className='btn'
+          type='button'
+          value='Logout'
+          onClick={handleLogout}
+        />
+        <button type='button' className='btn-del'>
           Delete account
         </button>
       </form>
