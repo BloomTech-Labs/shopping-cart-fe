@@ -11,7 +11,7 @@ export const updateForm = (details) => ({
 export const getCurrentUser = () => dispatch => {
   AxiosAuth().get(getUserUrl)
     .then(res => {
-      dispatch({ type: types.GET_CURRENT_USER, payload: res.data._id })
+      dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
       AxiosAuth().get(`https://shopping-cart-eu3-staging.herokuapp.com/api/store/${res.data._id}/products`)
         .then(res => {
           const inventory = res.data
