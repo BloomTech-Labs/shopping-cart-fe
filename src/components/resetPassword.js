@@ -57,43 +57,43 @@ const ResetPassword = (props) => {
     }
   }
   return (
-    <div className="cover">
+    <div className='cover'>
       <div id='logo'>
         <img src={logo} alt='PureRetail Logo' />
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id="header">
+        <div id='header'>
           <h2>Reset Password</h2>
         </div>
-        <div id="instruction-text">
+        <div id='instruction-text'>
           <p>Enter your registered phone number to receive a password reset link via SMS:</p>
         </div>
         <Form.Item>
           {getFieldDecorator('number', {
             rules: [
               {
-                message: 'Enter a valid phone number',
+                message: 'Enter a valid phone number'
               },
               {
                 required: true,
-                message: 'Enter a valid phone number',
+                message: 'Enter a valid phone number'
               }
             ]
           })(<Input
-            placeholder="Phone number"
-            prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder='Phone number'
+            prefix={<Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />}
           />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type='primary' htmlType='submit'>
               Get link
           </Button>
         </Form.Item>
       </Form>
-      <div id="back-to-login">
+      <div id='back-to-login'>
         <p>Back to log in</p>
       </div>
-      <div id="contact-support">
+      <div id='contact-support'>
         <p>Contact support</p>
       </div>
     </div>

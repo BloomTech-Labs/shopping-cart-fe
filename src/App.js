@@ -10,6 +10,8 @@ import AddLogoForm from './components/createStore/addLogo'
 import CreateItem from './components/CreateItem'
 import Inventory from './components/inventory/inventory'
 import Dashboard from './components/DashboardHome/Dashboard'
+// import Inventory from './components/inventory/inventory'
+import Main from './components/inventory'
 
 function App () {
   return (
@@ -18,7 +20,7 @@ function App () {
         <WrappedRegistrationForm />
       </Route>
       <Route path='/inventory'>
-        <Inventory />
+        <Main />
       </Route>
       <Route path='/login'>
         <LoginForm />
