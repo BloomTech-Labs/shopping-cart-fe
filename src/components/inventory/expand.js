@@ -18,7 +18,7 @@ const Expanded = ({ inventory }) => {
         AxiosAuth().delete(`https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${id}`)
           .then(res => {
             dispatch(creators.getCurrentUser())
-            message.success('item deleted')
+            message.success('Item Deleted')
           })
           .catch(error => {
             message.error(error.message)
