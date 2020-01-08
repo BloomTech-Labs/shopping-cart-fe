@@ -151,7 +151,7 @@ const RegistrationForm = (props) => {
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>or <Link to='/login'>login</Link> instead</p>
+        <p>or <Link to='/'>login</Link> instead</p>
       </div>
     </div>
   )

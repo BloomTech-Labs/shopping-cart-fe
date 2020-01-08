@@ -92,7 +92,7 @@ const ResetPassword = (props) => {
         </Form.Item>
       </Form>
       <div id='back-to-login'>
-        <Link to='/login'>Back to login</Link>
+        <Link to='/'>Back to login</Link>
       </div>
       <div id='contact-support'>
         <Link to='/support'>Contact support</Link>
