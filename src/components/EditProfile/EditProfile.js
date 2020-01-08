@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
-import './edit.css'
+import '../../less/edit.less'
 
 const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 

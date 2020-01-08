@@ -35,13 +35,10 @@ function App() {
       <Route path='/addlogo'>
         <AddLogoForm />
       </Route>
-<<<<<<< HEAD
       <Route path='/profile' component={EditProfile} />
-=======
       <Route path='/createitem'>
         <CreateItem />
       </Route>
->>>>>>> f218f8a62f7e196cfa50824c26d774b71e2e92ac
     </Switch>
   )
 }
