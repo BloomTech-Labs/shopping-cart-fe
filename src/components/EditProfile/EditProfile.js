@@ -31,13 +31,18 @@ const EditProfile = props => {
     setStore({ ...store, [e.target.name]: e.target.value })
   }
 
+  const handleLogout = () => {
+    // delete token from local storage and redirect to login
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
     setErrors({})
     axiosWithAuth()
       .put(storeUrl, store)
       .then(res => {
-        console.log(res.data)
+        alert('Your store has been updated')
+        props.history.push('/dashboard')
       })
       .catch(err => {
         setErrors(err.response.data)
@@ -68,14 +73,28 @@ const EditProfile = props => {
         {errors.ownerName && <p className='error-text'>{errors.ownerName}</p>}
 
         <label className='label'>Currency</label>
-        <input
+        <br></br>
+        <select
+          className='currency'
+          value={store.currency}
+          name='currency'
+          onChange={handleChange}
+        >
+          <option value='DOL'>DOL</option>
+          <option value='POU'>POU</option>
+          <option value='EUR'>EUR</option>
+          <option value='YEN'>YEN</option>
+        </select>
+        {errors.currency && <p className='error-text'>{errors.currency}</p>}
+
+        {/* <input
           name='currency'
           type='text'
           placeholder='Enter currency'
           value={store.currency}
           onChange={handleChange}
         />
-        {errors.currency && <p className='error-text'>{errors.currency}</p>}
+        {errors.currency && <p className='error-text'>{errors.currency}</p>} */}
 
         <label className='label'>Store name</label>
         <input
@@ -87,9 +106,9 @@ const EditProfile = props => {
         />
         {errors.storeName && <p className='error-text'>{errors.storeName}</p>}
 
-        <input className='btn' type='submit' value='Update' />
-        <input className='btn' type='button' value='Logout' />
-        <button type='button' className='btn-del'>
+        <input id='black-btn' className='btn' type='submit' value='Update' />
+        <input id='black-btn' className='btn' type='button' value='Logout' />
+        <button onClick={handleLogout} type='button' className='btn-del'>
           Delete account
         </button>
       </form>
