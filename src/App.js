@@ -20,7 +20,7 @@ function App () {
       <Route path='/inventory'>
         <Main />
       </Route>
-      <Route path='/login'>
+      <Route exact path='/'>
         <LoginForm />
       </Route>
       <Route path='/resetpassword'>
