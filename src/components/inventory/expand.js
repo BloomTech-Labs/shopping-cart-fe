@@ -1,25 +1,34 @@
 import React from 'react'
 import { Card, Carousel, Modal, message } from 'antd'
 import AxiosAuth from '../Auth/axiosWithAuth'
+import { useDispatch } from 'react-redux'
+import * as creators from '../../state/actionCreators'
 const { confirm } = Modal
 const { Meta } = Card
 
-function showDeleteConfirm() {
-  confirm({
-    title: 'Are you sure you want to delete this item?',
-    okText: 'Yes',
-    okType: 'danger',
-    cancelText: 'No',
-    onOk() {
-      console.log('OK');
-    },
-    onCancel() {
-      console.log('Cancel');
-    },
-  });
-}
-
 const Expanded = ({ inventory }) => {
+  const dispatch = useDispatch()
+  function showDeleteConfirm (id) {
+    confirm({
+      title: 'Are you sure you want to delete this item?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk () {
+        AxiosAuth().delete(`https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${id}`)
+          .then(res => {
+            dispatch(creators.getCurrentUser())
+            message.success('item deleted')
+          })
+          .catch(error => {
+            message.error(error.message)
+          })
+      },
+      onCancel () {
+      }
+    })
+  }
+
   return (
     <Carousel>
       {
@@ -43,7 +52,7 @@ const Expanded = ({ inventory }) => {
               description={
                 <div className='list'>
                   <div>{item.price}</div>
-                  <div id='delete' onClick={showDeleteConfirm} >DELETE</div>
+                  <div id='delete' onClick={e => showDeleteConfirm(item._id)}>DELETE</div>
                 </div>
               }
             />
