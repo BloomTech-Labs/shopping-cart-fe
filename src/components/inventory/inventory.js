@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { List, Input, Tabs } from 'antd'
+import {Link} from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
@@ -68,7 +69,10 @@ const Items = ({ inventory }) => {
       size='small'
       itemLayout='horizontal'
       dataSource={inventory}
-      renderItem={item => (
+      renderItem={item => {
+        
+        
+        return (
         <List.Item className='block'>
           <List.Item.Meta
             title={
@@ -80,12 +84,14 @@ const Items = ({ inventory }) => {
             description={
               <div className='list short'>
                 <div>{item.description}</div>
-                <div>Edit</div>
+                <Link to={`/updateitem/${item._id}`}>
+                  <div>Edit</div>
+                </Link>
               </div>
             }
           />
         </List.Item>
-      )}
+      )}}
     />
   )
 }

@@ -8,6 +8,7 @@ import SetNewPasswordForm from './components/setNewPassword'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 import CreateItem from './components/CreateItem'
+import UpdateItem from './components/updateItem'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
@@ -38,6 +39,9 @@ function App () {
       <Route path='/createitem'>
         <CreateItem />
       </Route>
+      <Route path='/updateitem/:id' component={UpdateItem}/>
+       
+     
     </Switch>
   )
 }
