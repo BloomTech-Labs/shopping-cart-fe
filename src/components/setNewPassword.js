@@ -10,7 +10,7 @@ import {
 } from 'antd'
 
 import '../less/index.less'
-import logo from '../images/PureRetail_Logo.png'
+import Logo from './elements/logo'
 import history from '../history'
 
 const SetNewPassword = (props) => {
@@ -85,9 +85,7 @@ const SetNewPassword = (props) => {
 
   return (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
           <h2>Reset password</h2>

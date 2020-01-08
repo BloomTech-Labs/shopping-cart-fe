@@ -9,7 +9,7 @@ import {
   message
 } from 'antd'
 import '../less/index.less'
-import logo from '../images/PureRetail_Logo.png'
+import Logo from './elements/logo'
 
 const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
 const ResetPassword = (props) => {
@@ -59,9 +59,7 @@ const ResetPassword = (props) => {
   }
   return (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
           <h2>Reset Password</h2>

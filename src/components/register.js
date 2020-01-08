@@ -9,7 +9,7 @@ import {
   message
 } from 'antd'
 import '../less/index.less'
-import logo from '../images/PureRetail_Logo.png'
+import Logo from './elements/logo'
 import history from '../history'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
@@ -85,9 +85,7 @@ const RegistrationForm = (props) => {
 
   return (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
           <h2>Register new <br /> account</h2>
