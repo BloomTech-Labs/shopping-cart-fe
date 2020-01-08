@@ -26,3 +26,9 @@ export const getCurrentUser = () => dispatch => {
       console.log(error)
     })
 }
+
+export const logout = () => {
+  return {
+    type: types.LOGOUT_USER
+  }
+}

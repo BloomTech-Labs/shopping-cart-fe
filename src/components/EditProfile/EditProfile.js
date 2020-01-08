@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import '../../less/edit.less'
+import { logout } from '../../state/actionCreators'
 
 const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 
@@ -33,7 +35,7 @@ const EditProfile = props => {
 
   const handleLogout = () => {
     // delete token from local storage and redirect to login
-    localStorage.removeItem('token')
+    props.dispatch(logout())
     props.history.push('/login')
   }
 
@@ -126,4 +128,4 @@ const EditProfile = props => {
   return errors.message ? createStore : editProfile
 }
 
-export default EditProfile
+export default connect(null, null)(EditProfile)
