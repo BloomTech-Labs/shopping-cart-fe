@@ -1,0 +1,57 @@
+.mainDiv {
+    background-color: #FF6663;
+    height: 100vh;
+    position: fixed;
+}
+
+.dashDiv {
+    background-color: white;
+    width: 100vw;
+    height: 73vh;
+    border-radius: 25px 25px 0 0;
+    margin-top: 4vh;
+    /* position: sticky; */
+    position: relative;
+}
+
+.welcomeHeader {
+    color: white;
+    padding-left: 30px;
+    padding-top: 30px;
+    font-size: 1.8em;
+    font-family: inherit;
+}
+
+.name {
+    font-size: 1.5em;
+}
+
+#storeUrl {
+    font-size: 0.8em;
+    color: yellow;
+}
+
+.Footer {
+    height: 29vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px 0 40px;
+}
+
+.icons {
+    font-size: 2em;
+}
+
+#addStore {
+    font-size: 3.7em;
+}
+
+.iconFlex {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.iconFlex p {
+    padding-top: 3px;
+}
