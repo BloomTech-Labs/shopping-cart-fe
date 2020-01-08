@@ -1,5 +1,6 @@
 .inventory {
     background-color: @grey;
+    height: auto;
 }
 
 .top {
@@ -48,6 +49,7 @@
             background-color: white;
             box-sizing: border-box;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin: 0.5rem;
         }
     }
 
@@ -72,14 +74,22 @@
 .nav {
     display: flex;
     width: 100%;
+    bottom: 0;
     height: 10%;
-    position: sticky;
+    position: fixed;
+    background-color: @grey;
 
     #nav_ul {
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: center;
+        color: @black;
+
+        a.navlink {
+            text-decoration: none;
+            color: @secondary;
+        }
 
         #add {
             color: @secondary;
@@ -96,10 +106,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            text-align: center;
 
             .icon {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
         }
     }

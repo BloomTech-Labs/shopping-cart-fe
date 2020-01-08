@@ -9,7 +9,8 @@ import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 import EditProfile from './components/EditProfile/EditProfile'
 import CreateItem from './components/CreateItem'
-import Inventory from './components/inventory/inventory'
+// import Inventory from './components/inventory/inventory'
+import Main from './components/inventory'
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <WrappedRegistrationForm />
       </Route>
       <Route path='/inventory'>
-        <Inventory />
+        <Main />
       </Route>
       <Route path='/login'>
         <LoginForm />
