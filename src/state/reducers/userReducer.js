@@ -1,11 +1,14 @@
 import * as types from '../actionTypes'
 
-const initialUserState = { isLoading: false, errors: {} }
+const initialUserState = { isLoading: false, errors: {}, user: {} }
 
-export function userReducer (state = initialUserState, action) {
+export function userReducer(state = initialUserState, action) {
   switch (action.type) {
     case types.GET_CURRENT_USER:
-      return action.payload
+      return {
+        ...state,
+        user: { ...action.payload }
+      }
 
     case types.LOGOUT_USER:
       return localStorage.removeItem('token')
