@@ -24,7 +24,7 @@ const ResetPassword = (props) => {
         axios.post(URL, payload)
           .then(res => {
             message.success('Your password reset is on its way!')
-            props.history.push('/login')
+            props.history.push('/')
           })
           .catch(error => {
             message.error(error.message)
