@@ -14,7 +14,7 @@ import Dashboard from './components/DashboardHome/Dashboard'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
-function App() {
+function App () {
   return (
     <Switch>
       <Route path='/register'>
