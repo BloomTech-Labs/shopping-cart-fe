@@ -196,8 +196,7 @@ const EditProfile = props => {
     </div>
   )
 
-  // return errors.message ? createStore : editProfile
-  return editProfile
+  return errors.message ? createStore : editProfile
 }
 
 const EditForm = Form.create()(EditProfile)

@@ -9,8 +9,12 @@ import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 import EditProfile from './components/EditProfile/EditProfile'
 import CreateItem from './components/CreateItem'
+<<<<<<< HEAD
 import Inventory from './components/inventory/inventory'
 import Dashboard from './components/DashboardHome/Dashboard'
+=======
+import PrivateRoute from './components/Auth/PrivateRoute'
+>>>>>>> 54e8346e48147a2f0108c917f183f1e5d97472d4
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
@@ -20,12 +24,11 @@ function App() {
       <Route path='/register'>
         <WrappedRegistrationForm />
       </Route>
-      <Route path='/inventory'>
-        <Main />
-      </Route>
-      <Route path='/login'>
+      <PrivateRoute path='/inventory' component={Main} />
+      <Route exact path='/'>
         <LoginForm />
       </Route>
+<<<<<<< HEAD
       <Route path='/resetpassword'>
         <ResetPasswordForm />
       </Route>
@@ -47,6 +50,14 @@ function App() {
       <Route path='/dashboard'>
         <Dashboard />
       </Route>
+=======
+      <PrivateRoute path='/resetpassword' component={ResetPasswordForm} />
+      <PrivateRoute path='/setnewpassword' component={SetNewPasswordForm} />
+      <PrivateRoute path='/createstore' component={CreateStoreForm} />
+      <PrivateRoute path='/addlogo' component={AddLogoForm} />
+      <PrivateRoute path='/profile' component={EditProfile} />
+      <PrivateRoute path='/createitem' component={CreateItem} />
+>>>>>>> 54e8346e48147a2f0108c917f183f1e5d97472d4
     </Switch>
   )
 }
