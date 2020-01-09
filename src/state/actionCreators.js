@@ -40,3 +40,16 @@ export const setLoading = isLoading => {
     payload: isLoading
   }
 }
+
+export const setErrors = errors => {
+  return {
+    type: types.SET_ERRORS,
+    payload: errors
+  }
+}
+
+export const clearErrors = () => {
+  return {
+    type: types.CLEAR_ERRORS
+  }
+}

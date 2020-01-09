@@ -1,6 +1,6 @@
 import * as types from '../actionTypes'
 
-const initialUserState = { isLoading: false }
+const initialUserState = { isLoading: false, errors: {} }
 
 export function userReducer(state = initialUserState, action) {
   switch (action.type) {
@@ -14,6 +14,18 @@ export function userReducer(state = initialUserState, action) {
       return {
         ...state,
         isLoading: action.payload
+      }
+
+    case types.SET_ERRORS:
+      return {
+        ...state,
+        errors: { ...action.payload }
+      }
+
+    case types.CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {}
       }
 
     default:

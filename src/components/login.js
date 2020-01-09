@@ -6,7 +6,7 @@ import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
 import { connect } from 'react-redux'
-import { setLoading } from '../state/actionCreators'
+import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
 const Login = props => {
@@ -24,10 +24,12 @@ const Login = props => {
           .then(res => {
             message.success('Logged!')
             localStorage.setItem('token', res.data.token)
+            props.dispatch(clearErrors())
             history.push('/createstore')
           })
           .catch(error => {
             props.dispatch(setLoading(false))
+            props.dispatch(setErrors(error.response.data))
             message.error(error.message)
           })
       } else {
@@ -107,11 +109,17 @@ const Login = props => {
           </Button>
         </Form.Item>
       </Form>
+      {props.errors.message && (
+        <div>
+          <p>{props.errors.message}</p>
+        </div>
+      )}
       <div id='or_login'>
         <p>
           or <Link to='/register'>register</Link> instead
         </p>
       </div>
+
       <div id='or_login'>
         <p>
           <Link to='/resetpassword'>Forgot password?</Link>
@@ -131,7 +139,8 @@ const Login = props => {
 const LoginForm = Form.create({ name: 'register' })(Login)
 
 const mapStateToProps = state => ({
-  isLoading: state.user.isLoading
+  isLoading: state.user.isLoading,
+  errors: state.user.errors
 })
 
 export default connect(mapStateToProps, null)(LoginForm)

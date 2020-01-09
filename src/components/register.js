@@ -5,7 +5,7 @@ import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
-import { setLoading } from '../state/actionCreators'
+import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 import { connect } from 'react-redux'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
@@ -25,10 +25,12 @@ const RegistrationForm = props => {
           .then(res => {
             message.success('Signed Up')
             localStorage.setItem('token', res.data.token)
+            props.dispatch(clearErrors())
             history.push('/createstore')
           })
           .catch(error => {
             props.dispatch(setLoading(false))
+            props.dispatch(setErrors(error.response.data))
             message.error(error.message)
           })
       } else {
