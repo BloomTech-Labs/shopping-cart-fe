@@ -65,60 +65,56 @@ const ResetPassword = props => {
   }
 
   const resetPasswordForm = (
-    <div className='cover'>
-      <Logo />
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id='header'>
-          <h2>Reset Password</h2>
+    <Spin spinning={isLoading}>
+      <div className='cover'>
+        <Logo />
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <div id='header'>
+            <h2>Reset Password</h2>
+          </div>
+          <div id='instruction-text'>
+            <p>
+              Enter your registered phone number to receive a password reset
+              link via SMS:
+            </p>
+          </div>
+          <Form.Item>
+            {getFieldDecorator('number', {
+              rules: [
+                {
+                  message: 'Enter a valid phone number'
+                },
+                {
+                  required: true,
+                  message: 'Enter a valid phone number'
+                }
+              ]
+            })(
+              <Input
+                placeholder='Phone number'
+                prefix={
+                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Get link
+            </Button>
+          </Form.Item>
+        </Form>
+        <div id='back-to-login'>
+          <Link to='/'>Back to login</Link>
         </div>
-        <div id='instruction-text'>
-          <p>
-            Enter your registered phone number to receive a password reset link
-            via SMS:
-          </p>
+        <div id='contact-support'>
+          <Link to='/support'>Contact support</Link>
         </div>
-        <Form.Item>
-          {getFieldDecorator('number', {
-            rules: [
-              {
-                message: 'Enter a valid phone number'
-              },
-              {
-                required: true,
-                message: 'Enter a valid phone number'
-              }
-            ]
-          })(
-            <Input
-              placeholder='Phone number'
-              prefix={
-                <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
-              }
-            />
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Get link
-          </Button>
-        </Form.Item>
-      </Form>
-      <div id='back-to-login'>
-        <Link to='/'>Back to login</Link>
       </div>
-      <div id='contact-support'>
-        <Link to='/support'>Contact support</Link>
-      </div>
-    </div>
+    </Spin>
   )
 
-  return isLoading ? (
-    <div className='container'>
-      <Spin className='spinner' size='large' />
-    </div>
-  ) : (
-    resetPasswordForm
-  )
+  return resetPasswordForm
 }
 const ResetPasswordForm = Form.create({ name: 'resetPassword' })(ResetPassword)
 

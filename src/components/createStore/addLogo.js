@@ -128,74 +128,70 @@ const AddLogo = props => {
   }
 
   const addLogoForm = (
-    <div className='cover'>
-      <div id='header'>
-        <h2 id='get-started'>
-          Upload store
-          <br />
-          logo
-        </h2>
-      </div>
-      <div>
-        <Upload
-          name='avatar'
-          customRequest={dummyRequest}
-          listType='picture-card'
-          className='avatar-uploader'
-          showUploadList={false}
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageUrl ? (
-            <img src={imageUrl} alt='avatar' style={{ width: '100%' }} />
-          ) : (
-            uploadButton
-          )}
-        </Upload>
-        <div id='upload-text'>
-          <p>
-            Click to upload
-            <br />
-            store logo (optional)
-          </p>
-        </div>
-      </div>
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
+    <Spin spinning={userState.isLoading}>
+      <div className='cover'>
         <div id='header'>
           <h2 id='get-started'>
-            Give your store
-            <br />a name
+            Upload store
+            <br />
+            logo
           </h2>
         </div>
-        <Form.Item>
-          {getFieldDecorator('store', {
-            rules: [
-              {
-                message: 'Enter your store name'
-              },
-              {
-                required: true,
-                message: 'Enter your store name'
-              }
-            ]
-          })(<Input placeholder="My store's name is..." />)}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Done
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+        <div>
+          <Upload
+            name='avatar'
+            customRequest={dummyRequest}
+            listType='picture-card'
+            className='avatar-uploader'
+            showUploadList={false}
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {imageUrl ? (
+              <img src={imageUrl} alt='avatar' style={{ width: '100%' }} />
+            ) : (
+              uploadButton
+            )}
+          </Upload>
+          <div id='upload-text'>
+            <p>
+              Click to upload
+              <br />
+              store logo (optional)
+            </p>
+          </div>
+        </div>
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <div id='header'>
+            <h2 id='get-started'>
+              Give your store
+              <br />a name
+            </h2>
+          </div>
+          <Form.Item>
+            {getFieldDecorator('store', {
+              rules: [
+                {
+                  message: 'Enter your store name'
+                },
+                {
+                  required: true,
+                  message: 'Enter your store name'
+                }
+              ]
+            })(<Input placeholder="My store's name is..." />)}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Done
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </Spin>
   )
 
-  return userState.isLoading ? (
-    <div className='container'>
-      <Spin className='spinner' size='large' />
-    </div>
-  ) : (
-    addLogoForm
-  )
+  return addLogoForm
 }
 
 const AddLogoForm = Form.create({ name: 'register' })(AddLogo)

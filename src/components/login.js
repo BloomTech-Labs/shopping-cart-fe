@@ -62,74 +62,72 @@ const Login = props => {
   }
 
   const loginForm = (
-    <div className='cover'>
-      <Logo />
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id='header'>
-          <h2>Login</h2>
+    <Spin spinning={props.isLoading}>
+      <div className='cover'>
+        <Logo />
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <div id='header'>
+            <h2>Login</h2>
+          </div>
+          <Form.Item>
+            {getFieldDecorator('number', {
+              rules: [
+                {
+                  message: 'Enter valid phone number'
+                },
+                {
+                  required: true,
+                  message: 'Enter valid phone number'
+                }
+              ]
+            })(
+              <Input
+                placeholder='Phone number'
+                prefix={
+                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item hasFeedback>
+            {getFieldDecorator('password', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your password!'
+                }
+              ]
+            })(
+              <Input.Password
+                placeholder='Password'
+                prefix={
+                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Login
+            </Button>
+          </Form.Item>
+        </Form>
+        <div id='or_login'>
+          <p>
+            or <Link to='/register'>register</Link> instead
+          </p>
         </div>
-        <Form.Item>
-          {getFieldDecorator('number', {
-            rules: [
-              {
-                message: 'Enter valid phone number'
-              },
-              {
-                required: true,
-                message: 'Enter valid phone number'
-              }
-            ]
-          })(
-            <Input
-              placeholder='Phone number'
-              prefix={
-                <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
-              }
-            />
-          )}
-        </Form.Item>
-        <Form.Item hasFeedback>
-          {getFieldDecorator('password', {
-            rules: [
-              {
-                required: true,
-                message: 'Please input your password!'
-              }
-            ]
-          })(
-            <Input.Password
-              placeholder='Password'
-              prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Login
-          </Button>
-        </Form.Item>
-      </Form>
-      <div id='or_login'>
-        <p>
-          or <Link to='/register'>register</Link> instead
-        </p>
-      </div>
 
-      <div id='or_login'>
-        <p>
-          <Link to='/resetpassword'>Forgot password?</Link>
-        </p>
+        <div id='or_login'>
+          <p>
+            <Link to='/resetpassword'>Forgot password?</Link>
+          </p>
+        </div>
       </div>
-    </div>
+    </Spin>
   )
 
-  return props.isLoading ? (
-    <div className='container'>
-      <Spin className='spinner' size='large' />
-    </div>
-  ) : (
-    loginForm
-  )
+  return loginForm
 }
 const LoginForm = Form.create({ name: 'register' })(Login)
 

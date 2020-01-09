@@ -113,98 +113,94 @@ function CreateItem(props) {
   }
 
   const createItemComponent = (
-    <div className='cover'>
-      <div id='header'>
-        <h2 id='get-started'>
-          Upload new
-          <br />
-          store item
-        </h2>
-      </div>
-      <div>
-        <Upload
-          fileList={fileList}
-          customRequest={dummyRequest}
-          multiple
-          onChange={handleChange}
-        >
-          <Button>
-            <Icon type='upload' /> Upload Photos
-          </Button>
-        </Upload>
-      </div>
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <Form.Item>
-          {getFieldDecorator('name', {
-            rules: [
-              {
-                message: 'Name'
-              },
-              {
-                required: true,
-                message: 'Enter a Name'
-              }
-            ]
-          })(<Input placeholder='Name' />)}
-        </Form.Item>
-
-        <Form.Item>
-          {getFieldDecorator('description', {
-            rules: [
-              {
-                message: 'Enter a description'
-              },
-              {
-                required: true,
-                message: 'Enter a description'
-              }
-            ]
-          })(<Input placeholder='Description' />)}
-        </Form.Item>
-
-        <Form.Item>
-          {getFieldDecorator('price', {
-            rules: [
-              {
-                message: 'Enter a price'
-              },
-              {
-                required: true,
-                message: 'Enter a price'
-              }
-            ]
-          })(<Input placeholder='Price' />)}
-        </Form.Item>
-
-        <Form.Item>
-          {getFieldDecorator('stock', {
-            rules: [
-              {
-                message: 'Enter stock'
-              }
-            ]
-          })(<Input placeholder='Stock' />)}
-        </Form.Item>
-
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Done
-          </Button>
-        </Form.Item>
-        <div>
-          <p onClick={toStore}>cancel</p>
+    <Spin spinning={props.isLoading}>
+      <div className='cover'>
+        <div id='header'>
+          <h2 id='get-started'>
+            Upload new
+            <br />
+            store item
+          </h2>
         </div>
-      </Form>
-    </div>
+        <div>
+          <Upload
+            fileList={fileList}
+            customRequest={dummyRequest}
+            multiple
+            onChange={handleChange}
+          >
+            <Button>
+              <Icon type='upload' /> Upload Photos
+            </Button>
+          </Upload>
+        </div>
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <Form.Item>
+            {getFieldDecorator('name', {
+              rules: [
+                {
+                  message: 'Name'
+                },
+                {
+                  required: true,
+                  message: 'Enter a Name'
+                }
+              ]
+            })(<Input placeholder='Name' />)}
+          </Form.Item>
+
+          <Form.Item>
+            {getFieldDecorator('description', {
+              rules: [
+                {
+                  message: 'Enter a description'
+                },
+                {
+                  required: true,
+                  message: 'Enter a description'
+                }
+              ]
+            })(<Input placeholder='Description' />)}
+          </Form.Item>
+
+          <Form.Item>
+            {getFieldDecorator('price', {
+              rules: [
+                {
+                  message: 'Enter a price'
+                },
+                {
+                  required: true,
+                  message: 'Enter a price'
+                }
+              ]
+            })(<Input placeholder='Price' />)}
+          </Form.Item>
+
+          <Form.Item>
+            {getFieldDecorator('stock', {
+              rules: [
+                {
+                  message: 'Enter stock'
+                }
+              ]
+            })(<Input placeholder='Stock' />)}
+          </Form.Item>
+
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Done
+            </Button>
+          </Form.Item>
+          <div>
+            <p onClick={toStore}>cancel</p>
+          </div>
+        </Form>
+      </div>
+    </Spin>
   )
 
-  return props.isLoading ? (
-    <div className='container'>
-      <Spin className='spinner' size='large' />
-    </div>
-  ) : (
-    createItemComponent
-  )
+  return createItemComponent
 }
 
 const CreateItemForm = Form.create({ name: 'createItem' })(CreateItem)

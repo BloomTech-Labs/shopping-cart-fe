@@ -111,104 +111,98 @@ const EditProfile = props => {
   )
 
   const editProfile = (
-    <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
+    <Spin spinning={props.isLoading}>
+      <div className='cover'>
+        <div id='logo'>
+          <img src={logo} alt='PureRetail Logo' />
+        </div>
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <div id='header'>Edit your profile</div>
+
+          <Form.Item>
+            {getFieldDecorator('ownerName', {
+              initialValue: store.ownerName,
+              rules: [
+                {
+                  message: 'Enter your name'
+                },
+                {
+                  required: true,
+                  message: 'Enter your name'
+                }
+              ]
+            })(
+              <Input
+                onChange={handleChange}
+                name='ownerName'
+                placeholder='Name of Store owner'
+              />
+            )}
+          </Form.Item>
+
+          <Form.Item hasFeedback>
+            {getFieldDecorator('currency', {
+              initialValue: store.currency,
+              rules: [
+                {
+                  required: true,
+                  message: 'Select preferred currency'
+                }
+              ]
+            })(
+              <Select name='currency' placeholder='Select your currency'>
+                <Option value='DOL'>DOL</Option>
+                <Option value='POU'>POU</Option>
+                <Option value='EUR'>EUR</Option>
+                <Option value='YEN'>YEN</Option>
+              </Select>
+            )}
+          </Form.Item>
+
+          <Form.Item>
+            {getFieldDecorator('storeName', {
+              initialValue: store.storeName,
+              rules: [
+                {
+                  message: 'Store name is required'
+                },
+                {
+                  required: true,
+                  message: 'Store name is required'
+                }
+              ]
+            })(
+              <Input
+                onChange={handleChange}
+                name='storeName'
+                placeholder='Store name'
+              />
+            )}
+          </Form.Item>
+
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Update
+            </Button>
+          </Form.Item>
+
+          <Form.Item {...tailFormItemLayout}>
+            <Button onClick={handleLogout} type='primary' htmlType='button'>
+              Logout
+            </Button>
+          </Form.Item>
+
+          <Form.Item {...tailFormItemLayout}>
+            <Button id='delete-btn' type='link' htmlType='button'>
+              Delete account
+            </Button>
+          </Form.Item>
+        </Form>
       </div>
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id='header'>Edit your profile</div>
-
-        <Form.Item>
-          {getFieldDecorator('ownerName', {
-            initialValue: store.ownerName,
-            rules: [
-              {
-                message: 'Enter your name'
-              },
-              {
-                required: true,
-                message: 'Enter your name'
-              }
-            ]
-          })(
-            <Input
-              onChange={handleChange}
-              name='ownerName'
-              placeholder='Name of Store owner'
-            />
-          )}
-        </Form.Item>
-
-        <Form.Item hasFeedback>
-          {getFieldDecorator('currency', {
-            initialValue: store.currency,
-            rules: [
-              {
-                required: true,
-                message: 'Select preferred currency'
-              }
-            ]
-          })(
-            <Select name='currency' placeholder='Select your currency'>
-              <Option value='DOL'>DOL</Option>
-              <Option value='POU'>POU</Option>
-              <Option value='EUR'>EUR</Option>
-              <Option value='YEN'>YEN</Option>
-            </Select>
-          )}
-        </Form.Item>
-
-        <Form.Item>
-          {getFieldDecorator('storeName', {
-            initialValue: store.storeName,
-            rules: [
-              {
-                message: 'Store name is required'
-              },
-              {
-                required: true,
-                message: 'Store name is required'
-              }
-            ]
-          })(
-            <Input
-              onChange={handleChange}
-              name='storeName'
-              placeholder='Store name'
-            />
-          )}
-        </Form.Item>
-
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Update
-          </Button>
-        </Form.Item>
-
-        <Form.Item {...tailFormItemLayout}>
-          <Button onClick={handleLogout} type='primary' htmlType='button'>
-            Logout
-          </Button>
-        </Form.Item>
-
-        <Form.Item {...tailFormItemLayout}>
-          <Button id='delete-btn' type='link' htmlType='button'>
-            Delete account
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+    </Spin>
   )
 
-  const displayedForm = errors.message ? createStore : editProfile
-
-  return props.isLoading ? (
-    <div className='container'>
-      <Spin className='spinner' size='large' />
-    </div>
-  ) : (
-    displayedForm
-  )
+  return errors.message ? createStore : editProfile
 }
 
 const EditForm = Form.create()(EditProfile)

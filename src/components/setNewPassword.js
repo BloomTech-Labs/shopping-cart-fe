@@ -93,70 +93,70 @@ const SetNewPassword = props => {
   }
 
   const setNewPasswordForm = (
-    <div className='cover'>
-      <Logo />
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id='header'>
-          <h2>Reset password</h2>
+    <Spin spinning={isLoading}>
+      <div className='cover'>
+        <Logo />
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <div id='header'>
+            <h2>Reset password</h2>
+          </div>
+          <Form.Item hasFeedback>
+            {getFieldDecorator('password', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your new password!'
+                },
+                {
+                  validator: validateToNextPassword
+                }
+              ]
+            })(
+              <Input.Password
+                placeholder='New Password'
+                prefix={
+                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item hasFeedback>
+            {getFieldDecorator('confirm', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please confirm your new password!'
+                },
+                {
+                  validator: compareToFirstPassword
+                }
+              ]
+            })(
+              <Input.Password
+                onBlur={handleConfirmBlur}
+                placeholder='Confirm New Password'
+                prefix={
+                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Reset
+            </Button>
+          </Form.Item>
+        </Form>
+        <div id='or_login'>
+          <p>
+            or <Link to='/'>login</Link> instead
+          </p>
         </div>
-        <Form.Item hasFeedback>
-          {getFieldDecorator('password', {
-            rules: [
-              {
-                required: true,
-                message: 'Please input your new password!'
-              },
-              {
-                validator: validateToNextPassword
-              }
-            ]
-          })(
-            <Input.Password
-              placeholder='New Password'
-              prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />
-          )}
-        </Form.Item>
-        <Form.Item hasFeedback>
-          {getFieldDecorator('confirm', {
-            rules: [
-              {
-                required: true,
-                message: 'Please confirm your new password!'
-              },
-              {
-                validator: compareToFirstPassword
-              }
-            ]
-          })(
-            <Input.Password
-              onBlur={handleConfirmBlur}
-              placeholder='Confirm New Password'
-              prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Reset
-          </Button>
-        </Form.Item>
-      </Form>
-      <div id='or_login'>
-        <p>
-          or <Link to='/'>login</Link> instead
-        </p>
       </div>
-    </div>
+    </Spin>
   )
 
-  return isLoading ? (
-    <div className='container'>
-      <Spin className='spinner' size='large' />
-    </div>
-  ) : (
-    setNewPasswordForm
-  )
+  return setNewPasswordForm
 }
 
 const SetNewPasswordForm = Form.create({ name: 'setNewPassword' })(
