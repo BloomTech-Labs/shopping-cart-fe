@@ -74,6 +74,7 @@ function CreateItem (props) {
             message.success('Item Added')
           })
           .catch(error => {
+            console.log('error.message')
             message.error(error.message)
           })
       } else {
