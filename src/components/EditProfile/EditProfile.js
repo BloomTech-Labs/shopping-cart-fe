@@ -49,17 +49,17 @@ const EditProfile = props => {
     setErrors({})
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (err) {
-        return console.log('errors found')
+        message.error('Enter Required Fields')
       }
 
       axiosWithAuth()
         .put(storeUrl, values)
         .then(res => {
-          alert('Your store has been updated')
+          message.success('Your store has been updated')
           history.push('/dashboard')
         })
         .catch(errors => {
-          message.error('Validation failed')
+          message.error(Object.values(errors.response.data)[0])
           setErrors(errors.response.data)
         })
     })

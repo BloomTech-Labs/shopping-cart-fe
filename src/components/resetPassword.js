@@ -27,7 +27,7 @@ const ResetPassword = (props) => {
             props.history.push('/login')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Please enter a valid phone number to proceed.')
