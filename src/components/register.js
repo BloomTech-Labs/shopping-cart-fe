@@ -29,12 +29,11 @@ const RegistrationForm = props => {
             history.push('/createstore')
           })
           .catch(error => {
-            props.dispatch(setLoading(false))
-            props.dispatch(setErrors(error.response.data))
-            message.error(error.message)
+            props.dispatch(clearErrors())
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }
@@ -177,7 +176,8 @@ const WrappedRegistrationForm = Form.create({ name: 'register' })(
 )
 
 const mapStateToProps = state => ({
-  isLoading: state.user.isLoading
+  isLoading: state.user.isLoading,
+  errors: state.user.errors
 })
 
 export default connect(mapStateToProps, null)(WrappedRegistrationForm)

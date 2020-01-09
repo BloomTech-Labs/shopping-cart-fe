@@ -1,20 +1,16 @@
 import React, { useState } from 'react'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message,
-  Upload
-} from 'antd'
+import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
 import '../less/index.less'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
+import { connect } from 'react-redux'
+import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
-const productURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
+const productURL =
+  'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
 
-function CreateItem (props) {
+function CreateItem(props) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 
@@ -44,10 +40,8 @@ function CreateItem (props) {
     const config = {
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
     }
-    axios.post(
-      'https://api.cloudinary.com/v1_1/pureretail/upload',
-      image, config
-    )
+    axios
+      .post('https://api.cloudinary.com/v1_1/pureretail/upload', image, config)
       .then(res => {
         const secureUrl = res.data.secure_url
         const newList = [...cloudList, secureUrl]
@@ -69,15 +63,21 @@ function CreateItem (props) {
         images: cloudList
       }
       if (!err) {
-        AxiosAuth().post(productURL, payload)
+        props.dispatch(setLoading(true))
+        AxiosAuth()
+          .post(productURL, payload)
           .then(res => {
             message.success('Item Added')
+            props.dispatch(setLoading(false))
+            props.dispatch(clearErrors())
           })
           .catch(error => {
-            message.error(error.message)
+            props.dispatch(setLoading(false))
+            props.dispatch(setErrors(error.response.data))
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }
@@ -112,16 +112,16 @@ function CreateItem (props) {
     }
   }
 
-  return (
+  const createItemComponent = (
     <div className='cover'>
       <div id='header'>
-        <h2 id='get-started'>Upload new
+        <h2 id='get-started'>
+          Upload new
           <br />
           store item
         </h2>
       </div>
       <div>
-
         <Upload
           fileList={fileList}
           customRequest={dummyRequest}
@@ -132,7 +132,6 @@ function CreateItem (props) {
             <Icon type='upload' /> Upload Photos
           </Button>
         </Upload>
-
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item>
@@ -146,9 +145,7 @@ function CreateItem (props) {
                 message: 'Enter a Name'
               }
             ]
-          })(<Input
-            placeholder='Name'
-             />)}
+          })(<Input placeholder='Name' />)}
         </Form.Item>
 
         <Form.Item>
@@ -162,9 +159,7 @@ function CreateItem (props) {
                 message: 'Enter a description'
               }
             ]
-          })(<Input
-            placeholder='Description'
-             />)}
+          })(<Input placeholder='Description' />)}
         </Form.Item>
 
         <Form.Item>
@@ -178,9 +173,7 @@ function CreateItem (props) {
                 message: 'Enter a price'
               }
             ]
-          })(<Input
-            placeholder='Price'
-             />)}
+          })(<Input placeholder='Price' />)}
         </Form.Item>
 
         <Form.Item>
@@ -190,9 +183,7 @@ function CreateItem (props) {
                 message: 'Enter stock'
               }
             ]
-          })(<Input
-            placeholder='Stock'
-             />)}
+          })(<Input placeholder='Stock' />)}
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
@@ -206,8 +197,21 @@ function CreateItem (props) {
       </Form>
     </div>
   )
+
+  return props.isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    createItemComponent
+  )
 }
 
 const CreateItemForm = Form.create({ name: 'createItem' })(CreateItem)
 
-export default CreateItemForm
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading,
+  errors: state.user.errors
+})
+
+export default connect(mapStateToProps, null)(CreateItemForm)

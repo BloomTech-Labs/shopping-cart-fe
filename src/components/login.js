@@ -30,10 +30,10 @@ const Login = props => {
           .catch(error => {
             props.dispatch(setLoading(false))
             props.dispatch(setErrors(error.response.data))
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }
@@ -109,11 +109,6 @@ const Login = props => {
           </Button>
         </Form.Item>
       </Form>
-      {props.errors.message && (
-        <div>
-          <p>{props.errors.message}</p>
-        </div>
-      )}
       <div id='or_login'>
         <p>
           or <Link to='/register'>register</Link> instead

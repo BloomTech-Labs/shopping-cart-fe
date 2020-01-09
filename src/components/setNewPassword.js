@@ -28,10 +28,10 @@ const SetNewPassword = (props) => {
         axios.post(URL, payload)
           .then(res => {
             message.success('Password reset successfully!')
-            history.push('/login')
+            history.push('/')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Password validation failed.')

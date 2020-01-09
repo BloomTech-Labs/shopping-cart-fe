@@ -29,7 +29,7 @@ const CreateStore = (props) => {
         dispatch(creators.updateForm(payload))
         history.push('/addlogo')
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }

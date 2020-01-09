@@ -1,24 +1,18 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message,
-  Upload
-} from 'antd'
-import { useSelector } from 'react-redux'
+import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
 import '../../less/index.less'
 import AxiosAuth from '../Auth/axiosWithAuth'
+import * as creators from '../../state/actionCreators'
 
-function getBase64 (img, callback) {
+function getBase64(img, callback) {
   const reader = new FileReader()
   reader.addEventListener('load', () => callback(reader.result))
   reader.readAsDataURL(img)
 }
 
-function beforeUpload (file) {
+function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!')
@@ -29,12 +23,16 @@ function beforeUpload (file) {
   }
   return isJpgOrPng && isLt2M
 }
-const createStoreUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
-const AddLogo = (props) => {
+const createStoreUrl =
+  'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
+
+const AddLogo = props => {
+  const dispatch = useDispatch()
   const [imageUrl, setImageUrl] = useState('')
   const [loading, setLoading] = useState(false)
 
   const formState = useSelector(state => state.form)
+  const userState = useSelector(state => state.user)
 
   const handleChange = info => {
     if (info.file.status === 'uploading') {
@@ -43,9 +41,10 @@ const AddLogo = (props) => {
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
-        setImageUrl(imageUrl),
-      setLoading(false)
+      getBase64(
+        info.file.originFileObj,
+        imageUrl => setImageUrl(imageUrl),
+        setLoading(false)
       )
     }
   }
@@ -57,10 +56,8 @@ const AddLogo = (props) => {
     const config = {
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
     }
-    axios.post(
-      'https://api.cloudinary.com/v1_1/pureretail/upload',
-      image, config
-    )
+    axios
+      .post('https://api.cloudinary.com/v1_1/pureretail/upload', image, config)
       .then(res => {
         const secureUrl = res.data.secure_url
         setImageUrl(secureUrl)
@@ -79,17 +76,21 @@ const AddLogo = (props) => {
         storeName: values.store
       }
       if (!err) {
-        console.log(payload)
-        AxiosAuth().post(createStoreUrl, payload)
+        dispatch(creators.setLoading(true))
+        AxiosAuth()
+          .post(createStoreUrl, payload)
           .then(res => {
             message.success('store created')
-            console.log(res.data)
+            dispatch(creators.setLoading(false))
+            dispatch(creators.clearErrors())
           })
           .catch(error => {
-            message.error(error.message)
+            dispatch(creators.setLoading(false))
+            dispatch(creators.setErrors(error.response.data))
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }
@@ -125,12 +126,14 @@ const AddLogo = (props) => {
       }
     }
   }
-  return (
+
+  const addLogoForm = (
     <div className='cover'>
       <div id='header'>
-        <h2 id='get-started'>Upload store
+        <h2 id='get-started'>
+          Upload store
           <br />
-            logo
+          logo
         </h2>
       </div>
       <div>
@@ -143,20 +146,25 @@ const AddLogo = (props) => {
           beforeUpload={beforeUpload}
           onChange={handleChange}
         >
-          {imageUrl ? <img src={imageUrl} alt='avatar' style={{ width: '100%' }} /> : uploadButton}
+          {imageUrl ? (
+            <img src={imageUrl} alt='avatar' style={{ width: '100%' }} />
+          ) : (
+            uploadButton
+          )}
         </Upload>
         <div id='upload-text'>
-          <p>Click to upload
+          <p>
+            Click to upload
             <br />
-                store logo (optional)
+            store logo (optional)
           </p>
         </div>
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
-          <h2 id='get-started'>Give your store
-            <br />
-                a name
+          <h2 id='get-started'>
+            Give your store
+            <br />a name
           </h2>
         </div>
         <Form.Item>
@@ -170,10 +178,7 @@ const AddLogo = (props) => {
                 message: 'Enter your store name'
               }
             ]
-          })(
-            <Input
-              placeholder="My store's name is..."
-            />)}
+          })(<Input placeholder="My store's name is..." />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
@@ -183,8 +188,21 @@ const AddLogo = (props) => {
       </Form>
     </div>
   )
+
+  return userState.isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    addLogoForm
+  )
 }
 
 const AddLogoForm = Form.create({ name: 'register' })(AddLogo)
+
+// const mapStateToProps = state => ({
+//   isLoading: state.user.isLoading,
+//   errors: state.user.errors
+// })
 
 export default AddLogoForm

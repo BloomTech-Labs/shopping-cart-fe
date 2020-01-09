@@ -24,10 +24,10 @@ const ResetPassword = (props) => {
         axios.post(URL, payload)
           .then(res => {
             message.success('Your password reset is on its way!')
-            props.history.push('/login')
+            props.history.push('/')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Please enter a valid phone number to proceed.')
