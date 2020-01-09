@@ -1,21 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-<<<<<<< HEAD
-import { Form, Input, Icon, Button, message } from 'antd'
-=======
 import { Link } from 'react-router-dom'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message
-} from 'antd'
->>>>>>> ec7973c51537e420264dc1ed4035826721f7bebc
+import { Form, Input, Icon, Button, message } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
-import { Link } from 'react-router-dom'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
 const RegistrationForm = props => {
@@ -162,7 +151,9 @@ const RegistrationForm = props => {
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>or <Link to='/'>login</Link> instead</p>
+        <p>
+          or <Link to='/'>login</Link> instead
+        </p>
       </div>
     </div>
   )

@@ -5,7 +5,6 @@ import { Form, Input, Icon, Button, message } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
-import { Link } from 'react-router-dom'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
 const Login = props => {
