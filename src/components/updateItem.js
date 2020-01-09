@@ -94,7 +94,7 @@ function UpdateItem (props) {
 
   const toStore = e => {
     e.preventDefault()
-    history.push('/createstore')
+    history.push('/inventory')
   }
 
   const { getFieldDecorator } = props.form
@@ -124,9 +124,7 @@ function UpdateItem (props) {
     <div className='cover'>
       <div id='header'>
         <h2 id='get-started'>
-          Upload new
-          <br />
-          store item
+          Update {item.name}
         </h2>
       </div>
       <div style={{ height: '30%', width: '100%' }}>
