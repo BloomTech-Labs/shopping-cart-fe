@@ -2,7 +2,7 @@ import * as types from '../actionTypes'
 
 const initialUserState = { isLoading: false, errors: {} }
 
-export function userReducer(state = initialUserState, action) {
+export function userReducer (state = initialUserState, action) {
   switch (action.type) {
     case types.GET_CURRENT_USER:
       return action.payload
