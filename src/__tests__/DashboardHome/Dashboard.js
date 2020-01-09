@@ -9,28 +9,28 @@ import store from '../../state/store'
 describe('dashboard', () => {
     test('renders the welcome message', () => {
         const { getByText } = render(<Provider store={store}><Container /></Provider>)
-        const logo = getByText(/welcome/i)
-        expect(logo).toBeVisible()
+        const element = getByText(/welcome/i)
+        expect(element).toBeVisible()
     })
     test('renders overview', () => {
         const { getByText } = render(<Provider store={store}><Container /></Provider>)
-        const logo = getByText(/overview/i)
-        expect(logo).toBeVisible()
+        const element = getByText(/overview/i)
+        expect(element).toBeVisible()
     })
     test('renders sales history', () => {
         const { getByText } = render(<Provider store={store}><Container /></Provider>)
-        const logo = getByText(/sales history/i)
-        expect(logo).toBeVisible()
+        const element = getByText(/sales history/i)
+        expect(element).toBeVisible()
     })
     test('renders this month you earned', () => {
         const { getByText } = render(<Provider store={store}><Container /></Provider>)
-        const logo = getByText(/this month you earned/i)
-        expect(logo).toBeVisible()
+        const element = getByText(/this month you earned/i)
+        expect(element).toBeVisible()
     })
     test('renders lifetime earnings', () => {
         const { getByText } = render(<Provider store={store}><Container /></Provider>)
-        const logo = getByText(/lifetime earnings/i)
-        expect(logo).toBeVisible()
+        const element = getByText(/lifetime earnings/i)
+        expect(element).toBeVisible()
     })
     test('renders the navbar', () => {
         const { getByText } = render(<Provider store={store}><Container /></Provider>)
