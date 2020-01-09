@@ -21,6 +21,7 @@ const Login = props => {
           .then(res => {
             message.success('Logged!')
             localStorage.setItem('token', res.data.token)
+            //check if user has store
             history.push('/createstore')
           })
           .catch(error => {
