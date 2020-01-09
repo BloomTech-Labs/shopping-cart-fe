@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { List, Input, Tabs } from 'antd'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
@@ -82,9 +82,9 @@ const Items = ({ inventory }) => {
               description={
                 <div className='list short'>
                   <div>{item.description}</div>
-                  <Link to={`/updateitem/${item._id}`}>
+                  <NavLink to={`/updateitem/${item._id}`}>
                     <div>Edit</div>
-                  </Link>
+                  </NavLink>
                 </div>
               }
             />

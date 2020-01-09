@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Carousel, Modal, message } from 'antd'
 import AxiosAuth from '../Auth/axiosWithAuth'
 import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import * as creators from '../../state/actionCreators'
 const { confirm } = Modal
 const { Meta } = Card
@@ -46,7 +47,9 @@ const Expanded = ({ inventory }) => {
                     <h3>{item.name}</h3>
                     <p>{item.description}</p>
                   </div>
-                  <div id='edit'>Edit</div>
+                  <NavLink to={`/updateitem/${item._id}`}>
+                    <div>Edit</div>
+                  </NavLink>
                 </div>
               }
               description={
