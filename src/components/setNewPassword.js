@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message
-} from 'antd'
-
+import { Form, Input, Icon, Button, message, Spin } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
+import * as creators from '../state/actionCreators'
 
-const SetNewPassword = (props) => {
+const SetNewPassword = props => {
+  const dispatch = useDispatch()
+  const { isLoading } = useSelector(state => state.user)
+
   const [confirmDirty, setConfirmDirty] = useState(false)
   const token = window.location.href.split('=')[1]
   const URL = `https://shopping-cart-eu3.herokuapp.com/api/auth/reset/${token}`
@@ -24,13 +22,18 @@ const SetNewPassword = (props) => {
         password: values.password
       }
       if (!err) {
-        console.log(payload)
-        axios.post(URL, payload)
+        dispatch(creators.setLoading(true))
+        axios
+          .post(URL, payload)
           .then(res => {
             message.success('Password reset successfully!')
+            dispatch(creators.setLoading(false))
+            dispatch(creators.clearErrors())
             history.push('/')
           })
           .catch(error => {
+            dispatch(creators.setLoading(false))
+            dispatch(creators.setErrors(error.response.data))
             message.error(Object.values(error.response.data)[0])
           })
       } else {
@@ -83,7 +86,7 @@ const SetNewPassword = (props) => {
     }
   }
 
-  return (
+  const setNewPasswordForm = (
     <div className='cover'>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -105,7 +108,8 @@ const SetNewPassword = (props) => {
             <Input.Password
               placeholder='New Password'
               prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />)}
+            />
+          )}
         </Form.Item>
         <Form.Item hasFeedback>
           {getFieldDecorator('confirm', {
@@ -123,21 +127,34 @@ const SetNewPassword = (props) => {
               onBlur={handleConfirmBlur}
               placeholder='Confirm New Password'
               prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />)}
+            />
+          )}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-              Reset
+            Reset
           </Button>
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>or <Link to='/'>login</Link> instead</p>
+        <p>
+          or <Link to='/'>login</Link> instead
+        </p>
       </div>
     </div>
   )
+
+  return isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    setNewPasswordForm
+  )
 }
 
-const SetNewPasswordForm = Form.create({ name: 'setNewPassword' })(SetNewPassword)
+const SetNewPasswordForm = Form.create({ name: 'setNewPassword' })(
+  SetNewPassword
+)
 
 export default SetNewPasswordForm

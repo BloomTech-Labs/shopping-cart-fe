@@ -19,7 +19,7 @@ const ResetPassword = props => {
       const payload = {
         phone: values.number
       }
-      console.log(payload)
+
       if (!err) {
         dispatch(creators.setLoading(true))
         axios
