@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import {
   Form,
   Input,
@@ -9,7 +10,7 @@ import {
 } from 'antd'
 
 import '../less/index.less'
-import logo from '../images/PureRetail_Logo.png'
+import Logo from './elements/logo'
 import history from '../history'
 
 const SetNewPassword = (props) => {
@@ -27,10 +28,10 @@ const SetNewPassword = (props) => {
         axios.post(URL, payload)
           .then(res => {
             message.success('Password reset successfully!')
-            history.push('/login')
+            history.push('/')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Password validation failed.')
@@ -84,9 +85,7 @@ const SetNewPassword = (props) => {
 
   return (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
           <h2>Reset password</h2>
@@ -133,7 +132,7 @@ const SetNewPassword = (props) => {
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>or <a>login</a> instead</p>
+        <p>or <Link to='/'>login</Link> instead</p>
       </div>
     </div>
   )

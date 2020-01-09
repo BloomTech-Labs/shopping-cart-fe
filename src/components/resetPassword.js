@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import {
   Form,
   Input,
@@ -8,7 +9,7 @@ import {
   message
 } from 'antd'
 import '../less/index.less'
-import logo from '../images/PureRetail_Logo.png'
+import Logo from './elements/logo'
 
 const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
 const ResetPassword = (props) => {
@@ -23,10 +24,10 @@ const ResetPassword = (props) => {
         axios.post(URL, payload)
           .then(res => {
             message.success('Your password reset is on its way!')
-            props.history.push('/login')
+            props.history.push('/')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Please enter a valid phone number to proceed.')
@@ -58,9 +59,7 @@ const ResetPassword = (props) => {
   }
   return (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
           <h2>Reset Password</h2>
@@ -91,10 +90,10 @@ const ResetPassword = (props) => {
         </Form.Item>
       </Form>
       <div id='back-to-login'>
-        <p>Back to log in</p>
+        <Link to='/'>Back to login</Link>
       </div>
       <div id='contact-support'>
-        <p>Contact support</p>
+        <Link to='/support'>Contact support</Link>
       </div>
     </div>
   )

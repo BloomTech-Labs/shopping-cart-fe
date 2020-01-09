@@ -7,6 +7,9 @@ export function userReducer (state = initialUserState, action) {
     case types.GET_CURRENT_USER:
       return action.payload
 
+    case types.LOGOUT_USER:
+      localStorage.removeItem('token')
+
     default:
       return state
   }

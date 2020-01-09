@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message
-} from 'antd'
+import { Link } from 'react-router-dom'
+import { Form, Input, Icon, Button, message } from 'antd'
 import '../less/index.less'
-import logo from '../images/PureRetail_Logo.png'
+import Logo from './elements/logo'
 import history from '../history'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
-const RegistrationForm = (props) => {
+const RegistrationForm = props => {
   const [confirmDirty, setConfirmDirty] = useState(false)
   const handleSubmit = e => {
     e.preventDefault()
@@ -23,17 +18,18 @@ const RegistrationForm = (props) => {
       }
       if (!err) {
         console.log(payload)
-        axios.post(signupURL, payload)
+        axios
+          .post(signupURL, payload)
           .then(res => {
             message.success('Signed Up')
             localStorage.setItem('token', res.data.token)
             history.push('/createstore')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }
@@ -84,12 +80,12 @@ const RegistrationForm = (props) => {
 
   return (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
-          <h2>Register new <br /> account</h2>
+          <h2>
+            Register new <br /> account
+          </h2>
         </div>
         <Form.Item>
           {getFieldDecorator('number', {
@@ -105,8 +101,11 @@ const RegistrationForm = (props) => {
           })(
             <Input
               placeholder='Phone number'
-              prefix={<Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />)}
+              prefix={
+                <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+              }
+            />
+          )}
         </Form.Item>
         <Form.Item hasFeedback>
           {getFieldDecorator('password', {
@@ -123,7 +122,8 @@ const RegistrationForm = (props) => {
             <Input.Password
               placeholder='Password'
               prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />)}
+            />
+          )}
         </Form.Item>
         <Form.Item hasFeedback>
           {getFieldDecorator('confirm', {
@@ -141,21 +141,26 @@ const RegistrationForm = (props) => {
               onBlur={handleConfirmBlur}
               placeholder='Confirm Password'
               prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />)}
+            />
+          )}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-              Register
+            Register
           </Button>
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>or <a>login</a> instead</p>
+        <p>
+          or <Link to='/'>login</Link> instead
+        </p>
       </div>
     </div>
   )
 }
 
-const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm)
+const WrappedRegistrationForm = Form.create({ name: 'register' })(
+  RegistrationForm
+)
 
 export default WrappedRegistrationForm
