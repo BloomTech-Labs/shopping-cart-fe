@@ -28,7 +28,6 @@ const Login = props => {
           })
           .catch(error => {
             props.dispatch(setLoading(false))
-            console.log(props.isLoading)
             message.error(error.message)
           })
       } else {

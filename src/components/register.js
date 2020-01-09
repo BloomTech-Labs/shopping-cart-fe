@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Form, Input, Icon, Button, message } from 'antd'
+import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
+import { setLoading } from '../state/actionCreators'
+import { connect } from 'react-redux'
 
 const signupURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/register'
 const RegistrationForm = props => {
@@ -17,7 +19,7 @@ const RegistrationForm = props => {
         password: values.password
       }
       if (!err) {
-        console.log(payload)
+        props.dispatch(setLoading(true))
         axios
           .post(signupURL, payload)
           .then(res => {
@@ -26,6 +28,7 @@ const RegistrationForm = props => {
             history.push('/createstore')
           })
           .catch(error => {
+            props.dispatch(setLoading(false))
             message.error(error.message)
           })
       } else {
@@ -78,7 +81,7 @@ const RegistrationForm = props => {
     }
   }
 
-  return (
+  const registerForm = (
     <div className='cover'>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -157,10 +160,22 @@ const RegistrationForm = props => {
       </div>
     </div>
   )
+
+  return props.isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    registerForm
+  )
 }
 
 const WrappedRegistrationForm = Form.create({ name: 'register' })(
   RegistrationForm
 )
 
-export default WrappedRegistrationForm
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading
+})
+
+export default connect(mapStateToProps, null)(WrappedRegistrationForm)
