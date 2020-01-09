@@ -200,9 +200,4 @@ const AddLogo = props => {
 
 const AddLogoForm = Form.create({ name: 'register' })(AddLogo)
 
-// const mapStateToProps = state => ({
-//   isLoading: state.user.isLoading,
-//   errors: state.user.errors
-// })
-
 export default AddLogoForm

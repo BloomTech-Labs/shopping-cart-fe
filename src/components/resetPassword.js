@@ -1,18 +1,18 @@
 import React from 'react'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message
-} from 'antd'
+import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
+import * as creators from '../state/actionCreators'
 
 const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
-const ResetPassword = (props) => {
+
+const ResetPassword = props => {
+  const dispatch = useDispatch()
+  const { isLoading } = useSelector(state => state.user)
+
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
@@ -21,12 +21,18 @@ const ResetPassword = (props) => {
       }
       console.log(payload)
       if (!err) {
-        axios.post(URL, payload)
+        dispatch(creators.setLoading(true))
+        axios
+          .post(URL, payload)
           .then(res => {
             message.success('Your password reset is on its way!')
+            dispatch(creators.setLoading(false))
+            dispatch(creators.clearErrors())
             props.history.push('/')
           })
           .catch(error => {
+            dispatch(creators.setLoading(false))
+            dispatch(creators.setErrors(error.response.data))
             message.error(Object.values(error.response.data)[0])
           })
       } else {
@@ -57,7 +63,8 @@ const ResetPassword = (props) => {
       }
     }
   }
-  return (
+
+  const resetPasswordForm = (
     <div className='cover'>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -65,7 +72,10 @@ const ResetPassword = (props) => {
           <h2>Reset Password</h2>
         </div>
         <div id='instruction-text'>
-          <p>Enter your registered phone number to receive a password reset link via SMS:</p>
+          <p>
+            Enter your registered phone number to receive a password reset link
+            via SMS:
+          </p>
         </div>
         <Form.Item>
           {getFieldDecorator('number', {
@@ -78,14 +88,18 @@ const ResetPassword = (props) => {
                 message: 'Enter a valid phone number'
               }
             ]
-          })(<Input
-            placeholder='Phone number'
-            prefix={<Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />}
-          />)}
+          })(
+            <Input
+              placeholder='Phone number'
+              prefix={
+                <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+              }
+            />
+          )}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-              Get link
+            Get link
           </Button>
         </Form.Item>
       </Form>
@@ -96,6 +110,14 @@ const ResetPassword = (props) => {
         <Link to='/support'>Contact support</Link>
       </div>
     </div>
+  )
+
+  return isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    resetPasswordForm
   )
 }
 const ResetPasswordForm = Form.create({ name: 'resetPassword' })(ResetPassword)
