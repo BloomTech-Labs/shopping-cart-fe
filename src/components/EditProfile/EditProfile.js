@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Form, Input, Select, Button, message } from 'antd'
+import { Form, Input, Select, Button, message, Spin } from 'antd'
 import '../../less/index.less'
 import logo from '../../images/PureRetail_Logo.png'
-import { logout } from '../../state/actionCreators'
+import { logout, setLoading } from '../../state/actionCreators'
 import history from '../../history'
 
 const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
@@ -21,13 +21,16 @@ const EditProfile = props => {
   })
 
   useEffect(() => {
+    props.dispatch(setLoading(true))
     axiosWithAuth()
       .get(storeUrl)
       .then(res => {
         const { ownerName, currency, storeName } = res.data
         setStore({ ownerName, currency, storeName })
+        props.dispatch(setLoading(false))
       })
       .catch(err => {
+        props.dispatch(setLoading(false))
         setErrors(err.response.data)
       })
   }, [])
@@ -46,6 +49,7 @@ const EditProfile = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
+    props.dispatch(setLoading(true))
     setErrors({})
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (err) {
@@ -196,9 +200,21 @@ const EditProfile = props => {
     </div>
   )
 
-  return errors.message ? createStore : editProfile
+  const displayedForm = errors.message ? createStore : editProfile
+
+  return props.isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    displayedForm
+  )
 }
 
 const EditForm = Form.create()(EditProfile)
 
-export default connect(null, null)(EditForm)
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading
+})
+
+export default connect(mapStateToProps, null)(EditForm)
