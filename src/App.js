@@ -9,6 +9,7 @@ import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 import EditProfile from './components/EditProfile/EditProfile'
 import CreateItem from './components/CreateItem'
+import PrivateRoute from './components/Auth/PrivateRoute'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
@@ -18,30 +19,16 @@ function App() {
       <Route path='/register'>
         <WrappedRegistrationForm />
       </Route>
-      <Route path='/inventory'>
-        <Main />
-      </Route>
+      <PrivateRoute path='/inventory' component={Main} />
       <Route exact path='/'>
         <LoginForm />
       </Route>
-      <Route path='/resetpassword'>
-        <ResetPasswordForm />
-      </Route>
-      <Route path='/setnewpassword'>
-        <SetNewPasswordForm />
-      </Route>
-      <Route path='/createstore'>
-        <CreateStoreForm />
-      </Route>
-      <Route path='/addlogo'>
-        <AddLogoForm />
-      </Route>
-      <Route path='/profile'>
-        <EditProfile />
-      </Route>
-      <Route path='/createitem'>
-        <CreateItem />
-      </Route>
+      <PrivateRoute path='/resetpassword' component={ResetPasswordForm} />
+      <PrivateRoute path='/setnewpassword' component={SetNewPasswordForm} />
+      <PrivateRoute path='/createstore' component={CreateStoreForm} />
+      <PrivateRoute path='/addlogo' component={AddLogoForm} />
+      <PrivateRoute path='/profile' component={EditProfile} />
+      <PrivateRoute path='/createitem' component={CreateItem} />
     </Switch>
   )
 }
