@@ -71,7 +71,7 @@ function CreateItem (props) {
       if (!err) {
         AxiosAuth().post(productURL, payload)
           .then(res => {
-            message.success('item added')
+            message.success('Item Added')
           })
           .catch(error => {
             message.error(error.message)

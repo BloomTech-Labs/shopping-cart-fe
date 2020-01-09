@@ -3,16 +3,25 @@ import AxiosAuth from '../components/Auth/axiosWithAuth'
 
 const getUserUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 
-export const updateForm = (details) => ({
+export const updateForm = details => ({
   type: types.UPDATE_FORM,
   payload: details
 })
 
 export const getCurrentUser = () => dispatch => {
-  AxiosAuth().get(getUserUrl)
+  AxiosAuth()
+    .get(getUserUrl)
     .then(res => {
+<<<<<<< HEAD
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
       AxiosAuth().get(`https://shopping-cart-eu3-staging.herokuapp.com/api/store/${res.data._id}/products`)
+=======
+      dispatch({ type: types.GET_CURRENT_USER, payload: res.data._id })
+      AxiosAuth()
+        .get(
+          `https://shopping-cart-eu3-staging.herokuapp.com/api/store/${res.data._id}/products`
+        )
+>>>>>>> a9052320b49ed6f6e76efb96e98d2f0b05e639d5
         .then(res => {
           const inventory = res.data
           dispatch({ type: types.GET_INVENTORY, payload: inventory })
@@ -21,4 +30,10 @@ export const getCurrentUser = () => dispatch => {
     .catch(error => {
       console.log(error)
     })
+}
+
+export const logout = () => {
+  return {
+    type: types.LOGOUT_USER
+  }
 }

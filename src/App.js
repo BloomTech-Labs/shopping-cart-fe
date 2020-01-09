@@ -7,13 +7,14 @@ import ResetPasswordForm from './components/resetPassword'
 import SetNewPasswordForm from './components/setNewPassword'
 import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
+import EditProfile from './components/EditProfile/EditProfile'
 import CreateItem from './components/CreateItem'
 import Inventory from './components/inventory/inventory'
 import Dashboard from './components/DashboardHome/Dashboard'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
-function App () {
+function App() {
   return (
     <Switch>
       <Route path='/register'>
@@ -36,6 +37,9 @@ function App () {
       </Route>
       <Route path='/addlogo'>
         <AddLogoForm />
+      </Route>
+      <Route path='/profile'>
+        <EditProfile />
       </Route>
       <Route path='/createitem'>
         <CreateItem />
