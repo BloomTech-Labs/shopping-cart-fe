@@ -1,69 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as creators from "../state/actionCreators";
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message,
-  Upload
-} from "antd";
+import { Form, Input, Icon, Button, message, Upload } from "antd";
 
 import "../less/index.less";
 import axios from "axios";
 import AxiosAuth from "./Auth/axiosWithAuth";
 import history from "../history";
+import { uuid } from "uuidv4";
 
 function UpdateItem(props) {
   const [item, setItem] = useState([]);
-  console.log(item)
+  const [fileList, setFileList] = useState([]);
+  const [cloudList, setCloudList] = useState([]);
+
+  console.log(cloudList);
+ 
+
   const itemId = props.match.params.id;
-  const productURL =
-  `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`;
+  const productURL = `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`;
   useEffect(() => {
     AxiosAuth()
       .get(
         `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`
       )
       .then(res => {
+        const newFileList = res.data.images.map((url, idx) => ({
+          uid: -idx,
+          name: `photo ${idx}.jpg`,
+          url
+        }));
+        setFileList(newFileList);
         setItem(res.data);
       });
   }, [itemId]);
 
-
-const test = item && item.images && item.images.length && item.images.map(i=>{
-  return i
-})
-const myArray = test && test.length && test.map((str, index) => ({ url: str, id: index + 1 , name:'image.png'}));
-console.log(myArray)
-
-
-  const [fileList, setFileList] = useState(
-[    {
-      uid: '-1',
-      name: 'image.png',
-     
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-2',
-      name: 'image.png',
-     
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-3',
-      name: 'image.png',
-     
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },]
-
-  );
-  console.log(fileList)
-  const [cloudList, setCloudList] = useState([]);
-
   const handleChange = info => {
+
     let fileList = [...info.fileList];
 
     // 1. Limit the number of uploaded files
@@ -78,7 +51,7 @@ console.log(myArray)
       }
       return file;
     });
-
+    //const newFile= fileList
     setFileList(fileList);
   };
 
@@ -111,6 +84,7 @@ console.log(myArray)
         stock: values.stock || 0,
         images: cloudList
       };
+      console.log(payload.images)
       if (!err) {
         AxiosAuth()
           .put(productURL, payload)
@@ -165,17 +139,17 @@ console.log(myArray)
           store item
         </h2>
       </div>
-      <div>
+      <div >
         <Upload
-            fileList={fileList}
-            customRequest={dummyRequest}
-            //multiple
-            onChange={handleChange}
-          >
-            <Button>
-              <Icon type='upload' /> Upload Photos
-            </Button>
-          </Upload>
+          listType="picture-card"
+          fileList={fileList}
+          customRequest={dummyRequest}
+          onChange={handleChange}
+        >
+          
+            <Icon  style={{width:'20px'}} type="upload" /> 
+         
+        </Upload>
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item>
