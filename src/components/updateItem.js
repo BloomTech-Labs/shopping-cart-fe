@@ -120,6 +120,8 @@ function UpdateItem (props) {
       }
     }
   }
+
+  console.log(typeof(item.price))
   return (
     <div className='cover'>
       <div id='header'>
@@ -142,54 +144,54 @@ function UpdateItem (props) {
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item>
           {getFieldDecorator('name', {
-            initialValue: item.name
-            // rules: [
-            //   {
-            //     message: "Name"
-            //   },
-            //   {
-            //     required: true,
-            //     message: "Enter a Name"
-            //   }
-            // ]
+            initialValue: item.name,
+            rules: [
+              {
+                message: "Name"
+              },
+              {
+                required: true,
+                message: "Enter a Name"
+              }
+            ]
           })(<Input placeholder='Name' />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('description', {
-            initialValue: item.description
-            // rules: [
-            //   {
-            //     message: "Enter a description"
-            //   },
-            //   {
-            //     required: true,
-            //     message: "Enter a description"
-            //   }
-            // ]
+            initialValue: item.description,
+            rules: [
+              {
+                message: "Enter a description"
+              },
+              {
+                required: true,
+                message: "Enter a description"
+              }
+            ]
           })(<Input placeholder='Description' />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('price', {
-            initialValue: item.price
-            // rules: [
-            //   {
-            //     message: "Enter a price"
-            //   },
-            //   {
-            //     required: true,
-            //     message: "Enter a price"
-            //   }
-            // ]
+            initialValue: item.price,
+            rules: [
+              {
+                message: "Enter a price"
+              },
+              {
+                required: true,
+                message: "Enter a price"
+              }
+            ]
           })(<Input placeholder='Price' />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('stock', {
-            initialValue: item.stock
-            // rules: [
-            //   {
-            //     message: "Enter stock"
-            //   }
-            // ]
+            initialValue: item.stock,
+            rules: [
+              {
+                message: "Enter stock"
+              }
+            ]
           })(<Input placeholder='Stock' />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
