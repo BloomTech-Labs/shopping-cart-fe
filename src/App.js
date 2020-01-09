@@ -13,7 +13,7 @@ import UpdateItem from './components/updateItem'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
-function App() {
+function App () {
   return (
     <Switch>
       <Route path='/register'>
@@ -43,9 +43,8 @@ function App() {
       <Route path='/createitem'>
         <CreateItem />
       </Route>
-      <Route path='/updateitem/:id' component={UpdateItem}/>
-       
-     
+      <Route path='/updateitem/:id' component={UpdateItem} />
+
     </Switch>
   )
 }
