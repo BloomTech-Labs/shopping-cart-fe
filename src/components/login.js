@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import withAuth from './Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message } from 'antd'
 import '../less/index.less'
@@ -7,6 +8,7 @@ import Logo from './elements/logo'
 import history from '../history'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
+const storeURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
 const Login = props => {
   const handleSubmit = e => {
     e.preventDefault()
@@ -19,9 +21,24 @@ const Login = props => {
         axios
           .post(loginURL, payload)
           .then(res => {
-            message.success('Logged!')
+            message.success('Login Successful')
             localStorage.setItem('token', res.data.token)
-            history.push('/createstore')
+            //check if user has store
+            withAuth().get(storeURL)
+              .then(res => {
+                if(res.data._id){
+                  history.push('/dashboard')
+                } else {
+                  history.push('/createstore')
+                }
+              })
+              .catch(error => {
+                if(error.response.data.message === 'No store found'){
+                  history.push('/createstore')
+                } else {
+                  message.error(Object.values(error.response.data)[0])
+                }
+              })
           })
           .catch(error => {
             message.error(Object.values(error.response.data)[0])
