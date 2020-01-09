@@ -89,9 +89,7 @@ const AddLogo = props => {
             message.success('store created')
             dispatch(creators.setLoading(false))
             dispatch(creators.clearErrors())
-            setTimeout(() => {
-              history.push('/dashboard')
-            }, 4000)
+            history.push('/dashboard')
           })
           .catch(error => {
             dispatch(creators.setLoading(false))
