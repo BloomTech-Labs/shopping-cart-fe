@@ -6,7 +6,8 @@ import {
   Input,
   Icon,
   Button,
-  message
+  message,
+  Modal
 } from 'antd'
 
 import '../less/index.less'
@@ -27,8 +28,14 @@ const SetNewPassword = (props) => {
         console.log(payload)
         axios.post(URL, payload)
           .then(res => {
-            message.success('Password reset successfully!')
-            history.push('/')
+            Modal.info({
+              title: 'Success',
+              content: 'Your password has been reset successfully.',
+              centered: true,
+              onOk() {
+                history.push('/')
+              }
+            })
           })
           .catch(error => {
             message.error(Object.values(error.response.data)[0])
