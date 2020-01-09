@@ -1,5 +1,6 @@
 import * as types from './actionTypes'
 import AxiosAuth from '../components/Auth/axiosWithAuth'
+import axios from 'axios'
 
 const getUserUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
 
@@ -30,5 +31,12 @@ export const getCurrentUser = () => dispatch => {
 export const logout = () => {
   return {
     type: types.LOGOUT_USER
+  }
+}
+
+export const setLoading = isLoading => {
+  return {
+    type: types.LOADING,
+    payload: isLoading
   }
 }

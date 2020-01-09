@@ -5,6 +5,8 @@ import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
+import { connect } from 'react-redux'
+import { setLoading } from '../state/actionCreators'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
 const Login = props => {
@@ -16,6 +18,7 @@ const Login = props => {
         password: values.password
       }
       if (!err) {
+        props.dispatch(setLoading(true))
         axios
           .post(loginURL, payload)
           .then(res => {
@@ -24,6 +27,8 @@ const Login = props => {
             history.push('/createstore')
           })
           .catch(error => {
+            props.dispatch(setLoading(false))
+            console.log(props.isLoading)
             message.error(error.message)
           })
       } else {
@@ -54,7 +59,8 @@ const Login = props => {
       }
     }
   }
-  return (
+
+  const loginForm = (
     <div className='cover'>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -114,7 +120,19 @@ const Login = props => {
       </div>
     </div>
   )
+
+  return props.isLoading ? (
+    <div className='container'>
+      <Spin className='spinner' size='large' />
+    </div>
+  ) : (
+    loginForm
+  )
 }
 const LoginForm = Form.create({ name: 'register' })(Login)
 
-export default LoginForm
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading
+})
+
+export default connect(mapStateToProps, null)(LoginForm)

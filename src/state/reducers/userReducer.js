@@ -1,6 +1,6 @@
 import * as types from '../actionTypes'
 
-const initialUserState = {}
+const initialUserState = { isLoading: false }
 
 export function userReducer(state = initialUserState, action) {
   switch (action.type) {
@@ -8,7 +8,13 @@ export function userReducer(state = initialUserState, action) {
       return action.payload
 
     case types.LOGOUT_USER:
-      localStorage.removeItem('token')
+      return localStorage.removeItem('token')
+
+    case types.LOADING:
+      return {
+        ...state,
+        isLoading: action.payload
+      }
 
     default:
       return state
