@@ -31,7 +31,7 @@ const SetNewPassword = (props) => {
             history.push('/')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Password validation failed.')

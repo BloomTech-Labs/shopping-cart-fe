@@ -74,10 +74,10 @@ function CreateItem (props) {
             message.success('Item Added')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Validation failed')
+        message.error('Enter Required Fields')
       }
     })
   }
