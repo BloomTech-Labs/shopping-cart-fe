@@ -41,7 +41,7 @@ const EditProfile = props => {
   const handleLogout = () => {
     // delete token from local storage and redirect to login
     props.dispatch(logout())
-    history.push('/login')
+    history.push('/')
   }
 
   const handleSubmit = e => {
