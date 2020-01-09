@@ -14,6 +14,10 @@ const Content = () => {
           <Pane1 />
         </TabPane>
         <TabPane tab='Sales History' key='2'>
+      Today
+      <Pane2 />
+      <Pane2 />
+      <Pane2 />
       Yesterday
       <Pane2 />
         </TabPane>
