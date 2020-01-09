@@ -1,6 +1,13 @@
 import React from 'react'
 import axios from 'axios'
-import { Form, Input, Icon, Button, message } from 'antd'
+import { Link } from 'react-router-dom'
+import {
+  Form,
+  Input,
+  Icon,
+  Button,
+  message
+} from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
@@ -58,7 +65,7 @@ const Login = props => {
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
-          <h2>Log in</h2>
+          <h2>Login</h2>
         </div>
         <Form.Item>
           {getFieldDecorator('number', {
@@ -97,19 +104,15 @@ const Login = props => {
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-            Log in
+              Login
           </Button>
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>
-          or <a>register</a> instead
-        </p>
+        <p>or <Link to='/register'>register</Link> instead</p>
       </div>
       <div id='or_login'>
-        <p>
-          <a>Forgot password?</a>
-        </p>
+        <p><Link to='/resetpassword'>Forgot password?</Link></p>
       </div>
     </div>
   )
