@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
@@ -66,6 +66,11 @@ const AddLogo = props => {
       onSuccess('ok')
     }, 0)
   }
+
+  useEffect(() => {
+    dispatch(creators.setLoading(false))
+  }, [])
+
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {

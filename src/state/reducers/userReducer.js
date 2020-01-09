@@ -11,7 +11,8 @@ export function userReducer(state = initialUserState, action) {
       }
 
     case types.LOGOUT_USER:
-      return localStorage.removeItem('token')
+      localStorage.removeItem('token')
+      return state
 
     case types.LOADING:
       return {
