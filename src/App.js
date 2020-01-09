@@ -22,8 +22,8 @@ function App () {
       <PublicRoute path='/register' component={WrappedRegistrationForm} />
       <PublicRoute exact path='/' component={LoginForm} />
       <PrivateRoute path='/inventory' component={Main} />
-      <PrivateRoute path='/resetpassword' component={ResetPasswordForm} />
-      <PrivateRoute path='/setnewpassword' component={SetNewPasswordForm} />
+      <Route path='/resetpassword' component={ResetPasswordForm} />
+      <Route path='/setnewpassword' component={SetNewPasswordForm} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={EditProfile} />
