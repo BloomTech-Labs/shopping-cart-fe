@@ -32,7 +32,7 @@ const SetNewPassword = props => {
               title: 'Success',
               content: 'Your password has been reset successfully.',
               centered: true,
-              onOk() {
+              onOk () {
                 history.push('/')
               }
             })

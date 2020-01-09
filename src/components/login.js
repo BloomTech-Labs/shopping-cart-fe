@@ -28,7 +28,7 @@ const Login = props => {
             localStorage.setItem('token', res.data.token)
             props.dispatch(clearErrors())
 
-            //check if user has store
+            // check if user has store
             withAuth()
               .get(storeURL)
               .then(res => {

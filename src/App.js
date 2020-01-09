@@ -9,6 +9,7 @@ import CreateStoreForm from './components/createStore/firstView'
 import AddLogoForm from './components/createStore/addLogo'
 import EditProfile from './components/EditProfile/EditProfile'
 import CreateItem from './components/CreateItem'
+import UpdateItem from './components/updateItem'
 import PrivateRoute from './components/Auth/PrivateRoute'
 import PublicRoute from './components/Auth/PublicRoute'
 import Dashboard from './components/DashboardHome/Dashboard'
@@ -21,13 +22,14 @@ function App () {
       <PublicRoute path='/register' component={WrappedRegistrationForm} />
       <PublicRoute exact path='/' component={LoginForm} />
       <PrivateRoute path='/inventory' component={Main} />
-      <PrivateRoute path='/resetpassword' component={ResetPasswordForm} />
-      <PrivateRoute path='/setnewpassword' component={SetNewPasswordForm} />
+      <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
+      <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={EditProfile} />
       <PrivateRoute path='/createitem' component={CreateItem} />
       <PrivateRoute path='/dashboard' component={Dashboard} />
+      <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
     </Switch>
   )
 }
