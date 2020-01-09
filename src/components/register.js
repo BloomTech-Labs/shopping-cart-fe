@@ -29,7 +29,8 @@ const RegistrationForm = props => {
             history.push('/createstore')
           })
           .catch(error => {
-            props.dispatch(clearErrors())
+            props.dispatch(setErrors(error.response.data))
+            props.dispatch(setLoading(false))
             message.error(Object.values(error.response.data)[0])
           })
       } else {

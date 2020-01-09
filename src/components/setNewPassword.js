@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Form, Input, Icon, Button, message, Spin } from 'antd'
+import { Form, Input, Icon, Button, message, Spin, Modal } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import '../less/index.less'
 import Logo from './elements/logo'
@@ -26,10 +26,16 @@ const SetNewPassword = props => {
         axios
           .post(URL, payload)
           .then(res => {
-            message.success('Password reset successfully!')
             dispatch(creators.setLoading(false))
             dispatch(creators.clearErrors())
-            history.push('/')
+            Modal.info({
+              title: 'Success',
+              content: 'Your password has been reset successfully.',
+              centered: true,
+              onOk() {
+                history.push('/')
+              }
+            })
           })
           .catch(error => {
             dispatch(creators.setLoading(false))
