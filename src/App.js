@@ -10,6 +10,7 @@ import AddLogoForm from './components/createStore/addLogo'
 import EditProfile from './components/EditProfile/EditProfile'
 import CreateItem from './components/CreateItem'
 import PrivateRoute from './components/Auth/PrivateRoute'
+import Dashboard from './components/DashboardHome/Dashboard'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
@@ -29,6 +30,7 @@ function App() {
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={EditProfile} />
       <PrivateRoute path='/createitem' component={CreateItem} />
+      <PrivateRoute path='/dashboard' component={Dashboard} />
     </Switch>
   )
 }
