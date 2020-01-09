@@ -12,10 +12,11 @@ import CreateItem from './components/CreateItem'
 import UpdateItem from './components/updateItem'
 import PrivateRoute from './components/Auth/PrivateRoute'
 import PublicRoute from './components/Auth/PublicRoute'
-import Dashboard from './components/DashboardHome/Dashboard'
+// import Dashboard from './components/DashboardHome/Dashboard'
 // import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 import UpdateProfile from './components/EditProfile'
+import Home from './components/DashboardHome'
 
 function App () {
   return (
@@ -29,7 +30,7 @@ function App () {
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={UpdateProfile} />
       <PrivateRoute path='/createitem' component={CreateItem} />
-      <PrivateRoute path='/dashboard' component={Dashboard} />
+      <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
     </Switch>
   )
