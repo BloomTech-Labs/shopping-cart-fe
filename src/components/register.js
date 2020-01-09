@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+<<<<<<< HEAD
 import { Form, Input, Icon, Button, message } from 'antd'
+=======
+import { Link } from 'react-router-dom'
+import {
+  Form,
+  Input,
+  Icon,
+  Button,
+  message
+} from 'antd'
+>>>>>>> ec7973c51537e420264dc1ed4035826721f7bebc
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
@@ -151,9 +162,7 @@ const RegistrationForm = props => {
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>
-          or <Link to='/login'>login</Link> instead
-        </p>
+        <p>or <Link to='/'>login</Link> instead</p>
       </div>
     </div>
   )

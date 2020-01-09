@@ -20,7 +20,7 @@ function App() {
         <WrappedRegistrationForm />
       </Route>
       <PrivateRoute path='/inventory' component={Main} />
-      <Route path='/login'>
+      <Route exact path='/'>
         <LoginForm />
       </Route>
       <PrivateRoute path='/resetpassword' component={ResetPasswordForm} />
