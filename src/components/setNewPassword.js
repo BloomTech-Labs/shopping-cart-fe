@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import {
   Form,
   Input,
   Icon,
   Button,
-  message
+  message,
+  Modal
 } from 'antd'
 
 import '../less/index.less'
@@ -26,11 +28,17 @@ const SetNewPassword = (props) => {
         console.log(payload)
         axios.post(URL, payload)
           .then(res => {
-            message.success('Password reset successfully!')
-            history.push('/login')
+            Modal.info({
+              title: 'Success',
+              content: 'Your password has been reset successfully.',
+              centered: true,
+              onOk () {
+                history.push('/')
+              }
+            })
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Password validation failed.')
@@ -131,7 +139,7 @@ const SetNewPassword = (props) => {
         </Form.Item>
       </Form>
       <div id='or_login'>
-        <p>or <a>login</a> instead</p>
+        <p>or <Link to='/'>login</Link> instead</p>
       </div>
     </div>
   )

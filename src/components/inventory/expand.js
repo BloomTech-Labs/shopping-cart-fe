@@ -22,7 +22,7 @@ const Expanded = ({ inventory }) => {
             message.success('Item Deleted')
           })
           .catch(error => {
-            message.error(error.message)
+            message.error(Object.values(error.response.data)[0])
           })
       },
       onCancel () {

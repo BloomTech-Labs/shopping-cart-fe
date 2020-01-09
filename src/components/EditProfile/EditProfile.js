@@ -41,7 +41,7 @@ const EditProfile = props => {
   const handleLogout = () => {
     // delete token from local storage and redirect to login
     props.dispatch(logout())
-    history.push('/login')
+    history.push('/')
   }
 
   const handleSubmit = e => {
@@ -49,17 +49,17 @@ const EditProfile = props => {
     setErrors({})
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (err) {
-        return console.log('errors found')
+        message.error('Enter Required Fields')
       }
 
       axiosWithAuth()
         .put(storeUrl, values)
         .then(res => {
-          alert('Your store has been updated')
+          message.success('Your store has been updated')
           history.push('/dashboard')
         })
         .catch(errors => {
-          message.error('Validation failed')
+          message.error(Object.values(errors.response.data)[0])
           setErrors(errors.response.data)
         })
     })
@@ -196,8 +196,7 @@ const EditProfile = props => {
     </div>
   )
 
-  // return errors.message ? createStore : editProfile
-  return editProfile
+  return errors.message ? createStore : editProfile
 }
 
 const EditForm = Form.create()(EditProfile)
