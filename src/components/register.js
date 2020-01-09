@@ -17,7 +17,6 @@ const RegistrationForm = props => {
         password: values.password
       }
       if (!err) {
-        console.log(payload)
         axios
           .post(signupURL, payload)
           .then(res => {

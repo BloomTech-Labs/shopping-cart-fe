@@ -11,6 +11,7 @@ import {
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
 import AxiosAuth from '../Auth/axiosWithAuth'
+import history from '../../history'
 
 function getBase64 (img, callback) {
   const reader = new FileReader()
@@ -79,11 +80,12 @@ const AddLogo = (props) => {
         storeName: values.store
       }
       if (!err) {
-        console.log(payload)
         AxiosAuth().post(createStoreUrl, payload)
           .then(res => {
             message.success('store created')
-            console.log(res.data)
+            setTimeout(() => {
+              history.push('/dashboard')
+            }, 4000)
           })
           .catch(error => {
             message.error(Object.values(error.response.data)[0])

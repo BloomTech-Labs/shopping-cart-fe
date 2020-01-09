@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
-import {
-  Form,
-  Input,
-  Icon,
-  Button,
-  message,
-  Upload
-} from 'antd'
+import { Form, Input, Icon, Button, message, Upload } from 'antd'
 import '../less/index.less'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
 
-const productURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
+const productURL =
+  'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
 
 function CreateItem (props) {
   const [fileList, setFileList] = useState([])
@@ -44,10 +38,8 @@ function CreateItem (props) {
     const config = {
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
     }
-    axios.post(
-      'https://api.cloudinary.com/v1_1/pureretail/upload',
-      image, config
-    )
+    axios
+      .post('https://api.cloudinary.com/v1_1/pureretail/upload', image, config)
       .then(res => {
         const secureUrl = res.data.secure_url
         const newList = [...cloudList, secureUrl]
@@ -69,7 +61,8 @@ function CreateItem (props) {
         images: cloudList
       }
       if (!err) {
-        AxiosAuth().post(productURL, payload)
+        AxiosAuth()
+          .post(productURL, payload)
           .then(res => {
             message.success('Item Added')
           })
@@ -115,13 +108,13 @@ function CreateItem (props) {
   return (
     <div className='cover'>
       <div id='header'>
-        <h2 id='get-started'>Upload new
+        <h2 id='get-started'>
+          Upload new
           <br />
           store item
         </h2>
       </div>
       <div>
-
         <Upload
           fileList={fileList}
           customRequest={dummyRequest}
@@ -132,7 +125,6 @@ function CreateItem (props) {
             <Icon type='upload' /> Upload Photos
           </Button>
         </Upload>
-
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item>
@@ -146,9 +138,7 @@ function CreateItem (props) {
                 message: 'Enter a Name'
               }
             ]
-          })(<Input
-            placeholder='Name'
-             />)}
+          })(<Input placeholder='Name' />)}
         </Form.Item>
 
         <Form.Item>
@@ -162,9 +152,7 @@ function CreateItem (props) {
                 message: 'Enter a description'
               }
             ]
-          })(<Input
-            placeholder='Description'
-             />)}
+          })(<Input placeholder='Description' />)}
         </Form.Item>
 
         <Form.Item>
@@ -178,9 +166,7 @@ function CreateItem (props) {
                 message: 'Enter a price'
               }
             ]
-          })(<Input
-            placeholder='Price'
-             />)}
+          })(<Input placeholder='Price' />)}
         </Form.Item>
 
         <Form.Item>
@@ -190,9 +176,7 @@ function CreateItem (props) {
                 message: 'Enter stock'
               }
             ]
-          })(<Input
-            placeholder='Stock'
-             />)}
+          })(<Input placeholder='Stock' />)}
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import './App.css'
 import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
@@ -13,7 +13,6 @@ import UpdateItem from './components/updateItem'
 import PrivateRoute from './components/Auth/PrivateRoute'
 import PublicRoute from './components/Auth/PublicRoute'
 import Dashboard from './components/DashboardHome/Dashboard'
-// import Inventory from './components/inventory/inventory'
 import Main from './components/inventory'
 
 function App () {

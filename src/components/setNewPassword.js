@@ -25,7 +25,6 @@ const SetNewPassword = (props) => {
         password: values.password
       }
       if (!err) {
-        console.log(payload)
         axios.post(URL, payload)
           .then(res => {
             Modal.info({
