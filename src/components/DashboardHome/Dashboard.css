@@ -78,3 +78,7 @@
     border-radius: 15px;
     background: linear-gradient(rgb(189, 44, 104), rgb(255, 88, 191));
 }
+
+#cards {
+    overflow: scroll;
+}

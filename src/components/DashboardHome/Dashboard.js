@@ -18,9 +18,11 @@ const Dashboard = ()=>{
             </div>
             <div className='dashDiv'>
             <Content/>
-            </div>
             
+            </div>
             <Footer/>
+            
+            
             
 
         </div>
