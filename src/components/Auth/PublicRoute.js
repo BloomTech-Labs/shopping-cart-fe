@@ -9,8 +9,7 @@ const PublicRoute = ({ component: Component, ...rest }) => (
         <Component {...props} />
       ) : (
         <Redirect to='/dashboard' />
-      )
-    }
+      )}
   />
 )
 

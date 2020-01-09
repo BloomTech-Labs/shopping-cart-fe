@@ -23,17 +23,17 @@ const Login = props => {
           .then(res => {
             message.success('Login Successful')
             localStorage.setItem('token', res.data.token)
-            //check if user has store
+            // check if user has store
             withAuth().get(storeURL)
               .then(res => {
-                if(res.data._id){
+                if (res.data._id) {
                   history.push('/dashboard')
                 } else {
                   history.push('/createstore')
                 }
               })
               .catch(error => {
-                if(error.response.data.message === 'No store found'){
+                if (error.response.data.message === 'No store found') {
                   history.push('/createstore')
                 } else {
                   message.error(Object.values(error.response.data)[0])

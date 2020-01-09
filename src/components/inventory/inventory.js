@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { List, Input, Tabs } from 'antd'
+import { NavLink } from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
@@ -68,24 +69,28 @@ const Items = ({ inventory }) => {
       size='small'
       itemLayout='horizontal'
       dataSource={inventory}
-      renderItem={item => (
-        <List.Item className='block'>
-          <List.Item.Meta
-            title={
-              <div className='list title short'>
-                <h3>{item.name}</h3>
-                <div>{item.price}</div>
-              </div>
-            }
-            description={
-              <div className='list short'>
-                <div>{item.description}</div>
-                <div>Edit</div>
-              </div>
-            }
-          />
-        </List.Item>
-      )}
+      renderItem={item => {
+        return (
+          <List.Item className='block'>
+            <List.Item.Meta
+              title={
+                <div className='list title short'>
+                  <h3>{item.name}</h3>
+                  <div>{item.price}</div>
+                </div>
+              }
+              description={
+                <div className='list short'>
+                  <div>{item.description}</div>
+                  <NavLink to={`/updateitem/${item._id}`}>
+                    <div>Edit</div>
+                  </NavLink>
+                </div>
+              }
+            />
+          </List.Item>
+        )
+      }}
     />
   )
 }
