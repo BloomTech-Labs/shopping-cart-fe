@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Form, Input, Icon, Button, message } from 'antd'
+import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
