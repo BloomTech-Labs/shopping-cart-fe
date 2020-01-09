@@ -11,22 +11,27 @@ const { Search } = Input
 
 const Inventory = () => {
   const [searchString, setSearchString] = useState('')
-  const search = (value) => {
+  const search = value => {
     setSearchString(value)
   }
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCurrentUser())
   }, [dispatch])
+
   const inventory = useSelector(state => state.store)
-  function searchObj (obj, string) {
+
+  function searchObj(obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
     return JSON.stringify(obj).match(regExp)
   }
-  var searchFilter = inventory.filter(function (obj) {
+
+  const searchFilter = inventory.filter(function(obj) {
     return searchObj(obj, searchString)
   })
+
   return (
     <div className='cover inventory'>
       <div className='top'>
@@ -44,16 +49,10 @@ const Inventory = () => {
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Collapse' key='1'>
-                <Items inventory={
-                  searchString ? searchFilter : inventory
-                }
-                />
+                <Items inventory={searchString ? searchFilter : inventory} />
               </TabPane>
               <TabPane tab='Expand' key='2'>
-                <Expanded inventory={
-                  searchString ? searchFilter : inventory
-                }
-                />
+                <Expanded inventory={searchString ? searchFilter : inventory} />
               </TabPane>
             </Tabs>
           </div>
