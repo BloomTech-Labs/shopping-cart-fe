@@ -44,7 +44,6 @@ function App () {
         <CreateItem />
       </Route>
       <Route path='/updateitem/:id' component={UpdateItem} />
-
     </Switch>
   )
 }
