@@ -1,7 +1,7 @@
 import * as types from './actionTypes'
 import AxiosAuth from '../components/Auth/axiosWithAuth'
 
-const getUserUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
+const getUserUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
 export const updateForm = details => ({
   type: types.UPDATE_FORM,
@@ -15,7 +15,7 @@ export const getCurrentUser = () => dispatch => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
       AxiosAuth()
         .get(
-          `https://shopping-cart-eu3-staging.herokuapp.com/api/store/${res.data._id}/products`
+          `https://shopping-cart-eu3.herokuapp.com/api/store/${res.data._id}/products`
         )
         .then(res => {
           const inventory = res.data

@@ -11,11 +11,11 @@ function UpdateItem (props) {
   const [cloudList, setCloudList] = useState([])
 
   const itemId = props.match.params.id
-  const productURL = `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`
+  const productURL = `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
   useEffect(() => {
     AxiosAuth()
       .get(
-        `https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${itemId}`
+        `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
       )
       .then(res => {
         const newFileList = res.data.images.map((url, idx) => ({

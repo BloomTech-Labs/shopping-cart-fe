@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
-const storeURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
+const storeURL = 'https://shopping-cart-eu3.herokuapp.com/api/store'
 const Login = props => {
   const handleSubmit = e => {
     e.preventDefault()
