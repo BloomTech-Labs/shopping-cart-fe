@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Input, Icon, Button, message, Upload } from 'antd'
+import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
 import '../less/index.less'
+import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
+import { connect } from 'react-redux'
 
 function UpdateItem (props) {
   const [item, setItem] = useState([])
@@ -79,16 +81,19 @@ function UpdateItem (props) {
         images
       }
       if (!err) {
+        props.dispatch(setLoading(true))
         AxiosAuth()
           .put(productURL, payload)
           .then(res => {
             message.success('item updated')
-            setTimeout(() => {
-              history.push('/inventory')
-            }, 4000)
+            props.dispatch(setLoading(false))
+            props.dispatch(clearErrors())
+            history.push('/inventory')
           })
           .catch(error => {
-            message.error(error.message)
+            props.dispatch(setLoading(false))
+            props.dispatch(setErrors(error.response.data))
+            message.error(Object.values(error.response.data)[0])
           })
       } else {
         message.error('Validation failed')
@@ -126,71 +131,78 @@ function UpdateItem (props) {
   }
 
   return (
-    <div className='cover'>
-      <div id='header'>
-        <h2 id='get-started'>Update {item.name}</h2>
-      </div>
-      <div style={{ height: '30%', width: '100%' }}>
-        <Upload
-          style={{ height: '20%', width: '20%' }}
-          listType='picture-card'
-          fileList={fileList}
-          customRequest={dummyRequest}
-          onChange={handleChange}
-        >
-          <Icon style={{ width: '20px' }} type='upload' />
-        </Upload>
-      </div>
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <Form.Item>
-          {getFieldDecorator('name', {
-            initialValue: item.name,
-            rules: [
-              {
-                message: 'Name'
-              },
-              {
-                required: true,
-                message: 'Enter a Name'
-              }
-            ]
-          })(<Input placeholder='Name' />)}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('description', {
-            initialValue: item.description,
-            rules: [
-              {
-                message: 'Enter a description'
-              },
-              {
-                required: true,
-                message: 'Enter a description'
-              }
-            ]
-          })(<Input placeholder='Description' />)}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('price', {
-            initialValue: item.price
-          })(<Input placeholder='Price' />)}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('stock', {
-            initialValue: item.stock
-          })(<Input placeholder='Stock' />)}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Done
-          </Button>
-        </Form.Item>
-        <div>
-          <p onClick={toStore}>cancel</p>
+    <Spin spinning={props.isLoading}>
+      <div className='cover'>
+        <div id='header'>
+          <h2 id='get-started'>Update {item.name}</h2>
         </div>
-      </Form>
-    </div>
+        <div style={{ height: '30%', width: '100%' }}>
+          <Upload
+            style={{ height: '20%', width: '20%' }}
+            listType='picture-card'
+            fileList={fileList}
+            customRequest={dummyRequest}
+            onChange={handleChange}
+          >
+            <Icon style={{ width: '20px' }} type='upload' />
+          </Upload>
+        </div>
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <Form.Item>
+            {getFieldDecorator('name', {
+              initialValue: item.name,
+              rules: [
+                {
+                  message: 'Name'
+                },
+                {
+                  required: true,
+                  message: 'Enter a Name'
+                }
+              ]
+            })(<Input placeholder='Name' />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('description', {
+              initialValue: item.description,
+              rules: [
+                {
+                  message: 'Enter a description'
+                },
+                {
+                  required: true,
+                  message: 'Enter a description'
+                }
+              ]
+            })(<Input placeholder='Description' />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('price', {
+              initialValue: item.price
+            })(<Input placeholder='Price' />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('stock', {
+              initialValue: item.stock
+            })(<Input placeholder='Stock' />)}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Done
+            </Button>
+          </Form.Item>
+          <div>
+            <p onClick={toStore}>Cancel</p>
+          </div>
+        </Form>
+      </div>
+    </Spin>
   )
 }
-const UpdateItemForm = Form.create({ name: 'createItem' })(UpdateItem)
-export default UpdateItemForm
+const UpdateItemForm = Form.create()(UpdateItem)
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading,
+  errors: state.user.errors
+})
+
+export default connect(mapStateToProps, null)(UpdateItemForm)

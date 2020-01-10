@@ -10,7 +10,7 @@ import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 const productURL =
   'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 
-function CreateItem(props) {
+function CreateItem (props) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 
@@ -70,6 +70,7 @@ function CreateItem(props) {
             message.success('Item Added')
             props.dispatch(setLoading(false))
             props.dispatch(clearErrors())
+            history.push('/inventory')
           })
           .catch(error => {
             props.dispatch(setLoading(false))
@@ -84,7 +85,7 @@ function CreateItem(props) {
 
   const toStore = e => {
     e.preventDefault()
-    history.push('/createstore')
+    history.push('/inventory')
   }
 
   const { getFieldDecorator } = props.form
@@ -193,7 +194,7 @@ function CreateItem(props) {
             </Button>
           </Form.Item>
           <div>
-            <p onClick={toStore}>cancel</p>
+            <p onClick={toStore}>Cancel</p>
           </div>
         </Form>
       </div>
