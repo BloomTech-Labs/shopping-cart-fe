@@ -8,7 +8,7 @@ import logo from '../../images/PureRetail_Logo.png'
 import { logout, setLoading } from '../../state/actionCreators'
 import history from '../../history'
 
-const storeUrl = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store/'
+const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
 const { Option } = Select
 

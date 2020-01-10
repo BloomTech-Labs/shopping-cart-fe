@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import '../../less/index.less'
 import AxiosAuth from '../Auth/axiosWithAuth'
 import * as creators from '../../state/actionCreators'
+import history from '../../history'
 
 function getBase64(img, callback) {
   const reader = new FileReader()
@@ -24,7 +25,7 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M
 }
 const createStoreUrl =
-  'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
+  'https://shopping-cart-eu3.herokuapp.com/api/store'
 
 const AddLogo = props => {
   const dispatch = useDispatch()
@@ -88,6 +89,7 @@ const AddLogo = props => {
             message.success('store created')
             dispatch(creators.setLoading(false))
             dispatch(creators.clearErrors())
+            history.push('/dashboard')
           })
           .catch(error => {
             dispatch(creators.setLoading(false))

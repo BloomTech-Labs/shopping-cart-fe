@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
 const productURL =
-  'https://shopping-cart-eu3-staging.herokuapp.com/api/store/products'
+  'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 
 function CreateItem(props) {
   const [fileList, setFileList] = useState([])
