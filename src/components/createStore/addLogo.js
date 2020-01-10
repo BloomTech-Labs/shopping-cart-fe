@@ -144,7 +144,7 @@ const AddLogo = props => {
             logo
           </h2>
         </div>
-        <div>
+        <div id='add-logo-image'>
           <Upload
             name='avatar'
             customRequest={dummyRequest}
