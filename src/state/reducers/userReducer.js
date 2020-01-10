@@ -1,8 +1,13 @@
 import * as types from '../actionTypes'
 
-const initialUserState = { isLoading: false, errors: {}, user: {} }
+const initialUserState = {
+  isLoading: false,
+  errors: {},
+  user: {},
+  storeDetails: {}
+}
 
-export function userReducer (state = initialUserState, action) {
+export function userReducer(state = initialUserState, action) {
   switch (action.type) {
     case types.GET_CURRENT_USER:
       return {
@@ -30,6 +35,12 @@ export function userReducer (state = initialUserState, action) {
       return {
         ...state,
         errors: {}
+      }
+
+    case types.SET_STORE:
+      return {
+        ...state,
+        storeDetails: { ...action.payload }
       }
 
     default:

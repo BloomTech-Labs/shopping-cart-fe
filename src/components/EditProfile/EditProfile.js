@@ -5,7 +5,12 @@ import { connect } from 'react-redux'
 import { Form, Input, Select, Button, message, Spin, Modal } from 'antd'
 import '../../less/index.less'
 import logo from '../../images/PureRetail_Logo.png'
-import { logout, setLoading, deleteStore } from '../../state/actionCreators'
+import {
+  logout,
+  setLoading,
+  deleteStore,
+  setStore as updateStore
+} from '../../state/actionCreators'
 import history from '../../history'
 
 const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
@@ -71,10 +76,12 @@ const EditProfile = props => {
       axiosWithAuth()
         .put(storeUrl, values)
         .then(res => {
+          props.dispatch(updateStore(res.data))
           message.success('Your store has been updated')
           history.push('/dashboard')
         })
         .catch(errors => {
+          console.log(errors.response)
           message.error(Object.values(errors.response.data)[0])
           setErrors(errors.response.data)
         })

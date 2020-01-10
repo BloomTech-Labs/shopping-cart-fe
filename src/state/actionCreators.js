@@ -23,13 +23,20 @@ export const getCurrentUser = () => dispatch => {
         })
     })
     .catch(error => {
-      console.log(error)
+      setErrors(error.response.data)
     })
 }
 
 export const logout = () => {
   return {
     type: types.LOGOUT_USER
+  }
+}
+
+export const setStore = store => {
+  return {
+    type: types.SET_STORE,
+    payload: store
   }
 }
 
