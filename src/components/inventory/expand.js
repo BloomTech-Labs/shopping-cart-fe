@@ -16,7 +16,7 @@ const Expanded = ({ inventory }) => {
       okType: 'danger',
       cancelText: 'No',
       onOk () {
-        AxiosAuth().delete(`https://shopping-cart-eu3-staging.herokuapp.com/api/store/products/${id}`)
+        AxiosAuth().delete(`https://shopping-cart-eu3.herokuapp.com/api/store/products/${id}`)
           .then(res => {
             dispatch(creators.getCurrentUser())
             message.success('Item Deleted')

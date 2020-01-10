@@ -2,13 +2,15 @@ import React from 'react'
 import axios from 'axios'
 import withAuth from './Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
-import { Form, Input, Icon, Button, message } from 'antd'
+import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
 import history from '../history'
+import { connect } from 'react-redux'
+import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
 const loginURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/login'
-const storeURL = 'https://shopping-cart-eu3-staging.herokuapp.com/api/store'
+const storeURL = 'https://shopping-cart-eu3.herokuapp.com/api/store'
 const Login = props => {
   const handleSubmit = e => {
     e.preventDefault()
@@ -18,13 +20,17 @@ const Login = props => {
         password: values.password
       }
       if (!err) {
+        props.dispatch(setLoading(true))
         axios
           .post(loginURL, payload)
           .then(res => {
             message.success('Login Successful')
             localStorage.setItem('token', res.data.token)
+            props.dispatch(clearErrors())
+
             // check if user has store
-            withAuth().get(storeURL)
+            withAuth()
+              .get(storeURL)
               .then(res => {
                 if (res.data._id) {
                   history.push('/dashboard')
@@ -41,6 +47,8 @@ const Login = props => {
               })
           })
           .catch(error => {
+            props.dispatch(setLoading(false))
+            props.dispatch(setErrors(error.response.data))
             message.error(Object.values(error.response.data)[0])
           })
       } else {
@@ -71,67 +79,80 @@ const Login = props => {
       }
     }
   }
-  return (
-    <div className='cover'>
-      <Logo />
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id='header'>
-          <h2>Login</h2>
+
+  const loginForm = (
+    <Spin spinning={props.isLoading}>
+      <div className='cover'>
+        <Logo />
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <div id='header'>
+            <h2>Login</h2>
+          </div>
+          <Form.Item>
+            {getFieldDecorator('number', {
+              rules: [
+                {
+                  message: 'Enter valid phone number'
+                },
+                {
+                  required: true,
+                  message: 'Enter valid phone number'
+                }
+              ]
+            })(
+              <Input
+                placeholder='Phone number'
+                prefix={
+                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item hasFeedback>
+            {getFieldDecorator('password', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your password!'
+                }
+              ]
+            })(
+              <Input.Password
+                placeholder='Password'
+                prefix={
+                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                }
+              />
+            )}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type='primary' htmlType='submit'>
+              Login
+            </Button>
+          </Form.Item>
+        </Form>
+        <div id='or_login'>
+          <p>
+            or <Link to='/register'>register</Link> instead
+          </p>
         </div>
-        <Form.Item>
-          {getFieldDecorator('number', {
-            rules: [
-              {
-                message: 'Enter valid phone number'
-              },
-              {
-                required: true,
-                message: 'Enter valid phone number'
-              }
-            ]
-          })(
-            <Input
-              placeholder='Phone number'
-              prefix={
-                <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
-              }
-            />
-          )}
-        </Form.Item>
-        <Form.Item hasFeedback>
-          {getFieldDecorator('password', {
-            rules: [
-              {
-                required: true,
-                message: 'Please input your password!'
-              }
-            ]
-          })(
-            <Input.Password
-              placeholder='Password'
-              prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Login
-          </Button>
-        </Form.Item>
-      </Form>
-      <div id='or_login'>
-        <p>
-          or <Link to='/register'>register</Link> instead
-        </p>
+
+        <div id='or_login'>
+          <p>
+            <Link to='/resetpassword'>Forgot password?</Link>
+          </p>
+        </div>
       </div>
-      <div id='or_login'>
-        <p>
-          <Link to='/resetpassword'>Forgot password?</Link>
-        </p>
-      </div>
-    </div>
+    </Spin>
   )
+
+  return loginForm
 }
 const LoginForm = Form.create({ name: 'register' })(Login)
 
-export default LoginForm
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading,
+  errors: state.user.errors
+})
+
+export default connect(mapStateToProps, null)(LoginForm)
