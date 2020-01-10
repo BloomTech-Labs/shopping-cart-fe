@@ -37,10 +37,22 @@ export function userReducer(state = initialUserState, action) {
         errors: {}
       }
 
+    case types.DELETE_STORE:
+      return {
+        ...state,
+        storeDetails: {}
+      }
+
     case types.SET_STORE:
       return {
         ...state,
         storeDetails: { ...action.payload }
+      }
+
+    case types.CLEAR_STORE:
+      return {
+        ...state,
+        storeDetails: {}
       }
 
     default:

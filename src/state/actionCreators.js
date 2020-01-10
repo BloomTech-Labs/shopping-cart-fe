@@ -40,6 +40,12 @@ export const setStore = store => {
   }
 }
 
+export const clearStore = () => {
+  return {
+    type: types.CLEAR_STORE
+  }
+}
+
 export const setLoading = isLoading => {
   return {
     type: types.LOADING,
@@ -66,6 +72,7 @@ export const deleteStore = () => dispatch => {
     .then(res => {
       const message = res.data
       setLoading(true)
+      clearStore()
       dispatch({ type: types.DELETE_STORE, payload: message })
     })
     .catch(err => {
