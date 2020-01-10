@@ -38,7 +38,7 @@ const Expanded = ({ inventory }) => {
             key={item.name}
             hoverable
             style={{ width: 240, height: '45%' }}
-            cover={<img alt='item' src={item.images[0]} />}
+            cover={item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined}
           >
             <Meta
               title={
