@@ -28,7 +28,7 @@ const Dashboard = () => {
         <Content />
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

@@ -5,7 +5,7 @@ import '../../less/index.less'
 
 function Nav () {
   return (
-    <div className='nav'>
+    <div className='nav' style={{ backgroundColor: 'white' }}>
       <ul id='nav_ul'>
         <li className='li'><NavLink to='dashboard' activeClassName='activeLink'><Icon className='icon' type='home' /><p>Home</p></NavLink></li>
         <li className='li'><NavLink to='inventory' activeClassName='activeLink'><Icon className='icon' type='shop' /><p>Store</p></NavLink></li>
