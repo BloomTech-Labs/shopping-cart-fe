@@ -103,7 +103,7 @@ const AddLogo = props => {
   }
 
   const uploadButton = (
-    <div>
+    <div id='upload-button'>
       <Icon type={loading ? 'loading' : 'plus'} />
       <div className='ant-upload-text'>Upload</div>
     </div>
@@ -144,7 +144,7 @@ const AddLogo = props => {
             logo
           </h2>
         </div>
-        <div>
+        <div id='add-logo-image'>
           <Upload
             name='avatar'
             customRequest={dummyRequest}
@@ -155,7 +155,7 @@ const AddLogo = props => {
             onChange={handleChange}
           >
             {imageUrl ? (
-              <img src={imageUrl} alt='avatar' style={{ width: '100%' }} />
+              <img src={imageUrl} alt='avatar' style={{ width: '100%', height: '100%' }} />
             ) : (
               uploadButton
             )}
