@@ -85,11 +85,7 @@ function CreateItem (props) {
 
   const toStore = e => {
     e.preventDefault()
-<<<<<<< HEAD
-    history.push('/dashboard')
-=======
     history.push('/inventory')
->>>>>>> dd695ef7dc507a57f37b4e363f042d1a93956197
   }
 
   const { getFieldDecorator } = props.form
