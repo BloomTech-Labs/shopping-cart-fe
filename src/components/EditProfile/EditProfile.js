@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Form, Input, Select, Button, message, Spin } from 'antd'
+import { Form, Input, Select, Button, message, Spin, Modal } from 'antd'
 import '../../less/index.less'
 import logo from '../../images/PureRetail_Logo.png'
-import { logout, setLoading } from '../../state/actionCreators'
+import { logout, setLoading, deleteStore } from '../../state/actionCreators'
 import history from '../../history'
 
 const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
@@ -45,6 +45,18 @@ const EditProfile = props => {
     // delete token from local storage and redirect to login
     props.dispatch(logout())
     history.push('/')
+  }
+
+  const handleDeleteStore = () => {
+    props.dispatch(deleteStore())
+    Modal.info({
+      title: 'Success',
+      content: 'Your store has been deleted successfully.',
+      centered: true,
+      onOk() {
+        history.push('/dashboard')
+      }
+    })
   }
 
   const handleSubmit = e => {
@@ -193,8 +205,13 @@ const EditProfile = props => {
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
-            <Button id='delete-btn' type='link' htmlType='button'>
-              Delete account
+            <Button
+              onClick={handleDeleteStore}
+              id='delete-btn'
+              type='link'
+              htmlType='button'
+            >
+              Delete store
             </Button>
           </Form.Item>
         </Form>

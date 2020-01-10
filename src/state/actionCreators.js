@@ -52,3 +52,16 @@ export const clearErrors = () => {
     type: types.CLEAR_ERRORS
   }
 }
+
+export const deleteStore = () => dispatch => {
+  AxiosAuth()
+    .delete('https://shopping-cart-eu3-staging.herokuapp.com/api/store')
+    .then(res => {
+      const message = res.data
+      setLoading(true)
+      dispatch({ type: types.DELETE_STORE, payload: message })
+    })
+    .catch(err => {
+      setErrors(err.response.data)
+    })
+}
