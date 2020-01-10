@@ -11,8 +11,8 @@ const { Search } = Input
 
 const Inventory = () => {
   const [searchString, setSearchString] = useState('')
-  const search = value => {
-    setSearchString(value)
+  const change = e => {
+    setSearchString(e.target.value)
   }
 
   const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const Inventory = () => {
       <div className='top'>
         <div className='search'>
           <Search
-            onSearch={search}
+            onChange={change}
             placeholder='search'
             style={{ width: 200 }}
           />
