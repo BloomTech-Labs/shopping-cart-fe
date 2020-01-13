@@ -14,6 +14,7 @@ import {
   getCurrentUser
 } from '../../state/actionCreators'
 import history from '../../history'
+import '../../less/index.less'
 
 const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
@@ -144,11 +145,15 @@ const EditProfile = props => {
   const editProfile = (
     <Spin spinning={props.isLoading}>
       <Modal
+        className='modal'
         title='Delete Account'
         visible={isVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-      />
+        centered={true}
+      >
+        Are you sure you want to delete your account?
+      </Modal>
       <div className='cover'>
         <div id='logo'>
           <img src={logo} alt='PureRetail Logo' />
