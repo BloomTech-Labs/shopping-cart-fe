@@ -58,7 +58,7 @@ const EditProfile = props => {
   const handleDeleteAccount = () => {
     const { confirm } = Modal
     confirm({
-      title: 'Are you sure you want to delete your account item?',
+      title: 'Are you sure you want to delete your account?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
