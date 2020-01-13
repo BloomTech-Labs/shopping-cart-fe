@@ -55,6 +55,21 @@ export function userReducer(state = initialUserState, action) {
         storeDetails: {}
       }
 
+    case types.CLEAR_USER:
+      return {
+        ...state,
+        user: {}
+      }
+
+    case types.DELETE_ACCOUNT:
+      return {
+        ...state,
+        isLoading: false,
+        errors: {},
+        user: {},
+        storeDetails: {}
+      }
+
     default:
       return state
   }

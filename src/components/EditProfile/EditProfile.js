@@ -9,7 +9,9 @@ import {
   logout,
   setLoading,
   deleteStore,
-  setStore as updateStore
+  setStore as updateStore,
+  deleteAccount,
+  getCurrentUser
 } from '../../state/actionCreators'
 import history from '../../history'
 
@@ -27,6 +29,7 @@ const EditProfile = props => {
 
   useEffect(() => {
     props.dispatch(setLoading(true))
+    props.dispatch(getCurrentUser())
     axiosWithAuth()
       .get(storeUrl)
       .then(res => {
@@ -42,6 +45,8 @@ const EditProfile = props => {
 
   const [errors, setErrors] = useState({})
 
+  const [isVisible, setVisibility] = useState(false)
+
   const handleChange = e => {
     setStore({ ...store, [e.target.name]: e.target.value })
   }
@@ -52,16 +57,20 @@ const EditProfile = props => {
     history.push('/')
   }
 
-  const handleDeleteStore = () => {
-    props.dispatch(deleteStore())
-    Modal.info({
-      title: 'Success',
-      content: 'Your store has been deleted successfully.',
-      centered: true,
-      onOk() {
-        history.push('/dashboard')
-      }
-    })
+  const handleOk = () => {
+    props.dispatch(setLoading(true))
+    props.dispatch(deleteAccount())
+    props.dispatch(logout())
+    setVisibility(false)
+    history.push('/register')
+  }
+
+  const handleCancel = () => {
+    setVisibility(false)
+  }
+
+  const handleDeleteAccount = () => {
+    setVisibility(true)
   }
 
   const handleSubmit = e => {
@@ -134,6 +143,12 @@ const EditProfile = props => {
 
   const editProfile = (
     <Spin spinning={props.isLoading}>
+      <Modal
+        title='Delete Account'
+        visible={isVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      />
       <div className='cover'>
         <div id='logo'>
           <img src={logo} alt='PureRetail Logo' />
@@ -216,12 +231,12 @@ const EditProfile = props => {
 
           <Form.Item {...tailFormItemLayout}>
             <Button
-              onClick={handleDeleteStore}
+              onClick={handleDeleteAccount}
               id='delete-btn'
               type='link'
               htmlType='button'
             >
-              Delete store
+              Delete account
             </Button>
           </Form.Item>
         </Form>
