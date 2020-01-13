@@ -107,6 +107,9 @@ const EditProfile = props => {
         </Link>{' '}
         to create one
       </p>
+      <Button onClick={handleLogout} type='primary' htmlType='button'>
+        Logout
+      </Button>
     </div>
   )
 

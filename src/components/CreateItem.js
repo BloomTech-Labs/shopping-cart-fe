@@ -123,7 +123,7 @@ function CreateItem (props) {
             store item
           </h2>
         </div>
-         <div style={{ height: '30%', width: '100%' }}>
+        <div style={{ height: '30%', width: '100%' }}>
           <Upload
             style={{ height: '20%', width: '20%' }}
             listType='picture-card'
