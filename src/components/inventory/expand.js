@@ -9,14 +9,17 @@ const { Meta } = Card
 
 const Expanded = ({ inventory }) => {
   const dispatch = useDispatch()
-  function showDeleteConfirm (id) {
+  function showDeleteConfirm(id) {
     confirm({
       title: 'Are you sure you want to delete this item?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
-      onOk () {
-        AxiosAuth().delete(`https://shopping-cart-eu3.herokuapp.com/api/store/products/${id}`)
+      onOk() {
+        AxiosAuth()
+          .delete(
+            `https://shopping-cart-eu3.herokuapp.com/api/store/products/${id}`
+          )
           .then(res => {
             dispatch(creators.getCurrentUser())
             message.success('Item Deleted')
@@ -25,43 +28,44 @@ const Expanded = ({ inventory }) => {
             message.error(Object.values(error.response.data)[0])
           })
       },
-      onCancel () {
-      }
+      onCancel() {}
     })
   }
 
   return (
     <Carousel>
-      {
-        inventory.map(item => (
-          <Card
-            key={item.name}
-            hoverable
-            style={{ width: 240, height: '45%' }}
-            cover={item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined}
-          >
-            <Meta
-              title={
-                <div className='list title'>
-                  <div>
-                    <h3>{item.name}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                  <NavLink to={`/updateitem/${item._id}`}>
-                    <div>Edit</div>
-                  </NavLink>
+      {inventory.map(item => (
+        <Card
+          key={item.name}
+          hoverable
+          style={{ width: 240, height: '45%' }}
+          cover={
+            item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined
+          }
+        >
+          <Meta
+            title={
+              <div className='list title'>
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
                 </div>
-              }
-              description={
-                <div className='list'>
-                  <div>{item.price}</div>
-                  <div id='delete' onClick={e => showDeleteConfirm(item._id)}>DELETE</div>
+                <NavLink to={`/updateitem/${item._id}`}>
+                  <div>Edit</div>
+                </NavLink>
+              </div>
+            }
+            description={
+              <div className='list'>
+                <div>{item.price}</div>
+                <div id='delete' onClick={e => showDeleteConfirm(item._id)}>
+                  DELETE
                 </div>
-              }
-            />
-          </Card>
-        ))
-      }
+              </div>
+            }
+          />
+        </Card>
+      ))}
     </Carousel>
   )
 }

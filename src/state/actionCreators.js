@@ -23,13 +23,26 @@ export const getCurrentUser = () => dispatch => {
         })
     })
     .catch(error => {
-      console.log(error)
+      setErrors(error.response.data)
     })
 }
 
 export const logout = () => {
   return {
     type: types.LOGOUT_USER
+  }
+}
+
+export const setStore = store => {
+  return {
+    type: types.SET_STORE,
+    payload: store
+  }
+}
+
+export const clearStore = () => {
+  return {
+    type: types.CLEAR_STORE
   }
 }
 
@@ -51,4 +64,37 @@ export const clearErrors = () => {
   return {
     type: types.CLEAR_ERRORS
   }
+}
+
+export const clearUser = () => {
+  return {
+    type: types.CLEAR_USER
+  }
+}
+
+export const deleteStore = () => dispatch => {
+  AxiosAuth()
+    .delete('https://shopping-cart-eu3-staging.herokuapp.com/api/store')
+    .then(res => {
+      const message = res.data
+      setLoading(true)
+      clearStore()
+      dispatch({ type: types.DELETE_STORE, payload: message })
+    })
+    .catch(err => {
+      setErrors(err.response.data)
+    })
+}
+
+export const deleteAccount = () => dispatch => {
+  setLoading(true)
+  AxiosAuth()
+    .delete('https://shopping-cart-eu3-staging.herokuapp.com/api/auth/account')
+    .then(res => {
+      logout()
+      dispatch({ type: types.DELETE_ACCOUNT })
+    })
+    .catch(err => {
+      setErrors(err.response.data)
+    })
 }

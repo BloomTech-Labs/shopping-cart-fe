@@ -7,13 +7,13 @@ import AxiosAuth from '../Auth/axiosWithAuth'
 import * as creators from '../../state/actionCreators'
 import history from '../../history'
 
-function getBase64 (img, callback) {
+function getBase64(img, callback) {
   const reader = new FileReader()
   reader.addEventListener('load', () => callback(reader.result))
   reader.readAsDataURL(img)
 }
 
-function beforeUpload (file) {
+function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!')
@@ -24,8 +24,7 @@ function beforeUpload (file) {
   }
   return isJpgOrPng && isLt2M
 }
-const createStoreUrl =
-  'https://shopping-cart-eu3.herokuapp.com/api/store'
+const createStoreUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store'
 
 const AddLogo = props => {
   const dispatch = useDispatch()
@@ -86,6 +85,8 @@ const AddLogo = props => {
         AxiosAuth()
           .post(createStoreUrl, payload)
           .then(res => {
+            console.log(res.data)
+            dispatch(creators.setStore(res.data.saved))
             message.success('store created')
             dispatch(creators.setLoading(false))
             dispatch(creators.clearErrors())
@@ -155,7 +156,11 @@ const AddLogo = props => {
             onChange={handleChange}
           >
             {imageUrl ? (
-              <img src={imageUrl} alt='avatar' style={{ width: '100%', height: '100%' }} />
+              <img
+                src={imageUrl}
+                alt='avatar'
+                style={{ width: '100%', height: '100%' }}
+              />
             ) : (
               uploadButton
             )}

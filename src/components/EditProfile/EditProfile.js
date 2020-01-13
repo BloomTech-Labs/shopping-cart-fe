@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Form, Input, Select, Button, message, Spin } from 'antd'
+import { Form, Input, Select, Button, message, Spin, Modal } from 'antd'
 import '../../less/index.less'
 import logo from '../../images/PureRetail_Logo.png'
-import { logout, setLoading } from '../../state/actionCreators'
+import {
+  logout,
+  setLoading,
+  setStore as updateStore,
+  deleteAccount,
+  getCurrentUser
+} from '../../state/actionCreators'
 import history from '../../history'
+import '../../less/index.less'
 
 const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
@@ -22,6 +29,7 @@ const EditProfile = props => {
 
   useEffect(() => {
     props.dispatch(setLoading(true))
+    props.dispatch(getCurrentUser())
     axiosWithAuth()
       .get(storeUrl)
       .then(res => {
@@ -47,6 +55,23 @@ const EditProfile = props => {
     history.push('/')
   }
 
+  const handleDeleteAccount = () => {
+    const { confirm } = Modal
+    confirm({
+      title: 'Are you sure you want to delete your account?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        props.dispatch(setLoading(true))
+        props.dispatch(deleteAccount())
+        props.dispatch(logout())
+        history.push('/register')
+      },
+      onCancel() {}
+    })
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
     props.dispatch(setLoading(true))
@@ -59,10 +84,12 @@ const EditProfile = props => {
       axiosWithAuth()
         .put(storeUrl, values)
         .then(res => {
+          props.dispatch(updateStore(res.data))
           message.success('Your store has been updated')
           history.push('/dashboard')
         })
         .catch(errors => {
+          console.log(errors.response)
           message.error(Object.values(errors.response.data)[0])
           setErrors(errors.response.data)
         })
@@ -196,7 +223,12 @@ const EditProfile = props => {
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
-            <Button id='delete-btn' type='link' htmlType='button'>
+            <Button
+              onClick={handleDeleteAccount}
+              id='delete-btn'
+              type='link'
+              htmlType='button'
+            >
               Delete account
             </Button>
           </Form.Item>

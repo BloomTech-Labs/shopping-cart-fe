@@ -21,14 +21,15 @@ const Inventory = () => {
   }, [dispatch])
 
   const inventory = useSelector(state => state.store)
+  const storeDetails = useSelector(state => state.user)
 
-  function searchObj (obj, string) {
+  function searchObj(obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
     return JSON.stringify(obj).match(regExp)
   }
 
-  const searchFilter = inventory.filter(function (obj) {
+  const searchFilter = inventory.filter(function(obj) {
     return searchObj(obj, searchString)
   })
 
@@ -44,7 +45,11 @@ const Inventory = () => {
         </div>
         <div className='content'>
           <div>
-            <h2>Your Store</h2>
+            {storeDetails.storeDetails.ownerName ? (
+              <h2>{storeDetails.storeDetails.ownerName}'s Store</h2>
+            ) : (
+              <h2>Your Store</h2>
+            )}
           </div>
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>

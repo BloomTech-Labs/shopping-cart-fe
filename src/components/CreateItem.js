@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
 import '../less/index.less'
 import axios from 'axios'
@@ -7,10 +7,9 @@ import history from '../history'
 import { connect } from 'react-redux'
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
-const productURL =
-  'https://shopping-cart-eu3.herokuapp.com/api/store/products'
+const productURL = 'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 
-function CreateItem (props) {
+function CreateItem(props) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 
@@ -51,6 +50,10 @@ function CreateItem (props) {
       onSuccess('ok')
     }, 0)
   }
+
+  useEffect(() => {
+    props.dispatch(setLoading(false))
+  }, [])
 
   const handleSubmit = e => {
     e.preventDefault()
