@@ -46,8 +46,6 @@ const EditProfile = props => {
 
   const [errors, setErrors] = useState({})
 
-  const [isVisible, setVisibility] = useState(false)
-
   const handleChange = e => {
     setStore({ ...store, [e.target.name]: e.target.value })
   }
@@ -58,20 +56,22 @@ const EditProfile = props => {
     history.push('/')
   }
 
-  const handleOk = () => {
-    props.dispatch(setLoading(true))
-    props.dispatch(deleteAccount())
-    props.dispatch(logout())
-    setVisibility(false)
-    history.push('/register')
-  }
-
-  const handleCancel = () => {
-    setVisibility(false)
-  }
-
   const handleDeleteAccount = () => {
-    setVisibility(true)
+    const { confirm } = Modal
+    confirm({
+      title: 'Are you sure you want to delete your account item?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        props.dispatch(setLoading(true))
+        props.dispatch(deleteAccount())
+        props.dispatch(logout())
+        setVisibility(false)
+        history.push('/register')
+      },
+      onCancel() {}
+    })
   }
 
   const handleSubmit = e => {
@@ -144,16 +144,6 @@ const EditProfile = props => {
 
   const editProfile = (
     <Spin spinning={props.isLoading}>
-      <Modal
-        className='modal'
-        title='Delete Account'
-        visible={isVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        centered={true}
-      >
-        Are you sure you want to delete your account?
-      </Modal>
       <div className='cover'>
         <div id='logo'>
           <img src={logo} alt='PureRetail Logo' />
