@@ -8,7 +8,6 @@ import logo from '../../images/PureRetail_Logo.png'
 import {
   logout,
   setLoading,
-  deleteStore,
   setStore as updateStore,
   deleteAccount,
   getCurrentUser
@@ -67,7 +66,6 @@ const EditProfile = props => {
         props.dispatch(setLoading(true))
         props.dispatch(deleteAccount())
         props.dispatch(logout())
-        setVisibility(false)
         history.push('/register')
       },
       onCancel() {}
