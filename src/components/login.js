@@ -85,7 +85,7 @@ const Login = props => {
       <div className='cover'>
         <Logo />
         <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <div id='header'>
+          <div id='header' data-testid="log-in">
             <h2>Login</h2>
           </div>
           <Form.Item>
