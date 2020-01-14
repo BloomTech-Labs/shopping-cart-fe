@@ -1,12 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  Form,
-  Input,
-  Select,
-  Button,
-  message
-} from 'antd'
+import { Form, Input, Select, Button, message } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Logo from '../elements/logo'
@@ -14,7 +8,7 @@ import history from '../../history'
 
 const { Option } = Select
 
-const CreateStore = (props) => {
+const CreateStore = props => {
   const dispatch = useDispatch()
 
   const handleSubmit = e => {
@@ -25,7 +19,6 @@ const CreateStore = (props) => {
         currency: values.currency
       }
       if (!err) {
-        console.log(payload)
         dispatch(creators.updateForm(payload))
         history.push('/addlogo')
       } else {
@@ -65,9 +58,10 @@ const CreateStore = (props) => {
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>
           <h2 id='get-started'>Lets get started!</h2>
-          <p>You're in! Let's get your account started in a few
-                  clicks. First, tell us how you'd like to be addressed
-                  and how you'd like to be paid.
+          <p>
+            You're in! Let's get your account started in a few clicks. First,
+            tell us how you'd like to be addressed and how you'd like to be
+            paid.
           </p>
         </div>
         <Form.Item>
@@ -81,9 +75,7 @@ const CreateStore = (props) => {
                 message: 'Enter your name'
               }
             ]
-          })(<Input
-            placeholder='My name is...'
-             />)}
+          })(<Input placeholder='My name is...' />)}
         </Form.Item>
         <Form.Item hasFeedback>
           {getFieldDecorator('currency', {
@@ -98,15 +90,13 @@ const CreateStore = (props) => {
               <Option value='DOL'>DOL</Option>
               <Option value='POU'>POU</Option>
               <Option value='EUR'>EUR</Option>
-              <Option value='YEN'>
-                YEN
-              </Option>
+              <Option value='YEN'>YEN</Option>
             </Select>
           )}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-                Next
+            Next
           </Button>
         </Form.Item>
       </Form>

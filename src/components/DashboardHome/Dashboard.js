@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(creators.getCurrentUser())
   }, [dispatch])
-  const user = useSelector(state => state.user)
+  const user = useSelector(state => state.user.user)
   const url = `${window.location.origin.toString()}/store/${user &&
     user.storeName &&
     user.storeName
@@ -28,7 +28,7 @@ const Dashboard = () => {
         <Content />
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

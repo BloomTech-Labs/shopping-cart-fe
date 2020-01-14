@@ -1,16 +1,17 @@
 import React from 'react'
 import '../../less/index.less'
-import Inventory from './inventory'
+// import EditProfile from './EditProfile'
 import Nav from './nav'
+import Dashboard from './Dashboard'
 // import Footer from '../DashboardHome/Footer'
 
-function Main () {
+function Home () {
   return (
     <div>
-      <Inventory />
+      <Dashboard />
       <Nav />
     </div>
   )
 }
 
-export default Main
+export default Home

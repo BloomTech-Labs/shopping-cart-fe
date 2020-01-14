@@ -1,25 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
-import '../less/index.less'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
-import { connect } from 'react-redux'
+import '../less/index.less'
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
+import { connect } from 'react-redux'
 
-const productURL = 'https://shopping-cart-eu3.herokuapp.com/api/store/products'
-
-function CreateItem(props) {
+function UpdateItem (props) {
+  const [item, setItem] = useState([])
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 
+  const itemId = props.match.params.id
+  const productURL = `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
+  useEffect(() => {
+    AxiosAuth()
+      .get(
+        `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
+      )
+      .then(res => {
+        const newFileList = res.data.images.map((url, idx) => ({
+          uid: -idx,
+          name: `photo ${idx}.jpg`,
+          url
+        }))
+        setFileList(newFileList)
+        setItem(res.data)
+      })
+  }, [itemId])
+
   const handleChange = info => {
     let fileList = [...info.fileList]
-
     // 1. Limit the number of uploaded files
     // Only to show two recent uploaded files, and old ones will be replaced by the new
     fileList = fileList.slice(-4)
-
     // 2. Read from response and show file link
     fileList = fileList.map(file => {
       if (file.response) {
@@ -28,7 +43,7 @@ function CreateItem(props) {
       }
       return file
     })
-
+    // const newFile= fileList
     setFileList(fileList)
   }
 
@@ -51,26 +66,26 @@ function CreateItem(props) {
     }, 0)
   }
 
-  useEffect(() => {
-    props.dispatch(setLoading(false))
-  }, [])
-
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
+      const images = [
+        ...cloudList,
+        ...fileList.filter(image => image.url).map(image => image.url)
+      ]
       const payload = {
         name: values.name,
         description: values.description,
         price: values.price,
         stock: values.stock || 0,
-        images: cloudList
+        images
       }
       if (!err) {
         props.dispatch(setLoading(true))
         AxiosAuth()
-          .post(productURL, payload)
+          .put(productURL, payload)
           .then(res => {
-            message.success('Item Added')
+            message.success('item updated')
             props.dispatch(setLoading(false))
             props.dispatch(clearErrors())
             history.push('/inventory')
@@ -81,7 +96,7 @@ function CreateItem(props) {
             message.error(Object.values(error.response.data)[0])
           })
       } else {
-        message.error('Enter Required Fields')
+        message.error('Validation failed')
       }
     })
   }
@@ -92,7 +107,6 @@ function CreateItem(props) {
   }
 
   const { getFieldDecorator } = props.form
-
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -116,15 +130,11 @@ function CreateItem(props) {
     }
   }
 
-  const createItemComponent = (
+  return (
     <Spin spinning={props.isLoading}>
       <div className='cover'>
         <div id='header'>
-          <h2 id='get-started'>
-            Upload new
-            <br />
-            store item
-          </h2>
+          <h2 id='get-started'>Update {item.name}</h2>
         </div>
         <div style={{ height: '30%', width: '100%' }}>
           <Upload
@@ -140,6 +150,7 @@ function CreateItem(props) {
         <Form {...formItemLayout} onSubmit={handleSubmit}>
           <Form.Item>
             {getFieldDecorator('name', {
+              initialValue: item.name,
               rules: [
                 {
                   message: 'Name'
@@ -151,9 +162,9 @@ function CreateItem(props) {
               ]
             })(<Input placeholder='Name' />)}
           </Form.Item>
-
           <Form.Item>
             {getFieldDecorator('description', {
+              initialValue: item.description,
               rules: [
                 {
                   message: 'Enter a description'
@@ -165,31 +176,16 @@ function CreateItem(props) {
               ]
             })(<Input placeholder='Description' />)}
           </Form.Item>
-
           <Form.Item>
             {getFieldDecorator('price', {
-              rules: [
-                {
-                  message: 'Enter a price'
-                },
-                {
-                  required: true,
-                  message: 'Enter a price'
-                }
-              ]
+              initialValue: item.price
             })(<Input placeholder='Price' />)}
           </Form.Item>
-
           <Form.Item>
             {getFieldDecorator('stock', {
-              rules: [
-                {
-                  message: 'Enter stock'
-                }
-              ]
+              initialValue: item.stock
             })(<Input placeholder='Stock' />)}
           </Form.Item>
-
           <Form.Item {...tailFormItemLayout}>
             <Button type='primary' htmlType='submit'>
               Done
@@ -202,15 +198,11 @@ function CreateItem(props) {
       </div>
     </Spin>
   )
-
-  return createItemComponent
 }
-
-const CreateItemForm = Form.create({ name: 'createItem' })(CreateItem)
-
+const UpdateItemForm = Form.create()(UpdateItem)
 const mapStateToProps = state => ({
   isLoading: state.user.isLoading,
   errors: state.user.errors
 })
 
-export default connect(mapStateToProps, null)(CreateItemForm)
+export default connect(mapStateToProps, null)(UpdateItemForm)

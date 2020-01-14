@@ -1,16 +1,14 @@
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { render } from '@testing-library/react'
 
-import { formReducer } from '../../state/reducers/formReducer'
 import Container from '../../components/createStore/addLogo'
+import store from '../../state/store'
 
-function renderWithRedux(ui, { initialState, store = createStore(formReducer, initialState)} = {}) {
+function renderWithRedux(ui) {
     return {
-        ...render(<Provider store={store}>{ui}</Provider>), 
-        store,
+        ...render(<Provider store={store}>{ui}</Provider>)
     }
 }
 

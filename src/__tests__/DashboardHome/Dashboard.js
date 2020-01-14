@@ -32,11 +32,11 @@ describe('dashboard', () => {
         const element = getByText(/lifetime earnings/i)
         expect(element).toBeVisible()
     })
-    test('renders the navbar', () => {
-        const { getByText } = render(<Provider store={store}><Container /></Provider>)
-        expect(getByText(/home/i)).toBeVisible()
-        expect(getByText(/^store$/i)).toBeVisible() 
-        expect(getByText(/account/i)).toBeVisible()
-        expect(getByText(/profile/i)).toBeVisible()
-    })
+    // test('renders the navbar', () => {
+    //     const { getByText } = render(<Provider store={store}><Container /></Provider>)
+    //     expect(getByText(/home/i)).toBeVisible()
+    //     expect(getByText(/^store$/i)).toBeVisible() 
+    //     expect(getByText(/account/i)).toBeVisible()
+    //     expect(getByText(/profile/i)).toBeVisible()
+    // })
 })
