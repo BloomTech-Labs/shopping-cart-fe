@@ -35,8 +35,8 @@ const StoreMain = (props) => {
   })
 
   return (
-    <div className='cover'>
-      <div className='top'>
+    <div className='cover store'>
+      <div className='store-top'>
         <div className='search'>
           <Search
             onChange={change}
@@ -93,8 +93,8 @@ const Items = ({ inventory }) => {
       >
         <Meta
           title={
-            <div>
-              <h3>{item.name}</h3>
+            <div className='small-label'>
+              <h5>{item.name}</h5>
             </div>
           }
         />
