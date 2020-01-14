@@ -108,6 +108,7 @@ const LargeItems = ({ inventory }) => {
     inventory.map(item => (
       <Card
         key={item.name}
+        bordered='false'
         hoverable
         style={
           {
@@ -116,19 +117,19 @@ const LargeItems = ({ inventory }) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '90%',
-            height: '40rem',
+            height: '37rem',
             margin: '0.5rem',
             boxSizing: 'border-box',
             boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
           }
         }
         cover={
-          item.images[0] ? <img style={{ width: '100%', height: '30rem' }} alt='item' src={item.images[0]} /> : undefined
+          item.images[0] ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} /> : undefined
         }
       >
         <Meta
           title={
-            <div>
+            <div className='label'>
               <h3>{item.name}</h3>
             </div>
           }
