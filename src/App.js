@@ -14,6 +14,7 @@ import PublicRoute from './components/Auth/PublicRoute'
 import Main from './components/inventory'
 import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
+import Store from './components/store'
 
 function App () {
   return (
@@ -23,6 +24,7 @@ function App () {
       <PrivateRoute path='/inventory' component={Main} />
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
+      <PublicRoute path='/store/:id' component={Store} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={UpdateProfile} />
