@@ -124,13 +124,7 @@ const LargeItems = ({ inventory }) => {
           }
         }
         cover={item.images[0]
-          ? <div>
-            <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
-            <div className='overlay'>
-                <div className='overlay_text'>Details</div>
-                <div className='overlay_text'>Add</div>
-            </div>
-          </div>
+          ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
           : undefined
         }
       >
