@@ -123,8 +123,15 @@ const LargeItems = ({ inventory }) => {
             boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
           }
         }
-        cover={
-          item.images[0] ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} /> : undefined
+        cover={item.images[0]
+          ? <div>
+            <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
+            <div className='overlay'>
+                <div className='overlay_text'>Details</div>
+                <div className='overlay_text'>Add</div>
+            </div>
+          </div>
+          : undefined
         }
       >
         <Meta
