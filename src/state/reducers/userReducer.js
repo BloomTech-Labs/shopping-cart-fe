@@ -7,7 +7,7 @@ const initialUserState = {
   storeDetails: {}
 }
 
-export function userReducer(state = initialUserState, action) {
+export function userReducer (state = initialUserState, action) {
   switch (action.type) {
     case types.GET_CURRENT_USER:
       return {

@@ -9,7 +9,7 @@ import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
 const productURL = 'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 
-function CreateItem(props) {
+function CreateItem (props) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 

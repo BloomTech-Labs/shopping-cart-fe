@@ -9,13 +9,13 @@ const { Meta } = Card
 
 const Expanded = ({ inventory }) => {
   const dispatch = useDispatch()
-  function showDeleteConfirm(id) {
+  function showDeleteConfirm (id) {
     confirm({
       title: 'Are you sure you want to delete this item?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
-      onOk() {
+      onOk () {
         AxiosAuth()
           .delete(
             `https://shopping-cart-eu3.herokuapp.com/api/store/products/${id}`
@@ -28,7 +28,7 @@ const Expanded = ({ inventory }) => {
             message.error(Object.values(error.response.data)[0])
           })
       },
-      onCancel() {}
+      onCancel () {}
     })
   }
 
