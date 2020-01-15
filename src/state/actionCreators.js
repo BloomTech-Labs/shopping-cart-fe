@@ -1,5 +1,6 @@
 import * as types from './actionTypes'
 import AxiosAuth from '../components/Auth/axiosWithAuth'
+import axios from 'axios'
 
 const getUserUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
@@ -96,5 +97,28 @@ export const deleteAccount = () => dispatch => {
     })
     .catch(err => {
       setErrors(err.response.data)
+    })
+}
+
+export const getProducts = (sellerId) => dispatch => {
+  axios.get(
+      `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/products`
+  )
+    .then(res => {
+      const inventory = res.data
+      dispatch({ type: types.GET_INVENTORY, payload: inventory })
+    })
+    .catch(error => {
+      setErrors(error.response.data)
+    })
+}
+
+export const getStore = () => dispatch => {
+  axios.get(getUserUrl)
+    .then(res => {
+      dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
+    })
+    .catch(error => {
+      setErrors(error.response.data)
     })
 }

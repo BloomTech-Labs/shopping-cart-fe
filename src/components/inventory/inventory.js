@@ -23,13 +23,13 @@ const Inventory = () => {
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user)
 
-  function searchObj(obj, string) {
+  function searchObj (obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
     return JSON.stringify(obj).match(regExp)
   }
 
-  const searchFilter = inventory.filter(function(obj) {
+  const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
 

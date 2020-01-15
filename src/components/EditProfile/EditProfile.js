@@ -13,7 +13,6 @@ import {
   getCurrentUser
 } from '../../state/actionCreators'
 import history from '../../history'
-import '../../less/index.less'
 
 const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
@@ -62,13 +61,13 @@ const EditProfile = props => {
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
-      onOk() {
+      onOk () {
         props.dispatch(setLoading(true))
         props.dispatch(deleteAccount())
         props.dispatch(logout())
         history.push('/register')
       },
-      onCancel() {}
+      onCancel () {}
     })
   }
 
