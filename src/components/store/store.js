@@ -125,8 +125,7 @@ const LargeItems = ({ inventory }) => {
         }
         cover={item.images[0]
           ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
-          : undefined
-        }
+          : undefined}
       >
         <Meta
           title={
