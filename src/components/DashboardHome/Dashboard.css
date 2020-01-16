@@ -14,10 +14,24 @@
     position: relative;
 }
 
+.dashboardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 0 20px;
+}
+
+.dashboardLogo {
+    width: 22%;
+}
+
+.dashboardLogo img {
+    width: 100%;
+    height: 100%;
+}
+
 .welcomeHeader {
     color: white;
-    padding-left: 30px;
-    padding-top: 30px;
     font-size: 1.8em;
     font-family: inherit;
 }

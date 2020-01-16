@@ -10,6 +10,11 @@ describe('dashboard', () => {
         const element = getByText(/welcome/i)
         expect(element).toBeVisible()
     })
+    test('renders the logo', () => {
+        const { getByAltText } = renderWithProviders(<Container />)
+        const element = getByAltText(/store logo/i)
+        expect(element).toBeVisible()
+    })
     test('renders overview', () => {
         const { getByText } = renderWithProviders(<Container />)
         const element = getByText(/overview/i)
@@ -30,11 +35,4 @@ describe('dashboard', () => {
         const element = getByText(/lifetime earnings/i)
         expect(element).toBeVisible()
     })
-    // test('renders the navbar', () => {
-    //     const { getByText } = renderWithProviders(<Container />)
-    //     expect(getByText(/home/i)).toBeVisible()
-    //     expect(getByText(/^store$/i)).toBeVisible() 
-    //     expect(getByText(/account/i)).toBeVisible()
-    //     expect(getByText(/profile/i)).toBeVisible()
-    // })
 })
