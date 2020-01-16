@@ -19,11 +19,22 @@
     .store-logo {
       height: 40%;
       width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+
 
       .image {
         width: 23%;
         height: 100%;
         border-radius: 100%;
+      }
+
+      .cart {
+        display: flex;
+        font-size: 3rem;
+        width: 37%;
+        padding-left: 7rem;
       }
     }
 
@@ -92,4 +103,29 @@
     .in-cover {
       width: 100%;
     }
+}
+
+.searchbar {
+  background-color: @secondary;
+  top: 0;
+  padding: 1rem;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.navbar {
+  transition: top 0.6s;
+  background-color: @secondary;
+  height: 5rem;
+  width: 100%;
+  position: sticky;
+  top: -7rem;
+  z-index:1;
+}
+
+.navbarHidden {
+  transition: top 0.6s;
+  top: 0rem;
 }
