@@ -26,11 +26,13 @@ const Dashboard = () => {
         <div className='welcomeHeader'>
           Welcome, <br />
           <span className='name'>{user.ownerName ? user.ownerName : 'Seller'}!</span>
-          <p id='storeUrl'>{user && url}</p>
         </div>
         <div className='dashboardLogo'>
           <img src={storeLogo} alt="Store Logo" />
         </div>
+      </div>
+      <div className='storeUrl'>
+        <p id='storeUrl'>{user && url}</p>
       </div>
       <div className='dashDiv'>
         <Content />
