@@ -69,7 +69,7 @@ const AddLogo = props => {
 
   useEffect(() => {
     dispatch(creators.setLoading(false))
-  }, [])
+  }, [dispatch])
 
   const handleSubmit = e => {
     e.preventDefault()

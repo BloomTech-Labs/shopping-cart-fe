@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import './Dashboard.css'
-import Footer from './Footer'
 import Content from './DashContent'
 import { useSelector, useDispatch } from 'react-redux'
 import * as creators from '../../state/actionCreators'
@@ -27,8 +26,6 @@ const Dashboard = () => {
       <div className='dashDiv'>
         <Content />
       </div>
-
-      {/* <Footer /> */}
     </div>
   )
 }

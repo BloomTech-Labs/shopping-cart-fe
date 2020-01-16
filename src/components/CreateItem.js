@@ -9,7 +9,7 @@ import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 
 const productURL = 'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 
-function CreateItem (props) {
+function CreateItem ({ dispatch, form, isLoading }) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
 
@@ -52,12 +52,12 @@ function CreateItem (props) {
   }
 
   useEffect(() => {
-    props.dispatch(setLoading(false))
-  }, [])
+    dispatch(setLoading(false))
+  }, [dispatch])
 
   const handleSubmit = e => {
     e.preventDefault()
-    props.form.validateFieldsAndScroll((err, values) => {
+    form.validateFieldsAndScroll((err, values) => {
       const payload = {
         name: values.name,
         description: values.description,
@@ -66,18 +66,18 @@ function CreateItem (props) {
         images: cloudList
       }
       if (!err) {
-        props.dispatch(setLoading(true))
+        dispatch(setLoading(true))
         AxiosAuth()
           .post(productURL, payload)
           .then(res => {
             message.success('Item Added')
-            props.dispatch(setLoading(false))
-            props.dispatch(clearErrors())
+            dispatch(setLoading(false))
+            dispatch(clearErrors())
             history.push('/inventory')
           })
           .catch(error => {
-            props.dispatch(setLoading(false))
-            props.dispatch(setErrors(error.response.data))
+            dispatch(setLoading(false))
+            dispatch(setErrors(error.response.data))
             message.error(Object.values(error.response.data)[0])
           })
       } else {
@@ -91,7 +91,7 @@ function CreateItem (props) {
     history.push('/inventory')
   }
 
-  const { getFieldDecorator } = props.form
+  const { getFieldDecorator } = form
 
   const formItemLayout = {
     labelCol: {
@@ -117,7 +117,7 @@ function CreateItem (props) {
   }
 
   const createItemComponent = (
-    <Spin spinning={props.isLoading}>
+    <Spin spinning={isLoading}>
       <div className='cover'>
         <div id='header'>
           <h2 id='get-started'>
