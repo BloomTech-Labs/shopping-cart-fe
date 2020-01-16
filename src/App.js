@@ -15,7 +15,7 @@ import Main from './components/inventory'
 import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
 import Store from './components/store'
-import Stripe from './components/Stripe'
+import Stripe from './components/stripe'
 
 function App () {
   return (
@@ -33,7 +33,7 @@ function App () {
       <PrivateRoute path='/createitem' component={CreateItem} />
       <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
-      <Route path='/payment' component = {Stripe} />
+      <Route path='/payment' component={Stripe} />
     </Switch>
   )
 }

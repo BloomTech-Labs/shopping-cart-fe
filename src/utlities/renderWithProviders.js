@@ -5,12 +5,12 @@ import { Provider } from 'react-redux'
 
 import store from '../state/store'
 
-export default function renderWithProviders(ui) {
-    return {
-        ...render(<Provider store={store}>
-            <MemoryRouter>
-                {ui}
-            </MemoryRouter>
-        </Provider>)
-    }
+export default function renderWithProviders (ui) {
+  return {
+    ...render(<Provider store={store}>
+      <MemoryRouter>
+        {ui}
+      </MemoryRouter>
+              </Provider>)
+  }
 }
