@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import './App.css'
 import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
@@ -15,7 +15,7 @@ import Main from './components/inventory'
 import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
 import Store from './components/store'
-import Stripe from './components/stripe/stripe'
+import Stripe from './components/Stripe'
 
 function App () {
   return (
@@ -33,6 +33,7 @@ function App () {
       <PrivateRoute path='/createitem' component={CreateItem} />
       <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+      <Route path='/payment' component = {Stripe} />
     </Switch>
   )
 }
