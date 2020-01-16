@@ -18,11 +18,12 @@ const StoreMain = (props) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getProducts(sellerId))
-    dispatch(creators.getStore())
+    dispatch(creators.getStore(sellerId))
   }, [sellerId, dispatch])
 
   const inventory = useSelector(state => state.store)
-  const storeDetails = useSelector(state => state.user)
+  const storeDetails = useSelector(state => state.user.user)
+  console.log(storeDetails)
 
   function searchObj (obj, string) {
     const regExpFlags = 'gi'

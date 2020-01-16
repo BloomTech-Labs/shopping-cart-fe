@@ -113,8 +113,8 @@ export const getProducts = (sellerId) => dispatch => {
     })
 }
 
-export const getStore = () => dispatch => {
-  axios.get(getUserUrl)
+export const getStore = (sellerId) => dispatch => {
+  axios.get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
     .then(res => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
     })
