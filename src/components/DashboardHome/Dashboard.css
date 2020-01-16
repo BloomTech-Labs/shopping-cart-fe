@@ -131,3 +131,9 @@ text-align: right;
     font-weight: bold;
     color: white;
 }
+
+.currency {
+    font-size: 2rem;
+    font-weight: normal;
+    color: white;
+}
