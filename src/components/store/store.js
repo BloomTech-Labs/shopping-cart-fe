@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Card, Input, Tabs } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
-// import Expanded from './expand'
 
 const { TabPane } = Tabs
 const { Search } = Input
@@ -12,18 +11,33 @@ const { Meta } = Card
 const StoreMain = (props) => {
   const { sellerId } = props
   const [searchString, setSearchString] = useState('')
+  const [currency, setCurrency] = useState('')
   const change = e => {
     setSearchString(e.target.value)
+  }
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.currency === 'POU') {
+      setCurrency('£')
+    } else if (storeDetails.currency === 'DOL') {
+      setCurrency('$')
+    } else if (storeDetails.currency === 'EUR') {
+      setCurrency('€')
+    } else if (storeDetails.currency === 'YEN') {
+      setCurrency('¥')
+    } else {
+      return undefined
+    }
   }
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getProducts(sellerId))
     dispatch(creators.getStore(sellerId))
   }, [sellerId, dispatch])
-
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user.user)
-  console.log(storeDetails)
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
 
   function searchObj (obj, string) {
     const regExpFlags = 'gi'
@@ -34,7 +48,6 @@ const StoreMain = (props) => {
   const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
-
   return (
     <div className='cover store'>
       <div className='store-top'>
@@ -61,7 +74,7 @@ const StoreMain = (props) => {
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Large Detail' key='1'>
                 <div className='large_wrap'>
-                  <LargeItems inventory={searchString ? searchFilter : inventory} />
+                  <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} />
                 </div>
               </TabPane>
               <TabPane tab='Small Detail' key='2'>
@@ -112,7 +125,7 @@ const Items = ({ inventory }) => {
   )
 }
 
-const LargeItems = ({ inventory }) => {
+const LargeItems = ({ inventory, currency }) => {
   return (
     inventory.map(item => (
       <Card
@@ -133,9 +146,14 @@ const LargeItems = ({ inventory }) => {
           }
         }
         cover={item.images[0]
-          ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
-          : undefined
-        }
+          ? <div className='in-cover'>
+            <div className='flag'>
+              <div>{currency}{item.price}</div>
+              <div className='stock'>{item.stock} units left</div>
+            </div>
+            <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
+            </div>
+          : undefined}
       >
         <Meta
           title={

@@ -54,18 +54,42 @@
 
 .small-label {
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: bolder;
   box-sizing: border-box;
   text-align: center;
   width: 100%;
+  height: 100%;
   
   p {
     text-align: center;
-    text-overflow: ellipsis;
+    height: 100%;
   }
 }
 
 .ant-card-body {
     padding: 1rem !important;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+
+    .ant-card-meta {
+      width: 100%;
+      height: 100%;
+
+      .ant-card-meta-detail {
+        width: 100%;
+        height: 100%;
+
+        .ant-card-meta-title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .in-cover {
+      width: 100%;
+    }
 }
