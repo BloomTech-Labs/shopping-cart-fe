@@ -24,8 +24,8 @@ const Dashboard = () => {
         <span className='name'>{user.ownerName}!</span>
         <p id='storeUrl'>{user && url}</p>
       </div>
-      <div className='dashDiv'>
-        <Content />
+      <div className='dashDiv' >
+        <Content currency={user.currency} />
       </div>
 
       {/* <Footer /> */}
