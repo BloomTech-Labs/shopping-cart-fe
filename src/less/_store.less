@@ -1,4 +1,4 @@
-.inventory {
+.store {
   height: auto;
 }
 
@@ -7,6 +7,31 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+
+  .store-info {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+
+    .store-logo {
+      height: 40%;
+      width: 100%;
+
+      .image {
+        width: 23%;
+        height: 100%;
+        border-radius: 100%;
+      }
+    }
+
+    .storeName {
+      font-size: 2.5rem;
+      font-weight: bolder;
+    }
+  }
 }
 
 .wrap {
@@ -29,8 +54,16 @@
 
 .small-label {
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bolder;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  
+  p {
+    text-align: center;
+    text-overflow: ellipsis;
+  }
 }
 
 .ant-card-body {

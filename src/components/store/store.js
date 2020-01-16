@@ -38,6 +38,14 @@ const StoreMain = (props) => {
   return (
     <div className='cover store'>
       <div className='store-top'>
+        <div className='store-info'>
+          <div className='store-logo'>
+            {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
+          </div>
+          <div className='storeName'>
+            <h2>{storeDetails.storeName}</h2>
+          </div>
+        </div>
         <div className='search'>
           <Search
             onChange={change}
@@ -95,7 +103,7 @@ const Items = ({ inventory }) => {
         <Meta
           title={
             <div className='small-label'>
-              <h5>{item.name}</h5>
+              <p>{item.name}</p>
             </div>
           }
         />
