@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Input, Tabs } from 'antd'
+import { Card, Input, Tabs, Icon } from 'antd'
+import { NavLink } from 'react-router-dom'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 // import Expanded from './expand'
@@ -107,8 +108,8 @@ const LargeItems = ({ inventory }) => {
   return (
     inventory.map(item => (
       <Card
-        key={item.name}
-        bordered='false'
+      key={item.name}
+      bordered='false'
         hoverable
         style={
           {
@@ -126,7 +127,10 @@ const LargeItems = ({ inventory }) => {
         cover={item.images[0]
           ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
           : undefined}
-      >
+          >
+        <NavLink to = {`/product/${item._id}`}>
+          <Icon type="plus" />
+        </NavLink>
         <Meta
           title={
             <div className='label'>

@@ -16,6 +16,7 @@ import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
 import Store from './components/store'
 import Stripe from './components/Stripe'
+import SingleProductView from './components/buyerSingleProductView'
 
 function App () {
   return (
@@ -33,6 +34,7 @@ function App () {
       <PrivateRoute path='/createitem' component={CreateItem} />
       <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+      <PublicRoute path='/product/:id' component={SingleProductView}/>
     </Switch>
   )
 }
