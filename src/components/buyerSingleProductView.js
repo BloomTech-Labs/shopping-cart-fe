@@ -26,39 +26,47 @@ function SingleProductView(props) {
   }
 
   return (
-    <div className="kol">
-      <Carousel className='this'>
-        {productState.images &&
-          productState.images.length &&
-          productState.images.map(item => (
-            <img style={{}} src={item} alt="product" />
-          ))}
-      </Carousel>
-      <div className="subKol">
-        <div className="subNameDesc">
-          <h1>{productState.name}</h1>
-          <p>{productState.description}</p>
-        </div>
-        <div className="subIncDec">
-          <span>
-            <h3>How many items?</h3>
-            <Button onClick={increment}>
-              <Icon type="plus" />
-            </Button>
-            <a>{count}</a>
-            <Button onClick={decrement}>
-              <Icon type="minus" />
-            </Button>
-          </span>
-        </div>
-        <div className="subButton">
-          <div>
+    <div>
+      <div className="subHeader">
+        <h1>placeholder</h1>
+      </div>
+      <div className="kol">
+        <Carousel className="img">
+          {productState.images &&
+            productState.images.length &&
+            productState.images.map(item => (
+              <img style={{}} src={item} alt="product" />
+            ))}
+        </Carousel>
+        <div className="subKol">
+          <div className="subNameDesc">
+            <h1>{productState.name}</h1>
+            <p>{productState.description}</p>
+          </div>
+          <div className="subIncDec">
+            <h1>How many items?</h1>
+            <div className="subIncDecFlex">
+              <Button onClick={increment}>
+                <Icon type="plus" />
+              </Button>
+              <Button id="subIncDecCount">
+               {count}
+              </Button>
+
+              <Button onClick={decrement}>
+                <Icon type="minus" />
+              </Button>
+            </div>
+          </div>
+          <div className="subButton">
             <Button>Add to Cart</Button>
           </div>
-          <div className="subFooter">
-            <h1>Go to your cart</h1>
-          </div>
+
+          <Icon id="gold" type="shopping-cart" />
         </div>
+      </div>
+      <div className="subFooter">
+        <h1>Go to your cart</h1>
       </div>
     </div>
   );
