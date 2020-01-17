@@ -14,9 +14,6 @@ const StoreMain = (props) => {
   const [currency, setCurrency] = useState('')
   const [top] = useState(10)
   const [scroll, setScroll] = useState(false)
-  useEffect(() => {
-    console.log(scroll)
-  }, [scroll])
   const change = e => {
     setSearchString(e.target.value)
   }
@@ -177,7 +174,7 @@ const LargeItems = ({ inventory, currency }) => {
               <h3 className='desc'>{item.name}</h3>
               <div className='price'>{currency}{item.price}</div>
               <div className='add'>
-                <Button style={{color: '#FF5A5A'}} type='link' size='large'>Add to Cart</Button>
+                <Button onClick={() => {console.log(item) }} style={{color: '#FF5A5A'}} type='link' size='large'>Add to Cart</Button>
               </div>
             </div>
           }
