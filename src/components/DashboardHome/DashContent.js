@@ -6,12 +6,12 @@ import Pane2 from './Pane2'
 
 const { TabPane } = Tabs
 
-const Content = () => {
+const Content = ({ currency }) => {
   return (
     <div>
       <Tabs defaultActiveKey='1' className='content'>
         <TabPane tab='Overview' key='1'>
-          <Pane1 />
+          <Pane1 currency={currency} />
         </TabPane>
         <TabPane tab='Sales History' key='2'>
       Today
