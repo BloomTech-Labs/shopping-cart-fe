@@ -37,7 +37,7 @@ function App () {
       <PrivateRoute path='/createitem' component={CreateItem} />
       <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
-      <PublicRoute path='/product/:id' component={SingleProductView}/>
+      <PublicRoute path='/product/:id' component={SingleProductView} />
       {/* For testing only. Remove before deploying to Prod. */}
       <PublicRoute exact path='/elements/Logo' component={Logo} />
       <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
