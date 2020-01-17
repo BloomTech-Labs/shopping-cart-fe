@@ -3,10 +3,17 @@ import { Row, Col, Icon, Badge } from 'antd'
 
 import NoLogo from '../../images/PureRetail_Logo.png'
 
-const CartHeader = ({ badgeCount = 0, currency = '', totalDue = 0, displayBack = true, displayTotal }) => {
+const CartHeader = ({ logoPath, 
+                      badgeCount = 0, 
+                      currency = '', 
+                      totalDue = 0, 
+                      displayBack, 
+                      displayTotal }) => {
   return (<Row className='cart-header' type='flex' justify='space-between' align='middle'>
     <Col span={6} className='logo'>
-      {displayBack ? <Icon type='left-circle' /> : <img src={NoLogo} alt='Store Logo' />}
+      {displayBack 
+      ? <Icon type='left-circle' /> 
+      : <img src={logoPath ? logoPath : NoLogo} alt='Store Logo' />}
     </Col>
     <Col span={12} className='total'>{displayTotal ? `Total: ${currency}${totalDue}` : ''}</Col>
     <Col span={6} className='icon'>
