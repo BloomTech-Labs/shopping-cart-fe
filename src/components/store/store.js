@@ -37,6 +37,7 @@ const StoreMain = (props) => {
   }, [sellerId, dispatch])
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user.user)
+  const cartContents = useSelector(state => state.cart)
   useEffect(() => {
     fixCurrency(storeDetails)
   }, [storeDetails])
@@ -60,7 +61,7 @@ const StoreMain = (props) => {
             {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
             <div className='cart'>
               <Affix offsetTop={top}>
-                <Badge count={5} style={{ backgroundColor: 'gold', color: 'black' }}>
+                <Badge count={cartContents.length} style={{ backgroundColor: 'gold', color: 'black' }}>
                   <Icon type='shopping-cart' style={{ fontSize: '3rem' }} />
                 </Badge>
               </Affix>
@@ -164,7 +165,7 @@ const LargeItems = ({ inventory, currency, dispatchItem }) => {
           }
         }
         cover={item.images[0]
-          ? <img style={{ width: '100%', height: '32rem', margin: '0'}} alt='item' src={item.images[0]} />
+          ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
           : undefined}
       >
         <Meta
@@ -173,7 +174,7 @@ const LargeItems = ({ inventory, currency, dispatchItem }) => {
               <h3 className='desc'>{item.name}</h3>
               <div className='price'>{currency}{item.price}</div>
               <div className='add'>
-                <Button onClick={() => dispatchItem(item)} style={{color: '#FF5A5A'}} type='link' size='large'>Add to Cart</Button>
+                <Button onClick={() => dispatchItem(item)} style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
               </div>
             </div>
           }
