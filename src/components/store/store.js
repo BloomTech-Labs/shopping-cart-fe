@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Input, Tabs, Affix, Icon, Button, Badge } from 'antd'
+import { NavLink } from 'react-router-dom'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 
@@ -93,7 +94,7 @@ const StoreMain = (props) => {
               </TabPane>
               <TabPane tab='Small Detail' key='2'>
                 <div className='wrap'>
-                  <Items inventory={searchString ? searchFilter : inventory} currency={currency} />
+                  <Items inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} />
                 </div>
               </TabPane>
             </Tabs>
@@ -104,7 +105,7 @@ const StoreMain = (props) => {
   )
 }
 
-const Items = ({ inventory, currency }) => {
+const Items = ({ inventory, currency, dispatchItem }) => {
   return (
     inventory.map(item => (
       <Card
@@ -134,7 +135,7 @@ const Items = ({ inventory, currency }) => {
               <p>{item.name}</p>
               <div className='sprice'>{currency}{item.price}</div>
               <div className='sadd'>
-                <Button style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
+                <Button onClick={() => dispatchItem(item)} style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
               </div>
             </div>
           }
