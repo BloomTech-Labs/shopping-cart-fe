@@ -14,10 +14,24 @@
     position: relative;
 }
 
+.dashboardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 0 20px;
+}
+
+.dashboardLogo {
+    width: 22%;
+}
+
+.dashboardLogo img {
+    width: 100%;
+    height: 100%;
+}
+
 .welcomeHeader {
     color: white;
-    padding-left: 30px;
-    padding-top: 30px;
     font-size: 1.8em;
     font-family: inherit;
 }
@@ -26,8 +40,12 @@
     font-size: 1.5em;
 }
 
+.storeUrl {
+    padding: 10px 20px 0 20px;
+}
+
 #storeUrl {
-    font-size: 0.8em;
+    font-size: 1.2rem;
     color: yellow;
 }
 
@@ -124,4 +142,16 @@ text-align: right;
 .StorePrice h2 {
     font-size: 15px;
     color: #44B400;
+}
+
+.earnings {
+    font-size: 6rem;
+    font-weight: bold;
+    color: white;
+}
+
+.currency {
+    font-size: 2rem;
+    font-weight: normal;
+    color: white;
 }
