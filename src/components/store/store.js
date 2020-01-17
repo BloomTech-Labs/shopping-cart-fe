@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Input, Tabs, Affix, Icon, Button } from 'antd'
+import { Card, Input, Tabs, Affix, Icon, Button, Badge } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 
@@ -64,7 +64,9 @@ const StoreMain = (props) => {
             {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
             <div className='cart'>
               <Affix offsetTop={top}>
-                <Icon type='shopping-cart' />
+                <Badge count={5} style={{ backgroundColor: 'gold', color: 'black' }}>
+                  <Icon type='shopping-cart' style={{ fontSize: '3rem' }} />
+                </Badge>
               </Affix>
             </div>
           </div>
