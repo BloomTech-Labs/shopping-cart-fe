@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Carousel, Button, Icon, Typography } from "antd";
 import "../less/index.less";
+import CartHeader from "./elements/cartHeader";
+import { useDispatch } from "react-redux";
+import * as creators from "../state/actionCreators";
 const { Paragraph } = Typography;
 function SingleProductView(props) {
   const [productState, setProductState] = useState([]);
@@ -19,17 +22,24 @@ function SingleProductView(props) {
   }, [itemId]);
 
   function increment() {
-    setCount(count + 1);
+    setCount(prevState => prevState + 1);
   }
 
   function decrement() {
-    setCount(count - 1);
+    setCount(prevState => prevState - 1);
   }
-
+  const dispatch = useDispatch();
+  function addItem() {
+    let myArr = [];
+    for (let i = 0; i < count; i++) {
+      myArr.push(productState);
+      dispatch(creators.addSingleProductToCart(myArr));
+    }
+  }
   return (
     <div>
-      <div className="subHeader">
-        <h1>placeholder</h1>
+      <div>
+        <CartHeader />
       </div>
       <div className="kol">
         <Carousel className="img">
@@ -80,7 +90,7 @@ function SingleProductView(props) {
             </div>
           </div>
           <div className="subButton">
-            <Button>Add to Cart</Button>
+            <Button onClick={addItem}>Add to Cart</Button>
           </div>
         </div>
       </div>

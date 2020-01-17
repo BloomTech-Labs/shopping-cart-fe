@@ -1,20 +1,32 @@
-import React from 'react'
-import { Row, Col, Icon, Badge } from 'antd'
+import React from "react";
+import { Row, Col, Icon, Badge } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 
-import NoLogo from '../../images/PureRetail_Logo.png'
+import NoLogo from "../../images/PureRetail_Logo.png";
 
 const CartHeader = () => {
-  return (<Row className='cart-header' type='flex' justify='space-between' align='middle'>
-    <Col span={6} className='logo'>
-      <img src={NoLogo} alt='Store Logo' />
-    </Col>
-    <Col span={12} className='total'>Total: {'$121.44'}</Col>
-    <Col span={6} className='icon'>
-      <Badge count={0} overflowCount={9} showZero>
-        <Icon type='shopping-cart' />
-      </Badge>
-    </Col>
-          </Row>)
-}
+  //const dispatch = useDispatch();
+  const cartContents = useSelector(state => state.cart);
+  return (
+    <Row
+      className="cart-header"
+      type="flex"
+      justify="space-between"
+      align="middle"
+    >
+      <Col span={6} className="logo">
+        <img src={NoLogo} alt="Store Logo" />
+      </Col>
+      <Col span={12} className="total">
+        Total: {"$121.44"}
+      </Col>
+      <Col span={6} className="icon">
+        <Badge count={cartContents.length} overflowCount={9} showZero>
+          <Icon type="shopping-cart" />
+        </Badge>
+      </Col>
+    </Row>
+  );
+};
 
-export default CartHeader
+export default CartHeader;

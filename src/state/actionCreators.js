@@ -48,6 +48,13 @@ export const addToCart = item => {
   }
 }
 
+export const addSingleProductToCart = item =>{
+  return{
+    type: types.ADD_TO_CART_SINGLE_PRODUCT,
+    payload: item
+  }
+}
+
 export const clearStore = () => {
   return {
     type: types.CLEAR_STORE

@@ -7,6 +7,9 @@ export function cartReducer (state = initialCart, action) {
     case types.ADD_TO_CART:
       return state.concat(action.payload)
 
+    case types.ADD_TO_CART_SINGLE_PRODUCT:
+      return [...state, action.payload]
+
     default:
       return state
   }
