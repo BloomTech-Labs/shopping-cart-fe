@@ -4,12 +4,14 @@ const initialUserState = {
   isLoading: false,
   errors: {},
   user: {},
-  storeDetails: {}
+  storeDetails: {},
+  storeUrl: ''
 }
 
-export function userReducer (state = initialUserState, action) {
+export function userReducer(state = initialUserState, action) {
   switch (action.type) {
     case types.GET_CURRENT_USER:
+      localStorage.setItem('user', JSON.stringify(action.payload))
       return {
         ...state,
         user: { ...action.payload }
@@ -69,6 +71,16 @@ export function userReducer (state = initialUserState, action) {
         user: {},
         storeDetails: {}
       }
+
+    case types.SET_STORE_URL:
+      localStorage.setItem(
+        'storeUrl',
+        action.payload
+          .split('/')
+          .slice(3)
+          .join('/')
+      )
+      return state
 
     default:
       return state

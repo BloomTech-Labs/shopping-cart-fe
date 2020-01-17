@@ -107,10 +107,11 @@ export const deleteAccount = () => dispatch => {
     })
 }
 
-export const getProducts = (sellerId) => dispatch => {
-  axios.get(
+export const getProducts = sellerId => dispatch => {
+  axios
+    .get(
       `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/products`
-  )
+    )
     .then(res => {
       const inventory = res.data
       dispatch({ type: types.GET_INVENTORY, payload: inventory })
@@ -120,12 +121,20 @@ export const getProducts = (sellerId) => dispatch => {
     })
 }
 
-export const getStore = (sellerId) => dispatch => {
-  axios.get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
+export const getStore = sellerId => dispatch => {
+  axios
+    .get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
     .then(res => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
     })
     .catch(error => {
       setErrors(error.response.data)
     })
+}
+
+export const setStoreUrl = url => {
+  return {
+    type: types.SET_STORE_URL,
+    payload: url
+  }
 }
