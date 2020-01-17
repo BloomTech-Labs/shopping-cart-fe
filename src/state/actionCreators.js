@@ -41,6 +41,13 @@ export const setStore = store => {
   }
 }
 
+export const addToCart = item => {
+  return {
+    type: types.ADD_TO_CART,
+    payload: item
+  }
+}
+
 export const clearStore = () => {
   return {
     type: types.CLEAR_STORE

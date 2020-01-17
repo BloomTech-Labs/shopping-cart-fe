@@ -49,10 +49,9 @@ const StoreMain = (props) => {
   const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
-  // window.onscroll = function()
-  // {
-  //   setScroll(true)
-  // }
+  const dispatchItem = (item) => {
+    dispatch(creators.addToCart(item))
+  }
   return (
     <div className='cover store'>
       <div className='store-top'>
@@ -88,7 +87,7 @@ const StoreMain = (props) => {
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Large Detail' key='1'>
                 <div className='large_wrap'>
-                  <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} />
+                  <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} />
                 </div>
               </TabPane>
               <TabPane tab='Small Detail' key='2'>
@@ -144,7 +143,7 @@ const Items = ({ inventory, currency }) => {
   )
 }
 
-const LargeItems = ({ inventory, currency }) => {
+const LargeItems = ({ inventory, currency, dispatchItem }) => {
   return (
     inventory.map(item => (
       <Card
@@ -174,7 +173,7 @@ const LargeItems = ({ inventory, currency }) => {
               <h3 className='desc'>{item.name}</h3>
               <div className='price'>{currency}{item.price}</div>
               <div className='add'>
-                <Button onClick={() => {console.log(item) }} style={{color: '#FF5A5A'}} type='link' size='large'>Add to Cart</Button>
+                <Button onClick={() => dispatchItem(item)} style={{color: '#FF5A5A'}} type='link' size='large'>Add to Cart</Button>
               </div>
             </div>
           }
