@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Input, Tabs, Affix, Icon } from 'antd'
+import { Card, Input, Tabs, Affix, Icon, Button } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 
@@ -118,7 +118,6 @@ const Items = ({ inventory, currency }) => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '45%',
-            height: '20rem',
             margin: '0.5rem',
             boxSizing: 'border-box',
             boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
@@ -126,13 +125,7 @@ const Items = ({ inventory, currency }) => {
         }
         cover={
           item.images[0]
-            ? <div className='in-cover'>
-              <div className='flag small'>
-                <div>{currency}{item.price}</div>
-                <div className='stock'>{item.stock} units left</div>
-              </div>
-              <img style={{ width: '100%', height: '13rem' }} alt='item' src={item.images[0]} />
-              </div>
+            ? <img style={{ width: '100%', height: '13rem' }} alt='item' src={item.images[0]} />
             : undefined
         }
       >
@@ -140,6 +133,10 @@ const Items = ({ inventory, currency }) => {
           title={
             <div className='small-label'>
               <p>{item.name}</p>
+              <div className='sprice'>{currency}{item.price}</div>
+              <div className='sadd'>
+                <Button style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
+              </div>
             </div>
           }
         />
@@ -162,26 +159,24 @@ const LargeItems = ({ inventory, currency }) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '90%',
-            height: '37rem',
             margin: '0.5rem',
+            borderRadius: '2rem',
             boxSizing: 'border-box',
             boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
           }
         }
         cover={item.images[0]
-          ? <div className='in-cover'>
-            <div className='flag'>
-              <div>{currency}{item.price}</div>
-              <div className='stock'>{item.stock} units left</div>
-            </div>
-            <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
-            </div>
+          ? <img style={{ width: '100%', height: '32rem', margin: '0'}} alt='item' src={item.images[0]} />
           : undefined}
       >
         <Meta
           title={
             <div className='label'>
-              <h3>{item.name}</h3>
+              <h3 className='desc'>{item.name}</h3>
+              <div className='price'>{currency}{item.price}</div>
+              <div className='add'>
+                <Button style={{color: '#FF5A5A'}} type='link' size='large'>Add to Cart</Button>
+              </div>
             </div>
           }
         />
