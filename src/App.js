@@ -17,7 +17,7 @@ import Home from './components/DashboardHome'
 import Store from './components/store'
 import Stripe from './components/Stripe'
 
-function App () {
+function App() {
   return (
     <Switch>
       <PublicRoute path='/register' component={WrappedRegistrationForm} />
