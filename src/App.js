@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import './App.css'
 import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
@@ -17,6 +17,9 @@ import Home from './components/DashboardHome'
 import Store from './components/store'
 import Stripe from './components/Stripe'
 import SingleProductView from './components/buyerSingleProductView'
+// For testing only. Remove before deploying to Prod.
+import CartHeader from './components/elements/cartHeader'
+import Logo from './components/elements/logo'
 
 function App () {
   return (
@@ -35,6 +38,9 @@ function App () {
       <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
       <PublicRoute path='/product/:id' component={SingleProductView}/>
+      {/* For testing only. Remove before deploying to Prod. */}
+      <PublicRoute exact path='/elements/Logo' component={Logo} />
+      <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
     </Switch>
   )
 }
