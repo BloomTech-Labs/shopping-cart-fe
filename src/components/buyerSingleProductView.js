@@ -35,8 +35,14 @@ function SingleProductView(props) {
         <Carousel className="img">
           {productState.images &&
             productState.images.length &&
-            productState.images.map(item => (
-              <img style={{}} src={item} alt="product" />
+            productState.images.map((item, index) => (
+              <div key={index}>
+                <img
+                  style={{ width: "100%", height: "32rem", margin: "0" }}
+                  src={item}
+                  alt="product"
+                />
+              </div>
             ))}
         </Carousel>
         <div className="subKol">
@@ -44,7 +50,7 @@ function SingleProductView(props) {
             <h1>{productState.name}</h1>
             <div>
               <Paragraph ellipsis={{ rows: 3, expandable: true }}>
-               {productState.description}
+                {productState.description}
               </Paragraph>
             </div>
           </div>
