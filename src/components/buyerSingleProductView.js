@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Carousel, Button, Icon } from "antd";
+import { Carousel, Button, Icon, Typography } from "antd";
 import "../less/index.less";
+const { Paragraph } = Typography;
 function SingleProductView(props) {
   const [productState, setProductState] = useState([]);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const itemId = props.match.params.id;
   useEffect(() => {
     axios
@@ -41,32 +42,53 @@ function SingleProductView(props) {
         <div className="subKol">
           <div className="subNameDesc">
             <h1>{productState.name}</h1>
-            <p>{productState.description}</p>
+            <div>
+              <Paragraph ellipsis={{ rows: 3, expandable: true }}>
+               {productState.description}
+              </Paragraph>
+            </div>
           </div>
           <div className="subIncDec">
             <h1>How many items?</h1>
             <div className="subIncDecFlex">
-              <Button onClick={increment}>
-                <Icon type="plus" />
-              </Button>
-              <Button id="subIncDecCount">
-               {count}
-              </Button>
+              <div className="subOnClick" onClick={increment}>
+                <Icon
+                  style={{
+                    fontSize: "1.6rem",
+                    marginTop: "1.1rem"
+                  }}
+                  type="plus"
+                />
+              </div>
+              <div id="subIncDecCount">{count}</div>
 
-              <Button onClick={decrement}>
-                <Icon type="minus" />
-              </Button>
+              <div className="subOnClick" onClick={decrement}>
+                <Icon
+                  style={{
+                    fontSize: "1.6rem",
+                    marginTop: "1.1rem"
+                  }}
+                  type="minus"
+                />
+              </div>
             </div>
           </div>
           <div className="subButton">
             <Button>Add to Cart</Button>
           </div>
-
-          <Icon id="gold" type="shopping-cart" />
         </div>
       </div>
       <div className="subFooter">
         <h1>Go to your cart</h1>
+        <Icon
+          style={{
+            fontSize: "2.5rem",
+            color: "#08c",
+            marginTop: "0.9rem",
+            marginLeft: "0.4rem"
+          }}
+          type="shopping-cart"
+        />
       </div>
     </div>
   );

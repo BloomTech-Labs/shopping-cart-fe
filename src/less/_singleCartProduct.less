@@ -1,6 +1,6 @@
 .ant-carousel .slick-slide {
   text-align: center;
-  height: 160px;
+  height: 100px;
   line-height: 160px;
   background: #364d79;
   overflow: hidden;
@@ -15,34 +15,39 @@
   width: 10rem;
 }
 
+div.ant-typography,
+.ant-typography p {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
 .kol {
-  margin-left: 3rem;
-  margin-right: 3rem;
-  //margin-top: 10rem;
+  margin: 3rem;
   display: flex;
   flex-direction: column;
-  padding-top: 9rem;
 
   .img {
     margin-bottom: 4rem;
   }
 
   .subKol {
-    border: 2px solid red;
+    //border: 2px solid red;
     display: flex;
     flex-direction: column;
-    height: 37vh;
-    //margin-top: 8rem;
-    justify-content: space-between;
+    height: 50vh;
+
+    justify-content: space-evenly;
   }
   .subNameDesc {
-    border: 2px solid green;
-    margin-bottom: 2rem;
+    //border: 2px solid green;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -5rem;
     h1 {
       font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
     p {
       font-size: 1.5rem;
@@ -50,17 +55,37 @@
   }
 
   .subIncDec {
-    border: 2px solid orange;
-    margin-bottom: 2rem;
+    //border: 2px solid orange;
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    .subIncDecFlex {
+      //border: 2px solid red;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .subOnClick {
+        background-color: black;
+        color: white;
+        width: 13%;
+        height: 6vh;
+        text-align: center;
+      }
+    }
+
     #subIncDecCount {
       background-color: #bfd7ea;
-      height: 8vh;
-      width: 7rem;
+      height: 6vh;
+      width: 4rem;
       color: black;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.6rem;
     }
 
     .ant-btn {
@@ -83,16 +108,15 @@
     align-items: center;
 
     .ant-btn {
-      border: 2px solid black;
       background-color: #0b3954;
-      width: 17rem;
+      width: 15rem;
       height: 8vh;
       color: white;
     }
   }
 }
 .subHeader {
-  position: fixed;
+  //position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -107,7 +131,7 @@
   }
 }
 .subFooter {
-  position: fixed;
+  //position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -115,6 +139,8 @@
   border: 2px solid black;
   background-color: black;
   height: 5rem;
+  display: flex;
+  justify-content: center;
   h1 {
     margin-top: 1.3rem;
     color: white;
