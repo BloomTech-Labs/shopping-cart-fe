@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Input, Tabs, Affix, Icon, Button, Badge } from 'antd'
 import { NavLink } from 'react-router-dom'
+import { Card, Input, Tabs, Affix, Icon, Button, Badge } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 
@@ -13,7 +13,6 @@ const StoreMain = (props) => {
   const { sellerId } = props
   const [searchString, setSearchString] = useState('')
   const [currency, setCurrency] = useState('')
-  const [top] = useState(10)
   const [scroll, setScroll] = useState(false)
   const change = e => {
     setSearchString(e.target.value)
@@ -60,26 +59,28 @@ const StoreMain = (props) => {
         <div className='store-info'>
           <div className='store-logo'>
             {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
-            <div className='cart'>
-              <Affix offsetTop={top}>
-                <Badge count={cartContents.length} style={{ backgroundColor: 'gold', color: 'black' }}>
-                  <Icon type='shopping-cart' style={{ fontSize: '3rem' }} />
-                </Badge>
-              </Affix>
-            </div>
+            <NavLink to='/review'>
+              <div className='cart'>
+                <Affix offsetTop={10}>
+                  <Badge count={cartContents.length} style={{ backgroundColor: 'gold', color: 'black' }}>
+                    <Icon type='shopping-cart' style={{ fontSize: '3rem' }} />
+                  </Badge>
+                </Affix>
+              </div>
+            </NavLink>
           </div>
           <div className='storeName'>
             <h2>{storeDetails.storeName}</h2>
           </div>
         </div>
-        <Affix offsetTop={top}>
-          <div className={scroll ? 'searchbar' : 'transparent'}>
-            <Search
-              onChange={change}
-              placeholder='search'
-              style={{ width: 200 }}
-            />
-          </div>
+        <Affix offsetTop={10}>
+          {/* <div className={scroll ? 'searchbar' : 'transparent'}> */}
+          <Search
+            onChange={change}
+            placeholder='search'
+            style={{ width: 200 }}
+          />
+          {/* </div> */}
         </Affix>
         <div className='content'>
           <div>

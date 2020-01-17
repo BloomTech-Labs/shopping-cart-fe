@@ -16,6 +16,7 @@ import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
 import Store from './components/store'
 import Stripe from './components/Stripe'
+import Review from './components/review'
 
 function App () {
   return (
@@ -27,6 +28,7 @@ function App () {
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
       <PublicRoute path='/payment' component={Stripe} />
+      <PublicRoute path='/review' component={Review} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={UpdateProfile} />
