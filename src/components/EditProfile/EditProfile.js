@@ -18,7 +18,7 @@ const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
 
 const { Option } = Select
 
-const EditProfile = props => {
+const EditProfile = ({ dispatch, isLoading, form }) => {
   const [store, setStore] = useState({
     ownerName: '',
     currency: '',
@@ -27,20 +27,20 @@ const EditProfile = props => {
   })
 
   useEffect(() => {
-    props.dispatch(setLoading(true))
-    props.dispatch(getCurrentUser())
+    dispatch(setLoading(true))
+    dispatch(getCurrentUser())
     axiosWithAuth()
       .get(storeUrl)
       .then(res => {
         const { ownerName, currency, storeName } = res.data
         setStore({ ownerName, currency, storeName })
-        props.dispatch(setLoading(false))
+        dispatch(setLoading(false))
       })
       .catch(err => {
-        props.dispatch(setLoading(false))
+        dispatch(setLoading(false))
         setErrors(err.response.data)
       })
-  }, [])
+  }, [dispatch])
 
   const [errors, setErrors] = useState({})
 
@@ -50,7 +50,7 @@ const EditProfile = props => {
 
   const handleLogout = () => {
     // delete token from local storage and redirect to login
-    props.dispatch(logout())
+    dispatch(logout())
     history.push('/')
   }
 
@@ -62,9 +62,9 @@ const EditProfile = props => {
       okType: 'danger',
       cancelText: 'No',
       onOk () {
-        props.dispatch(setLoading(true))
-        props.dispatch(deleteAccount())
-        props.dispatch(logout())
+        dispatch(setLoading(true))
+        dispatch(deleteAccount())
+        dispatch(logout())
         history.push('/register')
       },
       onCancel () {}
@@ -73,9 +73,9 @@ const EditProfile = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    props.dispatch(setLoading(true))
+    dispatch(setLoading(true))
     setErrors({})
-    props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
+    form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (err) {
         message.error('Enter Required Fields')
       }
@@ -83,7 +83,7 @@ const EditProfile = props => {
       axiosWithAuth()
         .put(storeUrl, values)
         .then(res => {
-          props.dispatch(updateStore(res.data))
+          dispatch(updateStore(res.data))
           message.success('Your store has been updated')
           history.push('/dashboard')
         })
@@ -95,7 +95,7 @@ const EditProfile = props => {
     })
   }
 
-  const { getFieldDecorator } = props.form
+  const { getFieldDecorator } = form
 
   const formItemLayout = {
     labelCol: {
@@ -140,7 +140,7 @@ const EditProfile = props => {
   )
 
   const editProfile = (
-    <Spin spinning={props.isLoading}>
+    <Spin spinning={isLoading}>
       <div className='cover'>
         <div id='logo'>
           <img src={logo} alt='PureRetail Logo' />
