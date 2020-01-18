@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import '../../less/index.less'
 import StoreMain from './store'
-import Top from './top'
+import CartHeader from '../elements/cartHeader'
 
 function Store (props) {
+  const [up, setUp] = useState(false)
   const sellerId = props.match.params.id.split('-').pop()
+  const cartContents = useSelector(state => state.cart)
+  var lastScrollTop = 0
+
+  window.addEventListener('scroll', function () {
+    var st = window.pageYOffset || document.documentElement.scrollTop
+    if (st > lastScrollTop) {
+      setUp(true)
+    } else {
+      setUp(false)
+    }
+    lastScrollTop = st <= 0 ? 0 : st
+  }, false)
   return (
     <div>
-      <Top />
+      <CartHeader top={up} badgeCount={cartContents.length} />
       <StoreMain sellerId={sellerId} />
     </div>
   )

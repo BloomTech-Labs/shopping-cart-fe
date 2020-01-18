@@ -29,12 +29,11 @@ const ReviewMain = (props) => {
             size='small'
             bordered
             dataSource={cartContents}
-            renderItem={item => 
+            renderItem={item =>
               <List.Item>
                 {item.name}
                 {item.price}
-              </List.Item>
-            }
+              </List.Item>}
           />
         </div>
       </div>

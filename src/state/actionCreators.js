@@ -41,6 +41,13 @@ export const setStore = store => {
   }
 }
 
+export const setString = str => {
+  return {
+    type: types.SEARCHSTRING,
+    payload: str
+  }
+}
+
 export const addToCart = item => {
   return {
     type: types.ADD_TO_CART,
