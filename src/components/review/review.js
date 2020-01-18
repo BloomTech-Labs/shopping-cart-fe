@@ -25,15 +25,23 @@ const ReviewMain = (props) => {
           </div>
         </div>
         <div className='content'>
-          <List
-            size='small'
-            bordered
+        <List
+            itemLayout="horizontal"
             dataSource={cartContents}
-            renderItem={item =>
+            renderItem={item => (
               <List.Item>
-                {item.name}
-                {item.price}
-              </List.Item>}
+                <div className='controls'>
+                  <div className='clicks'>+</div>
+                  <div className='clicks count'>1</div>
+                  <div className='clicks'>-</div>
+                </div>
+                <List.Item.Meta
+                  title={item.name}
+                  description={item.price}
+                />
+                <div className='cancel'>x</div>
+              </List.Item>
+            )}
           />
         </div>
       </div>
