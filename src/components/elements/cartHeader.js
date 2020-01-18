@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Icon, Badge, Input } from 'antd'
 import * as creators from '../../state/actionCreators'
+import history from '../../history'
 
 import NoLogo from '../../images/PureRetail_Logo.png'
 const { Search } = Input
@@ -27,7 +28,7 @@ const CartHeader = ({
     <Row className={top ? 'color ' + 'cart-header' : 'cart-header'} type='flex' justify='space-between' align='middle'>
       <Col span={6} className='logo'>
         {displayBack
-          ? <Icon type='left-circle' />
+          ? <Icon onClick={history.goBack} type='left-circle' />
           : <img src={logoPath || NoLogo} alt='Store Logo' />}
       </Col>
       <Col span={12} className='total'>{displayTotal ? `Total: ${currency}${totalDue}` : <Search
