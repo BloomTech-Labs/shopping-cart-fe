@@ -2,10 +2,23 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List } from 'antd'
 import '../../less/index.less'
+import * as creators from '../../state/actionCreators'
 
 const ReviewMain = (props) => {
   const cartContents = useSelector(state => state.cart)
-  console.log(cartContents)
+  const counter = useSelector(state => state.count)
+  const dispatch = useDispatch()
+  const increment = (id) => {
+    dispatch(creators.increment(id))
+  }
+  const decrement = (id) => {
+    dispatch(creators.decrement(id))
+  }
+  const display = (item) => {
+    const itemObj = counter.find(({ _id }) => _id === item._id)
+    const res = itemObj === undefined ? 1 : itemObj.count === undefined ? 1 : itemObj.count
+    return res
+  }
   return (
     <div className='cover review'>
       <div className='store-top review-top'>
@@ -25,15 +38,15 @@ const ReviewMain = (props) => {
           </div>
         </div>
         <div className='content'>
-        <List
-            itemLayout="horizontal"
+          <List
+            itemLayout='horizontal'
             dataSource={cartContents}
             renderItem={item => (
               <List.Item>
                 <div className='controls'>
-                  <div className='clicks'>+</div>
-                  <div className='clicks count'>1</div>
-                  <div className='clicks'>-</div>
+                  <div onClick={() => increment(item._id)} className='clicks'>+</div>
+                  <div className='clicks count'>{display(item)}</div>
+                  <div onClick={() => decrement(item._id)} className='clicks'>-</div>
                 </div>
                 <List.Item.Meta
                   title={item.name}

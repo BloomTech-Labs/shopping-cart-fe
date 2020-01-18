@@ -28,6 +28,27 @@ export const getCurrentUser = () => dispatch => {
     })
 }
 
+export function increment (id) {
+  return {
+    type: types.INCREMENT,
+    payload: id
+  }
+}
+
+export function decrement (id) {
+  return {
+    type: types.DECREMENT,
+    payload: id
+  }
+}
+
+export function pushCart (cart) {
+  return {
+    type: types.PUSH_CART,
+    payload: cart
+  }
+}
+
 export const logout = () => {
   return {
     type: types.LOGOUT_USER
