@@ -31,6 +31,7 @@ const StoreMain = (props) => {
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user.user)
   const searchString = useSelector(state => state.search)
+  const cartContents = useSelector(state => state.cart)
   useEffect(() => {
     fixCurrency(storeDetails)
   }, [storeDetails])
@@ -45,6 +46,9 @@ const StoreMain = (props) => {
   })
   const dispatchItem = (item) => {
     dispatch(creators.addToCart(item))
+  }
+  const removeItem = (item) => {
+    dispatch(creators.subtractFromCart(item))
   }
   return (
     <div className='cover store'>
@@ -65,12 +69,12 @@ const StoreMain = (props) => {
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Large Detail' key='1'>
                 <div className='large_wrap'>
-                  <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} />
+                  <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} cartContents={cartContents} removeItem={removeItem} />
                 </div>
               </TabPane>
               <TabPane tab='Small Detail' key='2'>
                 <div className='wrap'>
-                  <Items inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} />
+                  <Items inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} cartContents={cartContents} removeItem={removeItem} />
                 </div>
               </TabPane>
             </Tabs>
@@ -81,7 +85,11 @@ const StoreMain = (props) => {
   )
 }
 
-const Items = ({ inventory, currency, dispatchItem }) => {
+const Items = ({ inventory, currency, dispatchItem, cartContents, removeItem }) => {
+  const btnChange = (item) => {
+    const itemObj = cartContents.find(({ _id }) => _id === item._id)
+    return itemObj
+  }
   return (
     inventory.map(item => (
       <Card
@@ -111,7 +119,9 @@ const Items = ({ inventory, currency, dispatchItem }) => {
               <p>{item.name}</p>
               <div className='sprice'>{currency}{item.price}</div>
               <div className='sadd'>
-                <Button onClick={() => dispatchItem(item)} style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
+                {!btnChange(item)
+                  ? <Button onClick={() => dispatchItem(item)} style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
+                  : <Button onClick={() => removeItem(item)} style={{ color: 'dodgerblue' }} type='link' size='large'>Remove from Cart</Button>}
               </div>
             </div>
           }
@@ -121,7 +131,11 @@ const Items = ({ inventory, currency, dispatchItem }) => {
   )
 }
 
-const LargeItems = ({ inventory, currency, dispatchItem }) => {
+const LargeItems = ({ inventory, currency, dispatchItem, cartContents, removeItem }) => {
+  const btnChange = (item) => {
+    const itemObj = cartContents.find(({ _id }) => _id === item._id)
+    return itemObj
+  }
   return (
     inventory.map(item => (
       <Card
@@ -151,7 +165,9 @@ const LargeItems = ({ inventory, currency, dispatchItem }) => {
               <h3 className='desc'>{item.name}</h3>
               <div className='price'>{currency}{item.price}</div>
               <div className='add'>
-                <Button onClick={() => dispatchItem(item)} style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
+                {!btnChange(item)
+                  ? <Button onClick={() => dispatchItem(item)} style={{ color: '#FF5A5A' }} type='link' size='large'>Add to Cart</Button>
+                  : <Button onClick={() => removeItem(item)} style={{ color: 'dodgerblue' }} type='link' size='large'>Remove from Cart</Button>}
               </div>
             </div>
           }

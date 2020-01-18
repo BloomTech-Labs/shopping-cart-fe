@@ -76,6 +76,13 @@ export const addToCart = item => {
   }
 }
 
+export const subtractFromCart = item => {
+  return {
+    type: types.REMOVE_ITEM_FROM_CART,
+    payload: item
+  }
+}
+
 export const clearStore = () => {
   return {
     type: types.CLEAR_STORE

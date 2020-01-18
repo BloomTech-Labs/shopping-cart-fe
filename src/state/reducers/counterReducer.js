@@ -21,7 +21,6 @@ const sub = (num) => {
 
 const fxnAdd = (state, action) => {
   const itemObj = state.find(({ _id }) => _id === action.payload)
-  console.log(itemObj)
   const open = state.map(item => {
     if (item._id === itemObj._id) {
       const bol = {
