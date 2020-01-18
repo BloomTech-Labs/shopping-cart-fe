@@ -48,10 +48,13 @@ export const addToCart = item => {
   }
 }
 
-export const addSingleProductToCart = item => {
+export const addSingleProductToCart = (products, quantity) => {
   return {
     type: types.ADD_TO_CART_SINGLE_PRODUCT,
-    payload: item
+    payload: {
+      productId: products._id,
+      quantity
+    }
   }
 }
 

@@ -28,21 +28,17 @@ function SingleProductView (props) {
   }
 
   function decrement () {
-    setCount(prevState => prevState - 1)
+    setCount(prevState => (prevState === 0 ? prevState : prevState - 1))
   }
   const dispatch = useDispatch()
   function addItem () {
-    const myArr = []
-    for (let i = 0; i < count; i++) {
-      myArr.push(productState)
-      dispatch(creators.addSingleProductToCart(myArr))
-    }
+    dispatch(creators.addSingleProductToCart(productState, count))
   }
   return (
     <div>
       <div>
         <CartHeader
-          badgeCount={cartContents.length}
+          badgeCount={cartContents && cartContents[0] && cartContents[0].quantity}
           displayBack={props.history.goBack}
           logoPath={storeDetails.imageUrl}
         />
