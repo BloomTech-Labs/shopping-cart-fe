@@ -16,7 +16,13 @@ import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
 import Store from './components/store'
 import Stripe from './components/Stripe'
+<<<<<<< HEAD
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage'
+=======
+// For testing only. Remove before deploying to Prod.
+import CartHeader from './components/elements/cartHeader'
+import Logo from './components/elements/logo'
+>>>>>>> 89b82e37fd0d37e5e8894899cedbf938d6781488
 
 function App() {
   return (
@@ -34,7 +40,13 @@ function App() {
       <PrivateRoute path='/createitem' component={CreateItem} />
       <PrivateRoute path='/dashboard' component={Home} />
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+<<<<<<< HEAD
       <PublicRoute path='/success' component={OrderSuccessPage} />
+=======
+      {/* For testing only. Remove before deploying to Prod. */}
+      <PublicRoute exact path='/elements/Logo' component={Logo} />
+      <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
+>>>>>>> 89b82e37fd0d37e5e8894899cedbf938d6781488
     </Switch>
   )
 }
