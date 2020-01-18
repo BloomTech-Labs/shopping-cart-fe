@@ -17,6 +17,7 @@ import Home from "./components/DashboardHome";
 import Store from "./components/store";
 import Stripe from "./components/Stripe";
 import OrderSuccessPage from "./components/Stripe/OrderSuccessPage";
+import SingleProductView from "./components/buyerSingleProductView";
 // For testing only. Remove before deploying to Prod.
 import CartHeader from "./components/elements/cartHeader";
 import Logo from "./components/elements/logo";
@@ -37,6 +38,7 @@ function App() {
       <PrivateRoute path="/createitem" component={CreateItem} />
       <PrivateRoute path="/dashboard" component={Home} />
       <PrivateRoute path="/updateitem/:id" component={UpdateItem} />
+      <PublicRoute path="/product/:id" component={SingleProductView} />
       <PublicRoute path="/success" component={OrderSuccessPage} />
       {/* For testing only. Remove before deploying to Prod. */}
       <PublicRoute exact path="/elements/Logo" component={Logo} />

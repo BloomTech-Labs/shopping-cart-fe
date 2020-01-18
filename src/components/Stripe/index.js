@@ -23,7 +23,7 @@ const Stripe = () => {
     <Collapse accordion>
       <Panel header='Pay with card' key='1'>
         <StripeProvider apiKey='pk_test_TYooMQauvdEDq54NiTphI7jx'>
-          <MyStoreCheckout clientId={clientId}/>
+          <MyStoreCheckout clientId={clientId} />
         </StripeProvider>
       </Panel>
       <Panel header='Pay with USSD' key='2' disabled />
