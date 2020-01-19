@@ -30,7 +30,7 @@ const Stripe = () => {
           <div className='summary'>
             {
               cartContents.map(item => (
-                <div className='units' key={item._id}>{item.name}({item.quantity} units) - {item.price}</div>
+                <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
               ))
             }
           </div>
