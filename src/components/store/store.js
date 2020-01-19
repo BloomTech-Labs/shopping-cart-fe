@@ -60,7 +60,7 @@ const StoreMain = (props) => {
             {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
             <div className='content'>
               <div>
-                <h2>{storeDetails.name}</h2>
+                <h2>{storeDetails.storeName}</h2>
               </div>
               <div>
                 <Tabs className='tabs' defaultActiveKey='1'>
