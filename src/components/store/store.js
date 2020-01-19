@@ -32,6 +32,7 @@ const StoreMain = (props) => {
   const storeDetails = useSelector(state => state.user.user)
   const searchString = useSelector(state => state.search)
   const cartContents = useSelector(state => state.cart)
+  console.log(cartContents)
   useEffect(() => {
     fixCurrency(storeDetails)
   }, [storeDetails])
@@ -87,7 +88,7 @@ const StoreMain = (props) => {
 
 const Items = ({ inventory, currency, dispatchItem, cartContents, removeItem }) => {
   const btnChange = (item) => {
-    const itemObj = cartContents.find(({ _id }) => _id === item._id)
+    const itemObj = cartContents.find(({ productId }) => productId === item._id)
     return itemObj
   }
   return (
@@ -133,7 +134,7 @@ const Items = ({ inventory, currency, dispatchItem, cartContents, removeItem }) 
 
 const LargeItems = ({ inventory, currency, dispatchItem, cartContents, removeItem }) => {
   const btnChange = (item) => {
-    const itemObj = cartContents.find(({ _id }) => _id === item._id)
+    const itemObj = cartContents.find(({ productId }) => productId === item._id)
     return itemObj
   }
   return (

@@ -6,7 +6,6 @@ import * as creators from '../../state/actionCreators'
 
 const ReviewMain = (props) => {
   const cartContents = useSelector(state => state.cart)
-  const counter = useSelector(state => state.count)
   const dispatch = useDispatch()
   const increment = (id) => {
     dispatch(creators.increment(id))
@@ -14,10 +13,8 @@ const ReviewMain = (props) => {
   const decrement = (id) => {
     dispatch(creators.decrement(id))
   }
-  const display = (item) => {
-    const itemObj = counter.find(({ _id }) => _id === item._id)
-    const res = itemObj === undefined ? 1 : itemObj.count === undefined ? 1 : itemObj.count
-    return res
+  const removeItem = (item) => {
+    dispatch(creators.subtractFromCart(item))
   }
   return (
     <div className='cover review'>
@@ -44,15 +41,15 @@ const ReviewMain = (props) => {
             renderItem={item => (
               <List.Item>
                 <div className='controls'>
-                  <div onClick={() => increment(item._id)} className='clicks'>+</div>
-                  <div className='clicks count'>{display(item)}</div>
-                  <div onClick={() => decrement(item._id)} className='clicks'>-</div>
+                  <div onClick={() => increment(item.productId)} className='clicks'>+</div>
+                  <div className='clicks count'>{item.quantity}</div>
+                  <div onClick={() => decrement(item.productId)} className='clicks'>-</div>
                 </div>
                 <List.Item.Meta
                   title={item.name}
                   description={item.price}
                 />
-                <div className='cancel'>x</div>
+                <div onClick={() => removeItem({ _id: item.productId })} className='cancel'>x</div>
               </List.Item>
             )}
           />
