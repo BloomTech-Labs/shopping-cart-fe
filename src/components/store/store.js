@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Tabs, Button } from 'antd'
+import { NavLink } from 'react-router-dom'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 
@@ -26,6 +27,7 @@ const StoreMain = (props) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getProducts(sellerId))
+    dispatch(creators.setStoreUrl(window.location.href))
     dispatch(creators.getStore(sellerId))
   }, [sellerId, dispatch])
   const inventory = useSelector(state => state.store)
@@ -41,14 +43,14 @@ const StoreMain = (props) => {
     const regExp = new RegExp(string, regExpFlags)
     return JSON.stringify(obj).match(regExp)
   }
+  const removeItem = (item) => {
+    dispatch(creators.subtractFromCart(item))
+  }
   const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
-  const dispatchItem = (item) => {
+  const dispatchItem = item => {
     dispatch(creators.addToCart(item))
-  }
-  const removeItem = (item) => {
-    dispatch(creators.subtractFromCart(item))
   }
   return (
     <div className='cover store'>
@@ -56,28 +58,25 @@ const StoreMain = (props) => {
         <div className='store-info'>
           <div className='store-logo'>
             {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
-          </div>
-          <div className='storeName'>
-            <h2>{storeDetails.storeName}</h2>
-          </div>
-        </div>
-        <div className='content'>
-          <div>
-            <h2>{storeDetails.name}</h2>
-          </div>
-          <div>
-            <Tabs className='tabs' defaultActiveKey='1'>
-              <TabPane tab='Large Detail' key='1'>
-                <div className='large_wrap'>
-                  <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} cartContents={cartContents} removeItem={removeItem} />
-                </div>
-              </TabPane>
-              <TabPane tab='Small Detail' key='2'>
-                <div className='wrap'>
-                  <Items inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} cartContents={cartContents} removeItem={removeItem} />
-                </div>
-              </TabPane>
-            </Tabs>
+            <div className='content'>
+              <div>
+                <h2>{storeDetails.name}</h2>
+              </div>
+              <div>
+                <Tabs className='tabs' defaultActiveKey='1'>
+                  <TabPane tab='Large Detail' key='1'>
+                    <div className='large_wrap'>
+                      <LargeItems inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} cartContents={cartContents} removeItem={removeItem} />
+                    </div>
+                  </TabPane>
+                  <TabPane tab='Small Detail' key='2'>
+                    <div className='wrap'>
+                      <Items inventory={searchString ? searchFilter : inventory} currency={currency} dispatchItem={dispatchItem} cartContents={cartContents} removeItem={removeItem} />
+                    </div>
+                  </TabPane>
+                </Tabs>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -109,7 +108,7 @@ const Items = ({ inventory, currency, dispatchItem, cartContents, removeItem }) 
         }
         cover={
           item.images[0]
-            ? <img style={{ width: '100%', height: '13rem' }} alt='item' src={item.images[0]} />
+            ? <NavLink to={`/product/${item._id}`}><img style={{ width: '100%', height: '13rem' }} alt='item' src={item.images[0]} /></NavLink>
             : undefined
         }
       >
@@ -156,7 +155,7 @@ const LargeItems = ({ inventory, currency, dispatchItem, cartContents, removeIte
           }
         }
         cover={item.images[0]
-          ? <img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} />
+          ? <NavLink to={`/product/${item._id}`}><img style={{ width: '100%', height: '32rem', margin: '0' }} alt='item' src={item.images[0]} /></NavLink>
           : undefined}
       >
         <Meta

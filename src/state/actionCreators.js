@@ -76,6 +76,16 @@ export const subtractFromCart = item => {
   }
 }
 
+export const addSingleProductToCart = (products, quantity) => {
+  return {
+    type: types.ADD_TO_CART_SINGLE_PRODUCT,
+    payload: {
+      productId: products._id,
+      quantity
+    }
+  }
+}
+
 export const clearStore = () => {
   return {
     type: types.CLEAR_STORE
@@ -135,10 +145,11 @@ export const deleteAccount = () => dispatch => {
     })
 }
 
-export const getProducts = (sellerId) => dispatch => {
-  axios.get(
+export const getProducts = sellerId => dispatch => {
+  axios
+    .get(
       `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/products`
-  )
+    )
     .then(res => {
       const inventory = res.data
       dispatch({ type: types.GET_INVENTORY, payload: inventory })
@@ -148,12 +159,20 @@ export const getProducts = (sellerId) => dispatch => {
     })
 }
 
-export const getStore = (sellerId) => dispatch => {
-  axios.get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
+export const getStore = sellerId => dispatch => {
+  axios
+    .get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
     .then(res => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
     })
     .catch(error => {
       setErrors(error.response.data)
     })
+}
+
+export const setStoreUrl = url => {
+  return {
+    type: types.SET_STORE_URL,
+    payload: url
+  }
 }
