@@ -11,9 +11,6 @@ const remItem = (state, action) => {
 
 const fxnAdd = (state, action) => {
   const itemObj = state.find(({ productId }) => productId === action.payload)
-  console.log(itemObj)
-  console.log(action.payload)
-  console.log(state)
   const open = state.map(item => {
     if (item.productId === itemObj.productId) {
       const bol = {
@@ -61,7 +58,9 @@ export function cartReducer (state = initialCart, action) {
       return [...state,
         {
           productId: action.payload._id,
-          quantity: 1
+          quantity: 1,
+          price: action.payload.price,
+          name: action.payload.name
         }]
     case types.REMOVE_ITEM_FROM_CART:
       return remItem(state, action)

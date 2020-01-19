@@ -32,7 +32,6 @@ const StoreMain = (props) => {
   const storeDetails = useSelector(state => state.user.user)
   const searchString = useSelector(state => state.search)
   const cartContents = useSelector(state => state.cart)
-  console.log(cartContents)
   useEffect(() => {
     fixCurrency(storeDetails)
   }, [storeDetails])

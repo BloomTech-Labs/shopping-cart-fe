@@ -88,7 +88,6 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           history.push('/dashboard')
         })
         .catch(errors => {
-          console.log(errors.response)
           message.error(Object.values(errors.response.data)[0])
           setErrors(errors.response.data)
         })

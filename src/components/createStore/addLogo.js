@@ -85,7 +85,6 @@ const AddLogo = props => {
         AxiosAuth()
           .post(createStoreUrl, payload)
           .then(res => {
-            console.log(res.data)
             dispatch(creators.setStore(res.data.saved))
             message.success('store created')
             dispatch(creators.setLoading(false))

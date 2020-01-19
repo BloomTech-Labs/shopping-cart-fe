@@ -17,7 +17,6 @@ const CheckoutForm = (props) => {
         }
       }
     }).then(res => {
-      console.log(res)
       if (res.paymentIntent) {
         alert('Transaction Succeeded')
       } else {
