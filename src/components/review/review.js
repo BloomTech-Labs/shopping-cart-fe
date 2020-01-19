@@ -53,6 +53,9 @@ const ReviewMain = (props) => {
               </List.Item>
             )}
           />
+          <div className='button-body'>
+            <div onClick={() => console.log(cartContents)} className='button'>Go to Checkout</div>
+          </div>
         </div>
       </div>
     </div>

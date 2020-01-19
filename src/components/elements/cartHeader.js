@@ -45,7 +45,7 @@ const CartHeader = ({
       </Col>
       <NavLink to='/review'>
         <Col span={6} className='icon'>
-          <Badge style={{ backgroundColor: 'gold', color: 'black' }} count={totalQuantity(cartContents)} overflowCount={9} showZero>
+          <Badge style={{ backgroundColor: 'gold', color: 'black' }} count={totalQuantity(cartContents)}>
             <Icon type='shopping-cart' style={{ color: 'black' }} />
           </Badge>
         </Col>
