@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
+import { NavLink } from 'react-router-dom'
 
 const ReviewMain = (props) => {
   const cartContents = useSelector(state => state.cart)
@@ -54,7 +55,9 @@ const ReviewMain = (props) => {
             )}
           />
           <div className='button-body'>
-            <div onClick={() => console.log(cartContents)} className='button'>Go to Checkout</div>
+            <NavLink to='/payment'>
+              <div className='button'>Go to Checkout</div>
+            </NavLink>
           </div>
         </div>
       </div>

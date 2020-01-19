@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { StripeProvider } from 'react-stripe-elements'
-import axios from 'axios'
-import { Collapse } from 'antd'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import '../../less/index.less'
+import Stripe from './stripe'
+import CartHeader from '../elements/cartHeader'
 
-import MyStoreCheckout from './MyStoreCheckout'
-
-const { Panel } = Collapse
-
-const Stripe = () => {
-  const [clientId, setClientId] = useState('')
-  useEffect(() => {
-    axios.post('http://localhost:4000/api/payment/charge', { amount: 4000 })
-      .then(res => {
-        setClientId(res.data.paymentIntent.client_secret)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
+function StripeMain (props) {
+  const [up, setUp] = useState(false)
+  const cartContents = useSelector(state => state.cart)
+  var lastScrollTop = 0
+  window.addEventListener('scroll', function () {
+    var st = window.pageYOffset || document.documentElement.scrollTop
+    if (st > lastScrollTop) {
+      setUp(true)
+    } else {
+      setUp(false)
+    }
+    lastScrollTop = st <= 0 ? 0 : st
+  }, false)
   return (
-    <Collapse accordion>
-      <Panel header='Pay with card' key='1'>
-        <StripeProvider apiKey='pk_test_TYooMQauvdEDq54NiTphI7jx'>
-          <MyStoreCheckout clientId={clientId} />
-        </StripeProvider>
-      </Panel>
-      <Panel header='Pay with USSD' key='2' disabled />
-      <Panel header='Pay with cash' key='3' disabled />
-    </Collapse>
+    <div>
+      <CartHeader top={up} displayBack displayTotal badgeCount={cartContents.length} />
+      <Stripe />
+    </div>
   )
 }
 
-export default Stripe
+export default StripeMain

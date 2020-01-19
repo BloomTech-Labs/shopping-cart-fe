@@ -15,7 +15,7 @@ import Main from './components/inventory'
 import UpdateProfile from './components/EditProfile'
 import Home from './components/DashboardHome'
 import Store from './components/store'
-import Stripe from './components/Stripe'
+import StripeMain from './components/Stripe'
 import Review from './components/review'
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage'
 import Single from './components/singleProduct/index'
@@ -32,7 +32,7 @@ function App () {
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
-      <PublicRoute path='/payment' component={Stripe} />
+      <PublicRoute path='/payment' component={StripeMain} />
       <PublicRoute path='/review' component={Review} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
       <PrivateRoute path='/addlogo' component={AddLogoForm} />

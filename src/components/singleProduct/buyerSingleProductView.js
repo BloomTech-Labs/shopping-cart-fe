@@ -35,7 +35,7 @@ function SingleProductView (props) {
     dispatch(creators.addSingleProductToCart(productState, count))
   }
   return (
-    <div className='cover store' >
+    <div className='single-cover'>
       <div className='kol'>
         <Carousel className='img'>
           {productState.images &&
