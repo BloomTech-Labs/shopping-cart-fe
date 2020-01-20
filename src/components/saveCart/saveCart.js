@@ -4,16 +4,16 @@ import { useSelector } from 'react-redux'
 import '../../less/index.less'
 
 const SaveCart = (props) => {
-  const [disabled, setDisabled] = useState(true)
+  const [delivery, setDelivery] = useState(true)
   const cartContents = useSelector(state => state.cart)
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
-  const toggleDisabledFalse = () => {
-    setDisabled(false)
+  const toggleAddyFalse = () => {
+    setDelivery(false)
   }
-  const toggleDisabledTrue = () => {
-    setDisabled(true)
+  const toggleAddyTrue = () => {
+    setDelivery(true)
   }
   const handleSubmit = e => {
     e.preventDefault()
@@ -60,7 +60,6 @@ const SaveCart = (props) => {
     <div className='savecart-cover'>
       <div id='inner'>
         <div className='checkout'>
-          {/* <h4>Check out</h4> */}
           <div className='order'>
             <p>Order Summary</p>
             <div className='summary'>
@@ -71,50 +70,30 @@ const SaveCart = (props) => {
               }
             </div>
           </div>
-          <div id='linkbox'>
-            <p>Here's a link to the sellers Whatsapp number, if you have any questions.</p>
-            <div className='whatsapp'>
-              <span>Whatsapp</span> <img alt='whatsapp' src='https://cdn4.iconfinder.com/data/icons/a-s-social-set/256/whatsapp-512.png' style={{width: '3rem', height: '3rem' }} />
-            </div>
-          </div>
         </div>
         <div className='lower'>
-          {/* <h4>Cart details</h4> */}
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <div id='header'>
               <p>
             Take a second to tell us your collection/delivery and payments preferences.
               </p>
             </div>
-            <Form.Item label='Whatsapp number'>
-              {getFieldDecorator('whatsappNumber', {
-                rules: [
-                  {
-                    message: 'Enter your Whatsapp number'
-                  },
-                  {
-                    required: false,
-                    message: 'Enter your Whatsapp number'
-                  }
-                ]
-              })(<Input placeholder='Whatsapp number' />)}
-            </Form.Item>
             <Form.Item label='Delivery option'>
               {getFieldDecorator('delivery')(
                 <Radio.Group>
-                  <Radio onClick={toggleDisabledFalse} value='Delivery'>Delivery</Radio>
-                  <Radio onClick={toggleDisabledTrue} value='Collection'>Collection</Radio>
+                  <Radio onClick={toggleAddyFalse} value='Delivery'>Delivery</Radio>
+                  <Radio onClick={toggleAddyTrue} value='Collection'>Collection</Radio>
                 </Radio.Group>
               )}
             </Form.Item>
-            <span id='info'>
+            <span className={delivery ? 'addy' : 'info'}>
                 Enter your delivery address in the field below if you opt for delivery.
                 If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
             </span>
-            <Form.Item label='Delivery Address'>
+            <Form.Item className={delivery ? 'addy' : 'ant-row' + 'ant-form-item'} label='Delivery Address'>
               {getFieldDecorator('address', {
                 rules: [{ required: false, message: 'Please input your adress!' }]
-              })(<Input disabled={disabled} />)}
+              })(<Input />)}
             </Form.Item>
             <Form.Item label='Collection/Delivery date'>
               {getFieldDecorator('date-picker', config)(<DatePicker />)}

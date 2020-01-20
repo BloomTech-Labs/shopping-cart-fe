@@ -20,7 +20,7 @@
             font-size: 1.6rem;      
         }
 
-        #info {
+        .info {
             margin-bottom: 3rem;
             font-size: 1.6rem;        
         }
@@ -28,6 +28,10 @@
         form {
             width: 100%;
             text-align: left;
+
+            .addy {
+                display: none;
+            }
 
             .ant-row.ant-form-item {
                 flex-direction: column;
@@ -78,33 +82,6 @@
         width: 100%;
         padding-top: 6rem;
 
-        #linkbox {
-            font-size: 1.6rem;
-            height: 10rem;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-            justify-content: space-around;
-            align-items: center;
-
-            .whatsapp {
-                background-color: @secondary;
-                height: 40%;
-                width: 50%;
-                font-size: 2rem;
-                text-align: center;
-                align-items: center;
-                color: white;
-                border-radius: 1rem;
-                display: flex;
-                justify-content: center;
-                justify-items: center;
-
-                span {
-                    margin-right: 1rem;
-                }
-            }
-        }
 
         h4 {
             font-size: 2.5rem;
@@ -136,4 +113,8 @@
 .cash-text {
     margin-bottom: 1.3rem;
     text-align: left;
+}
+
+.addy {
+    display: none;
 }
