@@ -55,7 +55,7 @@ const ReviewMain = (props) => {
             )}
           />
           <div className='button-body'>
-            <NavLink to='/payment'>
+            <NavLink to='/savecart'>
               <div className='button'>Go to Checkout</div>
             </NavLink>
           </div>

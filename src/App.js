@@ -22,6 +22,7 @@ import Single from './components/singleProduct/index'
 // For testing only. Remove before deploying to Prod.
 import CartHeader from './components/elements/cartHeader'
 import Logo from './components/elements/logo'
+import SaveCartMain from './components/saveCart'
 
 function App () {
   return (
@@ -34,6 +35,7 @@ function App () {
       <PublicRoute path='/store/:id' component={Store} />
       <PublicRoute path='/payment' component={StripeMain} />
       <PublicRoute path='/review' component={Review} />
+      <PublicRoute path='/savecart' component={SaveCartMain} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
       <PrivateRoute path='/addlogo' component={AddLogoForm} />
       <PrivateRoute path='/profile' component={UpdateProfile} />
