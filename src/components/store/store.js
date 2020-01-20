@@ -4,7 +4,6 @@ import { Card, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
-import { useIsMounted } from '../cleanup'
 
 const { TabPane } = Tabs
 const { Meta } = Card
@@ -12,7 +11,6 @@ const { Meta } = Card
 const StoreMain = (props) => {
   const { sellerId } = props
   const [currency, setCurrency] = useState('')
-  const isMounted = useIsMounted()
   const fixCurrency = (storeDetails) => {
     if (storeDetails.currency === 'POU') {
       setCurrency('£')
@@ -28,13 +26,10 @@ const StoreMain = (props) => {
   }
   const dispatch = useDispatch()
   useEffect(() => {
-    if (isMounted.current) {
-      dispatch(creators.getProducts(sellerId))
-      dispatch(creators.getStore(sellerId))
-      dispatch(creators.setStoreUrl(window.location.href))
-    }
-  }, [isMounted])
-  // }, [sellerId, dispatch])
+    dispatch(creators.getProducts(sellerId))
+    dispatch(creators.getStore(sellerId))
+    dispatch(creators.setStoreUrl(window.location.href))
+  }, [sellerId, dispatch])
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user.user)
   const searchString = useSelector(state => state.search)

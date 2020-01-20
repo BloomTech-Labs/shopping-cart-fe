@@ -76,16 +76,6 @@ export const subtractFromCart = item => {
   }
 }
 
-export const addSingleProductToCart = (products, quantity) => {
-  return {
-    type: types.ADD_TO_CART_SINGLE_PRODUCT,
-    payload: {
-      productId: products._id,
-      quantity
-    }
-  }
-}
-
 export const clearStore = () => {
   return {
     type: types.CLEAR_STORE
