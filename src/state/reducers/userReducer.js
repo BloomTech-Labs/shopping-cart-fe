@@ -8,7 +8,7 @@ const initialUserState = {
   storeUrl: ''
 }
 
-export function userReducer(state = initialUserState, action) {
+export function userReducer (state = initialUserState, action) {
   switch (action.type) {
     case types.GET_CURRENT_USER:
       localStorage.setItem('user', JSON.stringify(action.payload))

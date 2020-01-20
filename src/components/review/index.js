@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
-import Stripe from './stripe'
+import ReviewMain from './review'
 import CartHeader from '../elements/cartHeader'
 
-function StripeMain (props) {
+function Review (props) {
   const [up, setUp] = useState(false)
   const cartContents = useSelector(state => state.cart)
   var lastScrollTop = 0
@@ -20,9 +20,9 @@ function StripeMain (props) {
   return (
     <div>
       <CartHeader top={up} displayBack displayTotal badgeCount={cartContents.length} />
-      <Stripe />
+      <ReviewMain />
     </div>
   )
 }
 
-export default StripeMain
+export default Review

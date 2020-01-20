@@ -28,6 +28,20 @@ export const getCurrentUser = () => dispatch => {
     })
 }
 
+export function increment (id) {
+  return {
+    type: types.INCREMENT,
+    payload: id
+  }
+}
+
+export function decrement (id) {
+  return {
+    type: types.DECREMENT,
+    payload: id
+  }
+}
+
 export const logout = () => {
   return {
     type: types.LOGOUT_USER
@@ -41,9 +55,23 @@ export const setStore = store => {
   }
 }
 
+export const setString = str => {
+  return {
+    type: types.SEARCHSTRING,
+    payload: str
+  }
+}
+
 export const addToCart = item => {
   return {
     type: types.ADD_TO_CART,
+    payload: item
+  }
+}
+
+export const subtractFromCart = item => {
+  return {
+    type: types.REMOVE_ITEM_FROM_CART,
     payload: item
   }
 }

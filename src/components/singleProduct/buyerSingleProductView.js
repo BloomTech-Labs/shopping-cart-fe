@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Carousel, Button, Icon, Typography } from 'antd'
-import '../less/index.less'
-import CartHeader from './elements/cartHeader'
+import '../../less/index.less'
+import CartHeader from '../elements/cartHeader'
 import { useDispatch, useSelector } from 'react-redux'
-import * as creators from '../state/actionCreators'
+import * as creators from '../../state/actionCreators'
 const { Paragraph } = Typography
 function SingleProductView (props) {
   const [productState, setProductState] = useState([])
   const [count, setCount] = useState(1)
-  const itemId = props.match.params.id
+  const itemId = props.productId
   const cartContents = useSelector(state => state.cart)
   const storeDetails = useSelector(state => state.user.user)
   useEffect(() => {
@@ -35,14 +35,7 @@ function SingleProductView (props) {
     dispatch(creators.addSingleProductToCart(productState, count))
   }
   return (
-    <div>
-      <div>
-        <CartHeader
-          badgeCount={cartContents && cartContents[0] && cartContents[0].quantity}
-          displayBack={props.history.goBack}
-          logoPath={storeDetails.imageUrl}
-        />
-      </div>
+    <div className='single-cover'>
       <div className='kol'>
         <Carousel className='img'>
           {productState.images &&
@@ -50,7 +43,7 @@ function SingleProductView (props) {
             productState.images.map((item, index) => (
               <div key={index}>
                 <img
-                  style={{ width: '100%', height: '32rem', margin: '0' }}
+                  style={{ width: '100%', height: '50%', margin: '0' }}
                   src={item}
                   alt='product'
                 />

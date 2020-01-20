@@ -1,8 +1,11 @@
 .cart-header {
-    height: 7vh;
+    height: 9vh;
     padding: 10px;
     font-size: 2rem;
-    background-color: #FF6663;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+
     i {
         font-size: 24px;
     }
@@ -31,4 +34,12 @@
             color: black;
         }
     }
+
+    a {
+        z-index: 1500;
+    }
+}
+
+.color {
+    background-color: @secondary;
 }
