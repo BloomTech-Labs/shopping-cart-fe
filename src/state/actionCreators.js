@@ -145,7 +145,7 @@ export const deleteAccount = () => dispatch => {
     })
 }
 
-export const getProducts = sellerId => dispatch => {
+export const getProducts = (sellerId, signal) => dispatch => {
   axios
     .get(
       `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/products`
@@ -159,7 +159,7 @@ export const getProducts = sellerId => dispatch => {
     })
 }
 
-export const getStore = sellerId => dispatch => {
+export const getStore = (sellerId, signal) => dispatch => {
   axios
     .get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
     .then(res => {

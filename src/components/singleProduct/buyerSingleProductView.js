@@ -13,6 +13,7 @@ function SingleProductView (props) {
   const cartContents = useSelector(state => state.cart)
   const storeDetails = useSelector(state => state.user.user)
   useEffect(() => {
+    const ac = new AbortController()
     axios
       .get(
         `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
@@ -21,6 +22,7 @@ function SingleProductView (props) {
         setProductState(res.data)
       })
       .catch(err => console.log(err))
+    return () => ac.abort()
   }, [itemId])
 
   function increment () {
@@ -43,7 +45,7 @@ function SingleProductView (props) {
             productState.images.map((item, index) => (
               <div key={index}>
                 <img
-                  style={{ width: '100%', height: '50%', margin: '0' }}
+                  style={{ width: '100%', margin: '0' }}
                   src={item}
                   alt='product'
                 />
@@ -59,7 +61,7 @@ function SingleProductView (props) {
               </Paragraph>
             </div>
           </div>
-          <div className='subIncDec'>
+          {/* <div className='subIncDec'>
             <h1>How many items?</h1>
             <div className='subIncDecFlex'>
               <div className='subOnClick' onClick={increment}>
@@ -83,7 +85,7 @@ function SingleProductView (props) {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
           <div className='subButton'>
             <Button onClick={addItem}>Add to Cart</Button>
           </div>
