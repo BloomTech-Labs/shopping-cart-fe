@@ -4,10 +4,17 @@ import { useSelector } from 'react-redux'
 import '../../less/index.less'
 
 const SaveCart = (props) => {
+  const [disabled, setDisabled] = useState(true)
   const cartContents = useSelector(state => state.cart)
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
+  const toggleDisabledFalse = () => {
+    setDisabled(false)
+  }
+  const toggleDisabledTrue = () => {
+    setDisabled(true)
+  }
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
@@ -95,8 +102,8 @@ const SaveCart = (props) => {
             <Form.Item label='Delivery option'>
               {getFieldDecorator('delivery')(
                 <Radio.Group>
-                  <Radio value='Delivery'>Delivery</Radio>
-                  <Radio value='Collection'>Collection</Radio>
+                  <Radio onClick={toggleDisabledFalse} value='Delivery'>Delivery</Radio>
+                  <Radio onClick={toggleDisabledTrue} value='Collection'>Collection</Radio>
                 </Radio.Group>
               )}
             </Form.Item>
@@ -107,7 +114,7 @@ const SaveCart = (props) => {
             <Form.Item label='Delivery Address'>
               {getFieldDecorator('address', {
                 rules: [{ required: false, message: 'Please input your adress!' }]
-              })(<Input />)}
+              })(<Input disabled={disabled} />)}
             </Form.Item>
             <Form.Item label='Collection/Delivery date'>
               {getFieldDecorator('date-picker', config)(<DatePicker />)}
