@@ -106,7 +106,7 @@ const SaveCart = (props) => {
             </span>
             <Form.Item label='Delivery Address'>
               {getFieldDecorator('address', {
-                rules: [{ required: true, message: 'Please input your adress!' }]
+                rules: [{ required: false, message: 'Please input your adress!' }]
               })(<Input />)}
             </Form.Item>
             <Form.Item label='Collection/Delivery date'>
