@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Form, Input, Button, Radio, DatePicker } from 'antd'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import '../../less/index.less'
+import * as creators from '../../state/actionCreators'
+import history from '../../history'
 
 const SaveCart = (props) => {
   const [delivery, setDelivery] = useState(true)
   const cartContents = useSelector(state => state.cart)
+  const dispatch = useDispatch()
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
@@ -15,17 +18,25 @@ const SaveCart = (props) => {
   const toggleAddyTrue = () => {
     setDelivery(true)
   }
+  const totalPrice = (arr) => {
+    return arr.reduce((sum, item) => {
+      return sum + (item.price * item.quantity)
+    }, 0)
+  }
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
-      const payload = {
-        whatsappNumber: values.whatsappNumber,
-        delivery: values.delivery,
-        payment: values.payment,
-        address: values.address
-      }
       if (!err) {
+        const payload = {
+          content: checkoutCart,
+          delivery: values.delivery,
+          date: JSON.stringify(values.date._d),
+          payment: values.payment,
+          total: totalPrice(checkoutCart)
+        }
         console.log(payload)
+        dispatch(creators.updateForm(payload))
+        history.push('/payment')
       }
     })
   }
@@ -96,7 +107,7 @@ const SaveCart = (props) => {
               })(<Input />)}
             </Form.Item>
             <Form.Item label='Collection/Delivery date'>
-              {getFieldDecorator('date-picker', config)(<DatePicker />)}
+              {getFieldDecorator('date', config)(<DatePicker />)}
             </Form.Item>
             <Form.Item label='Payment preference'>
               {getFieldDecorator('payment')(
@@ -109,7 +120,7 @@ const SaveCart = (props) => {
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
               <Button type='primary' htmlType='submit'>
-            Save cart
+              Submit
               </Button>
             </Form.Item>
           </Form>

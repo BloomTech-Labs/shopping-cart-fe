@@ -166,3 +166,10 @@ export const setStoreUrl = url => {
     payload: url
   }
 }
+
+export const saveCart = cart => {
+  return {
+    type: types.SAVE_CART,
+    payload: cart
+  }
+}
