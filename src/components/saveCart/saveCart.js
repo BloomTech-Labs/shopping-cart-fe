@@ -5,6 +5,9 @@ import '../../less/index.less'
 
 const SaveCart = (props) => {
   const cartContents = useSelector(state => state.cart)
+  const checkoutCart = cartContents.filter(item => {
+    return item.quantity > 0
+  })
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
@@ -55,7 +58,7 @@ const SaveCart = (props) => {
             <p>Order Summary</p>
             <div className='summary'>
               {
-                cartContents.map(item => (
+                checkoutCart.map(item => (
                   <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
                 ))
               }
