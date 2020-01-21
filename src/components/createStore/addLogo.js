@@ -176,7 +176,7 @@ const AddLogo = props => {
           <div id='header'>
             <h2 id='get-started'>
               Give your store
-              <br />a name
+              <br />a name and an address!
             </h2>
           </div>
           <Form.Item>
@@ -191,6 +191,19 @@ const AddLogo = props => {
                 }
               ]
             })(<Input placeholder="My store's name is..." />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('store', {
+              rules: [
+                {
+                  message: 'Enter your store address'
+                },
+                {
+                  required: true,
+                  message: 'Enter your store address'
+                }
+              ]
+            })(<Input placeholder="My store's address is..." />)}
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             <Button type='primary' htmlType='submit'>
