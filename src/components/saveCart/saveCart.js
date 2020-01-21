@@ -40,22 +40,21 @@ const SaveCart = (props) => {
           email: 'no@email.com',
           storeId: sellerId
         }
-        console.log(payload)
         // dispatch(creators.updateForm(payload))
         axios
-        .post(
+          .post(
           `https://shopping-cart-eu3-staging.herokuapp.com/api/store/${sellerId}/cart/submit`,
           payload
-        )
-        .then(res => {
-          debugger
-          const { text, sellerPhone } = res.data;
-          window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`;
-        })
-        .catch(e => {
-          debugger
-          console.log(e)
-        })
+          )
+          .then(res => {
+            debugger
+            const { text, sellerPhone } = res.data
+            window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`
+          })
+          .catch(e => {
+            debugger
+            console.log(e)
+          })
       }
     })
   }

@@ -28,6 +28,18 @@ export const getCurrentUser = () => dispatch => {
     })
 }
 
+export const getCart = cartId => dispatch => {
+  axios.get(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}`)
+    .then(res => {
+      debugger
+      console.log(res.data)
+    })
+    .catch(error => {
+      debugger
+      setErrors(error.response.data)
+    })
+}
+
 export function increment (id) {
   return {
     type: types.INCREMENT,

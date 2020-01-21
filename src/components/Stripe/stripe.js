@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { StripeProvider } from 'react-stripe-elements'
 import axios from 'axios'
 import { Collapse } from 'antd'
 import '../../less/index.less'
+import * as creators from '../../state/actionCreators'
 
 import MyStoreCheckout from './MyStoreCheckout'
 
 const { Panel } = Collapse
 
-const Stripe = () => {
+const Stripe = (props) => {
+  const { cartId } = props
+  console.log(cartId, props)
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(creators.getCart(cartId))
+  }, [dispatch, cartId])
   useEffect(() => {
     axios.post('http://localhost:4000/api/payment/charge', { amount: 4000 })
       .then(res => {
@@ -23,7 +30,7 @@ const Stripe = () => {
   }, [])
   return (
     <div className='payments-cover'>
-      <div className='checkout'>
+      {/* <div className='checkout'>
         <h4>Check out</h4>
         <div className='order'>
           <p>Order Summary</p>
@@ -41,7 +48,7 @@ const Stripe = () => {
             <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.date}</span></div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className='lower'>
         <h4>Payment Methods</h4>
         <Collapse accordion>

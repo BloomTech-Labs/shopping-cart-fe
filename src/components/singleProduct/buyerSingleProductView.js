@@ -66,7 +66,7 @@ function SingleProductView (props) {
         </div>
       </div>
       <NavLink to='/review'>
-        <div style={{ backgroundColor: 'dodgerblue', border: '0', borderRadius: '2rem' }} className='subFooter'>
+        <div style={{ backgroundColor: '#00000', border: '0', borderRadius: '1.5rem' }} className='subFooter'>
           <h1>Go to your cart</h1>
           <Icon
             style={{

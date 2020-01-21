@@ -11,7 +11,7 @@ const AddEmail = (props) => {
       onOk={props.onCreate}
     >
       <Form layout='vertical'>
-        <Form.Item style={{display: 'flex', flexDirection: 'column'}} label='Enter your email address to get your cart link'>
+        <Form.Item style={{ display: 'flex', flexDirection: 'column' }} label='Enter your email address to get your cart link'>
           {props.form.getFieldDecorator('email', {
             rules: [{ required: true, message: 'Please tell us your email address' }]
           })(<Input type='email' />)}

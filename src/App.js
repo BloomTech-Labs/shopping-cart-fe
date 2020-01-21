@@ -33,7 +33,7 @@ function App () {
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
-      <PublicRoute path='/payment' component={StripeMain} />
+      <PublicRoute path='/cart/:id' component={StripeMain} />
       <PublicRoute path='/review' component={Review} />
       <PublicRoute path='/savecart' component={SaveCartMain} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
