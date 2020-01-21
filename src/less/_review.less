@@ -7,6 +7,10 @@
 .review-top {
     padding-top: 3rem;
 
+    @media (min-width:@desktop){
+        width: 60%;
+      }
+
     .ant-list-item {
         margin-bottom: 1.5rem;
         background-color: white;
@@ -85,6 +89,10 @@
         justify-content: space-between;
         align-items: center;
         box-sizing: border-box;
+
+        @media (min-width:@desktop){
+            justify-content: space-around;
+          }
 
         .button {
             width: 15rem;
