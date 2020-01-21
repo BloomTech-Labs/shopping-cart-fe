@@ -43,7 +43,7 @@ const SaveCart = (props) => {
         // dispatch(creators.updateForm(payload))
         axios
           .post(
-          `https://shopping-cart-eu3-staging.herokuapp.com/api/store/${sellerId}/cart/submit`,
+          `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
           payload
           )
           .then(res => {
