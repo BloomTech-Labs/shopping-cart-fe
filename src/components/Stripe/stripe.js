@@ -12,7 +12,6 @@ const { Panel } = Collapse
 
 const Stripe = (props) => {
   const { cartId } = props
-  console.log(cartId, props)
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
   const dispatch = useDispatch()
