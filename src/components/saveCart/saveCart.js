@@ -135,7 +135,7 @@ const SaveCart = (props) => {
                 </Radio.Group>
               )}
             </Form.Item>
-            <Form.Item {...tailFormItemLayout}>
+            <Form.Item className='primary' {...tailFormItemLayout}>
               <Button type='primary' htmlType='submit'>
               Submit
               </Button>
