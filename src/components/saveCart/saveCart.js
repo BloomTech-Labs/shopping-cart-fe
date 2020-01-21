@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import '../../less/index.less'
-import * as creators from '../../state/actionCreators'
-import history from '../../history'
 
 const SaveCart = (props) => {
   const [delivery, setDelivery] = useState(true)
@@ -13,6 +11,9 @@ const SaveCart = (props) => {
   // const dispatch = useDispatch()
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
+  })
+  const contents = cartContents.map(cart => {
+    return { product: cart.productId, quantity: cart.quantity }
   })
   const toggleAddyFalse = () => {
     setDelivery(false)
@@ -30,7 +31,7 @@ const SaveCart = (props) => {
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
         const payload = {
-          contents: checkoutCart,
+          contents,
           delivery: values.delivery,
           checkoutDate: values.date._d,
           paymentPreference: values.payment,
@@ -47,12 +48,10 @@ const SaveCart = (props) => {
           payload
           )
           .then(res => {
-            debugger
             const { text, sellerPhone } = res.data
             window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`
           })
           .catch(e => {
-            debugger
             console.log(e)
           })
       }

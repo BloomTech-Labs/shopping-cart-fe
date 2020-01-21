@@ -30,25 +30,27 @@ const Stripe = (props) => {
   }, [])
   return (
     <div className='payments-cover'>
-      {/* <div className='checkout'>
+      <div className='checkout'>
         <h4>Check out</h4>
         <div className='order'>
           <p>Order Summary</p>
           <div className='summary'>
-            {
-              cartContents.content.map(item => (
-                <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
+            {cartContents.contents &&
+            cartContents.contents.length &&
+              cartContents.contents.map(item => (
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} units) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))
             }
           </div>
           <div className='summary left'>
             <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.payment}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.date}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice}</span></div>
+            {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
+            <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.checkoutDate}</span></div>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className='lower'>
         <h4>Payment Methods</h4>
         <Collapse accordion>

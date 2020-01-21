@@ -61,13 +61,13 @@ const CartHeader = ({
           <h2>{storeDetails.storeName}</h2>
         </div>
         {displayTotal ? `Total: ${sign}${totalPrice(cartContents)}` : <Search
-        onChange={change}
-        placeholder='search'
-      />}
+          onChange={change}
+          placeholder='search'
+        />}
       </Col>
       <NavLink to='/review'>
         <Col span={6} className='store-icon'>
-          <Badge className='badge' style={{backgroundColor: 'gold', color: 'black'}} count={totalQuantity(cartContents)}>
+          <Badge className='badge' style={{ backgroundColor: 'gold', color: 'black' }} count={totalQuantity(cartContents)}>
             <Icon type='shopping-cart' className='sup' />
           </Badge>
         </Col>
