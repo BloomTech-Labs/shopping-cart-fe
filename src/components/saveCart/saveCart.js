@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import '../../less/index.less'
@@ -8,7 +9,8 @@ import history from '../../history'
 const SaveCart = (props) => {
   const [delivery, setDelivery] = useState(true)
   const cartContents = useSelector(state => state.cart)
-  const dispatch = useDispatch()
+  const sellerId = useSelector(state => state.user.user._id)
+  // const dispatch = useDispatch()
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
@@ -28,15 +30,32 @@ const SaveCart = (props) => {
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
         const payload = {
-          content: checkoutCart,
+          contents: checkoutCart,
           delivery: values.delivery,
-          date: JSON.stringify(values.date._d),
-          payment: values.payment,
-          total: totalPrice(checkoutCart)
+          checkoutDate: values.date._d,
+          paymentPreference: values.payment,
+          address: values.address ? values.address : 'no address',
+          total: totalPrice(checkoutCart),
+          agreedPrice: totalPrice(checkoutCart),
+          email: 'no@email.com',
+          storeId: sellerId
         }
         console.log(payload)
-        dispatch(creators.updateForm(payload))
-        history.push('/payment')
+        // dispatch(creators.updateForm(payload))
+        axios
+        .post(
+          `https://shopping-cart-eu3-staging.herokuapp.com/api/store/${sellerId}/cart/submit`,
+          payload
+        )
+        .then(res => {
+          debugger
+          const { text, sellerPhone } = res.data;
+          window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`;
+        })
+        .catch(e => {
+          debugger
+          console.log(e)
+        })
       }
     })
   }
