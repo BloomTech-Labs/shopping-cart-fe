@@ -86,7 +86,10 @@ const RegistrationForm = props => {
   const registerForm = (
     <Spin spinning={props.isLoading}>
       <div className='cover'>
-        <Logo />
+        <div>
+          <Logo />
+        </div>
+
         <Form {...formItemLayout} onSubmit={handleSubmit}>
           <div id='header'>
             <h2>
