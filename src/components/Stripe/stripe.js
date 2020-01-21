@@ -27,7 +27,7 @@ const Stripe = (props) => {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [cartContents.agreedPrice])
   return (
     <div className='payments-cover'>
       <div className='checkout'>
