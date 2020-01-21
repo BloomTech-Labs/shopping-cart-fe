@@ -20,7 +20,7 @@ const Stripe = (props) => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
   useEffect(() => {
-    axios.post('http://localhost:4000/api/payment/charge', { amount: 4000 })
+    axios.post('http://localhost:4000/api/payment/charge', { amount: cartContents.agreedPrice })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
       })
