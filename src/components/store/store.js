@@ -27,8 +27,8 @@ const StoreMain = (props) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getProducts(sellerId))
-    dispatch(creators.setStoreUrl(window.location.href))
     dispatch(creators.getStore(sellerId))
+    dispatch(creators.setStoreUrl(window.location.href))
   }, [sellerId, dispatch])
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user.user)

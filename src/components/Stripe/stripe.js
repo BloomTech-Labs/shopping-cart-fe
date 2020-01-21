@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { StripeProvider } from 'react-stripe-elements'
 import axios from 'axios'
 import { Collapse } from 'antd'
 import '../../less/index.less'
+import * as creators from '../../state/actionCreators'
 
 import MyStoreCheckout from './MyStoreCheckout'
 
 const { Panel } = Collapse
 
-const Stripe = () => {
+const Stripe = (props) => {
+  const { cartId } = props
+  console.log(cartId, props)
   const [clientId, setClientId] = useState('')
-  const cartContents = useSelector(state => state.cart)
+  const cartContents = useSelector(state => state.savedCart)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(creators.getCart(cartId))
+  }, [dispatch, cartId])
   useEffect(() => {
     axios.post('http://localhost:4000/api/payment/charge', { amount: 4000 })
       .then(res => {
@@ -23,19 +30,25 @@ const Stripe = () => {
   }, [])
   return (
     <div className='payments-cover'>
-      <div className='checkout'>
+      {/* <div className='checkout'>
         <h4>Check out</h4>
         <div className='order'>
           <p>Order Summary</p>
           <div className='summary'>
             {
-              cartContents.map(item => (
+              cartContents.content.map(item => (
                 <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
               ))
             }
           </div>
+          <div className='summary left'>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.payment}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.date}</span></div>
+          </div>
         </div>
-      </div>
+      </div> */}
       <div className='lower'>
         <h4>Payment Methods</h4>
         <Collapse accordion>
@@ -83,13 +96,8 @@ const Stripe = () => {
           </Panel>
         </Collapse>
         <div className='save'>
-          <div className='save-text'>
-          Not ready to checkout yet? Click ‘Save cart for later’
-          to get your unique cart URL via email.
-          You can revisit later on any device.
-          </div>
           <div className='save-btn'>
-            Save cart for later
+            Complete transaction
           </div>
         </div>
       </div>

@@ -1,10 +1,14 @@
-.payments-cover {
+.savecart-cover {
     text-align: center;
     display: flex;
     flex-direction: column;
     padding: 2rem;
     justify-content: space-around;
     font-family: "Lato", sans-serif;
+
+    #inner {
+        width: 100%;
+    }
 
     .lower {
         margin-top: 3rem;
@@ -19,6 +23,28 @@
         .info {
             margin-bottom: 3rem;
             font-size: 1.6rem;        
+        }
+
+        form {
+            width: 100%;
+            text-align: left;
+
+            .addy {
+                display: none;
+            }
+
+            .ant-row.ant-form-item {
+                flex-direction: column;
+
+                label {
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                }
+
+                span {
+                    font-size: 1.8rem;
+                }
+            }
         }
 
         .save {
@@ -67,11 +93,6 @@
             width: 100%;
             color: #0B3954;
 
-            .left {
-                margin-top: 4rem;
-                text-align: left;
-            }
-
             .summary {
                 font-size: 1.8rem;
                 margin-top: 2rem;
@@ -87,4 +108,13 @@
             }
         }
     }
+}
+
+.cash-text {
+    margin-bottom: 1.3rem;
+    text-align: left;
+}
+
+.addy {
+    display: none;
 }
