@@ -86,87 +86,91 @@ const RegistrationForm = props => {
   const registerForm = (
     <Spin spinning={props.isLoading}>
       <div className='cover'>
-        <div>
+        <div className='desktop-logo'>
           <Logo />
         </div>
-
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <div id='header'>
-            <h2>
-              Register new <br /> account
-            </h2>
+        <div className='desktop-form'>
+          <Form {...formItemLayout} onSubmit={handleSubmit}>
+            <div id='header'>
+              <h2>
+                Register new <br /> account
+              </h2>
+            </div>
+            <Form.Item>
+              {getFieldDecorator('number', {
+                rules: [
+                  {
+                    message: 'Enter valid phone number'
+                  },
+                  {
+                    required: true,
+                    message: 'Enter valid phone number'
+                  }
+                ]
+              })(
+                <Input
+                  className='input'
+                  placeholder='Phone number'
+                  prefix={
+                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item hasFeedback>
+              {getFieldDecorator('password', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input your password!'
+                  },
+                  {
+                    validator: validateToNextPassword
+                  }
+                ]
+              })(
+                <Input.Password
+                  className='input'
+                  placeholder='Password'
+                  prefix={
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item hasFeedback>
+              {getFieldDecorator('confirm', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please confirm your password!'
+                  },
+                  {
+                    validator: compareToFirstPassword
+                  }
+                ]
+              })(
+                <Input.Password
+                  className='input'
+                  onBlur={handleConfirmBlur}
+                  placeholder='Confirm Password'
+                  prefix={
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item {...tailFormItemLayout}>
+              <Button type='primary' htmlType='submit'>
+                Register
+              </Button>
+            </Form.Item>
+          </Form>
+          <div id='or_login'>
+            <p>
+              or <Link to='/'>login</Link> instead
+            </p>
           </div>
-          <Form.Item>
-            {getFieldDecorator('number', {
-              rules: [
-                {
-                  message: 'Enter valid phone number'
-                },
-                {
-                  required: true,
-                  message: 'Enter valid phone number'
-                }
-              ]
-            })(
-              <Input
-                placeholder='Phone number'
-                prefix={
-                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-              />
-            )}
-          </Form.Item>
-          <Form.Item hasFeedback>
-            {getFieldDecorator('password', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please input your password!'
-                },
-                {
-                  validator: validateToNextPassword
-                }
-              ]
-            })(
-              <Input.Password
-                placeholder='Password'
-                prefix={
-                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-              />
-            )}
-          </Form.Item>
-          <Form.Item hasFeedback>
-            {getFieldDecorator('confirm', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please confirm your password!'
-                },
-                {
-                  validator: compareToFirstPassword
-                }
-              ]
-            })(
-              <Input.Password
-                onBlur={handleConfirmBlur}
-                placeholder='Confirm Password'
-                prefix={
-                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-              />
-            )}
-          </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
-              Register
-            </Button>
-          </Form.Item>
-        </Form>
-        <div id='or_login'>
-          <p>
-            or <Link to='/'>login</Link> instead
-          </p>
         </div>
       </div>
     </Spin>
