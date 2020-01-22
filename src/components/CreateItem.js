@@ -12,7 +12,7 @@ const productURL = 'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 function CreateItem ({ dispatch, form, isLoading }) {
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
-
+  const { TextArea } = Input
   const handleChange = info => {
     let fileList = [...info.fileList]
 
@@ -118,7 +118,7 @@ function CreateItem ({ dispatch, form, isLoading }) {
 
   const createItemComponent = (
     <Spin spinning={isLoading}>
-      <div className='cover'>
+      <div className='cover' id='createUpdate'>
         <div id='header'>
           <h2 id='get-started'>
             Upload new
@@ -126,7 +126,7 @@ function CreateItem ({ dispatch, form, isLoading }) {
             store item
           </h2>
         </div>
-        <div style={{ height: '30%', width: '100%' }}>
+        <div id='uploadHead' style={{ height: '30%', width: '100%' }}>
           <Upload
             style={{ height: '20%', width: '20%' }}
             listType='picture-card'
@@ -137,7 +137,7 @@ function CreateItem ({ dispatch, form, isLoading }) {
             <Icon style={{ width: '20px' }} type='upload' />
           </Upload>
         </div>
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
+        <Form className='inputForm' {...formItemLayout} onSubmit={handleSubmit}>
           <Form.Item>
             {getFieldDecorator('name', {
               rules: [
@@ -150,20 +150,6 @@ function CreateItem ({ dispatch, form, isLoading }) {
                 }
               ]
             })(<Input placeholder='Name' />)}
-          </Form.Item>
-
-          <Form.Item>
-            {getFieldDecorator('description', {
-              rules: [
-                {
-                  message: 'Enter a description'
-                },
-                {
-                  required: true,
-                  message: 'Enter a description'
-                }
-              ]
-            })(<Input placeholder='Description' />)}
           </Form.Item>
 
           <Form.Item>
@@ -188,6 +174,19 @@ function CreateItem ({ dispatch, form, isLoading }) {
                 }
               ]
             })(<Input placeholder='Stock' />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('description', {
+              rules: [
+                {
+                  message: 'Enter a description'
+                },
+                {
+                  required: true,
+                  message: 'Enter a description'
+                }
+              ]
+            })(<TextArea placeholder='Description' allowClear />)}
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
