@@ -1,4 +1,4 @@
-.payments-cover {
+.savecart-cover {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -11,13 +11,21 @@
         align-items: center;
       }
 
+    #inner {
+        width: 100%;
+
+        @media (min-width:@desktop){
+            width: 60%;
+          }
+    }
+
     .lower {
         margin-top: 3rem;
         display: flex;
         flex-direction: column;
 
         @media (min-width:@desktop){
-            width: 60%;
+            margin-top: 10rem;
           }
 
         #header p {
@@ -30,17 +38,57 @@
             font-size: 1.6rem;        
         }
 
+        form {
+            width: 100%;
+            text-align: left;
+
+            .primary {
+                @media (min-width:@desktop){
+                    margin-top: 7rem;
+                    margin-left: 3rem;
+                  }
+            }
+
+            .ant-row.ant-form-item:nth-child(n) > div {
+                @media (min-width:@desktop){
+                    text-align: left;
+                  }
+            }
+
+            .addy {
+                display: none;
+            }
+
+            .ant-row.ant-form-item {
+                flex-direction: column;
+
+                @media (min-width:@desktop){
+                    flex-direction: row;
+                  }
+
+                label {
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                }
+
+                span {
+                    font-size: 1.8rem;
+                }
+            }
+        }
+
         .save {
             width: 100%;
             font-size: 1.4rem;
             margin-top: 5rem;
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
 
             .save-btn {
                 margin-top: 4rem;
-                width: 14rem;
+                width: 18rem;
                 height: 6rem;
                 color: white;
                 background-color: #0B3954;
@@ -49,10 +97,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
-                @media (min-width:@desktop){
-                    cursor: pointer;
-                  }
             }
         }
 
@@ -68,10 +112,6 @@
         width: 100%;
         padding-top: 6rem;
 
-        @media (min-width:@desktop){
-            width: 60%;
-          }
-
 
         h4 {
             font-size: 2.5rem;
@@ -83,30 +123,18 @@
             width: 100%;
             color: #0B3954;
 
-            .left {
-                margin-top: 4rem;
-                text-align: left;
-            }
-
             .summary {
                 font-size: 1.8rem;
                 margin-top: 2rem;
-                margin-bottom: 4rem;
-                text-align: left;
 
                 .units {
                     margin-bottom: 1.3rem;
-                    background-color: silver;
-                    box-sizing: border-box;
-                    padding: 1.8rem;
-                    font-weight: bold;
-                }
 
-                .stop {
-                    margin-bottom: 1.5rem;
-                    background-color: #BFD7EA;
-                    box-sizing: border-box;
-                    padding: 1.8rem;
+                    @media (min-width:@desktop){
+                        background-color: @secondary;
+                        padding: 2rem;
+                        font-size: 2rem;
+                      }
                 }
             }
             
@@ -116,4 +144,13 @@
             }
         }
     }
+}
+
+.cash-text {
+    margin-bottom: 1.3rem;
+    text-align: left;
+}
+
+.addy {
+    display: none;
 }

@@ -1,8 +1,6 @@
 .ant-carousel .slick-slide {
   text-align: center;
-  height: 100px;
   line-height: 160px;
-  // background: whitesmoke;
   overflow: hidden;
 }
 
@@ -11,7 +9,6 @@
 }
 
 .slick-track {
-  height: 20rem;
   width: 10rem;
 }
 
@@ -31,15 +28,17 @@ div.ant-typography,
   }
 
   .subKol {
-    //border: 2px solid red;
     display: flex;
     flex-direction: column;
-    height: 50vh;
-
+    height: 30vh;
     justify-content: space-evenly;
+
+    #multiple {
+      font-size: 1.3rem;
+      color: darkgray;
+    }
   }
   .subNameDesc {
-    //border: 2px solid green;
 
     display: flex;
     flex-direction: column;
@@ -55,13 +54,11 @@ div.ant-typography,
   }
 
   .subIncDec {
-    //border: 2px solid orange;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .subIncDecFlex {
-      //border: 2px solid red;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -116,7 +113,6 @@ div.ant-typography,
   }
 }
 .subHeader {
-  //position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -131,20 +127,21 @@ div.ant-typography,
   }
 }
 .subFooter {
-  //position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-  border: 2px solid black;
-  background-color: black;
+  // border: 2px solid black;
+  background-color: rgb(29, 26, 26);
   height: 7vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  
   h1 {
-    margin-top: 1.3rem;
+    margin-top: 0.5rem;
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 }
 

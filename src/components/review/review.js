@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { Icon, List } from 'antd'
+import { Icon, List, message, Modal } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import { NavLink } from 'react-router-dom'
+import AddEmail from '../elements/saveForlaterModal'
+import history from '../../history'
 
 const ReviewMain = (props) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const [formRef, setFormRef] = useState(null)
   const cartContents = useSelector(state => state.cart)
+  const sellerId = useSelector(state => state.user.user._id)
   const dispatch = useDispatch()
   const increment = (id) => {
     dispatch(creators.increment(id))
@@ -16,6 +22,59 @@ const ReviewMain = (props) => {
   }
   const removeItem = (item) => {
     dispatch(creators.subtractFromCart(item))
+  }
+  const showModal = () => {
+    setIsVisible(true)
+  }
+  const handleCancel = () => {
+    setIsVisible(false)
+  }
+  const saveFormRef = useCallback(node => {
+    if (node !== null) {
+      setFormRef(node)
+    }
+  }, [])
+  const totalPrice = (arr) => {
+    return arr.reduce((sum, item) => {
+      return sum + (item.price * item.quantity)
+    }, 0)
+  }
+  const success = () => {
+    const secondsToGo = 3
+    const modal = Modal.success({
+      title: 'Sent! ',
+      content: 'Check your email for your cart link'
+    })
+    setTimeout(() => {
+      history.push(`/store/${sellerId}`)
+      modal.destroy()
+    }, secondsToGo * 1000)
+  }
+  const handleCreate = (props) => {
+    formRef.validateFields((err, values) => {
+      if (!err) {
+        const contents = cartContents.map(cart => {
+          return { product: cart.productId, quantity: cart.quantity }
+        })
+        const payload = {
+          email: values.email,
+          contents: contents,
+          total: totalPrice(cartContents),
+          agreedPrice: totalPrice(cartContents),
+          paymentPreference: 'card'
+        }
+        axios
+          .post(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart`, payload)
+          .then(res => {
+            formRef.resetFields()
+            success()
+            setIsVisible(false)
+          })
+          .catch(error => {
+            message.error(error.message)
+          })
+      }
+    })
   }
   return (
     <div className='cover review'>
@@ -55,8 +114,15 @@ const ReviewMain = (props) => {
             )}
           />
           <div className='button-body'>
-            <NavLink to='/payment'>
-              <div className='button'>Go to Checkout</div>
+            <div onClick={showModal} style={{ backgroundColor: '#0B3954' }} className='button'>Save for later</div>
+            <AddEmail
+              ref={saveFormRef}
+              visible={isVisible}
+              onCancel={handleCancel}
+              onCreate={handleCreate}
+            />
+            <NavLink to='/savecart'>
+              <div style={{ backgroundColor: '#FF6663' }} className='button'>Go to Checkout</div>
             </NavLink>
           </div>
         </div>

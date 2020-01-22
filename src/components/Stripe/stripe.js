@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { StripeProvider } from 'react-stripe-elements'
 import axios from 'axios'
 import { Collapse } from 'antd'
 import '../../less/index.less'
+import * as creators from '../../state/actionCreators'
 
 import MyStoreCheckout from './MyStoreCheckout'
 
 const { Panel } = Collapse
 
-const Stripe = () => {
+const Stripe = (props) => {
+  const { cartId } = props
   const [clientId, setClientId] = useState('')
-  const cartContents = useSelector(state => state.cart)
+  const cartContents = useSelector(state => state.savedCart)
+  const dispatch = useDispatch()
   useEffect(() => {
-    axios.post('http://localhost:4000/api/payment/charge', { amount: 4000 })
+    dispatch(creators.getCart(cartId))
+  }, [dispatch, cartId])
+  useEffect(() => {
+    axios.post('http://localhost:4000/api/payment/charge', { amount: cartContents.agreedPrice })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
       })
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [cartContents.agreedPrice])
   return (
     <div className='payments-cover'>
       <div className='checkout'>
@@ -28,11 +34,19 @@ const Stripe = () => {
         <div className='order'>
           <p>Order Summary</p>
           <div className='summary'>
-            {
-              cartContents.map(item => (
-                <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
+            {cartContents.contents &&
+            cartContents.contents.length &&
+              cartContents.contents.map(item => (
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} units) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))
             }
+          </div>
+          <div className='summary left'>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice}</span></div>
+            {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
+            <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.checkoutDate}</span></div>
           </div>
         </div>
       </div>
@@ -83,13 +97,11 @@ const Stripe = () => {
           </Panel>
         </Collapse>
         <div className='save'>
-          <div className='save-text'>
-          Not ready to checkout yet? Click ‘Save cart for later’
-          to get your unique cart URL via email.
-          You can revisit later on any device.
-          </div>
           <div className='save-btn'>
-            Save cart for later
+              Abort Transaction
+          </div>
+          <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
+            Complete Transaction
           </div>
         </div>
       </div>

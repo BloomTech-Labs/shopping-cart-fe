@@ -28,6 +28,17 @@ export const getCurrentUser = () => dispatch => {
     })
 }
 
+export const getCart = cartId => dispatch => {
+  axios.get(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}`)
+    .then(res => {
+      const savedCart = res.data
+      dispatch({ type: types.SAVE_CART, payload: savedCart })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
 export function increment (id) {
   return {
     type: types.INCREMENT,
@@ -73,16 +84,6 @@ export const subtractFromCart = item => {
   return {
     type: types.REMOVE_ITEM_FROM_CART,
     payload: item
-  }
-}
-
-export const addSingleProductToCart = (products, quantity) => {
-  return {
-    type: types.ADD_TO_CART_SINGLE_PRODUCT,
-    payload: {
-      productId: products._id,
-      quantity
-    }
   }
 }
 
@@ -145,7 +146,7 @@ export const deleteAccount = () => dispatch => {
     })
 }
 
-export const getProducts = sellerId => dispatch => {
+export const getProducts = (sellerId, signal) => dispatch => {
   axios
     .get(
       `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/products`
@@ -159,7 +160,7 @@ export const getProducts = sellerId => dispatch => {
     })
 }
 
-export const getStore = sellerId => dispatch => {
+export const getStore = (sellerId, signal) => dispatch => {
   axios
     .get(`https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}`)
     .then(res => {
@@ -174,5 +175,12 @@ export const setStoreUrl = url => {
   return {
     type: types.SET_STORE_URL,
     payload: url
+  }
+}
+
+export const saveCart = cart => {
+  return {
+    type: types.SAVE_CART,
+    payload: cart
   }
 }
