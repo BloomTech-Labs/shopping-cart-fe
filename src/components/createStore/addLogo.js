@@ -79,7 +79,8 @@ const AddLogo = props => {
         ownerName: formState.name,
         currency: formState.currency,
         imageUrl: imageUrl,
-        storeName: values.store
+        storeName: values.store,
+        address: values.address
       }
       if (!err) {
         dispatch(creators.setLoading(true))
