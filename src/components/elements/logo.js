@@ -1,9 +1,9 @@
 import React from 'react'
 import logo from '../../images/PureRetail_Logo.png'
 
-const Logo = () => (
+const Logo = ({ image }) => (
   <div id='logo'>
-    <img src={logo} alt='PureRetail Logo' />
+    <img src={image ? image : logo} alt='PureRetail Logo' />
   </div>
 )
 
