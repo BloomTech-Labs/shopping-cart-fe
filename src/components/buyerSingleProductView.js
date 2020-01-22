@@ -50,6 +50,7 @@ function SingleProductView(props) {
           }
           displayBack={props.history.goBack}
           logoPath={storeDetails.imageUrl}
+          className='carthead'
         />
       </div>
       <div className="kol">
