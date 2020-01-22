@@ -10,7 +10,7 @@ function Nav () {
         <li className='li'><NavLink to='dashboard' activeClassName='activeLink'><Icon className='icon' type='home' /><p>Home</p></NavLink></li>
         <li className='li'><NavLink to='inventory' activeClassName='activeLink'><Icon className='icon' type='shop' /><p>Store</p></NavLink></li>
         <li id='add' />
-        <li className='li'><Icon className='icon' type='wallet' /><p>Account</p></li>
+        <li className='li'><NavLink to='account' activeClassName='activeLink'><Icon className='icon' type='wallet' /><p>Account</p></NavLink> </li>
         <li className='li'><NavLink to='profile' activeClassName='activeLink'><Icon className='icon' type='user' /><p>Profile</p></NavLink></li>
       </ul>
     </div>
