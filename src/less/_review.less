@@ -41,11 +41,19 @@
             background-color: black;
             color: white;
             height: 100%;
+
+            @media (min-width:@desktop){
+                cursor: pointer;
+              }
         }
 
         .count {
             background-color: #BFD7EA;
             color: black;
+
+            @media (min-width:@desktop){
+                cursor: default;
+              }
         }
     }
 
@@ -118,4 +126,8 @@
     height: 100%;
     color: white;
     box-sizing: border-box;
+
+    @media (min-width:@desktop){
+        cursor: pointer;
+      }
 }
