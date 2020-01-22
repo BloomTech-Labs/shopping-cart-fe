@@ -30,7 +30,7 @@ div.ant-typography,
   .subKol {
     display: flex;
     flex-direction: column;
-    height: 30vh;
+    height: 50vh;
     justify-content: space-evenly;
 
     #multiple {
@@ -154,21 +154,10 @@ div.ant-typography,
 }
 
 @media only screen and (min-width: 768px) {
-  // div.ant-row-flex.ant-row-flex-space-between.ant-row-flex-middle.cart-header {
-  //   //border: 2px solid red !important;
-  //   z-index: 0;
-  //   position: inherit;
-  //   margin-bottom: 3rem;
-  //   background-color: #FF6663;
-  // }
   .single-cover {
-    border: 2px solid red;
+    //border: 2px solid red;
     display: flex;
     flex-direction: column;
-    
-    .carthead{
-      //border: 2px solid blue;
-    }
     .kol {
       padding-top: 1rem;
       //border: 2px solid blue;
@@ -178,8 +167,8 @@ div.ant-typography,
       align-items: center;
       margin-top: 11rem;
       .ant-carousel {
-       // border: 2px solid green;
-        width: 50rem;
+        // border: 2px solid green;
+        width: 48%;
         .slick-slider {
           margin-bottom: 0rem;
           .slick-list {
@@ -188,22 +177,35 @@ div.ant-typography,
         }
 
         .slick-slide img {
-          height: 50vh;
+          height: 61vh;
         }
       }
       .subKol {
-        //border: 2px solid black;
-        width: 50rem;
-      }
-      .subNameDesc {
-        //border: 2px solid orange;
+        border: 2px solid black;
+        width: 48%;
+        display: flex;
+        height: 100%;
+        margin-top: 4rem;
+        div.ant-typography,
+        .ant-typography {
+          width:100%;
+          font-size: 1.6rem;
+          text-align: center;
+        }
+        .subNameDesc {
+          //border: 2px solid orange;
+          margin-top: 4rem;
+          font-size: 4rem;
+        }
+        .subButton {
+          //border: 2px solid red;
+          margin-top: 10rem;
+        }
+        a .subFooter {
+          margin-top: 9rem;
+          border-radius: 0rem !important;
+        }
       }
     }
-        .subFooter {
-         // border: 2px solid yellow;
-          width: 50%;
-          margin-top: 3rem;
-          margin-left:30rem;
-        }
   }
 }

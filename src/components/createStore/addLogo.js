@@ -74,6 +74,7 @@ const AddLogo = props => {
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
+      console.log(values)
       const payload = {
         ownerName: formState.name,
         currency: formState.currency,
@@ -193,7 +194,7 @@ const AddLogo = props => {
             })(<Input placeholder="My store's name is..." />)}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('store', {
+            {getFieldDecorator('address', {
               rules: [
                 {
                   message: 'Enter your store address'

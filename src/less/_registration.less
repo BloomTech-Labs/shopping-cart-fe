@@ -1,15 +1,20 @@
 .cover {
-  height: 100vh;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  justify-content: space-around;
-  align-items: center;
-  font-family: 'Lato', sans-serif;
-  input::placeholder {
-    color: @primary;
-  }
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+
+    @media (min-width:@desktop){
+        padding: 0;
+      }
+
+    input::placeholder {
+        color: @primary;
+    }
 }
 #add-logo-image {
   .ant-upload.ant-upload-select-picture-card {
