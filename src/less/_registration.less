@@ -1,21 +1,28 @@
 .cover {
-    height: 100vh;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    justify-content: space-around;
-    align-items: center;
-    font-family: "Lato", sans-serif;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
 
-    @media (min-width:@desktop){
-        padding: 0;
-      }
+  @media (min-width: @desktop) {
+    padding: 0;
+  }
 
-    input::placeholder {
-        color: @primary;
-    }
+  input::placeholder {
+    color: @primary;
+  }
 }
+
+@media only screen and (max-width: 500px) {
+  .desktop-logo {
+    display: none;
+  }
+}
+
 #add-logo-image {
   .ant-upload.ant-upload-select-picture-card {
     width: 10rem;
@@ -56,6 +63,7 @@
   border-radius: 10px;
   width: 90%;
 }
+
 #header {
   font-size: 2rem;
   font-weight: bold;
@@ -91,6 +99,7 @@
   margin: 25px 0;
   font-size: medium;
 }
+
 @media only screen and (min-width: 768px) {
   .cover {
     display: flex;
@@ -101,10 +110,15 @@
 
     .desktop-logo {
       width: 60%;
+
       .register-text {
         font-size: 24px;
         padding: 20px;
       }
+    }
+
+    #logo {
+      display: none;
     }
 
     .desktop-form {
@@ -113,8 +127,16 @@
       background: @secondary;
       padding-top: 150px;
 
-      .input {
-        color: green;
+      #header {
+        display: none;
+      }
+
+      .form-input {
+        margin: 10px;
+      }
+
+      #or_login {
+        padding: 40px;
       }
     }
   }

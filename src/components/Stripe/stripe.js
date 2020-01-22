@@ -97,7 +97,10 @@ const Stripe = (props) => {
         </Collapse>
         <div className='save'>
           <div className='save-btn'>
-            Complete transaction
+              Abort Transaction
+          </div>
+          <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
+            Complete Transaction
           </div>
         </div>
       </div>

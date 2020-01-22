@@ -6,10 +6,19 @@
     justify-content: space-around;
     font-family: "Lato", sans-serif;
 
+    @media (min-width:@desktop){
+        justify-content: center;
+        align-items: center;
+      }
+
     .lower {
         margin-top: 3rem;
         display: flex;
         flex-direction: column;
+
+        @media (min-width:@desktop){
+            width: 60%;
+          }
 
         #header p {
             margin-bottom: 2rem;
@@ -26,13 +35,12 @@
             font-size: 1.4rem;
             margin-top: 5rem;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
 
             .save-btn {
                 margin-top: 4rem;
-                width: 18rem;
+                width: 14rem;
                 height: 6rem;
                 color: white;
                 background-color: #0B3954;
@@ -41,6 +49,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                @media (min-width:@desktop){
+                    cursor: pointer;
+                  }
             }
         }
 
@@ -55,6 +67,10 @@
         box-sizing: border-box;
         width: 100%;
         padding-top: 6rem;
+
+        @media (min-width:@desktop){
+            width: 60%;
+          }
 
 
         h4 {
