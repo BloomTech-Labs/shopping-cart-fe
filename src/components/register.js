@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import '../less/index.less'
 import Logo from './elements/logo'
+import image from '../images/register.png'
 import history from '../history'
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
 import { connect } from 'react-redux'
@@ -87,8 +88,12 @@ const RegistrationForm = props => {
     <Spin spinning={props.isLoading}>
       <div className='cover'>
         <div className='desktop-logo'>
-          <Logo />
+          <h2 className='register-text'>Register new account</h2>
+          <div className='desktop-logo-large'>
+            <img src={image} alt='PureRetail Logo' width='300' height='300' />
+          </div>
         </div>
+        <Logo />
         <div className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <div id='header'>

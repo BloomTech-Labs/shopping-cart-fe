@@ -11,6 +11,13 @@
     color: @primary;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .desktop-logo {
+    display: none;
+  }
+}
+
 #add-logo-image {
   .ant-upload.ant-upload-select-picture-card {
     width: 10rem;
@@ -50,6 +57,7 @@
   border-radius: 10px;
   width: 90%;
 }
+
 #header {
   font-size: 2rem;
   font-weight: bold;
@@ -85,6 +93,7 @@
   margin: 25px 0;
   font-size: medium;
 }
+
 @media only screen and (min-width: 768px) {
   .cover {
     display: flex;
@@ -95,10 +104,15 @@
 
     .desktop-logo {
       width: 60%;
+
       .register-text {
         font-size: 24px;
         padding: 20px;
       }
+    }
+
+    #logo {
+      display: none;
     }
 
     .desktop-form {
@@ -107,8 +121,8 @@
       background: @secondary;
       padding-top: 150px;
 
-      .input {
-        color: green;
+      #header {
+        display: none;
       }
     }
   }
