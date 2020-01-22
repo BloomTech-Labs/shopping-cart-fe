@@ -23,7 +23,7 @@ import Single from './components/singleProduct/index'
 import CartHeader from './components/elements/cartHeader'
 import Logo from './components/elements/logo'
 import SaveCartMain from './components/saveCart'
-import Account from './components/SellerAccount';
+import Account from './components/SellerAccount/SellerAccount';
 
 function App () {
   return (
