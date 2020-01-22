@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import '../../less/index.less'
-import * as creators from '../../state/actionCreators'
-import history from '../../history'
 
 const SaveCart = (props) => {
   const [delivery, setDelivery] = useState(true)
@@ -13,6 +11,9 @@ const SaveCart = (props) => {
   // const dispatch = useDispatch()
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
+  })
+  const contents = cartContents.map(cart => {
+    return { product: cart.productId, quantity: cart.quantity }
   })
   const toggleAddyFalse = () => {
     setDelivery(false)
@@ -30,7 +31,7 @@ const SaveCart = (props) => {
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
         const payload = {
-          contents: checkoutCart,
+          contents,
           delivery: values.delivery,
           checkoutDate: values.date._d,
           paymentPreference: values.payment,
@@ -43,16 +44,14 @@ const SaveCart = (props) => {
         // dispatch(creators.updateForm(payload))
         axios
           .post(
-          `https://shopping-cart-eu3-staging.herokuapp.com/api/store/${sellerId}/cart/submit`,
+          `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
           payload
           )
           .then(res => {
-            debugger
             const { text, sellerPhone } = res.data
             window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`
           })
           .catch(e => {
-            debugger
             console.log(e)
           })
       }
@@ -94,7 +93,7 @@ const SaveCart = (props) => {
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-                  <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
+                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit(s)) - {item.price}</div>
                 ))
               }
             </div>
@@ -136,7 +135,7 @@ const SaveCart = (props) => {
                 </Radio.Group>
               )}
             </Form.Item>
-            <Form.Item {...tailFormItemLayout}>
+            <Form.Item className='primary' {...tailFormItemLayout}>
               <Button type='primary' htmlType='submit'>
               Submit
               </Button>

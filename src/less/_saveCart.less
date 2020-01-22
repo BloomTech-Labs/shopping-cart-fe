@@ -6,14 +6,27 @@
     justify-content: space-around;
     font-family: "Lato", sans-serif;
 
+    @media (min-width:@desktop){
+        justify-content: center;
+        align-items: center;
+      }
+
     #inner {
         width: 100%;
+
+        @media (min-width:@desktop){
+            width: 60%;
+          }
     }
 
     .lower {
         margin-top: 3rem;
         display: flex;
         flex-direction: column;
+
+        @media (min-width:@desktop){
+            margin-top: 10rem;
+          }
 
         #header p {
             margin-bottom: 2rem;
@@ -29,12 +42,29 @@
             width: 100%;
             text-align: left;
 
+            .primary {
+                @media (min-width:@desktop){
+                    margin-top: 7rem;
+                    margin-left: 3rem;
+                  }
+            }
+
+            .ant-row.ant-form-item:nth-child(n) > div {
+                @media (min-width:@desktop){
+                    text-align: left;
+                  }
+            }
+
             .addy {
                 display: none;
             }
 
             .ant-row.ant-form-item {
                 flex-direction: column;
+
+                @media (min-width:@desktop){
+                    flex-direction: row;
+                  }
 
                 label {
                     font-size: 1.8rem;
@@ -99,6 +129,12 @@
 
                 .units {
                     margin-bottom: 1.3rem;
+
+                    @media (min-width:@desktop){
+                        background-color: @secondary;
+                        padding: 2rem;
+                        font-size: 2rem;
+                      }
                 }
             }
             

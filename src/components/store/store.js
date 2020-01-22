@@ -9,7 +9,7 @@ const { TabPane } = Tabs
 const { Meta } = Card
 
 const StoreMain = (props) => {
-  const { sellerId } = props
+  const { sellerId, cartContents, store } = props
   const [currency, setCurrency] = useState('')
   const fixCurrency = (storeDetails) => {
     if (storeDetails.currency === 'POU') {
@@ -31,9 +31,8 @@ const StoreMain = (props) => {
     dispatch(creators.setStoreUrl(window.location.href))
   }, [sellerId, dispatch])
   const inventory = useSelector(state => state.store)
-  const storeDetails = useSelector(state => state.user.user)
+  const storeDetails = store.user
   const searchString = useSelector(state => state.search)
-  const cartContents = useSelector(state => state.cart)
   useEffect(() => {
     fixCurrency(storeDetails)
   }, [storeDetails])
@@ -62,7 +61,7 @@ const StoreMain = (props) => {
               <div>
                 <h2>{storeDetails.storeName}</h2>
               </div>
-              <div>
+              <div className='card-bucket'>
                 <Tabs className='tabs' defaultActiveKey='1'>
                   <TabPane tab='Large Detail' key='1'>
                     <div className='large_wrap'>
@@ -140,6 +139,7 @@ const LargeItems = ({ inventory, currency, dispatchItem, cartContents, removeIte
       <Card
         key={item.name}
         bordered='false'
+        className='cards'
         hoverable
         style={
           {

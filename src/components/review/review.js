@@ -114,7 +114,7 @@ const ReviewMain = (props) => {
             )}
           />
           <div className='button-body'>
-            <div onClick={showModal} style={{ backgroundColor: '#FF6663' }} className='button'>Save for later</div>
+            <div onClick={showModal} style={{ backgroundColor: '#0B3954' }} className='button'>Save for later</div>
             <AddEmail
               ref={saveFormRef}
               visible={isVisible}
@@ -122,7 +122,7 @@ const ReviewMain = (props) => {
               onCreate={handleCreate}
             />
             <NavLink to='/savecart'>
-              <div className='button'>Go to Checkout</div>
+              <div style={{ backgroundColor: '#FF6663' }} className='button'>Go to Checkout</div>
             </NavLink>
           </div>
         </div>

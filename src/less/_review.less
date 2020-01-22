@@ -7,6 +7,10 @@
 .review-top {
     padding-top: 3rem;
 
+    @media (min-width:@desktop){
+        width: 60%;
+      }
+
     .ant-list-item {
         margin-bottom: 1.5rem;
         background-color: white;
@@ -37,11 +41,19 @@
             background-color: black;
             color: white;
             height: 100%;
+
+            @media (min-width:@desktop){
+                cursor: pointer;
+              }
         }
 
         .count {
             background-color: #BFD7EA;
             color: black;
+
+            @media (min-width:@desktop){
+                cursor: default;
+              }
         }
     }
 
@@ -86,6 +98,10 @@
         align-items: center;
         box-sizing: border-box;
 
+        @media (min-width:@desktop){
+            justify-content: space-around;
+          }
+
         .button {
             width: 15rem;
             height: 6rem;
@@ -96,6 +112,10 @@
             align-items: center;
             color: white;
             font-size: 1.8rem;
+
+            @media (min-width:@desktop){
+                cursor: pointer;
+              }
         }
     }
 }
@@ -106,4 +126,8 @@
     height: 100%;
     color: white;
     box-sizing: border-box;
+
+    @media (min-width:@desktop){
+        cursor: pointer;
+      }
 }
