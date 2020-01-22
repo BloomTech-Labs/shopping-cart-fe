@@ -32,8 +32,8 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     axiosWithAuth()
       .get(storeUrl)
       .then(res => {
-        const { ownerName, currency, storeName } = res.data
-        setStore({ ownerName, currency, storeName })
+        const { ownerName, currency, storeName, address } = res.data
+        setStore({ ownerName, currency, storeName, address })
         dispatch(setLoading(false))
       })
       .catch(err => {
@@ -204,6 +204,26 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
                 onChange={handleChange}
                 name='storeName'
                 placeholder='Store name'
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('address', {
+              initialValue: store.address,
+              rules: [
+                {
+                  message: 'Store address is required'
+                },
+                {
+                  required: true,
+                  message: 'Store address is required'
+                }
+              ]
+            })(
+              <Input
+                onChange={handleChange}
+                name='address'
+                placeholder='Store address'
               />
             )}
           </Form.Item>
