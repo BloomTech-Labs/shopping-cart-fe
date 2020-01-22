@@ -93,7 +93,7 @@ const SaveCart = (props) => {
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-                  <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
+                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit(s)) - {item.price}</div>
                 ))
               }
             </div>
