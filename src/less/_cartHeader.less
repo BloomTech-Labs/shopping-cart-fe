@@ -9,12 +9,20 @@
         background-color: @secondary ;
     }
 
+    @media (min-width:@desktop){
+        
+        }
+
     i {
         font-size: 24px;
     }
     
     .logo {
         text-align: left;
+
+        @media (min-width:@desktop){
+            text-align: center;
+            }
         
         img {
             width: 40px;
@@ -26,11 +34,18 @@
     .total {
         text-align: center;
         font-weight: bold;
+
+        @media (min-width:@desktop){
+            }
     }
 
     .icon {
         text-align: right;
         padding-right: 10px;
+
+        @media (min-width:@desktop){
+            padding-right: 17rem;
+            }
 
         sup {
             background-color: gold;
