@@ -25,11 +25,13 @@ function SingleProductView (props) {
   const dispatchItem = item => {
     dispatch(creators.addToCart(item))
   }
-  const removeItem = (item) => {
+  const removeItem = item => {
     dispatch(creators.subtractFromCart(item))
   }
-  const btnChange = (item) => {
-    const itemObj = cartContents.find(({ productId }) => productId === item._id)
+  const btnChange = item => {
+    const itemObj = cartContents.find(
+      ({ productId }) => productId === item._id
+    )
     return itemObj
   }
   return (
@@ -57,28 +59,46 @@ function SingleProductView (props) {
               </Paragraph>
             </div>
           </div>
-          <div id='multiple'>multiple units of this item can be added on checkout</div>
           <div className='subButton'>
-            {!btnChange(productState)
-              ? <Button style={{ border: '0' }} onClick={() => dispatchItem(productState)}>Add to Cart</Button>
-              : <Button style={{ backgroundColor: '#FF6663', border: '0' }} onClick={() => removeItem(productState)}>Remove from Cart</Button>}
+            {!btnChange(productState) ? (
+              <Button
+                style={{ border: '0' }}
+                onClick={() => dispatchItem(productState)}
+              >
+                Add to Cart
+              </Button>
+            ) : (
+              <Button
+                style={{ backgroundColor: '#FF6663', border: '0' }}
+                onClick={() => removeItem(productState)}
+              >
+                Remove from Cart
+              </Button>
+            )}
           </div>
+          <NavLink to='/review'>
+            <div
+              style={{
+                backgroundColor: '#00000',
+                border: '0',
+                borderRadius: '1.5rem'
+              }}
+              className='subFooter'
+            >
+              <h1>Go to your cart</h1>
+              <Icon
+                style={{
+                  fontSize: '2.5rem',
+                  color: 'white',
+                  marginTop: '0.9rem',
+                  marginLeft: '0.4rem'
+                }}
+                type='shopping-cart'
+              />
+            </div>
+          </NavLink>
         </div>
       </div>
-      <NavLink to='/review'>
-        <div style={{ backgroundColor: '#00000', border: '0', borderRadius: '1.5rem' }} className='subFooter'>
-          <h1>Go to your cart</h1>
-          <Icon
-            style={{
-              fontSize: '2.5rem',
-              color: 'white',
-              marginTop: '0.9rem',
-              marginLeft: '0.4rem'
-            }}
-            type='shopping-cart'
-          />
-        </div>
-      </NavLink>
     </div>
   )
 }

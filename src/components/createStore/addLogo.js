@@ -78,7 +78,8 @@ const AddLogo = props => {
         ownerName: formState.name,
         currency: formState.currency,
         imageUrl: imageUrl,
-        storeName: values.store
+        storeName: values.store,
+        address: values.address
       }
       if (!err) {
         dispatch(creators.setLoading(true))
@@ -193,7 +194,7 @@ const AddLogo = props => {
             })(<Input placeholder="My store's name is..." />)}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('store', {
+            {getFieldDecorator('address', {
               rules: [
                 {
                   message: 'Enter your store address'
