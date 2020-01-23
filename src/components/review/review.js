@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, message, Modal } from 'antd'
@@ -14,6 +14,24 @@ const ReviewMain = (props) => {
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
   const dispatch = useDispatch()
+  const [sign, setSign] = useState('')
+  const storeDetails = useSelector(state => state.user.user)
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.currency === 'POU') {
+      setSign('£')
+    } else if (storeDetails.currency === 'DOL') {
+      setSign('$')
+    } else if (storeDetails.currency === 'EUR') {
+      setSign('€')
+    } else if (storeDetails.currency === 'YEN') {
+      setSign('¥')
+    } else {
+      return undefined
+    }
+  }
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
   const increment = (id) => {
     dispatch(creators.increment(id))
   }
@@ -101,19 +119,19 @@ const ReviewMain = (props) => {
             renderItem={item => (
               <List.Item>
                 <div className='controls'>
-                  <div onClick={() => increment(item.productId)} className='clicks'>+</div>
-                  <div className='clicks count'>{item.quantity}</div>
                   <div onClick={() => decrement(item.productId)} className='clicks'>-</div>
+                  <div className='clicks count'>{item.quantity}</div>
+                  <div onClick={() => increment(item.productId)} className='clicks'>+</div>
                 </div>
                 <List.Item.Meta
                   title={item.name}
-                  description={item.price}
+                  description={`${sign}${item.price}`}
                 />
-                <div onClick={() => removeItem({ _id: item.productId })} className='cancel'>x</div>
+                <div onClick={() => removeItem({ _id: item.productId })} className='cancel'>X</div>
               </List.Item>
             )}
           />
-          <div className='button-body'>
+          { cartContents.length > 0 ? (<div className='button-body'>
             <div onClick={showModal} style={{ backgroundColor: '#0B3954' }} className='button'>Save for later</div>
             <AddEmail
               ref={saveFormRef}
@@ -124,7 +142,7 @@ const ReviewMain = (props) => {
             <NavLink to='/savecart'>
               <div style={{ backgroundColor: '#FF6663' }} className='button'>Go to Checkout</div>
             </NavLink>
-          </div>
+          </div>) : 'Please add items to your cart!' }
         </div>
       </div>
     </div>
