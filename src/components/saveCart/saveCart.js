@@ -132,6 +132,9 @@ const SaveCart = (props) => {
                 </Radio.Group>
               )}
             </Form.Item>
+            <span className={delivery ? 'info' : 'addy'}>
+              Please wait for confirmation from the seller that your order is available and then collect it from: {storeDetails.address}
+            </span>
             <span className={delivery ? 'addy' : 'info'}>
                 Enter your delivery address in the field below if you opt for delivery.
                 If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
