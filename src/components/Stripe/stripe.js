@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { StripeProvider } from 'react-stripe-elements'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { Collapse } from 'antd'
 import '../../less/index.less'
@@ -14,6 +15,8 @@ const Stripe = (props) => {
   const { cartId } = props
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
+  const savedDate = new Date(cartContents.checkoutDate || 0);
+  debugger
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
@@ -37,15 +40,15 @@ const Stripe = (props) => {
             {cartContents.contents &&
             cartContents.contents.length &&
               cartContents.contents.map(item => (
-                <div className='units stop' key={item._id}>{item.name} ({item.quantity} units) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} unit{ item.quantity > 1 ? 's' : ''}) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))}
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total.toFixed(2)}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total ? cartContents.total.toFixed(2): 0}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 }</span></div>
             {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
             <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.checkoutDate}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{savedDate.toLocaleDateString('en-GB')}</span></div>
           </div>
         </div>
       </div>
@@ -96,9 +99,11 @@ const Stripe = (props) => {
           </Panel>
         </Collapse>
         <div className='save'>
-          <div className='save-btn'>
-              Abort Transaction
-          </div>
+          <NavLink to={`/store/${cartContents.storeId}`}>
+            <div className='save-btn'>
+                Abort Transaction
+            </div>
+          </NavLink>
           {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
           </div> */}
