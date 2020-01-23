@@ -14,7 +14,6 @@ const Stripe = (props) => {
   const { cartId } = props
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
-  console.log('cart', cartContents)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
@@ -22,7 +21,6 @@ const Stripe = (props) => {
   useEffect(() => {
     axios.post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
       .then(res => {
-        console.log('res>>>', res.data.paymentIntent)
         setClientId(res.data.paymentIntent.client_secret)
       })
       .catch(err => {
@@ -101,9 +99,9 @@ const Stripe = (props) => {
           <div className='save-btn'>
               Abort Transaction
           </div>
-          <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
+          {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
