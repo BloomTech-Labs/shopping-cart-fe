@@ -127,19 +127,19 @@ const SaveCart = (props) => {
             <Form.Item label='Delivery option'>
               {getFieldDecorator('delivery')(
                 <Radio.Group>
-                  <Radio onClick={toggleAddyFalse} value='Delivery'>Delivery</Radio>
-                  <Radio onClick={toggleAddyTrue} value='Collection'>Collection</Radio>
+                  <Radio onClick={toggleAddyTrue} value='Delivery'>Delivery</Radio>
+                  <Radio onClick={toggleAddyFalse} value='Collection'>Collection</Radio>
                 </Radio.Group>
               )}
             </Form.Item>
-            <span className={delivery ? 'info' : 'addy'}>
+            <span className={delivery ? 'addy' : 'info'}>
               Please wait for confirmation from the seller that your order is available and then collect it from: {storeDetails.address}
             </span>
-            <span className={delivery ? 'addy' : 'info'}>
+            <span className={delivery ? 'info' : 'addy'}>
                 Enter your delivery address in the field below if you opt for delivery.
                 If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
             </span>
-            <Form.Item className={delivery ? 'addy' : 'ant-row' + 'ant-form-item'} label='Delivery Address'>
+            <Form.Item className={delivery ? 'ant-row' + 'ant-form-item' : 'addy'} label='Delivery Address'>
               {getFieldDecorator('address', {
                 rules: [{ required: false, message: 'Please input your address!' }]
               })(<Input />)}
