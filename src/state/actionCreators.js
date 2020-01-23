@@ -122,7 +122,7 @@ export const clearUser = () => {
 
 export const deleteStore = () => dispatch => {
   AxiosAuth()
-    .delete('https://shopping-cart-eu3-staging.herokuapp.com/api/store')
+    .delete('https://shopping-cart-eu3.herokuapp.com/api/store')
     .then(res => {
       const message = res.data
       setLoading(true)
@@ -137,7 +137,7 @@ export const deleteStore = () => dispatch => {
 export const deleteAccount = () => dispatch => {
   setLoading(true)
   AxiosAuth()
-    .delete('https://shopping-cart-eu3-staging.herokuapp.com/api/auth/account')
+    .delete('https://shopping-cart-eu3.herokuapp.com/api/auth/account')
     .then(res => {
       logout()
       dispatch({ type: types.DELETE_ACCOUNT })
