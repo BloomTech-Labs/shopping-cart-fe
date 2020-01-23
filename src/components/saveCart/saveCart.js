@@ -138,7 +138,7 @@ const SaveCart = (props) => {
             </span>
             <Form.Item className={delivery ? 'addy' : 'ant-row' + 'ant-form-item'} label='Delivery Address'>
               {getFieldDecorator('address', {
-                rules: [{ required: false, message: 'Please input your adress!' }]
+                rules: [{ required: false, message: 'Please input your address!' }]
               })(<Input />)}
             </Form.Item>
             <Form.Item label='Collection/Delivery date'>
