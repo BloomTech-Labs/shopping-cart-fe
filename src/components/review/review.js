@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, message, Modal } from 'antd'
@@ -14,6 +14,24 @@ const ReviewMain = (props) => {
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
   const dispatch = useDispatch()
+  const [sign, setSign] = useState('')
+  const storeDetails = useSelector(state => state.user.user)
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.currency === 'POU') {
+      setSign('£')
+    } else if (storeDetails.currency === 'DOL') {
+      setSign('$')
+    } else if (storeDetails.currency === 'EUR') {
+      setSign('€')
+    } else if (storeDetails.currency === 'YEN') {
+      setSign('¥')
+    } else {
+      return undefined
+    }
+  }
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
   const increment = (id) => {
     dispatch(creators.increment(id))
   }
@@ -107,7 +125,7 @@ const ReviewMain = (props) => {
                 </div>
                 <List.Item.Meta
                   title={item.name}
-                  description={item.price}
+                  description={`${sign}${item.price}`}
                 />
                 <div onClick={() => removeItem({ _id: item.productId })} className='cancel'>x</div>
               </List.Item>

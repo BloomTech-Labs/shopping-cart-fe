@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker } from 'antd'
 import { useSelector } from 'react-redux'
@@ -9,6 +9,24 @@ const SaveCart = (props) => {
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
   // const dispatch = useDispatch()
+  const [sign, setSign] = useState('')
+  const storeDetails = useSelector(state => state.user.user)
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.currency === 'POU') {
+      setSign('£')
+    } else if (storeDetails.currency === 'DOL') {
+      setSign('$')
+    } else if (storeDetails.currency === 'EUR') {
+      setSign('€')
+    } else if (storeDetails.currency === 'YEN') {
+      setSign('¥')
+    } else {
+      return undefined
+    }
+  }
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
@@ -93,7 +111,7 @@ const SaveCart = (props) => {
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {item.price}</div>
+<div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
                 ))
               }
             </div>
