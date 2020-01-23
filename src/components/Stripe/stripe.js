@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { StripeProvider } from 'react-stripe-elements'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { Collapse } from 'antd'
 import '../../less/index.less'
@@ -14,6 +15,7 @@ const Stripe = (props) => {
   const { cartId } = props
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
+  debugger
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
@@ -96,9 +98,11 @@ const Stripe = (props) => {
           </Panel>
         </Collapse>
         <div className='save'>
-          <div className='save-btn'>
-              Abort Transaction
-          </div>
+          <NavLink to={`/store/${cartContents.storeId}`}>
+            <div className='save-btn'>
+                Abort Transaction
+            </div>
+          </NavLink>
           {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
           </div> */}
