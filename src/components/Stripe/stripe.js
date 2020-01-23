@@ -19,14 +19,14 @@ const Stripe = (props) => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
   useEffect(() => {
-    axios.post('http://localhost:4000/api/payment/charge', { amount: cartContents.agreedPrice })
+    axios.post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
       })
       .catch(err => {
         console.log(err)
       })
-  }, [cartContents.agreedPrice])
+  }, [cartContents.agreedPrice, cartContents])
   return (
     <div className='payments-cover'>
       <div className='checkout'>
@@ -53,7 +53,7 @@ const Stripe = (props) => {
         <h4>Payment Methods</h4>
         <Collapse accordion>
           <Panel header='Pay with card' key='1'>
-            <StripeProvider apiKey='pk_test_TYooMQauvdEDq54NiTphI7jx'>
+            <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3'>
               <MyStoreCheckout clientId={clientId} />
             </StripeProvider>
           </Panel>
@@ -99,9 +99,9 @@ const Stripe = (props) => {
           <div className='save-btn'>
               Abort Transaction
           </div>
-          <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
+          {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

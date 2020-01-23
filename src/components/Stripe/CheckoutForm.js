@@ -1,6 +1,8 @@
 import React from 'react'
+import { message } from 'antd'
 import { injectStripe } from 'react-stripe-elements'
 import CardSection from './CardSection'
+import history from '../../history'
 
 const CheckoutForm = (props) => {
   const handleSubmit = (ev) => {
@@ -18,12 +20,12 @@ const CheckoutForm = (props) => {
       }
     }).then(res => {
       if (res.paymentIntent) {
-        alert('Transaction Succeeded')
+        history.push('/success')
       } else {
-        alert('Transaction Failed')
+        message.error('Transaction failed')
       }
     }).catch(err => {
-      alert(err.message)
+      message.error(err.message)
     })
   }
 

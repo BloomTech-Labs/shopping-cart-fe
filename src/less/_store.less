@@ -1,12 +1,10 @@
 .store {
   height: auto;
 
-  @media (min-width:@desktop){
-    background-color: #E8E8E8;
+  @media (min-width: @desktop) {
+    background-color: #e8e8e8;
   }
-
 }
-
 
 .store-top {
   display: flex;
@@ -23,7 +21,7 @@
     box-sizing: border-box;
     margin-top: 3rem;
 
-    @media (min-width:@desktop){
+    @media (min-width: @desktop) {
       margin-top: 20vh;
     }
 
@@ -35,8 +33,7 @@
       align-items: center;
 
       .ant-tabs-bar {
-
-        @media (min-width:@desktop){
+        @media (min-width: @desktop) {
           display: none !important;
         }
       }
@@ -46,19 +43,17 @@
         font-weight: bold;
         margin-bottom: 2rem;
 
-        @media (min-width:@desktop){
+        @media (min-width: @desktop) {
           display: none;
         }
-
       }
-
 
       .image {
         width: 23%;
         height: 100%;
         border-radius: 100%;
 
-        @media (min-width:@desktop){
+        @media (min-width: @desktop) {
           display: none;
         }
       }
@@ -68,7 +63,7 @@
         font-size: 3rem;
         width: 37%;
         padding-left: 7rem;
-        z-index:5;
+        z-index: 5;
       }
     }
 
@@ -99,30 +94,30 @@
 }
 
 .large_wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    @media (min-width:@desktop){
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+  @media (min-width: @desktop) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 
 .label {
-    text-transform: uppercase;
-    font-size: 2rem;
-    font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bolder;
 
-    .desc {
-      color: #0B3954;
-    }
+  .desc {
+    color: #0b3954;
+  }
 
-    .price {
-      color: #44B400;
-      font-size: 1.4rem;
-    }
+  .price {
+    color: #44b400;
+    font-size: 1.4rem;
+  }
 }
 
 .small-label {
@@ -137,7 +132,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  
+
   p {
     text-align: center;
     word-break: break-all;
@@ -145,40 +140,40 @@
   }
 
   .sdesc {
-    color: #0B3954;
+    color: #0b3954;
   }
 
   .sprice {
-    color: #44B400;
+    color: #44b400;
     font-size: 1.4rem;
   }
 }
 
 .ant-card-body {
-    padding: 1rem !important;
+  padding: 1rem !important;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+
+  .ant-card-meta {
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    text-align: center;
 
-    .ant-card-meta {
+    .ant-card-meta-detail {
       width: 100%;
       height: 100%;
 
-      .ant-card-meta-detail {
+      .ant-card-meta-title {
         width: 100%;
         height: 100%;
-
-        .ant-card-meta-title {
-          width: 100%;
-          height: 100%;
-        }
       }
     }
+  }
 
-    .in-cover {
-      width: 100%;
-    }
+  .in-cover {
+    width: 100%;
+  }
 }
 
 .searchbar {
@@ -198,7 +193,7 @@
   width: 100%;
   position: sticky;
   top: -7rem;
-  z-index:1;
+  z-index: 1;
 }
 
 .navbarHidden {
@@ -218,7 +213,7 @@
 }
 
 .card-bucket {
-  @media (min-width:@desktop){
+  @media (min-width: @desktop) {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -228,16 +223,16 @@
     align-items: center;
     padding-left: 10%;
     padding-right: 10%;
-    background-color: #E8E8E8;
+    background-color: #e8e8e8;
 
     .ant-tabs {
-      @media (min-width:@desktop){
+      @media (min-width: @desktop) {
         width: 100%;
       }
     }
 
     .cards {
-      @media (min-width:@desktop){
+      @media (min-width: @desktop) {
         display: flex;
         width: 30% !important;
       }
@@ -245,3 +240,20 @@
   }
 }
 
+@media only screen and (max-width: 500px) {
+  .desktop-logo-large {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #create-store {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  .cover {
+    margin: 0 auto;
+  }
+}
