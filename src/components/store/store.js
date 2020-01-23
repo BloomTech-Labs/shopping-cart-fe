@@ -57,9 +57,9 @@ const StoreMain = (props) => {
         <div className='store-info'>
           <div className='store-logo'>
             {storeDetails.imageUrl === null ? undefined : <img alt='logo' src={storeDetails.imageUrl} className='image' />}
-            <div className='content'>
+            <div className='content' style={{ paddingTop: "0" }}>
               <div>
-                <h2>{storeDetails.storeName}</h2>
+                <h2 style={{paddingTop: "0"}}>{storeDetails.storeName}</h2>
               </div>
               <div className='card-bucket'>
                 <Tabs className='tabs' defaultActiveKey='1'>
