@@ -1,7 +1,7 @@
 h2 {
     padding-top: 50px;
     font-size: 23px;
-    color: #bfd7ea;
+    color: #6f95b4;
 }
 
 h3 {
@@ -25,11 +25,11 @@ h3 {
     margin-top: 50px;
     width: 90vw;
     margin: 50px auto;
-    border-radius: 10px;
-    box-shadow: #8b8b8b;
+    border-radius: 10px 0px 10px 10px;
+    box-shadow: -2px 1px 14px -5px rgba(65,75,87,0.2);
 }
 
 #stripeID {
     color: rgb(19, 168, 19);
-    font-size: 20px;
+    font-size: 25px;
 }
