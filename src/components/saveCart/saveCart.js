@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Form, Input, Button, Radio, DatePicker } from 'antd'
+import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
 
@@ -48,6 +48,15 @@ const SaveCart = (props) => {
     e.preventDefault()
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
+        info(values)
+      }
+    })
+  }
+  const info = values => {
+    Modal.info({
+      title: 'Forwarding to WhatsApp',
+      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.' ,
+      onOk() {
         const payload = {
           contents,
           delivery: values.delivery,
@@ -158,7 +167,7 @@ const SaveCart = (props) => {
             </Form.Item>
             <Form.Item className='primary' {...tailFormItemLayout}>
               <Button type='primary' htmlType='submit'>
-              Submit
+                Submit
               </Button>
             </Form.Item>
           </Form>
