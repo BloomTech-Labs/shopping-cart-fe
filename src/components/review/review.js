@@ -127,7 +127,7 @@ const ReviewMain = (props) => {
                   title={item.name}
                   description={`${sign}${item.price}`}
                 />
-                <div onClick={() => removeItem({ _id: item.productId })} className='cancel'>x</div>
+                <div onClick={() => removeItem({ _id: item.productId })} className='cancel'>X</div>
               </List.Item>
             )}
           />
