@@ -1,6 +1,12 @@
 .store {
   height: auto;
+
+  @media (min-width:@desktop){
+    background-color: #E8E8E8;
+  }
+
 }
+
 
 .store-top {
   display: flex;
@@ -17,6 +23,10 @@
     box-sizing: border-box;
     margin-top: 3rem;
 
+    @media (min-width:@desktop){
+      margin-top: 20vh;
+    }
+
     .store-logo {
       height: 40%;
       width: 100%;
@@ -24,10 +34,22 @@
       justify-content: center;
       align-items: center;
 
+      .ant-tabs-bar {
+
+        @media (min-width:@desktop){
+          display: none !important;
+        }
+      }
+
       h2 {
         font-size: 2.5rem;
         font-weight: bold;
         margin-bottom: 2rem;
+
+        @media (min-width:@desktop){
+          display: none;
+        }
+
       }
 
 
@@ -35,6 +57,10 @@
         width: 23%;
         height: 100%;
         border-radius: 100%;
+
+        @media (min-width:@desktop){
+          display: none;
+        }
       }
 
       .cart {
@@ -63,6 +89,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (min-width:@desktop){
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
 }
 
 .label {
@@ -171,3 +203,32 @@
   box-sizing: border-box;
   width: 15%;
 }
+
+.card-bucket {
+  @media (min-width:@desktop){
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #E8E8E8;
+
+    .ant-tabs {
+      @media (min-width:@desktop){
+        width: 100%;
+      }
+    }
+
+    .cards {
+      @media (min-width:@desktop){
+        display: flex;
+        width: 30% !important;
+      }
+    }
+  }
+}
+

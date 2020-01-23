@@ -23,6 +23,7 @@ import Single from './components/singleProduct/index'
 import CartHeader from './components/elements/cartHeader'
 import Logo from './components/elements/logo'
 import SaveCartMain from './components/saveCart'
+import Account from './components/SellerAccount/SellerAccount';
 
 function App () {
   return (
@@ -47,6 +48,7 @@ function App () {
       {/* For testing only. Remove before deploying to Prod. */}
       <PublicRoute exact path='/elements/Logo' component={Logo} />
       <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
+      <PrivateRoute path='/account' component={Account} />
     </Switch>
   )
 }

@@ -12,7 +12,6 @@ const { Panel } = Collapse
 
 const Stripe = (props) => {
   const { cartId } = props
-  console.log(cartId, props)
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
   const dispatch = useDispatch()
@@ -20,35 +19,36 @@ const Stripe = (props) => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
   useEffect(() => {
-    axios.post('http://localhost:4000/api/payment/charge', { amount: 4000 })
+    axios.post('http://localhost:4000/api/payment/charge', { amount: cartContents.agreedPrice })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
       })
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [cartContents.agreedPrice])
   return (
     <div className='payments-cover'>
-      {/* <div className='checkout'>
+      <div className='checkout'>
         <h4>Check out</h4>
         <div className='order'>
           <p>Order Summary</p>
           <div className='summary'>
-            {
-              cartContents.content.map(item => (
-                <div className='units' key={item.productId}>{item.name}({item.quantity} units) - {item.price}</div>
-              ))
-            }
+            {cartContents.contents &&
+            cartContents.contents.length &&
+              cartContents.contents.map(item => (
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} units) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
+              ))}
           </div>
           <div className='summary left'>
             <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.payment}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.date}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice}</span></div>
+            {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
+            <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{cartContents.checkoutDate}</span></div>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className='lower'>
         <h4>Payment Methods</h4>
         <Collapse accordion>
@@ -97,7 +97,10 @@ const Stripe = (props) => {
         </Collapse>
         <div className='save'>
           <div className='save-btn'>
-            Complete transaction
+              Abort Transaction
+          </div>
+          <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
+            Complete Transaction
           </div>
         </div>
       </div>

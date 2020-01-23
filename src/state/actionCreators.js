@@ -31,12 +31,11 @@ export const getCurrentUser = () => dispatch => {
 export const getCart = cartId => dispatch => {
   axios.get(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}`)
     .then(res => {
-      debugger
-      console.log(res.data)
+      const savedCart = res.data
+      dispatch({ type: types.SAVE_CART, payload: savedCart })
     })
     .catch(error => {
-      debugger
-      setErrors(error.response.data)
+      console.log(error)
     })
 }
 

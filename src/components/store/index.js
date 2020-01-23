@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
 import StoreMain from './store'
-import CartHeader from '../elements/cartHeader'
+import CartHeader from './cartHeaderStore'
 
 function Store (props) {
   const [up, setUp] = useState(false)
@@ -23,7 +23,7 @@ function Store (props) {
   return (
     <div>
       <CartHeader top={up} badgeCount={cartContents.length} logoPath={store.user.imageUrl} />
-      <StoreMain sellerId={sellerId} />
+      <StoreMain sellerId={sellerId} cartContents={cartContents} store={store} />
     </div>
   )
 }
