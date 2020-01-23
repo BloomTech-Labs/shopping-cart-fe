@@ -63,7 +63,7 @@ const StoreMain = props => {
             )}
             <div className='content'>
               <div>
-                <h2>{storeDetails.storeName}</h2>
+                <h2 style={{paddingTop: "0"}}>{storeDetails.storeName}</h2>
               </div>
               <div className='card-bucket'>
                 <Tabs className='tabs' defaultActiveKey='1'>

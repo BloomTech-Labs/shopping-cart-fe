@@ -41,7 +41,7 @@ const Stripe = (props) => {
               ))}
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total.toFixed(2)}</span></div>
             <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice}</span></div>
             {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
             <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>

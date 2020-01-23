@@ -60,7 +60,7 @@ const CartHeader = ({
         <div className='name'>
           <h2>{storeDetails.storeName}</h2>
         </div>
-        {displayTotal ? `Total: ${sign}${totalPrice(cartContents)}` : <Search
+        {displayTotal ? `Total: ${sign}${totalPrice(cartContents).toFixed(2)}` : <Search
           onChange={change}
           placeholder='search'
         />}

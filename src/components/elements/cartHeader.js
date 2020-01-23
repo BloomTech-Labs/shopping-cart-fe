@@ -56,7 +56,7 @@ const CartHeader = ({
           ? <Icon onClick={history.goBack} type='left-circle' />
           : <img src={logoPath || NoLogo} alt='Store Logo' />}
       </Col>
-      <Col span={12} className='total'>{displayTotal ? `Total: ${sign}${totalPrice(cartContents)}` : <Search
+      <Col span={12} className='total'>{displayTotal ? `Total: ${sign}${totalPrice(cartContents).toFixed(2)}` : <Search
         onChange={change}
         placeholder='search'
       />}
