@@ -24,7 +24,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     currency: '',
     storeName: '',
     imageUrl: '',
-    address:''
+    address: ''
   })
 
   useEffect(() => {

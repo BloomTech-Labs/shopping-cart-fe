@@ -74,7 +74,6 @@ const AddLogo = props => {
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
-      console.log(values)
       const payload = {
         ownerName: formState.name,
         currency: formState.currency,
