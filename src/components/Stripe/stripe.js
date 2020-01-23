@@ -37,7 +37,7 @@ const Stripe = (props) => {
             {cartContents.contents &&
             cartContents.contents.length &&
               cartContents.contents.map(item => (
-                <div className='units stop' key={item._id}>{item.name} ({item.quantity} units) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} unit{ item.quantity > 1 ? 's' : ''}) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))}
           </div>
           <div className='summary left'>
