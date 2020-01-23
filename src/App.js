@@ -23,7 +23,8 @@ import Single from './components/singleProduct/index'
 import CartHeader from './components/elements/cartHeader'
 import Logo from './components/elements/logo'
 import SaveCartMain from './components/saveCart'
-import Account from './components/SellerAccount/SellerAccount';
+import Account from './components/SellerAccount/SellerAccount'
+import Confirmation from './components/orderConfirmation'
 
 function App () {
   return (
@@ -49,6 +50,7 @@ function App () {
       <PublicRoute exact path='/elements/Logo' component={Logo} />
       <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
       <PrivateRoute path='/account' component={Account} />
+      <PrivateRoute path='/confirmation/:id' component={Confirmation} />
     </Switch>
   )
 }
