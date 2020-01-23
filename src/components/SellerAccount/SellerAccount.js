@@ -43,7 +43,7 @@ function Account () {
           <Card className='Card' title={"Your Stripe ID"} style={{fontWeight:"900" }}>
         <p id="stripeID">{stripeId? stripeId : "Your stripe account is not connected"}</p>
         </Card>
-        {stripeId? null : <Button onClick={connectStripe}>Connect to Stripe</Button>}
+        {stripeId? <Button onClick={connectStripe}>Change Stripe Id</Button> : <Button onClick={connectStripe}>Connect to Stripe</Button>}
       </div>
       <Nav />
     </div>
