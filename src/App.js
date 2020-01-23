@@ -35,6 +35,7 @@ function App () {
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
+      <PrivateRoute path='/cart/:id/approve' component={Confirmation} />
       <PublicRoute path='/cart/:id' component={StripeMain} />
       <PublicRoute path='/review' component={Review} />
       <PublicRoute path='/savecart' component={SaveCartMain} />
@@ -50,7 +51,6 @@ function App () {
       <PublicRoute exact path='/elements/Logo' component={Logo} />
       <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
       <PrivateRoute path='/account' component={Account} />
-      <PrivateRoute path='/confirmation/:id' component={Confirmation} />
     </Switch>
   )
 }

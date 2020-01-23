@@ -3,33 +3,44 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Form, Input, message, Button } from 'antd'
 import '../less/index.less'
 import * as creators from '../state/actionCreators'
+import AxiosAuth from './Auth/axiosWithAuth'
 
 const Confirmation = (props) => {
   const cartId = props.match.params.id
+  const cartContents = useSelector(state => state.savedCart)
+  const dispatch = useDispatch()
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
       const payload = {
-        agreedPrice: values.agreedPrice
+        agreedPrice: values.agreedPrice,
+        total: cartContents.total
       }
       if (!err) {
-        console.log(payload)
+        AxiosAuth()
+          .put(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
+          .then(res => {
+            dispatch(creators.getCart(cartId))
+          })
+          .catch(err => {
+            console.log(err)
+          })
       } else {
         message.error('Enter Required Fields')
       }
     })
   }
   const { getFieldDecorator } = props.form
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 8 },
-      sm: { span: 16 }
-    },
-    wrapperCol: {
-      xs: { span: 8 },
-      sm: { span: 16 }
-    }
-  }
+  //   const formItemLayout = {
+  //     labelCol: {
+  //       xs: { span: 8 },
+  //       sm: { span: 16 }
+  //     },
+  //     wrapperCol: {
+  //       xs: { span: 8 },
+  //       sm: { span: 16 }
+  //     }
+  //   }
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -42,8 +53,6 @@ const Confirmation = (props) => {
       }
     }
   }
-  const cartContents = useSelector(state => state.savedCart)
-  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
@@ -90,9 +99,15 @@ const Confirmation = (props) => {
             )}
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
-                Approve cart
-            </Button>
+            {
+              !cartContents.finalLock
+                ? <Button type='primary' htmlType='submit'>
+                  Approve cart
+                  </Button>
+                : <div style={{ color: '#FF6663' }}>
+                  Cart Approved
+                  </div>
+            }
           </Form.Item>
         </Form>
       </div>
@@ -100,6 +115,6 @@ const Confirmation = (props) => {
   )
 }
 
-const ConfirmationPage = Form.create({name: 'confirm'})(Confirmation)
+const ConfirmationPage = Form.create({ name: 'confirm' })(Confirmation)
 
 export default ConfirmationPage
