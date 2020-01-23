@@ -119,9 +119,9 @@ const ReviewMain = (props) => {
             renderItem={item => (
               <List.Item>
                 <div className='controls'>
-                  <div onClick={() => increment(item.productId)} className='clicks'>+</div>
-                  <div className='clicks count'>{item.quantity}</div>
                   <div onClick={() => decrement(item.productId)} className='clicks'>-</div>
+                  <div className='clicks count'>{item.quantity}</div>
+                  <div onClick={() => increment(item.productId)} className='clicks'>+</div>
                 </div>
                 <List.Item.Meta
                   title={item.name}
