@@ -23,7 +23,8 @@ import Single from './components/singleProduct/index'
 import CartHeader from './components/elements/cartHeader'
 import Logo from './components/elements/logo'
 import SaveCartMain from './components/saveCart'
-import Account from './components/SellerAccount/SellerAccount';
+import Account from './components/SellerAccount/SellerAccount'
+import Confirmation from './components/orderConfirmation'
 
 function App () {
   return (
@@ -34,6 +35,7 @@ function App () {
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
+      <PrivateRoute path='/cart/:id/approve' component={Confirmation} />
       <PublicRoute path='/cart/:id' component={StripeMain} />
       <PublicRoute path='/review' component={Review} />
       <PublicRoute path='/savecart' component={SaveCartMain} />
