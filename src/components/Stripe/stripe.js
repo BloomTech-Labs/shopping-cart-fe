@@ -22,7 +22,7 @@ const Stripe = (props) => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
   useEffect(() => {
-    axios.post('http://localhost:4000/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
+    axios.post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
         setStripeId(res.data.stripeId)
