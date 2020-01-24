@@ -14,17 +14,18 @@ const { Panel } = Collapse
 const Stripe = (props) => {
   const { cartId } = props
   const [clientId, setClientId] = useState('')
+  const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
   const savedDate = new Date(cartContents.checkoutDate || 0);
-  debugger
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
   useEffect(() => {
-    axios.post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
+    axios.post('http://localhost:4000/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
+        setStripeId(res.data.stripeId)
       })
       .catch(err => {
         console.log(err)
@@ -56,7 +57,7 @@ const Stripe = (props) => {
         <h4>Payment Methods</h4>
         <Collapse accordion>
           <Panel header='Pay with card' key='1'>
-            <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3'>
+            <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3' stripeAccount={stripeId}>
               <MyStoreCheckout clientId={clientId} />
             </StripeProvider>
           </Panel>
