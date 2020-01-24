@@ -16,7 +16,6 @@ const Stripe = (props) => {
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
   const savedDate = new Date(cartContents.checkoutDate || 0);
-  debugger
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
@@ -62,17 +61,17 @@ const Stripe = (props) => {
           </Panel>
           <Panel header='Pay with USSD' key='2'>
             <div className='cash-text'>
-            Transfer $239.35 to the seller, and once
+            Transfer {cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 } to the seller, and once
             they confirm receipt, you’ll be redirected
             automatically to the order confirmation page.
             (Note: the speed of this process depends on how
             quickly the seller can confirm receipt.)
             </div>
             <div className='cash-text'>
-              <div>Seller Bank Number: 0151655066</div>
-              <div>Seller Bank: GTBank</div>
-              <div>Seller Account Name: Okpara Madubuochi</div>
-              <div>Your bill: $239.35</div>
+              <div>Seller Bank Number: TODO</div>
+              <div>Seller Bank: TODO</div>
+              <div>Seller Account Name: TODO</div>
+              <div>Your bill: {cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 }</div>
             </div>
           </Panel>
           <Panel header='Pay in person' key='3'>
