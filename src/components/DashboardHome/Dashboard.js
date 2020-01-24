@@ -3,7 +3,6 @@ import './Dashboard.css'
 import Content from './DashContent'
 import { useSelector, useDispatch } from 'react-redux'
 import * as creators from '../../state/actionCreators'
-import { findByLabelText } from '@testing-library/react'
 import NoLogo from '../../images/PureRetail_Logo.png'
 const Dashboard = () => {
   const dispatch = useDispatch()

@@ -50,7 +50,7 @@ const CartHeader = ({
     fixCurrency(storeDetails)
   }, [storeDetails])
   return (
-    <Row className={top ? 'color ' + 'cart-header' : 'cart-header'} type='flex' justify='space-between' align='middle'>
+    <Row className={top ? 'color cart-header' : 'cart-header'} type='flex' justify='space-between' align='middle'>
       <Col span={6} className='logo'>
         {displayBack
           ? <Icon onClick={history.goBack} type='left-circle' />

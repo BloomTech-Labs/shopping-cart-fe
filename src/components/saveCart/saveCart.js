@@ -148,7 +148,7 @@ const SaveCart = (props) => {
                 Enter your delivery address in the field below if you opt for delivery.
                 If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
             </span>
-            <Form.Item className={delivery ? 'ant-row' + 'ant-form-item' : 'addy'} label='Delivery Address'>
+            <Form.Item className={delivery ? 'ant-row ant-form-item' : 'addy'} label='Delivery Address'>
               {getFieldDecorator('address', {
                 rules: [{ required: false, message: 'Please input your address!' }]
               })(<Input />)}
