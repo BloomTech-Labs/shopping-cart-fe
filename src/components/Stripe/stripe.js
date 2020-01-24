@@ -21,14 +21,17 @@ const Stripe = (props) => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
   useEffect(() => {
-    axios.post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', { amount: cartContents.agreedPrice, storeId: cartContents.storeId })
+    axios.post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', { 
+      amount: cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2) * 100 : 0, 
+      storeId: cartContents.storeId 
+    })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
       })
       .catch(err => {
         console.log(err)
       })
-  }, [cartContents.agreedPrice, cartContents])
+  }, [cartContents])
   return (
     <div className='payments-cover'>
       <div className='checkout'>

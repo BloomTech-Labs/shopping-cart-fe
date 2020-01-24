@@ -19,6 +19,7 @@ import StripeMain from './components/Stripe'
 import Review from './components/review'
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage'
 import Single from './components/singleProduct/index'
+import Support from './components/support'
 // For testing only. Remove before deploying to Prod.
 import CartHeader from './components/elements/cartHeader'
 import Logo from './components/elements/logo'
@@ -48,6 +49,7 @@ function App () {
       {/* For testing only. Remove before deploying to Prod. */}
       <PublicRoute exact path='/elements/Logo' component={Logo} />
       <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
+      <PublicRoute exact path='/support' component={Support} />
       <PrivateRoute path='/account' component={Account} />
     </Switch>
   )
