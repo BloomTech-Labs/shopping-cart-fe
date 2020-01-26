@@ -92,7 +92,32 @@
                 font-size: 1.8rem;
                 margin-top: 2rem;
                 margin-bottom: 4rem;
-                text-align: left;
+
+                .controls {
+                    box-sizing: border-box;
+                    display: flex;
+                    width: 25%;
+
+                    .clicks {
+                        width: 33.3%;
+                        background-color: black;
+                        color: white;
+                        height: 100%;
+            
+                        @media (min-width:@desktop){
+                            cursor: pointer;
+                          }
+                    }
+            
+                    .count {
+                        background-color: #BFD7EA;
+                        color: black;
+            
+                        @media (min-width:@desktop){
+                            cursor: default;
+                          }
+                    }
+                }
 
                 .units {
                     margin-bottom: 1.3rem;
@@ -107,6 +132,20 @@
                     background-color: #BFD7EA;
                     box-sizing: border-box;
                     padding: 1.8rem;
+                }
+            }
+
+            .ant-list-items {
+                display: flex;
+                flex-direction: column;
+                font-size: 2rem;
+        
+                .ant-list-item-meta-title {
+                    font-size: 1.8rem;
+                }
+        
+                .ant-list-item-meta-description {
+                    font-size: 1.6rem;
                 }
             }
             

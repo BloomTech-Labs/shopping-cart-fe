@@ -15,8 +15,7 @@ const Stripe = (props) => {
   const { cartId } = props
   const [clientId, setClientId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
-  const savedDate = new Date(cartContents.checkoutDate || 0);
-  debugger
+  const savedDate = new Date(cartContents.checkoutDate || 0)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
@@ -40,12 +39,12 @@ const Stripe = (props) => {
             {cartContents.contents &&
             cartContents.contents.length &&
               cartContents.contents.map(item => (
-                <div className='units stop' key={item._id}>{item.name} ({item.quantity} unit{ item.quantity > 1 ? 's' : ''}) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))}
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total ? cartContents.total.toFixed(2): 0}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 }</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total ? cartContents.total.toFixed(2) : 0}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2) : 0}</span></div>
             {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
             <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>
             <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{savedDate.toLocaleDateString('en-GB')}</span></div>

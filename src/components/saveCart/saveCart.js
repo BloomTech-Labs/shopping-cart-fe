@@ -55,11 +55,11 @@ const SaveCart = (props) => {
   const info = values => {
     Modal.info({
       title: 'Forwarding to WhatsApp',
-      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.' ,
-      onOk() {
+      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.',
+      onOk () {
         const payload = {
           contents,
-          delivery: values.delivery,
+          deliveryOrCollection: values.delivery,
           checkoutDate: values.date._d,
           paymentPreference: values.payment,
           address: values.address ? values.address : 'no address',
@@ -68,7 +68,7 @@ const SaveCart = (props) => {
           email: 'no@email.com',
           storeId: sellerId
         }
-        // dispatch(creators.updateForm(payload))
+        console.log(payload.contents)
         axios
           .post(
           `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
@@ -120,7 +120,7 @@ const SaveCart = (props) => {
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-<div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
+                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
                 ))
               }
             </div>
