@@ -1,16 +1,18 @@
-import { Redirect, Route } from 'react-router-dom'
-import React from 'react'
+import { Redirect, Route } from "react-router-dom";
+import React from "react";
 
 const PublicRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      !localStorage.getItem('token') ? (
+      !localStorage.getItem("token") ? (
         <Component {...props} />
       ) : (
-        <Redirect to='/dashboard' />
-      )}
+        <Component {...props} />
+        // <Redirect to='/dashboard' />
+      )
+    }
   />
-)
+);
 
-export default PublicRoute
+export default PublicRoute;

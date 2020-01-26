@@ -17,8 +17,10 @@ const Confirmation = (props) => {
     }, 0)
   }
   const contents = editedCart.contents && editedCart.contents.map(cart => {
-    return { product: cart._id, quantity: cart.quantity }
+    //return cart.product and not cart._id
+    return { product: cart.product, quantity: cart.quantity }
   })
+
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
@@ -29,8 +31,6 @@ const Confirmation = (props) => {
         checkoutDate: values.checkoutDate._d,
         paymentPreference: values.paymentPreference,
         deliveryOrCollection: values.delivery,
-        address: 'no address',
-        email: 'no@email.com',
         contents
       }
       if (!err) {
@@ -38,11 +38,9 @@ const Confirmation = (props) => {
         AxiosAuth()
           .put(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
           .then(res => {
-            debugger
             dispatch(creators.getCart(cartId))
           })
           .catch(err => {
-            debugger
             console.log(err)
           })
       } else {
