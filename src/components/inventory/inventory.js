@@ -76,6 +76,7 @@ const Items = ({ inventory, currency }) => {
       size='small'
       itemLayout='horizontal'
       dataSource={inventory}
+      locale={{ emptyText: 'Click the plus button below to start adding items to your store' }}
       renderItem={item => {
         return (
           <List.Item className='block'>
