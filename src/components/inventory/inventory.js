@@ -23,6 +23,24 @@ const Inventory = () => {
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user)
 
+  const [sign, setSign] = useState('')
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.user.currency === 'POU') {
+      setSign('£')
+    } else if (storeDetails.user.currency === 'DOL') {
+      setSign('$')
+    } else if (storeDetails.user.currency === 'EUR') {
+      setSign('€')
+    } else if (storeDetails.user.currency === 'YEN') {
+      setSign('¥')
+    } else {
+      return undefined
+    }
+  }
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
+
   function searchObj (obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
@@ -45,8 +63,8 @@ const Inventory = () => {
         </div>
         <div className='content'>
           <div>
-            {storeDetails.storeDetails.ownerName ? (
-              <h2>{storeDetails.storeDetails.ownerName}'s Store</h2>
+            {storeDetails.user.storeName ? (
+              <h2>{storeDetails.user.storeName}</h2>
             ) : (
               <h2>Your Store</h2>
             )}
@@ -54,7 +72,7 @@ const Inventory = () => {
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Collapse' key='1'>
-                <Items inventory={searchString ? searchFilter : inventory} />
+                <Items inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
               <TabPane tab='Expand' key='2'>
                 <Expanded inventory={searchString ? searchFilter : inventory} />
@@ -67,7 +85,7 @@ const Inventory = () => {
   )
 }
 
-const Items = ({ inventory }) => {
+const Items = ({ inventory, currency }) => {
   return (
     <List
       size='small'
@@ -80,7 +98,7 @@ const Items = ({ inventory }) => {
               title={
                 <div className='list title short'>
                   <h3>{item.name}</h3>
-                  <div>{item.price}</div>
+              <div>{currency}{item.price}</div>
                 </div>
               }
               description={
