@@ -5,6 +5,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as creators from '../../state/actionCreators'
 import { findByLabelText } from '@testing-library/react'
 import NoLogo from '../../images/PureRetail_Logo.png'
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  WhatsappIcon,
+} from "react-share";
+
+
+
 const Dashboard = () => {
   const dispatch = useDispatch()
   useEffect(() => {
