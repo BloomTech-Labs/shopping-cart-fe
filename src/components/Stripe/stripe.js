@@ -16,7 +16,7 @@ const Stripe = (props) => {
   const [clientId, setClientId] = useState('')
   const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
-  const savedDate = new Date(cartContents.checkoutDate || 0);
+  const savedDate = new Date(cartContents.checkoutDate || 0)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
