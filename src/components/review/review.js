@@ -117,7 +117,7 @@ const ReviewMain = (props) => {
               </List.Item>
             )}
           />
-          { cartContents.length > 0 ? (<div className='button-body'>
+          {cartContents.length > 0 ? (<div className='button-body'>
             <div onClick={showModal} style={{ backgroundColor: '#0B3954' }} className='button'>Save for later</div>
             <AddEmail
               ref={saveFormRef}
@@ -128,7 +128,7 @@ const ReviewMain = (props) => {
             <NavLink to='/savecart'>
               <div style={{ backgroundColor: '#FF6663' }} className='button'>Go to Checkout</div>
             </NavLink>
-          </div>) : 'Please add items to your cart!' }
+          </div>) : 'Please add items to your cart!'}
         </div>
       </div>
     </div>

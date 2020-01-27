@@ -17,7 +17,7 @@ const Stripe = (props) => {
   const [clientId, setClientId] = useState('')
   const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
-  const savedDate = new Date(cartContents.checkoutDate || 0);
+  const savedDate = new Date(cartContents.checkoutDate || 0)
   const sign = useCurrency(cartContents.currency)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -60,13 +60,14 @@ const Stripe = (props) => {
       </div>
       <div className='lower'>
         <h4>Payment Methods</h4>
+        <div className='infotext'>Payment is enabled when cart is confirmed</div>
         <Collapse accordion>
-          <Panel header='Pay with card' key='1'>
+          <Panel header='Pay with card' key='1' disabled={cartContents.finalLock}>
             <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3' stripeAccount={stripeId}>
               <MyStoreCheckout clientId={clientId} />
             </StripeProvider>
           </Panel>
-          <Panel header='Pay with USSD' key='2'>
+          <Panel header='Pay with USSD' key='2' disabled={cartContents.finalLock}>
             <div className='cash-text'>
             Transfer {sign}{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 } to the seller, and once
             they confirm receipt, you’ll be redirected
@@ -81,7 +82,7 @@ const Stripe = (props) => {
               <div>Your bill: {sign}{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 }</div>
             </div>
           </Panel>
-          <Panel header='Pay in person' key='3'>
+          <Panel header='Pay in person' key='3' disabled={cartContents.finalLock}>
             <div className='cash-text'>
             Please note that payment in person depends entirely
             on the seller’s willingness to keep these items in

@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import React from 'react'
 
 const PublicRoute = ({ component: Component, ...rest }) => (
@@ -8,7 +8,8 @@ const PublicRoute = ({ component: Component, ...rest }) => (
       !localStorage.getItem('token') ? (
         <Component {...props} />
       ) : (
-        <Redirect to='/dashboard' />
+        <Component {...props} />
+        // <Redirect to='/dashboard' />
       )}
   />
 )

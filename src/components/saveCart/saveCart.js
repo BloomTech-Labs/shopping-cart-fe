@@ -6,9 +6,9 @@ import '../../less/index.less'
 import useCurrency from '../hooks/useCurrency'
 
 const SaveCart = props => {
-  const [delivery, setDelivery] = useState(true);
-  const cartContents = useSelector(state => state.cart);
-  const sellerId = useSelector(state => state.user.user._id);
+  const [delivery, setDelivery] = useState(true)
+  const cartContents = useSelector(state => state.cart)
+  const sellerId = useSelector(state => state.user.user._id)
   // const dispatch = useDispatch()
   const storeDetails = useSelector(state => state.user.user)
   const sign = useCurrency(storeDetails.currency)
@@ -19,18 +19,18 @@ const SaveCart = props => {
     return { product: cart.productId, quantity: cart.quantity }
   })
   const toggleAddyFalse = () => {
-    setDelivery(false);
-  };
+    setDelivery(false)
+  }
   const toggleAddyTrue = () => {
-    setDelivery(true);
-  };
+    setDelivery(true)
+  }
   const totalPrice = arr => {
     return arr.reduce((sum, item) => {
-      return sum + item.price * item.quantity;
-    }, 0);
-  };
+      return sum + item.price * item.quantity
+    }, 0)
+  }
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
         info(values)
@@ -40,22 +40,19 @@ const SaveCart = props => {
   const info = values => {
     Modal.info({
       title: 'Forwarding to WhatsApp',
-      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.' ,
-      onOk() {
+      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.',
+      onOk () {
         const payload = {
           contents,
-          delivery: values.delivery,
+          deliveryOrCollection: values.delivery,
           checkoutDate: values.date._d,
           paymentPreference: values.payment,
-          address: values.address ? values.address : "no address",
+          address: values.address ? values.address : 'no address',
           total: totalPrice(checkoutCart),
           agreedPrice: totalPrice(checkoutCart),
-          email: "no@email.com",
+          email: 'no@email.com',
           storeId: sellerId
-        };
-
-        console.log("Payload>>>>", payload);
-        // dispatch(creators.updateForm(payload))
+        }
         axios
           .post(
           `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
@@ -69,9 +66,9 @@ const SaveCart = props => {
             console.log(e)
           })
       }
-    });
-  };
-  const { getFieldDecorator } = props.form;
+    })
+  }
+  const { getFieldDecorator } = props.form
 
   const formItemLayout = {
     labelCol: {
@@ -82,7 +79,7 @@ const SaveCart = props => {
       xs: { span: 24 },
       sm: { span: 16 }
     }
-  };
+  }
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -94,35 +91,35 @@ const SaveCart = props => {
         offset: 8
       }
     }
-  };
+  }
   const config = {
-    rules: [{ type: "object", required: false, message: "Please select time!" }]
-  };
+    rules: [{ type: 'object', required: false, message: 'Please select time!' }]
+  }
   return (
-    <div className="savecart-cover">
-      <div id="inner">
-        <div className="checkout">
-          <div className="order">
+    <div className='savecart-cover'>
+      <div id='inner'>
+        <div className='checkout'>
+          <div className='order'>
             <p>Order Summary</p>
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-<div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
+                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
                 ))
               }
             </div>
           </div>
         </div>
-        <div className="lower">
+        <div className='lower'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
-            <div id="header">
+            <div id='header'>
               <p>
                 Take a second to tell us your collection/delivery and payments
                 preferences.
               </p>
             </div>
-            <Form.Item label="Delivery option">
-              {getFieldDecorator("delivery")(
+            <Form.Item label='Delivery option'>
+              {getFieldDecorator('delivery')(
                 <Radio.Group>
                   <Radio onClick={toggleAddyTrue} value='Delivery'>Delivery</Radio>
                   <Radio onClick={toggleAddyFalse} value='Collection'>Collection</Radio>
@@ -141,15 +138,15 @@ const SaveCart = props => {
                 rules: [{ required: false, message: 'Please input your address!' }]
               })(<Input />)}
             </Form.Item>
-            <Form.Item label="Collection/Delivery date">
-              {getFieldDecorator("date", config)(<DatePicker />)}
+            <Form.Item label='Collection/Delivery date'>
+              {getFieldDecorator('date', config)(<DatePicker />)}
             </Form.Item>
-            <Form.Item label="Payment preference">
-              {getFieldDecorator("payment")(
+            <Form.Item label='Payment preference'>
+              {getFieldDecorator('payment')(
                 <Radio.Group>
-                  <Radio value="Cash">Pay with Cash</Radio>
-                  <Radio value="Card">Pay with Card</Radio>
-                  <Radio value="USSD">Pay with USSD</Radio>
+                  <Radio value='Cash'>Pay with Cash</Radio>
+                  <Radio value='Card'>Pay with Card</Radio>
+                  <Radio value='USSD'>Pay with USSD</Radio>
                 </Radio.Group>
               )}
             </Form.Item>
@@ -162,9 +159,9 @@ const SaveCart = props => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const SaveCartForm = Form.create({ name: "register" })(SaveCart);
+const SaveCartForm = Form.create({ name: 'register' })(SaveCart)
 
-export default SaveCartForm;
+export default SaveCartForm
