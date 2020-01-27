@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, message, Modal } from 'antd'

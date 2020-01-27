@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'

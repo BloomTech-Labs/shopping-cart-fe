@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Tabs } from 'antd'
 import useCurrency from '../hooks/useCurrency'
 import './Dashboard.css'
