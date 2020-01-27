@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Form, Input, Button, Radio, DatePicker } from 'antd'
+import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
 
@@ -9,6 +9,24 @@ const SaveCart = props => {
   const cartContents = useSelector(state => state.cart);
   const sellerId = useSelector(state => state.user.user._id);
   // const dispatch = useDispatch()
+  const [sign, setSign] = useState('')
+  const storeDetails = useSelector(state => state.user.user)
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.currency === 'POU') {
+      setSign('£')
+    } else if (storeDetails.currency === 'DOL') {
+      setSign('$')
+    } else if (storeDetails.currency === 'EUR') {
+      setSign('€')
+    } else if (storeDetails.currency === 'YEN') {
+      setSign('¥')
+    } else {
+      return undefined
+    }
+  }
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
@@ -30,6 +48,15 @@ const SaveCart = props => {
     e.preventDefault();
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
+        info(values)
+      }
+    })
+  }
+  const info = values => {
+    Modal.info({
+      title: 'Forwarding to WhatsApp',
+      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.' ,
+      onOk() {
         const payload = {
           contents,
           delivery: values.delivery,
@@ -95,7 +122,7 @@ const SaveCart = props => {
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit(s)) - {item.price}</div>
+<div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
                 ))
               }
             </div>
@@ -112,29 +139,21 @@ const SaveCart = props => {
             <Form.Item label="Delivery option">
               {getFieldDecorator("delivery")(
                 <Radio.Group>
-                  <Radio onClick={toggleAddyFalse} value="Delivery">
-                    Delivery
-                  </Radio>
-                  <Radio onClick={toggleAddyTrue} value="Collection">
-                    Collection
-                  </Radio>
+                  <Radio onClick={toggleAddyTrue} value='Delivery'>Delivery</Radio>
+                  <Radio onClick={toggleAddyFalse} value='Collection'>Collection</Radio>
                 </Radio.Group>
               )}
             </Form.Item>
-            <span className={delivery ? "addy" : "info"}>
-              Enter your delivery address in the field below if you opt for
-              delivery. If you would rather collect the item in person, the
-              seller will contact you with the Whatsapp number you provided
-              above
+            <span className={delivery ? 'addy' : 'info'}>
+              Please wait for confirmation from the seller that your order is available and then collect it from: {storeDetails.address}
             </span>
-            <Form.Item
-              className={delivery ? "addy" : "ant-row" + "ant-form-item"}
-              label="Delivery Address"
-            >
-              {getFieldDecorator("address", {
-                rules: [
-                  { required: false, message: "Please input your adress!" }
-                ]
+            <span className={delivery ? 'info' : 'addy'}>
+                Enter your delivery address in the field below if you opt for delivery.
+                If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
+            </span>
+            <Form.Item className={delivery ? 'ant-row' + 'ant-form-item' : 'addy'} label='Delivery Address'>
+              {getFieldDecorator('address', {
+                rules: [{ required: false, message: 'Please input your address!' }]
               })(<Input />)}
             </Form.Item>
             <Form.Item label="Collection/Delivery date">
@@ -151,7 +170,7 @@ const SaveCart = props => {
             </Form.Item>
             <Form.Item className='primary' {...tailFormItemLayout}>
               <Button type='primary' htmlType='submit'>
-              Submit
+                Submit
               </Button>
             </Form.Item>
           </Form>

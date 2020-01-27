@@ -7,13 +7,13 @@ import AxiosAuth from '../Auth/axiosWithAuth'
 import * as creators from '../../state/actionCreators'
 import history from '../../history'
 
-function getBase64 (img, callback) {
+function getBase64(img, callback) {
   const reader = new FileReader()
   reader.addEventListener('load', () => callback(reader.result))
   reader.readAsDataURL(img)
 }
 
-function beforeUpload (file) {
+function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!')
@@ -74,7 +74,6 @@ const AddLogo = props => {
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
-      console.log(values)
       const payload = {
         ownerName: formState.name,
         currency: formState.currency,
@@ -138,7 +137,7 @@ const AddLogo = props => {
 
   const addLogoForm = (
     <Spin spinning={userState.isLoading}>
-      <div className='cover'>
+      <div className='cover' id='create-store'>
         <div id='header'>
           <h2 id='get-started'>
             Upload store

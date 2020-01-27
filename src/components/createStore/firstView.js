@@ -5,6 +5,7 @@ import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Logo from '../elements/logo'
 import history from '../../history'
+import store_image from '../../images/store.png'
 
 const { Option } = Select
 
@@ -53,7 +54,10 @@ const CreateStore = props => {
   }
 
   return (
-    <div className='cover'>
+    <div id='create-store' className='cover'>
+      <div className='desktop-logo-large'>
+        <img src={store_image} alt='PureRetail Logo' width='300' height='300' />
+      </div>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id='header'>

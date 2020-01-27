@@ -55,13 +55,10 @@ function SingleProductView (props) {
             <h1>{productState.name}</h1>
             <div>
               <Paragraph ellipsis={{ rows: 3, expandable: true }}>
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqqqqqqqqqqqqqqqqqqqqqqq
+                {productState.description}
               </Paragraph>
             </div>
           </div>
-          {/* <div id="multiple">
-            multiple units of this item can be added on checkout
-          </div> */}
           <div className='subButton'>
             {!btnChange(productState) ? (
               <Button

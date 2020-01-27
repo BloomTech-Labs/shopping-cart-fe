@@ -11,7 +11,7 @@ function UpdateItem (props) {
   const [item, setItem] = useState([])
   const [fileList, setFileList] = useState([])
   const [cloudList, setCloudList] = useState([])
-
+  const { TextArea } = Input
   const itemId = props.match.params.id
   const productURL = `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
   useEffect(() => {
@@ -132,13 +132,13 @@ function UpdateItem (props) {
 
   return (
     <Spin spinning={props.isLoading}>
-      <div className='cover'>
+      <div className='cover' id='createUpdate'>
         <div id='header'>
           <h2 id='get-started'>Update {item.name}</h2>
         </div>
-        <div style={{ height: '30%', width: '100%' }}>
+        <div id='uploadHead' style={{ height: '30%', width: '100%' }}>
           <Upload
-            style={{ height: '20%', width: '20%' }}
+            // style={{ height: '20%', width: '20%' }}
             listType='picture-card'
             fileList={fileList}
             customRequest={dummyRequest}
@@ -147,7 +147,7 @@ function UpdateItem (props) {
             <Icon style={{ width: '20px' }} type='upload' />
           </Upload>
         </div>
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
+        <Form className='inputForm' {...formItemLayout} onSubmit={handleSubmit}>
           <Form.Item>
             {getFieldDecorator('name', {
               initialValue: item.name,
@@ -163,6 +163,16 @@ function UpdateItem (props) {
             })(<Input placeholder='Name' />)}
           </Form.Item>
           <Form.Item>
+            {getFieldDecorator('price', {
+              initialValue: item.price
+            })(<Input placeholder='Price' />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('stock', {
+              initialValue: item.stock
+            })(<Input placeholder='Stock' />)}
+          </Form.Item>
+          <Form.Item>
             {getFieldDecorator('description', {
               initialValue: item.description,
               rules: [
@@ -174,17 +184,7 @@ function UpdateItem (props) {
                   message: 'Enter a description'
                 }
               ]
-            })(<Input placeholder='Description' />)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('price', {
-              initialValue: item.price
-            })(<Input placeholder='Price' />)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('stock', {
-              initialValue: item.stock
-            })(<Input placeholder='Stock' />)}
+            })(<TextArea placeholder='Description' allowClear />)}
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             <Button type='primary' htmlType='submit'>
