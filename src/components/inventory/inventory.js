@@ -49,7 +49,7 @@ const Inventory = () => {
         <div className='content'>
           <div>
             {storeDetails.user.storeName ? (
-              <h2>{storeDetails.user.storeName}</h2>
+              <h2 style={{ paddingTop: '0' }}>{storeDetails.user.storeName}</h2>
             ) : (
               <h2>Your Store</h2>
             )}
