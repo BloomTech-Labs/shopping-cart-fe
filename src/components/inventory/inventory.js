@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
+import useCurrency from '../hooks/useCurrency'
 
 const { TabPane } = Tabs
 const { Search } = Input
@@ -23,24 +24,6 @@ const Inventory = () => {
   const inventory = useSelector(state => state.store)
   const storeDetails = useSelector(state => state.user)
 
-  const [sign, setSign] = useState('')
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.user.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.user.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.user.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.user.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
-
   function searchObj (obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
@@ -50,6 +33,8 @@ const Inventory = () => {
   const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
+
+  const sign = useCurrency(storeDetails.user.currency)
 
   return (
     <div className='cover inventory'>

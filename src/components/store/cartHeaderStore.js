@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Icon, Badge, Input } from 'antd'
 import * as creators from '../../state/actionCreators'
 import history from '../../history'
+import useCurrency from '../hooks/useCurrency'
 
 import NoLogo from '../../images/PureRetail_Logo.png'
 const { Search } = Input
@@ -16,23 +17,10 @@ const CartHeader = ({
   displayTotal,
   top = false
 }) => {
-  const [sign, setSign] = useState('')
   const dispatch = useDispatch()
   const cartContents = useSelector(state => state.cart)
   const storeDetails = useSelector(state => state.user.user)
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
+  const sign = useCurrency(storeDetails.currency)
   const totalPrice = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + (item.price * item.quantity)
@@ -46,9 +34,6 @@ const CartHeader = ({
   const change = e => {
     dispatch(creators.setString(e.target.value))
   }
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
   return (
     <Row className={top ? 'store-color store-cart-header' : 'store-cart-header'} type='flex' justify='space-between' align='middle'>
       <Col span={6} className='store-logo'>

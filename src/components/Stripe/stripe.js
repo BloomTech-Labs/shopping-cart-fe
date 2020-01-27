@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Collapse } from 'antd'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
+import useCurrency from '../hooks/useCurrency'
 
 import MyStoreCheckout from './MyStoreCheckout'
 
@@ -17,23 +18,7 @@ const Stripe = (props) => {
   const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
   const savedDate = new Date(cartContents.checkoutDate || 0);
-  const [sign, setSign] = useState('')
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
-  useEffect(() => {
-    fixCurrency(cartContents)
-  }, [cartContents])
+  const sign = useCurrency(cartContents.currency)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
