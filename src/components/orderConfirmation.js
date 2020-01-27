@@ -9,15 +9,33 @@ import AxiosAuth from './Auth/axiosWithAuth'
 const Confirmation = (props) => {
   const cartId = props.match.params.id
   const cartContents = useSelector(state => state.savedCart)
+  const storeDetails = useSelector(state => state.user.user)
   const dispatch = useDispatch()
   const [editedCart, setEditedCart] = useState(cartContents)
+  const [sign, setSign] = useState('')
+  const fixCurrency = (storeDetails) => {
+    if (storeDetails.currency === 'POU') {
+      setSign('£')
+    } else if (storeDetails.currency === 'DOL') {
+      setSign('$')
+    } else if (storeDetails.currency === 'EUR') {
+      setSign('€')
+    } else if (storeDetails.currency === 'YEN') {
+      setSign('¥')
+    } else {
+      return undefined
+    }
+  }
+  useEffect(() => {
+    fixCurrency(storeDetails)
+  }, [storeDetails])
   const totalPrice = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + (item.price * item.quantity)
     }, 0)
   }
   const contents = editedCart.contents && editedCart.contents.map(cart => {
-    //return cart.product and not cart._id
+    // return cart.product and not cart._id
     return { product: cart.product, quantity: cart.quantity }
   })
 
@@ -49,16 +67,16 @@ const Confirmation = (props) => {
     })
   }
   const { getFieldDecorator } = props.form
-  //   const formItemLayout = {
-  //     labelCol: {
-  //       xs: { span: 8 },
-  //       sm: { span: 16 }
-  //     },
-  //     wrapperCol: {
-  //       xs: { span: 8 },
-  //       sm: { span: 16 }
-  //     }
+  // const formItemLayout = {
+  //   labelCol: {
+  //     xs: { span: 8 },
+  //     sm: { span: 16 }
+  //   },
+  //   wrapperCol: {
+  //     xs: { span: 8 },
+  //     sm: { span: 16 }
   //   }
+  // }
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -77,6 +95,9 @@ const Confirmation = (props) => {
   useEffect(() => {
     setEditedCart(cartContents)
   }, [cartContents])
+  useEffect(() => {
+    dispatch(creators.getStore(cartContents.storeId))
+  }, [dispatch, cartContents.storeId])
   const add = (itemId) => {
     const update = {
       ...editedCart,
@@ -130,7 +151,7 @@ const Confirmation = (props) => {
   return (
     <div className='payments-cover'>
       <div className='checkout'>
-        <h4>Check out Confirmation</h4>
+        <h4>Cart Confirmation</h4>
         <div className='order'>
           <p>Order Summary</p>
           <div className='summary flex'>
@@ -138,31 +159,34 @@ const Confirmation = (props) => {
               itemLayout='horizontal'
               dataSource={editedCart.contents}
               renderItem={item => (
-                <List.Item>
-                  <div className='controls'>
+                <List.Item>{!cartContents.finalLock
+                  ? <div className='controls'>
                     <div onClick={() => subtract(item._id)} className='clicks'>-</div>
                     <div className='clicks count'>{item.quantity}</div>
                     <div onClick={() => add(item._id)} className='clicks'>+</div>
-                  </div>
+                    </div> : <div className='controls'>
+                    <div className='clicks count'>{item.quantity}</div>
+                           </div>}
                   <List.Item.Meta
-                    title={item.name}
-                    description={item.price}
-                  />
-                  <Popconfirm
+                  title={item.name}
+                  description={`${sign}${item.price}`}
+                />
+                  {!cartContents.finalLock
+                  ? <Popconfirm
                     title='Are you sure remove this item?'
                     onConfirm={() => remove(item._id)}
                     // onCancel={cancel}
                     okText='Yes'
                     cancelText='No'
-                  >
+                    >
                     <div className='cancel'>X</div>
-                  </Popconfirm>
+                    </Popconfirm> : null}
                 </List.Item>
               )}
             />
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{editedCart.contents ? totalPrice(editedCart.contents) : cartContents.total}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents) : cartContents.total}</span></div>
           </div>
         </div>
       </div>
@@ -181,26 +205,42 @@ const Confirmation = (props) => {
               <Input
                 className='form-input'
                 placeholder='Agreed Price'
+                disabled={cartContents.finalLock}
               />
             )}
           </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('paymentPreference', { initialValue: cartContents.paymentPreference })(
-              <Radio.Group>
+          <Form.Item label='Payment preference'>
+            {getFieldDecorator('paymentPreference', {
+              initialValue: cartContents.paymentPreference,
+              rules: [
+                {
+                  required: true,
+                  message: 'Select Payment Preference'
+                }
+              ]
+            })(
+              <Radio.Group disabled={cartContents.finalLock}>
                 <Radio value='Cash'>Pay with Cash</Radio>
                 <Radio value='Card'>Pay with Card</Radio>
                 <Radio value='USSD'>Pay with USSD</Radio>
               </Radio.Group>
             )}
           </Form.Item>
-          <Form.Item label='Delivery option'>
-              {getFieldDecorator('delivery')(
-                <Radio.Group>
-                  <Radio value='Delivery'>Delivery</Radio>
-                  <Radio value='Collection'>Collection</Radio>
-                </Radio.Group>
-              )}
-            </Form.Item>
+          <Form.Item label='Delivery preference'>
+            {getFieldDecorator('delivery', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Enter Delivery preference'
+                }
+              ]
+            })(
+              <Radio.Group disabled={cartContents.finalLock}>
+                <Radio value='Delivery'>Delivery</Radio>
+                <Radio value='Collection'>Collection</Radio>
+              </Radio.Group>
+            )}
+          </Form.Item>
           <Form.Item label='Collection/Delivery Date'>
             {getFieldDecorator('checkoutDate', {
               initialValue: moment(cartContents.checkoutDate),
@@ -212,7 +252,7 @@ const Confirmation = (props) => {
                 }
               ]
             })(
-              <DatePicker />
+              <DatePicker disabled={cartContents.finalLock} />
             )}
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
@@ -221,7 +261,7 @@ const Confirmation = (props) => {
                 ? <Button type='primary' htmlType='submit'>
                   Approve cart
                   </Button>
-                : <div style={{ color: '#FF6663' }}>
+                : <div style={{ backgroundColor: '#FF6663', color: 'white' }}>
                   Cart Approved
                   </div>
             }

@@ -154,3 +154,12 @@
 .addy {
     display: none;
 }
+
+#root > div > div.lower > form > div:nth-child(n) {
+    flex-direction: column;
+    font-weight: bold;
+
+    @media (min-width:@desktop){
+        flex-direction: row;
+      }
+}
