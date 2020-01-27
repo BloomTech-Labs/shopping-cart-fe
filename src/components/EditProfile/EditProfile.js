@@ -243,7 +243,6 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
               id='delete-btn'
               type='link'
               htmlType='button'
-              style = {{ zIndex: "1000"}}
             >
               Delete account
             </Button>
