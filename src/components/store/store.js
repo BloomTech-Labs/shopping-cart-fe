@@ -4,26 +4,14 @@ import { Card, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
+import useCurrency from '../hooks/useCurrency'
 
 const { TabPane } = Tabs
 const { Meta } = Card
 
 const StoreMain = props => {
   const { sellerId, cartContents, store } = props
-  const [currency, setCurrency] = useState('')
-  const fixCurrency = storeDetails => {
-    if (storeDetails.currency === 'POU') {
-      setCurrency('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setCurrency('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setCurrency('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setCurrency('¥')
-    } else {
-      return undefined
-    }
-  }
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getProducts(sellerId))
@@ -33,9 +21,7 @@ const StoreMain = props => {
   const inventory = useSelector(state => state.store)
   const storeDetails = store.user
   const searchString = useSelector(state => state.search)
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
+  const currency = useCurrency(storeDetails.currency)
 
   function searchObj (obj, string) {
     const regExpFlags = 'gi'
