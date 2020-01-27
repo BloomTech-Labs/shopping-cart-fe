@@ -20,9 +20,6 @@ import Review from './components/review'
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage'
 import Single from './components/singleProduct/index'
 import Support from './components/support'
-// For testing only. Remove before deploying to Prod.
-import CartHeader from './components/elements/cartHeader'
-import Logo from './components/elements/logo'
 import SaveCartMain from './components/saveCart'
 import Account from './components/SellerAccount/SellerAccount'
 import Confirmation from './components/orderConfirmation'
@@ -48,9 +45,6 @@ function App () {
       <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
       <PublicRoute path='/product/:id' component={Single} />
       <PublicRoute path='/success' component={OrderSuccessPage} />
-      {/* For testing only. Remove before deploying to Prod. */}
-      <PublicRoute exact path='/elements/Logo' component={Logo} />
-      <PublicRoute exact path='/elements/cartheader' component={CartHeader} />
       <PublicRoute exact path='/support' component={Support} />
       <PrivateRoute path='/account' component={Account} />
     </Switch>
