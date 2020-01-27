@@ -42,11 +42,6 @@ const StoreMain = props => {
       <div className='store-top'>
         <div className='store-info'>
           <div className='store-logo' id='create-store-logo'>
-            {storeDetails.imageUrl === null ? (
-              undefined
-            ) : (
-              <img alt='logo' src={storeDetails.imageUrl} className='image' />
-            )}
             <div className='content'>
               <div>
                 <h2 style={{ paddingTop: '0' }}>{storeDetails.storeName}</h2>
