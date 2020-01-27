@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Form, Input, Select, Button, message, Spin, Modal } from 'antd'
 import '../../less/index.less'
-import logo from '../../images/PureRetail_Logo.png'
+import Logo from '../elements/logo'
 import {
   logout,
   setLoading,
@@ -122,9 +122,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
 
   const createStore = (
     <div className='cover'>
-      <div id='logo'>
-        <img src={logo} alt='PureRetail Logo' />
-      </div>
+      <Logo />
       <p className='text'>You currently haven't created a store yet</p>
       <p className='text'>
         Click{' '}
@@ -142,9 +140,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
   const editProfile = (
     <Spin spinning={isLoading}>
       <div className='cover'>
-        <div id='logo'>
-          <img src={logo} alt='PureRetail Logo' />
-        </div>
+        <Logo />
         <Form {...formItemLayout} onSubmit={handleSubmit}>
           <div id='header'>Edit your profile</div>
 
@@ -247,6 +243,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
               id='delete-btn'
               type='link'
               htmlType='button'
+              style = {{ zIndex: "1000"}}
             >
               Delete account
             </Button>
