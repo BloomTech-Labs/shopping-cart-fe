@@ -1,19 +1,19 @@
-h2 {
+.seller-account h2 {
     padding-top: 50px;
     font-size: 23px;
     color: #6f95b4;
 }
 
-h3 {
+.seller-account h3 {
     font-size: 18px;
     padding-top: 10px;
     color: #505050;
 }
 
-#subheader{
+.seller-account #subheader{
     font-size: 15px;
 }
-.main {
+.seller-account .main {
     padding-top: 20px;
     background-color: #f2f2f2;
     height: 100vh;
@@ -21,7 +21,7 @@ h3 {
     text-align: center;
 }
 
-.Card {
+.seller-account .Card {
     margin-top: 50px;
     width: 90vw;
     margin: 50px auto;
@@ -29,7 +29,7 @@ h3 {
     box-shadow: -2px 1px 14px -5px rgba(65,75,87,0.2);
 }
 
-#stripeID {
+.seller-account #stripeID {
     color: rgb(19, 168, 19);
     /* font-size: 25px; */
 }

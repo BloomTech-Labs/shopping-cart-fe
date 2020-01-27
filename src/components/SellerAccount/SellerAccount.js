@@ -35,7 +35,7 @@ function Account () {
   }
 
   return (
-    <div>
+    <div className='seller-account'>
       <div className='main'>
         <h2>Account</h2>
         {/* <h3>Account info</h3> */}
