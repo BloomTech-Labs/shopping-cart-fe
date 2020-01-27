@@ -187,7 +187,7 @@ const LargeItems = ({
         item.images[0] ? (
           <NavLink to={`/product/${item._id}`}>
             <img
-              style={{ width: '100%', height: '32rem', margin: '0' }}
+              style={{ width: '100%', height: 'auto', margin: '0' }}
               alt='item'
               src={item.images[0]}
             />
