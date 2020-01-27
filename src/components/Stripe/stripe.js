@@ -14,6 +14,7 @@ const { Panel } = Collapse
 const Stripe = (props) => {
   const { cartId } = props
   const [clientId, setClientId] = useState('')
+  const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
   const savedDate = new Date(cartContents.checkoutDate || 0);
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const Stripe = (props) => {
     })
       .then(res => {
         setClientId(res.data.paymentIntent.client_secret)
+        setStripeId(res.data.stripeId)
       })
       .catch(err => {
         console.log(err)
@@ -58,7 +60,7 @@ const Stripe = (props) => {
         <h4>Payment Methods</h4>
         <Collapse accordion>
           <Panel header='Pay with card' key='1'>
-            <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3'>
+            <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3' stripeAccount={stripeId}>
               <MyStoreCheckout clientId={clientId} />
             </StripeProvider>
           </Panel>
