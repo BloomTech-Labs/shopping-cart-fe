@@ -35,8 +35,7 @@ function App () {
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
-      <PrivateRoute path='/cart/:id/approve' component={Confirmation} />
-      <PublicRoute path='/cart/:id' component={StripeMain} />
+      <PublicRoute path='/cart/:id' component={localStorage.getItem('token') ? Confirmation : StripeMain} />
       <PublicRoute path='/review' component={Review} />
       <PublicRoute path='/savecart' component={SaveCartMain} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
