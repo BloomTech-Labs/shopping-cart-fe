@@ -7,7 +7,7 @@ import * as creators from '../../state/actionCreators'
 const { confirm } = Modal
 const { Meta } = Card
 
-const Expanded = ({ inventory }) => {
+const Expanded = ({ inventory, currency }) => {
   const dispatch = useDispatch()
   function showDeleteConfirm (id) {
     confirm({
@@ -57,7 +57,7 @@ const Expanded = ({ inventory }) => {
             }
             description={
               <div className='list'>
-                <div>{item.price}</div>
+            <div>{currency}{item.price}</div>
                 <div id='delete' onClick={e => showDeleteConfirm(item._id)}>
                   DELETE
                 </div>

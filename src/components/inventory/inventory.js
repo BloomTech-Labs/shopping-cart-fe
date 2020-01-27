@@ -75,7 +75,7 @@ const Inventory = () => {
                 <Items inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
               <TabPane tab='Expand' key='2'>
-                <Expanded inventory={searchString ? searchFilter : inventory} />
+                <Expanded inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
             </Tabs>
           </div>
