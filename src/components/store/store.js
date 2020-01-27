@@ -42,7 +42,7 @@ const StoreMain = props => {
       <div className='store-top'>
         <div className='store-info'>
           <div className='store-logo' id='create-store-logo'>
-            <div className='content'>
+            <div className='content' style={{ paddingTop: '0'}} >
               <div>
                 <h2 style={{ paddingTop: '0' }}>{storeDetails.storeName}</h2>
               </div>
