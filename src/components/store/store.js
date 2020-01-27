@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
@@ -53,9 +53,9 @@ const StoreMain = props => {
               </div>
               <div className='card-bucket'>
                 <Tabs className='tabs' defaultActiveKey='1'>
-                  <TabPane tab='Large Detail' key='1'>
-                    <div className='large_wrap'>
-                      <LargeItems
+                  <TabPane tab='Small Detail' key='1'>
+                    <div className='wrap'>
+                      <Items
                         inventory={searchString ? searchFilter : inventory}
                         currency={currency}
                         dispatchItem={dispatchItem}
@@ -64,9 +64,9 @@ const StoreMain = props => {
                       />
                     </div>
                   </TabPane>
-                  <TabPane tab='Small Detail' key='2'>
-                    <div className='wrap'>
-                      <Items
+                  <TabPane tab='Large Detail' key='2'>
+                    <div className='large_wrap'>
+                      <LargeItems
                         inventory={searchString ? searchFilter : inventory}
                         currency={currency}
                         dispatchItem={dispatchItem}
