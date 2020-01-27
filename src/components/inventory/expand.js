@@ -4,6 +4,8 @@ import AxiosAuth from '../Auth/axiosWithAuth'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as creators from '../../state/actionCreators'
+import history from '../../history'
+
 const { confirm } = Modal
 const { Meta } = Card
 
@@ -23,6 +25,7 @@ const Expanded = ({ inventory, currency }) => {
           .then(res => {
             dispatch(creators.getCurrentUser())
             message.success('Item Deleted')
+            history.go(0)
           })
           .catch(error => {
             message.error(Object.values(error.response.data)[0])
