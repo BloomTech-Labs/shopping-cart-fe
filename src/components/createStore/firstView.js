@@ -91,10 +91,10 @@ const CreateStore = props => {
             ]
           })(
             <Select placeholder='... and I prefer to sell in'>
-              <Option value='DOL'>Dollars</Option>
-              <Option value='POU'>Pounds</Option>
-              <Option value='EUR'>Euros</Option>
-              <Option value='YEN'>Yen</Option>
+              <Option value='POU'>British Pounds (GBP / £)</Option>
+              <Option value='EUR'>Euros (EUR / €)</Option>
+              <Option value='YEN'>Japanse Yen (JPY / ¥)</Option>
+              <Option value='DOL'>US Dollars (USD / $)</Option>
             </Select>
           )}
         </Form.Item>
