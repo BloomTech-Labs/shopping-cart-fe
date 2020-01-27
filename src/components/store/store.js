@@ -37,7 +37,7 @@ const StoreMain = props => {
     fixCurrency(storeDetails)
   }, [storeDetails])
 
-  function searchObj(obj, string) {
+  function searchObj (obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
     return JSON.stringify(obj).match(regExp)
@@ -45,7 +45,7 @@ const StoreMain = props => {
   const removeItem = item => {
     dispatch(creators.subtractFromCart(item))
   }
-  const searchFilter = inventory.filter(function(obj) {
+  const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
   const dispatchItem = item => {
@@ -63,7 +63,7 @@ const StoreMain = props => {
             )}
             <div className='content'>
               <div>
-                <h2 style={{paddingTop: "0"}}>{storeDetails.storeName}</h2>
+                <h2 style={{ paddingTop: '0' }}>{storeDetails.storeName}</h2>
               </div>
               <div className='card-bucket'>
                 <Tabs className='tabs' defaultActiveKey='1'>
