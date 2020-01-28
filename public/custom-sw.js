@@ -1,42 +1,42 @@
-var CACHE_NAME = "pwa-task-manager";
-var urlsToCache = ["./"];
+var CACHE_NAME = 'pwa-task-manager';
+var urlsToCache = [
+  '/',
+  './manifest.json',
+  './index.html'
+];
 
 // Install a service worker
-self.addEventListener("install", event => {
+self.addEventListener('install', event => {
   // Perform install steps
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      console.log("Opened cache");
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
   );
 });
 
 // Cache and return requests
-self.addEventListener("fetch", event => {
+self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.open("my-dynamic-site").then(function(cache) {
-      return cache.match(event.request).then(function(response) {
+    caches.match(event.request)
+      .then(function(response) {
         // Cache hit - return response
-        return (
-          response ||
-          fetch(event.request).then(function(response) {
-            cache.put(event.request, response.clone());
-            return response;
-          })
-          .catch(err=>{
-            return cache.match(event.request)
-          })
-        );
-      });
-    })
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      }
+    )
   );
 });
 
 // Update a service worker
-self.addEventListener("activate", event => {
-  var cacheWhitelist = ["pwa-task-manager"];
-  console.log(caches);
+self.addEventListener('activate', event => {
+  var cacheWhitelist = ['pwa-task-manager'];
+  self.clients.claim();
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(

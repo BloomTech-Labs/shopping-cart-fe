@@ -1,5 +1,5 @@
 {
-  "short_name": "Pure=Retail",
+  "short_name": "Pure-Retail",
   "name": "Pure-Retail App",
   "icons": [
     {
@@ -13,7 +13,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
