@@ -41,10 +41,12 @@ const CartHeader = ({
           ? <Icon onClick={history.goBack} type='left-circle' />
           : <img src={logoPath || NoLogo} alt='Store Logo' />}
       </Col>
-      <Col span={12} className='total'>{displayTotal ? `Total: ${sign}${totalPrice(cartContents).toFixed(2)}` : <Search
-        onChange={change}
-        placeholder='search'
-      />}
+      <Col span={12} className='total'>
+        {
+          displayTotal 
+          ? `Total: ${sign}${totalPrice(cartContents).toFixed(2)}` 
+          : <Input onChange={change} placeholder='Search...' />
+        }
       </Col>
       <NavLink to='/review'>
         <Col span={6} className='icon'>
