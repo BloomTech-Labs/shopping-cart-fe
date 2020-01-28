@@ -31,6 +31,7 @@ const Pane1 = ({ currency }) => {
             0<span className='currency'> {currency}</span>
           </p>
         </div>
+
       </div>
     </div>
   )
