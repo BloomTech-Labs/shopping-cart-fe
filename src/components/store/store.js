@@ -99,7 +99,7 @@ const Items = ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'top',
         width: '45%',
         margin: '0.5rem',
         boxSizing: 'border-box',
