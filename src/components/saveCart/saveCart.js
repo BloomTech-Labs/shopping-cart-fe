@@ -4,7 +4,7 @@ import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
 
-const SaveCart = (props) => {
+const SaveCart = props => {
   const [delivery, setDelivery] = useState(true)
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
@@ -39,9 +39,9 @@ const SaveCart = (props) => {
   const toggleAddyTrue = () => {
     setDelivery(true)
   }
-  const totalPrice = (arr) => {
+  const totalPrice = arr => {
     return arr.reduce((sum, item) => {
-      return sum + (item.price * item.quantity)
+      return sum + item.price * item.quantity
     }, 0)
   }
   const handleSubmit = e => {
@@ -55,11 +55,11 @@ const SaveCart = (props) => {
   const info = values => {
     Modal.info({
       title: 'Forwarding to WhatsApp',
-      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.' ,
-      onOk() {
+      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.',
+      onOk () {
         const payload = {
           contents,
-          delivery: values.delivery,
+          deliveryOrCollection: values.delivery,
           checkoutDate: values.date._d,
           paymentPreference: values.payment,
           address: values.address ? values.address : 'no address',
@@ -68,7 +68,6 @@ const SaveCart = (props) => {
           email: 'no@email.com',
           storeId: sellerId
         }
-        // dispatch(creators.updateForm(payload))
         axios
           .post(
           `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
@@ -120,7 +119,7 @@ const SaveCart = (props) => {
             <div className='summary'>
               {
                 checkoutCart.map(item => (
-<div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
+                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
                 ))
               }
             </div>
@@ -130,7 +129,8 @@ const SaveCart = (props) => {
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <div id='header'>
               <p>
-            Take a second to tell us your collection/delivery and payments preferences.
+                Take a second to tell us your collection/delivery and payments
+                preferences.
               </p>
             </div>
             <Form.Item label='Delivery option'>

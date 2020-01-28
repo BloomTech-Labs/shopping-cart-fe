@@ -16,7 +16,7 @@ const Stripe = (props) => {
   const [clientId, setClientId] = useState('')
   const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
-  const savedDate = new Date(cartContents.checkoutDate || 0);
+  const savedDate = new Date(cartContents.checkoutDate || 0)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getCart(cartId))
@@ -41,12 +41,12 @@ const Stripe = (props) => {
             {cartContents.contents &&
             cartContents.contents.length &&
               cartContents.contents.map(item => (
-                <div className='units stop' key={item._id}>{item.name} ({item.quantity} unit{ item.quantity > 1 ? 's' : ''}) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
+                <div className='units stop' key={item._id}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))}
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total ? cartContents.total.toFixed(2): 0}</span></div>
-            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2): 0 }</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{cartContents.total ? cartContents.total.toFixed(2) : 0}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Agreed price:</span> <span>{cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2) : 0}</span></div>
             {/* <div className='units'><span style={{ color: '#FF6663' }}>Delivery preference:</span> <span>{cartContents.delivery}</span></div> */}
             <div className='units'><span style={{ color: '#FF6663' }}>Payment preference:</span> <span>{cartContents.paymentPreference}</span></div>
             <div className='units'><span style={{ color: '#FF6663' }}>Date saved:</span> <span>{savedDate.toLocaleDateString('en-GB')}</span></div>
@@ -55,28 +55,29 @@ const Stripe = (props) => {
       </div>
       <div className='lower'>
         <h4>Payment Methods</h4>
+        <div className='infotext'>Payment is enabled when cart is confirmed</div>
         <Collapse accordion>
-          <Panel header='Pay with card' key='1'>
+          <Panel header='Pay with card' key='1' disabled={cartContents.finalLock}>
             <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3' stripeAccount={stripeId}>
               <MyStoreCheckout clientId={clientId} cartId={cartId}/>
             </StripeProvider>
           </Panel>
-          <Panel header='Pay with USSD' key='2'>
+          <Panel header='Pay with USSD' key='2' disabled={cartContents.finalLock}>
             <div className='cash-text'>
-            Transfer $239.35 to the seller, and once
+            Transfer {cartContents.agreedPrice} to the seller, and once
             they confirm receipt, you’ll be redirected
             automatically to the order confirmation page.
             (Note: the speed of this process depends on how
             quickly the seller can confirm receipt.)
             </div>
-            <div className='cash-text'>
+            {/* <div className='cash-text'>
               <div>Seller Bank Number: 0151655066</div>
               <div>Seller Bank: GTBank</div>
               <div>Seller Account Name: Okpara Madubuochi</div>
               <div>Your bill: $239.35</div>
-            </div>
+            </div> */}
           </Panel>
-          <Panel header='Pay in person' key='3'>
+          <Panel header='Pay in person' key='3' disabled={cartContents.finalLock}>
             <div className='cash-text'>
             Please note that payment in person depends entirely
             on the seller’s willingness to keep these items in
