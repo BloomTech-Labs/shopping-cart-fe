@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Form, Input, message, Button } from 'antd'
 import '../less/index.less'
 import * as creators from '../state/actionCreators'
 import AxiosAuth from './Auth/axiosWithAuth'
+import axios from 'axios'
 
 const Confirmation = (props) => {
   const cartId = props.match.params.id
   const cartContents = useSelector(state => state.savedCart)
   const dispatch = useDispatch()
+  const [complete, setComplete] = useState(false)
+
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
@@ -30,6 +33,24 @@ const Confirmation = (props) => {
       }
     })
   }
+
+  const confirmPayment = e => {
+    e.preventDefault()
+    props.form.validateFieldsAndScroll((err, values) => {
+      const payload = {
+        amount: Number(values.agreedPrice) * 100,
+        cartId: cartId
+      }
+      axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
+        .then(res => {
+          setComplete(true)
+        })
+        .catch(err => {
+          message.error('An Error Occurred', err)
+        })
+    })
+  }
+
   const { getFieldDecorator } = props.form
   //   const formItemLayout = {
   //     labelCol: {
@@ -64,7 +85,7 @@ const Confirmation = (props) => {
           <p>Order Summary</p>
           <div className='summary'>
             {cartContents.contents &&
-            cartContents.contents.length &&
+              cartContents.contents.length &&
               cartContents.contents.map(item => (
                 <div className='units stop' key={item._id}>{item.name} ({item.quantity} units) - <span style={{ color: '#FF6663' }}>{item.price}</span></div>
               ))}
@@ -79,7 +100,7 @@ const Confirmation = (props) => {
         </div>
       </div>
       <div className='lower'>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={!cartContents.finalLock ? handleSubmit : confirmPayment}>
           <Form.Item label='Agreed price'>
             {getFieldDecorator('agreedPrice', {
               rules: [
@@ -104,9 +125,16 @@ const Confirmation = (props) => {
                 ? <Button type='primary' htmlType='submit'>
                   Approve cart
                   </Button>
-                : <div style={{ color: '#FF6663' }}>
-                  Cart Approved
-                  </div>
+                : <Button type='primary' htmlType='submit'>
+                  Confirm Payment
+                </Button>
+            }
+            {
+              complete
+              ? <div style={{ color: '#FF6663' }}>
+              Transaction Complete
+              </div>
+              : null
             }
           </Form.Item>
         </Form>
