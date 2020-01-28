@@ -13,6 +13,7 @@ const Pane1 = ({ currency }) => {
           <p style={{ color: 'white', paddingTop: '20px' }}>Lifetime earnings:</p>
           <p className='earnings'><span className='currency'>{currency}</span>0</p>
         </div>
+
       </div>
     </div>
   )

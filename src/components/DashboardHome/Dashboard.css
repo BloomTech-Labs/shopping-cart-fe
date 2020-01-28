@@ -1,24 +1,24 @@
 .mainDiv {
     background-color: #FF6663;
-    height: 100vh;
-    position: fixed;
+    /* height: 100vh; */
+    /* position: fixed; */
 }
 
 .dashDiv {
     background-color: white;
     width: 100vw;
-    height: 73vh;
+    /* height: 73vh; */
     border-radius: 25px 25px 0 0;
     margin-top: 4vh;
-    /* position: sticky; */
-    position: relative;
+    position: sticky;
+    /* position: relative; */
 }
 
 .dashboardHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 20px 0 20px;
+    padding: 20px 0px 0 20px;
 }
 
 .dashboardLogo {
@@ -54,13 +54,13 @@
     color: yellow;
 }
 
-.Footer {
+/* .Footer {
     height: 29vh;
-    background-color: white;
+    background-color: yellow;
     display: flex;
     justify-content: space-between;
     padding: 0px 40px 0 40px;
-}
+} */
 
 .icons {
     font-size: 2em;
@@ -82,6 +82,7 @@
 .content {
     text-align: center;
     padding-top: 18px;
+    height: 100vh;
 }
 
 .Cards {
@@ -91,6 +92,7 @@
     margin: 0 auto;
     margin-top: 10px;
     border-radius: 15px;
+    /* overflow: auto; */
 }
 
 .Cards2 {
@@ -100,10 +102,12 @@
     margin-top: 10px;
     border-radius: 15px;
     background: linear-gradient(rgb(189, 44, 104), rgb(255, 88, 191));
+    /* overflow: auto; */
 }
 
 #cards {
     overflow: scroll;
+    /* height: inherit; */
 }
 
 .Card2 {
