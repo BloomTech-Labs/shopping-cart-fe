@@ -109,7 +109,7 @@ const Items = ({
         item.images[0] ? (
           <NavLink to={`/product/${item._id}`}>
             <img
-              style={{ width: '100%', height: '13rem' }}
+              style={{ width: '100%' }}
               alt='item'
               src={item.images[0]}
             />
