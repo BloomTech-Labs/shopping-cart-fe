@@ -66,7 +66,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='dashDiv'>
-        <Content currency={user.currency} />
+        <Content storeId={user._id} currency={user.currency} />
       </div>
     </div>
   )
