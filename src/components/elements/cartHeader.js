@@ -5,9 +5,8 @@ import { Row, Col, Icon, Badge, Input } from 'antd'
 import * as creators from '../../state/actionCreators'
 import history from '../../history'
 import useCurrency from '../hooks/useCurrency'
-
 import NoLogo from '../../images/PureRetail_Logo.png'
-const { Search } = Input
+
 const CartHeader = ({
   logoPath,
   badgeCount = 0,
