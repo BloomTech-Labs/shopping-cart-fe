@@ -23,11 +23,16 @@
 
 .dashboardLogo {
     width: 22%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .dashboardLogo img {
     width: 100%;
-    height: 100%;
+    max-width: 10rem;
+    height: auto;
+    border-radius: 50%;
+    display: block;
 }
 
 .welcomeHeader {
