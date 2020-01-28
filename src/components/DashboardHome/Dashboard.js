@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import './Dashboard.css'
 import Content from './DashContent'
+import { Typography } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import * as creators from '../../state/actionCreators'
-import { findByLabelText } from '@testing-library/react'
 import NoLogo from '../../images/PureRetail_Logo.png'
 import {
   FacebookShareButton,
@@ -17,6 +17,8 @@ import {
   WhatsappIcon,
   EmailIcon
 } from 'react-share'
+
+const { Paragraph } = Typography
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -46,7 +48,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='storeUrl'>
-        <p id='storeUrl'>{user && url}</p>
+        <Paragraph copyable id='storeUrl'>{user && url}</Paragraph>
         <div className='share'>
           <FacebookShareButton url={user && url}>
             <FacebookIcon size={32} round />
