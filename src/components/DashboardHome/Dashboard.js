@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import './Dashboard.css'
 import Content from './DashContent'
-import { Typography } from 'antd'
+import { Button } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import * as creators from '../../state/actionCreators'
 import NoLogo from '../../images/PureRetail_Logo.png'
@@ -18,8 +19,6 @@ import {
   EmailIcon
 } from 'react-share'
 
-const { Paragraph } = Typography
-
 const Dashboard = () => {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -33,7 +32,6 @@ const Dashboard = () => {
       .split(' ')
       .join('-')}-${user && user._id}`
   const storeLogo = user.imageUrl ? user.imageUrl : NoLogo
-
   return (
     <div className='mainDiv'>
       <div className='dashboardHeader'>
@@ -48,7 +46,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='storeUrl'>
-        <Paragraph copyable id='storeUrl'>{user && url}</Paragraph>
+        <p id='storeUrl' style={{ marginBottom: '1.3rem' }}>{user && url}</p>
+        <CopyToClipboard text={url}>
+          <span><Button ghost onClick={() => {}}>Copy URL</Button></span>
+        </CopyToClipboard>
         <div className='share'>
           <FacebookShareButton url={user && url}>
             <FacebookIcon size={32} round />
