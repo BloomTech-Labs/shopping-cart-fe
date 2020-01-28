@@ -16,7 +16,7 @@ const Content = ({ currency, storeId }) => {
   }, [dispatch, storeId])
   const user = useSelector(state => state.user.user)
   const dashboard = useSelector(state => state.dashboard)
-  console.log(dashboard)
+  console.log(dashboard.transactionDetails)
   return (
     <div>
       <Tabs defaultActiveKey='1' className='content'>
