@@ -5,6 +5,7 @@ import moment from 'moment'
 import '../less/index.less'
 import * as creators from '../state/actionCreators'
 import AxiosAuth from './Auth/axiosWithAuth'
+import useCurrency from './hooks/useCurrency'
 
 const Confirmation = (props) => {
   const cartId = props.match.params.id
@@ -12,23 +13,7 @@ const Confirmation = (props) => {
   const storeDetails = useSelector(state => state.user.user)
   const dispatch = useDispatch()
   const [editedCart, setEditedCart] = useState(cartContents)
-  const [sign, setSign] = useState('')
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
+  const sign = useCurrency(storeDetails.currency)
   const totalPrice = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + (item.price * item.quantity)
