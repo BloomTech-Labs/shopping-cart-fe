@@ -46,13 +46,9 @@ const Inventory = () => {
             style={{ width: 200 }}
           />
         </div>
-        <div className='content'>
+        <div className='content' style={{ paddingTop: '10px' }}>
           <div>
-            {storeDetails.user.storeName ? (
-              <h2 style={{ paddingTop: '0' }}>{storeDetails.user.storeName}</h2>
-            ) : (
-              <h2>Your Store</h2>
-            )}
+              <h2 style={{ color: 'darkgrey', paddingBottom: '15px' }}>{storeDetails.user.storeName ? storeDetails.user.storeName : 'Your Store'}</h2>
           </div>
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
