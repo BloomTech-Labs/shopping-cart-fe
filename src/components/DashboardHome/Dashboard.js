@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import './Dashboard.css'
 import Content from './DashContent'
+import { Button, message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import * as creators from '../../state/actionCreators'
 import NoLogo from '../../images/PureRetail_Logo.png'
@@ -30,7 +32,9 @@ const Dashboard = () => {
       .split(' ')
       .join('-')}-${user && user._id}`
   const storeLogo = user.imageUrl ? user.imageUrl : NoLogo
-
+  const copied = () => {
+    message.success('url copied successfully')
+  }
   return (
     <div className='mainDiv'>
       <div className='dashboardHeader'>
@@ -45,7 +49,16 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='storeUrl'>
-        <p id='storeUrl'>{user && url}</p>
+        <p id='storeUrl' style={{ marginBottom: '1.3rem' }}>
+          {user && url}
+        </p>
+        <CopyToClipboard text={url}>
+          <span>
+            <Button ghost onClick={copied}>
+              Copy URL
+            </Button>
+          </span>
+        </CopyToClipboard>
         <div className='share'>
           <FacebookShareButton url={user && url}>
             <FacebookIcon size={32} round />

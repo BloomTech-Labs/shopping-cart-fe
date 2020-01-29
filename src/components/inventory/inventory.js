@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { List, Input, Tabs } from 'antd'
+import { List, Input, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
+import useCurrency from '../hooks/useCurrency'
 
 const { TabPane } = Tabs
 const { Search } = Input
@@ -33,6 +34,8 @@ const Inventory = () => {
     return searchObj(obj, searchString)
   })
 
+  const sign = useCurrency(storeDetails.user.currency)
+
   return (
     <div className='cover inventory'>
       <div className='top'>
@@ -43,21 +46,17 @@ const Inventory = () => {
             style={{ width: 200 }}
           />
         </div>
-        <div className='content'>
+        <div className='content' style={{ paddingTop: '10px' }}>
           <div>
-            {storeDetails.storeDetails.ownerName ? (
-              <h2>{storeDetails.storeDetails.ownerName}'s Store</h2>
-            ) : (
-              <h2>Your Store</h2>
-            )}
+              <h2 style={{ color: 'darkgrey', paddingBottom: '15px' }}>{storeDetails.user.storeName ? storeDetails.user.storeName : 'Your Store'}</h2>
           </div>
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Collapse' key='1'>
-                <Items inventory={searchString ? searchFilter : inventory} />
+                <Items inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
               <TabPane tab='Expand' key='2'>
-                <Expanded inventory={searchString ? searchFilter : inventory} />
+                <Expanded inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
             </Tabs>
           </div>
@@ -67,12 +66,13 @@ const Inventory = () => {
   )
 }
 
-const Items = ({ inventory }) => {
+const Items = ({ inventory, currency }) => {
   return (
     <List
       size='small'
       itemLayout='horizontal'
       dataSource={inventory}
+      locale={{ emptyText: 'Click the plus button below to start adding items to your store' }}
       renderItem={item => {
         return (
           <List.Item className='block'>
@@ -80,14 +80,16 @@ const Items = ({ inventory }) => {
               title={
                 <div className='list title short'>
                   <h3>{item.name}</h3>
-                  <div>{item.price}</div>
+              <div>{currency}{item.price}</div>
                 </div>
               }
               description={
                 <div className='list short'>
-                  <div>{item.description}</div>
+                  <div className='item-description'>{item.description}</div>
                   <NavLink to={`/updateitem/${item._id}`}>
-                    <div>Edit</div>
+                    <div>
+                      <Button size='default'>Edit</Button>
+                    </div>
                   </NavLink>
                 </div>
               }

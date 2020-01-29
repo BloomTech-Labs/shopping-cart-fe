@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
 import '../less/index.less'
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
-import { connect } from 'react-redux'
+import * as creators from '../state/actionCreators'
+import useCurrency from './hooks/useCurrency'
 
 function UpdateItem (props) {
   const [item, setItem] = useState([])
@@ -14,6 +16,17 @@ function UpdateItem (props) {
   const { TextArea } = Input
   const itemId = props.match.params.id
   const productURL = `https://shopping-cart-eu3.herokuapp.com/api/store/products/${itemId}`
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(creators.getCurrentUser())
+  }, [dispatch])
+
+  const currencyDescription = useSelector(state => state.user.user.currency)
+
+  const sign = useCurrency(currencyDescription)
+
   useEffect(() => {
     AxiosAuth()
       .get(
@@ -165,7 +178,7 @@ function UpdateItem (props) {
           <Form.Item>
             {getFieldDecorator('price', {
               initialValue: item.price
-            })(<Input placeholder='Price' />)}
+            })(<Input placeholder='Price' addonBefore={sign} />)}
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('stock', {

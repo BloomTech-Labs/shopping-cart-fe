@@ -1,13 +1,15 @@
 import React from 'react'
-import { Card, Carousel, Modal, message } from 'antd'
+import { Card, Carousel, Modal, message, Button } from 'antd'
 import AxiosAuth from '../Auth/axiosWithAuth'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as creators from '../../state/actionCreators'
+import history from '../../history'
+
 const { confirm } = Modal
 const { Meta } = Card
 
-const Expanded = ({ inventory }) => {
+const Expanded = ({ inventory, currency }) => {
   const dispatch = useDispatch()
   function showDeleteConfirm (id) {
     confirm({
@@ -23,6 +25,7 @@ const Expanded = ({ inventory }) => {
           .then(res => {
             dispatch(creators.getCurrentUser())
             message.success('Item Deleted')
+            history.go(0)
           })
           .catch(error => {
             message.error(Object.values(error.response.data)[0])
@@ -38,7 +41,6 @@ const Expanded = ({ inventory }) => {
         <Card
           key={item.name}
           hoverable
-          style={{ width: 240, height: '45%' }}
           cover={
             item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined
           }
@@ -47,19 +49,21 @@ const Expanded = ({ inventory }) => {
             title={
               <div className='list title'>
                 <div>
-                  <h3>{item.name}</h3>
-                  <p>{item.description}</p>
+                  <h3 style={{ color: 'black' }}>{item.name}</h3>
+                  <p style={{ fontWeight: 'normal' }}>{item.description}</p>
                 </div>
                 <NavLink to={`/updateitem/${item._id}`}>
-                  <div>Edit</div>
+                  <div>
+                    <Button>Edit</Button>
+                  </div>
                 </NavLink>
               </div>
             }
             description={
               <div className='list'>
-                <div>{item.price}</div>
+            <div>{currency}{item.price}</div>
                 <div id='delete' onClick={e => showDeleteConfirm(item._id)}>
-                  DELETE
+                  <Button>Delete </Button>
                 </div>
               </div>
             }

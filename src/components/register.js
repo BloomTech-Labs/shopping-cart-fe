@@ -46,7 +46,7 @@ const RegistrationForm = props => {
   const compareToFirstPassword = (rule, value, callback) => {
     const { form } = props
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!')
+      callback('Passwords do not match!')
     } else {
       callback()
     }

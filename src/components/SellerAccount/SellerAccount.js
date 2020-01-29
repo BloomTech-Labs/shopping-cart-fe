@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, Button } from 'antd'
 import axios from 'axios'
 import './SellerAccount.css'
-import Nav from '../inventory/nav'
+import Nav from '../elements/nav'
 import withAuth from '../Auth/axiosWithAuth'
 
 const storeURL = 'https://shopping-cart-eu3.herokuapp.com/api/store'
@@ -26,7 +26,6 @@ function Account () {
     e.preventDefault()
     axios.post(stripeURL, { storeId })
       .then(res => {
-        console.log(res)
         window.location.href = stripeURL
       })
       .catch(err => {
@@ -35,7 +34,7 @@ function Account () {
   }
 
   return (
-    <div>
+    <div className='seller-account'>
       <div className='main'>
         <h2>Account</h2>
         {/* <h3>Account info</h3> */}

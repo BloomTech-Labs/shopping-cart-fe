@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Tabs } from 'antd'
+import useCurrency from '../hooks/useCurrency'
 import './Dashboard.css'
 import Pane1 from './Pane1'
 import Pane2 from './Pane2'
@@ -10,11 +11,11 @@ const { TabPane } = Tabs
 
 const Content = ({ currency, storeId }) => {
   const dispatch = useDispatch()
-
+  const sign = useCurrency(currency)
   useEffect(() => {
     dispatch(actionCreators.getSalesHistory(storeId))
   }, [dispatch, storeId])
-  const user = useSelector(state => state.user.user)
+  // const user = useSelector(state => state.user.user)
   const dashboard = useSelector(state => state.dashboard)
   console.log(dashboard && dashboard.transactionDetails)
   return (
@@ -22,6 +23,7 @@ const Content = ({ currency, storeId }) => {
       <Tabs defaultActiveKey='1' className='content'>
         <TabPane tab='Overview' key='1'>
           <Pane1
+            currencySign={sign}
             currency={currency}
             amount={dashboard && dashboard.totalSales}
           />

@@ -6,11 +6,11 @@ import moment from 'moment'
 const Pane2 = ({ name, description, price, checkoutDate }) => {
   const date = moment(checkoutDate)
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'usd',
-    minimumFractionDigits: 2
-  })
+  // const formatter = new Intl.NumberFormat('en-US', {
+  //   style: 'currency',
+  //   currency: 'usd',
+  //   minimumFractionDigits: 2
+  // })
   return (
     <div className='Card2'>
       <div className='PaneFlex'>
