@@ -27,7 +27,6 @@
 
         p {
             font-size: 1.3rem;
-            text-transform: lowercase;
         }
 
         #edit {
@@ -66,12 +65,13 @@
 
     .short {
         width: 75%;
-        margin-left: 5rem;
+        margin: 0 auto;
         text-align: left;
+
     }
 
-    .title {
-        text-transform: uppercase;
+    .item-description {
+        font-weight: normal;
     }
 }
 
@@ -152,4 +152,10 @@
     width: 40px !important;
     height: 7px !important;
     background: grey !important;
+}
+
+.ant-carousel .slick-slide img {
+    height: 200px;
+    width: auto;
+    margin: 0 auto;
 }

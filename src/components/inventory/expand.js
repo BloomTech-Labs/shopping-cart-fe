@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Carousel, Modal, message } from 'antd'
+import { Card, Carousel, Modal, message, Button } from 'antd'
 import AxiosAuth from '../Auth/axiosWithAuth'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -41,7 +41,6 @@ const Expanded = ({ inventory, currency }) => {
         <Card
           key={item.name}
           hoverable
-          style={{ width: 240, height: '45%' }}
           cover={
             item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined
           }
@@ -50,11 +49,13 @@ const Expanded = ({ inventory, currency }) => {
             title={
               <div className='list title'>
                 <div>
-                  <h3>{item.name}</h3>
-                  <p>{item.description}</p>
+                  <h3 style={{ color: 'black' }}>{item.name}</h3>
+                  <p style={{ fontWeight: 'normal' }}>{item.description}</p>
                 </div>
                 <NavLink to={`/updateitem/${item._id}`}>
-                  <div>Edit</div>
+                  <div>
+                    <Button>Edit</Button>
+                  </div>
                 </NavLink>
               </div>
             }
@@ -62,7 +63,7 @@ const Expanded = ({ inventory, currency }) => {
               <div className='list'>
             <div>{currency}{item.price}</div>
                 <div id='delete' onClick={e => showDeleteConfirm(item._id)}>
-                  DELETE
+                  <Button>Delete </Button>
                 </div>
               </div>
             }
