@@ -64,7 +64,7 @@ const Stripe = (props) => {
         <Collapse accordion>
           <Panel header='Pay with card' key='1' disabled={!cartContents.finalLock || stripeId ? true : false}>
             <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3' stripeAccount={stripeId}>
-              <MyStoreCheckout clientId={clientId} />
+              <MyStoreCheckout clientId={clientId} cartId={cartId}/>
             </StripeProvider>
           </Panel>
           <Panel header='Pay with USSD' key='2' disabled={!cartContents.finalLock}>
