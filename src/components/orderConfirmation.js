@@ -171,7 +171,7 @@ const Confirmation = (props) => {
             />
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents) : cartContents.total}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents).toFixed(2) : cartContents.total ? cartContents.total.toFixed(2) : undefined }</span></div>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@ const Confirmation = (props) => {
         <Form onSubmit={handleSubmit}>
           <Form.Item label='Agreed price'>
             {getFieldDecorator('agreedPrice', {
-              initialValue: cartContents.agreedPrice,
+              initialValue: cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2) : undefined,
               rules: [
                 {
                   required: true,
@@ -191,6 +191,7 @@ const Confirmation = (props) => {
                 className='form-input'
                 placeholder='Agreed Price'
                 disabled={cartContents.finalLock}
+                addonBefore={sign}
               />
             )}
           </Form.Item>
