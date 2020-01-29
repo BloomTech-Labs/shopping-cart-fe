@@ -3,25 +3,23 @@ import './Dashboard.css'
 import { Icon } from 'antd'
 import moment from 'moment'
 
-const Pane2 = ({ name, description, price, checkoutDate }) => {
+const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
   const date = moment(checkoutDate)
 
-  // const formatter = new Intl.NumberFormat('en-US', {
-  //   style: 'currency',
-  //   currency: 'usd',
-  //   minimumFractionDigits: 2
-  // })
   return (
     <div className='Card2'>
       <div className='PaneFlex'>
         <Icon type='check-circle' style={{ color: '#BFD7EA' }} />
         <div className='StoreTitle'>
-          <h2>{name}</h2>
-          <p>{description}</p>
+          <h2 className='pull-left'>{name}</h2>
+          <p className='pull-left'>{description}</p>
         </div>
         <div className='StorePrice'>
           <h2>{date.format('MMM D YYYY')}</h2>
-          <p>{price}</p>
+          <p>
+            {currencySymbol}
+            {price}
+          </p>
         </div>
       </div>
     </div>

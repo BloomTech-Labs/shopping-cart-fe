@@ -129,6 +129,11 @@
   justify-content: space-between;
 }
 
+.pull-left {
+  position: relative;
+  left: -20px;
+}
+
 .StoreTitle,
 .StorePrice {
   text-align: left;

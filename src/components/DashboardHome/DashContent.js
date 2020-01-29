@@ -17,16 +17,12 @@ const Content = ({ currency, storeId }) => {
   }, [dispatch, storeId])
   // const user = useSelector(state => state.user.user)
   const dashboard = useSelector(state => state.dashboard)
-  console.log(dashboard && dashboard.transactionDetails)
+  console.log(sign)
   return (
     <div>
       <Tabs defaultActiveKey='1' className='content'>
         <TabPane tab='Overview' key='1'>
-          <Pane1
-            currencySign={sign}
-            currency={currency}
-            amount={dashboard && dashboard.totalSales}
-          />
+          <Pane1 currency={sign} amount={dashboard && dashboard.totalSales} />
         </TabPane>
         <TabPane tab='Sales History' key='2'>
           {dashboard &&
@@ -34,6 +30,7 @@ const Content = ({ currency, storeId }) => {
             dashboard.transactionDetails.length &&
             dashboard.transactionDetails.map(sale => (
               <Pane2
+                currencySymbol={sign}
                 currency={currency.toUpperCase()}
                 key={sale._id}
                 name={sale.name}
@@ -42,7 +39,6 @@ const Content = ({ currency, storeId }) => {
                 checkoutDate={sale.checkoutDate}
               />
             ))}
-          <Pane2 />
         </TabPane>
       </Tabs>
     </div>
