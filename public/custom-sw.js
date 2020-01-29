@@ -10,6 +10,7 @@ var urlsToCache = [
 // Install a service worker
 self.addEventListener('install', event => {
   // Perform install steps
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       console.log('Opened cache');
@@ -42,6 +43,7 @@ self.addEventListener("fetch", event => {
 // Update a service worker
 self.addEventListener("activate", event => {
   var cacheWhitelist = ["pwa-task-manager"];
+  self.clients.claim();
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -54,3 +56,8 @@ self.addEventListener("activate", event => {
     })
   );
 });
+
+self.addEventListener('message', e => {
+  if (e.data === 'skipWaiting') {
+    self.skipWaiting();
+  }})
