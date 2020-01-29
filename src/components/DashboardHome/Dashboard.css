@@ -22,17 +22,15 @@
 }
 
 .dashboardLogo {
-    width: 22%;
-    display: flex;
-    justify-content: flex-end;
+    width: 70px;
+    height: auto;
+    padding-right: 20px;
 }
 
 .dashboardLogo img {
     width: 100%;
-    max-width: 10rem;
-    height: auto;
+    height: 100%;
     border-radius: 50%;
-    display: block;
 }
 
 .welcomeHeader {
