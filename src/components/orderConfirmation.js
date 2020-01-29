@@ -5,6 +5,7 @@ import moment from 'moment'
 import '../less/index.less'
 import * as creators from '../state/actionCreators'
 import AxiosAuth from './Auth/axiosWithAuth'
+import axios from 'axios'
 
 const Confirmation = (props) => {
   const cartId = props.match.params.id
@@ -52,7 +53,6 @@ const Confirmation = (props) => {
         contents
       }
       if (!err) {
-        console.log(payload)
         AxiosAuth()
           .put(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
           .then(res => {
@@ -66,6 +66,22 @@ const Confirmation = (props) => {
       }
     })
   }
+
+  const confirmPayment = e => {
+    e.preventDefault()
+      const payload = {
+        amount: cartContents.agreedPrice * 100,
+        cartId: cartId
+      }
+      axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
+        .then(res => {
+          dispatch(creators.getCart(cartId))
+        })
+        .catch(err => {
+          message.error('An Error Occurred', err)
+        })
+  }
+
   const { getFieldDecorator } = props.form
   // const formItemLayout = {
   //   labelCol: {
@@ -191,7 +207,7 @@ const Confirmation = (props) => {
         </div>
       </div>
       <div className='lower'>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={!cartContents.finalLock ? handleSubmit : confirmPayment}>
           <Form.Item label='Agreed price'>
             {getFieldDecorator('agreedPrice', {
               initialValue: cartContents.agreedPrice,
@@ -261,9 +277,27 @@ const Confirmation = (props) => {
                 ? <Button type='primary' htmlType='submit'>
                   Approve cart
                   </Button>
-                : <div style={{ backgroundColor: '#FF6663', color: 'white' }}>
-                  Cart Approved
+                : null
+            }{
+              cartContents.finalLock && !cartContents.checkedOut
+              ? <Popconfirm
+              title='Are you sure you want to confirm?'
+              onConfirm={confirmPayment}
+              okText='Yes'
+              cancelText='No'
+              >
+              <Button type='primary'>
+              Confirm Payment
+            </Button>
+              </Popconfirm>
+            : null
+            }
+            {
+              cartContents.checkedOut && cartContents.finalLock
+              ?<div style={{ backgroundColor: '#FF6663', color: 'white' }}>
+                  Transaction Complete
                   </div>
+              : null
             }
           </Form.Item>
         </Form>
