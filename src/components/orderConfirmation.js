@@ -6,6 +6,7 @@ import '../less/index.less'
 import * as creators from '../state/actionCreators'
 import AxiosAuth from './Auth/axiosWithAuth'
 import useCurrency from './hooks/useCurrency'
+import history from '../history'
 
 const Confirmation = (props) => {
   const cartId = props.match.params.id
@@ -42,6 +43,7 @@ const Confirmation = (props) => {
           .put(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
           .then(res => {
             dispatch(creators.getCart(cartId))
+            history.push('/dashboard')
           })
           .catch(err => {
             console.log(err)
