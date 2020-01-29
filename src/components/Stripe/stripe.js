@@ -37,7 +37,6 @@ const Stripe = (props) => {
       })
   }, [cartContents])
 
-  console.log(!cartContents.finalLock, stripeId);
   return (
     <div className='payments-cover'>
       <div className='checkout'>
@@ -64,7 +63,7 @@ const Stripe = (props) => {
         <h4>Payment Methods</h4>
         <div className='infotext'>Payment is enabled when cart is confirmed</div>
         <Collapse accordion>
-          <Panel header='Pay with card' key='1' disabled={!cartContents.finalLock || !stripeId ? true : false}>
+          <Panel header='Pay with card' key='1' disabled={!cartContents.finalLock || !stripeId}>
             <StripeProvider apiKey='pk_test_H8Ph7y3z5k1zPreo3Hu2i94Q00LVbX4bY3' stripeAccount={stripeId}>
               <MyStoreCheckout clientId={clientId} cartId={cartId}/>
             </StripeProvider>
