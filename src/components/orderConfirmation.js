@@ -63,6 +63,7 @@ const Confirmation = (props) => {
       axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
         .then(res => {
           dispatch(creators.getCart(cartId))
+          history.push('/dashboard')
         })
         .catch(err => {
           message.error('An Error Occurred', err)

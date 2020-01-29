@@ -26,7 +26,6 @@ function Account () {
     e.preventDefault()
     axios.post(stripeURL, { storeId })
       .then(res => {
-        console.log(res)
         window.location.href = stripeURL
       })
       .catch(err => {
