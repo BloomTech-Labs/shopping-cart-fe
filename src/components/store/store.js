@@ -103,13 +103,14 @@ const Items = ({
         width: '45%',
         margin: '0.5rem',
         boxSizing: 'border-box',
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        borderRadius: '1rem'
       }}
       cover={
         item.images[0] ? (
           <NavLink to={`/product/${item._id}`}>
             <img
-              style={{ width: '100%' }}
+              style={{ width: '100%', borderRadius: '1rem' }}
               alt='item'
               src={item.images[0]}
             />
