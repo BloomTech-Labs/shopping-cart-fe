@@ -1,9 +1,16 @@
 import React from 'react'
 import './Dashboard.css'
 import { Icon } from 'antd'
+import moment from 'moment'
 
 const Pane2 = ({ name, description, price, checkoutDate }) => {
-  console.log(name, description, price, checkoutDate)
+  const date = moment(checkoutDate)
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'usd',
+    minimumFractionDigits: 2
+  })
   return (
     <div className='Card2'>
       <div className='PaneFlex'>
@@ -13,8 +20,8 @@ const Pane2 = ({ name, description, price, checkoutDate }) => {
           <p>{description}</p>
         </div>
         <div className='StorePrice'>
-          <h2>{price}</h2>
-          <p>Dec. 14</p>
+          <h2>{date.format('MMM D YYYY')}</h2>
+          <p>{price}</p>
         </div>
       </div>
     </div>

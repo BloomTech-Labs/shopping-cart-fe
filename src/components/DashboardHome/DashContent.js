@@ -32,19 +32,15 @@ const Content = ({ currency, storeId }) => {
             dashboard.transactionDetails.length &&
             dashboard.transactionDetails.map(sale => (
               <Pane2
+                currency={currency.toUpperCase()}
                 key={sale._id}
                 name={sale.name}
-                price={sale.paidAmount}
+                price={sale.price}
                 description={sale.description}
                 checkoutDate={sale.checkoutDate}
               />
             ))}
           <Pane2 />
-          {/* Today
-          <Pane2 />
-          <Pane2 />
-          Yesterday
-          <Pane2 /> */}
         </TabPane>
       </Tabs>
     </div>
