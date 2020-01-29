@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../less/index.less'
 import EditProfile from './EditProfile'
-import Nav from './nav'
+import Nav from '../elements/nav'
 // import Footer from '../DashboardHome/Footer'
 
 function UpdateProfile () {

@@ -1,6 +1,6 @@
 .inventory {
     background-color: @grey;
-    height: auto;
+    // height: auto;
 }
 
 .top {
@@ -79,7 +79,8 @@
     display: flex;
     width: 100%;
     bottom: 0;
-    height: 9%;
+    height: 9vh;
+    max-height: 6rem;
     position: fixed;
     background-color: @grey;
     justify-content: center;
@@ -104,8 +105,8 @@
             color: @secondary;
             width: 25%;
             height: 100%;
-            margin-top: -12px;
-            font-size: 4rem;
+            margin-top: -20px;
+            font-size: 5rem;
             align-self: center;
             display: flex;
             flex-direction: column;
@@ -134,3 +135,21 @@
     }
 }
 
+.ant-card.ant-card-bordered.ant-card-hoverable {
+    width: 100%;
+
+    @media (min-width:@desktop) {
+        width: 45% !important;
+        max-width: 40rem;
+    }
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    background: #000 !important
+}
+
+.ant-carousel .slick-dots li button {
+    width: 40px !important;
+    height: 7px !important;
+    background: grey !important;
+}

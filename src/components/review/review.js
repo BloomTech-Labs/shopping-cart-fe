@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon, List, message, Modal } from 'antd'
@@ -7,6 +7,7 @@ import * as creators from '../../state/actionCreators'
 import { NavLink } from 'react-router-dom'
 import AddEmail from '../elements/saveForlaterModal'
 import history from '../../history'
+import useCurrency from '../hooks/useCurrency'
 
 const ReviewMain = (props) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -14,24 +15,9 @@ const ReviewMain = (props) => {
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
   const dispatch = useDispatch()
-  const [sign, setSign] = useState('')
   const storeDetails = useSelector(state => state.user.user)
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
+  const sign = useCurrency(storeDetails.currency)
+
   const increment = (id) => {
     dispatch(creators.increment(id))
   }

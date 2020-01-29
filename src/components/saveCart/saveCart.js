@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import '../../less/index.less'
+import useCurrency from '../hooks/useCurrency'
 
 const SaveCart = props => {
   const [delivery, setDelivery] = useState(true)
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
   // const dispatch = useDispatch()
-  const [sign, setSign] = useState('')
   const storeDetails = useSelector(state => state.user.user)
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
+  const sign = useCurrency(storeDetails.currency)
   const checkoutCart = cartContents.filter(item => {
     return item.quantity > 0
   })
@@ -148,7 +133,7 @@ const SaveCart = props => {
                 Enter your delivery address in the field below if you opt for delivery.
                 If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
             </span>
-            <Form.Item className={delivery ? 'ant-row' + 'ant-form-item' : 'addy'} label='Delivery Address'>
+            <Form.Item className={delivery ? 'ant-row ant-form-item' : 'addy'} label='Delivery Address'>
               {getFieldDecorator('address', {
                 rules: [{ required: false, message: 'Please input your address!' }]
               })(<Input />)}
