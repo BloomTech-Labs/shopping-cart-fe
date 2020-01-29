@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Expanded from './expand'
+import useCurrency from '../hooks/useCurrency'
 
 const { TabPane } = Tabs
 const { Search } = Input
@@ -33,6 +34,8 @@ const Inventory = () => {
     return searchObj(obj, searchString)
   })
 
+  const sign = useCurrency(storeDetails.user.currency)
+
   return (
     <div className='cover inventory'>
       <div className='top'>
@@ -45,8 +48,8 @@ const Inventory = () => {
         </div>
         <div className='content'>
           <div>
-            {storeDetails.storeDetails.ownerName ? (
-              <h2>{storeDetails.storeDetails.ownerName}'s Store</h2>
+            {storeDetails.user.storeName ? (
+              <h2 style={{ paddingTop: '0' }}>{storeDetails.user.storeName}</h2>
             ) : (
               <h2>Your Store</h2>
             )}
@@ -54,10 +57,10 @@ const Inventory = () => {
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
               <TabPane tab='Collapse' key='1'>
-                <Items inventory={searchString ? searchFilter : inventory} />
+                <Items inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
               <TabPane tab='Expand' key='2'>
-                <Expanded inventory={searchString ? searchFilter : inventory} />
+                <Expanded inventory={searchString ? searchFilter : inventory} currency={sign} />
               </TabPane>
             </Tabs>
           </div>
@@ -67,12 +70,13 @@ const Inventory = () => {
   )
 }
 
-const Items = ({ inventory }) => {
+const Items = ({ inventory, currency }) => {
   return (
     <List
       size='small'
       itemLayout='horizontal'
       dataSource={inventory}
+      locale={{ emptyText: 'Click the plus button below to start adding items to your store' }}
       renderItem={item => {
         return (
           <List.Item className='block'>
@@ -80,7 +84,7 @@ const Items = ({ inventory }) => {
               title={
                 <div className='list title short'>
                   <h3>{item.name}</h3>
-                  <div>{item.price}</div>
+              <div>{currency}{item.price}</div>
                 </div>
               }
               description={

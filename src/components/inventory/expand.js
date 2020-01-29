@@ -4,10 +4,12 @@ import AxiosAuth from '../Auth/axiosWithAuth'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as creators from '../../state/actionCreators'
+import history from '../../history'
+
 const { confirm } = Modal
 const { Meta } = Card
 
-const Expanded = ({ inventory }) => {
+const Expanded = ({ inventory, currency }) => {
   const dispatch = useDispatch()
   function showDeleteConfirm (id) {
     confirm({
@@ -23,6 +25,7 @@ const Expanded = ({ inventory }) => {
           .then(res => {
             dispatch(creators.getCurrentUser())
             message.success('Item Deleted')
+            history.go(0)
           })
           .catch(error => {
             message.error(Object.values(error.response.data)[0])
@@ -57,7 +60,7 @@ const Expanded = ({ inventory }) => {
             }
             description={
               <div className='list'>
-                <div>{item.price}</div>
+            <div>{currency}{item.price}</div>
                 <div id='delete' onClick={e => showDeleteConfirm(item._id)}>
                   DELETE
                 </div>

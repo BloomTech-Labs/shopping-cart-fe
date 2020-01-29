@@ -4,8 +4,9 @@ import '../less/index.less'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
-import { connect } from 'react-redux'
-import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
+import { connect, useSelector } from 'react-redux'
+import { setLoading, setErrors, clearErrors, getCurrentUser } from '../state/actionCreators'
+import useCurrency from './hooks/useCurrency'
 
 const productURL = 'https://shopping-cart-eu3.herokuapp.com/api/store/products'
 
@@ -31,6 +32,14 @@ function CreateItem ({ dispatch, form, isLoading }) {
 
     setFileList(fileList)
   }
+
+  useEffect(() => {
+    dispatch(getCurrentUser())
+  }, [dispatch])
+
+  const currencyDescription = useSelector(state => state.user.user.currency)
+
+  const sign = useCurrency(currencyDescription)
 
   const dummyRequest = ({ file, onSuccess }) => {
     const image = new FormData()
@@ -163,7 +172,7 @@ function CreateItem ({ dispatch, form, isLoading }) {
                   message: 'Enter a price'
                 }
               ]
-            })(<Input placeholder='Price' />)}
+            })(<Input placeholder='Price' addonBefore={sign} />)}
           </Form.Item>
 
           <Form.Item>

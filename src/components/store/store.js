@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
+import useCurrency from '../hooks/useCurrency'
 
 const { TabPane } = Tabs
 const { Meta } = Card
 
 const StoreMain = props => {
   const { sellerId, cartContents, store } = props
-  const [currency, setCurrency] = useState('')
-  const fixCurrency = storeDetails => {
-    if (storeDetails.currency === 'POU') {
-      setCurrency('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setCurrency('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setCurrency('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setCurrency('¥')
-    } else {
-      return undefined
-    }
-  }
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(creators.getProducts(sellerId))
@@ -33,9 +21,7 @@ const StoreMain = props => {
   const inventory = useSelector(state => state.store)
   const storeDetails = store.user
   const searchString = useSelector(state => state.search)
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
+  const currency = useCurrency(storeDetails.currency)
 
   function searchObj (obj, string) {
     const regExpFlags = 'gi'
@@ -56,20 +42,15 @@ const StoreMain = props => {
       <div className='store-top'>
         <div className='store-info'>
           <div className='store-logo' id='create-store-logo'>
-            {storeDetails.imageUrl === null ? (
-              undefined
-            ) : (
-              <img alt='logo' src={storeDetails.imageUrl} className='image' />
-            )}
-            <div className='content'>
+            <div className='content' style={{ paddingTop: '0'}} >
               <div>
                 <h2 style={{ paddingTop: '0' }}>{storeDetails.storeName}</h2>
               </div>
               <div className='card-bucket'>
                 <Tabs className='tabs' defaultActiveKey='1'>
-                  <TabPane tab='Large Detail' key='1'>
-                    <div className='large_wrap'>
-                      <LargeItems
+                  <TabPane tab='Small Detail' key='1'>
+                    <div className='wrap'>
+                      <Items
                         inventory={searchString ? searchFilter : inventory}
                         currency={currency}
                         dispatchItem={dispatchItem}
@@ -78,9 +59,9 @@ const StoreMain = props => {
                       />
                     </div>
                   </TabPane>
-                  <TabPane tab='Small Detail' key='2'>
-                    <div className='wrap'>
-                      <Items
+                  <TabPane tab='Large Detail' key='2'>
+                    <div className='large_wrap'>
+                      <LargeItems
                         inventory={searchString ? searchFilter : inventory}
                         currency={currency}
                         dispatchItem={dispatchItem}
@@ -118,17 +99,18 @@ const Items = ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'top',
         width: '45%',
         margin: '0.5rem',
         boxSizing: 'border-box',
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        borderRadius: '1rem'
       }}
       cover={
         item.images[0] ? (
           <NavLink to={`/product/${item._id}`}>
             <img
-              style={{ width: '100%', height: '13rem' }}
+              style={{ width: '100%', borderRadius: '1rem' }}
               alt='item'
               src={item.images[0]}
             />
@@ -206,7 +188,7 @@ const LargeItems = ({
         item.images[0] ? (
           <NavLink to={`/product/${item._id}`}>
             <img
-              style={{ width: '100%', height: '32rem', margin: '0' }}
+              style={{ width: '100%', height: 'auto', margin: '0' }}
               alt='item'
               src={item.images[0]}
             />

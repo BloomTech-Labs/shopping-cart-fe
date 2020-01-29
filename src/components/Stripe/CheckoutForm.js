@@ -3,6 +3,7 @@ import { message } from 'antd'
 import { injectStripe } from 'react-stripe-elements'
 import CardSection from './CardSection'
 import history from '../../history'
+import axios from 'axios'
 
 const CheckoutForm = (props) => {
   const handleSubmit = (ev) => {
@@ -19,8 +20,19 @@ const CheckoutForm = (props) => {
         }
       }
     }).then(res => {
+      const payload = {
+        amount: res.paymentIntent.amount,
+        cartId: props.cartId
+      }
       if (res.paymentIntent) {
-        history.push('/success')
+        axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
+        .then(res => {
+          history.push('/success')
+        })
+        .catch(err => {
+          message.error('An Error Occurred', err)
+        })
+        
       } else {
         message.error('Transaction failed')
       }
