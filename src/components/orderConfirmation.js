@@ -5,6 +5,8 @@ import moment from 'moment'
 import '../less/index.less'
 import * as creators from '../state/actionCreators'
 import AxiosAuth from './Auth/axiosWithAuth'
+import useCurrency from './hooks/useCurrency'
+import history from '../history'
 import axios from 'axios'
 
 const Confirmation = (props) => {
@@ -13,23 +15,7 @@ const Confirmation = (props) => {
   const storeDetails = useSelector(state => state.user.user)
   const dispatch = useDispatch()
   const [editedCart, setEditedCart] = useState(cartContents)
-  const [sign, setSign] = useState('')
-  const fixCurrency = (storeDetails) => {
-    if (storeDetails.currency === 'POU') {
-      setSign('£')
-    } else if (storeDetails.currency === 'DOL') {
-      setSign('$')
-    } else if (storeDetails.currency === 'EUR') {
-      setSign('€')
-    } else if (storeDetails.currency === 'YEN') {
-      setSign('¥')
-    } else {
-      return undefined
-    }
-  }
-  useEffect(() => {
-    fixCurrency(storeDetails)
-  }, [storeDetails])
+  const sign = useCurrency(storeDetails.currency)
   const totalPrice = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + (item.price * item.quantity)
@@ -57,6 +43,7 @@ const Confirmation = (props) => {
           .put(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
           .then(res => {
             dispatch(creators.getCart(cartId))
+            history.push('/dashboard')
           })
           .catch(err => {
             console.log(err)
@@ -76,6 +63,7 @@ const Confirmation = (props) => {
       axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
         .then(res => {
           dispatch(creators.getCart(cartId))
+          history.push('/dashboard')
         })
         .catch(err => {
           message.error('An Error Occurred', err)
@@ -202,7 +190,7 @@ const Confirmation = (props) => {
             />
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents) : cartContents.total}</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents).toFixed(2) : cartContents.total ? cartContents.total.toFixed(2) : undefined }</span></div>
           </div>
         </div>
       </div>
@@ -210,7 +198,7 @@ const Confirmation = (props) => {
         <Form onSubmit={!cartContents.finalLock ? handleSubmit : confirmPayment}>
           <Form.Item label='Agreed price'>
             {getFieldDecorator('agreedPrice', {
-              initialValue: cartContents.agreedPrice,
+              initialValue: cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2) : undefined,
               rules: [
                 {
                   required: true,
@@ -222,6 +210,7 @@ const Confirmation = (props) => {
                 className='form-input'
                 placeholder='Agreed Price'
                 disabled={cartContents.finalLock}
+                addonBefore={sign}
               />
             )}
           </Form.Item>

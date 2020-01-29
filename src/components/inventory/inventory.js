@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { List, Input, Tabs } from 'antd'
+import { List, Input, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 // import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
@@ -46,13 +46,9 @@ const Inventory = () => {
             style={{ width: 200 }}
           />
         </div>
-        <div className='content'>
+        <div className='content' style={{ paddingTop: '10px' }}>
           <div>
-            {storeDetails.user.storeName ? (
-              <h2 style={{ paddingTop: '0' }}>{storeDetails.user.storeName}</h2>
-            ) : (
-              <h2>Your Store</h2>
-            )}
+              <h2 style={{ color: 'darkgrey', paddingBottom: '15px' }}>{storeDetails.user.storeName ? storeDetails.user.storeName : 'Your Store'}</h2>
           </div>
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
@@ -89,9 +85,11 @@ const Items = ({ inventory, currency }) => {
               }
               description={
                 <div className='list short'>
-                  <div>{item.description}</div>
+                  <div className='item-description'>{item.description}</div>
                   <NavLink to={`/updateitem/${item._id}`}>
-                    <div>Edit</div>
+                    <div>
+                      <Button size='default'>Edit</Button>
+                    </div>
                   </NavLink>
                 </div>
               }

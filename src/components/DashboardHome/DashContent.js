@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tabs } from 'antd'
 import useCurrency from '../hooks/useCurrency'
-import './Dashboard.css'
+// import './Dashboard.css'
 import Pane1 from './Pane1'
 import Pane2 from './Pane2'
 
