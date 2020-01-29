@@ -41,7 +41,6 @@ const Expanded = ({ inventory, currency }) => {
         <Card
           key={item.name}
           hoverable
-          style={{ width: 240, height: '45%' }}
           cover={
             item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined
           }
