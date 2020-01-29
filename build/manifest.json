@@ -1,0 +1,20 @@
+{
+  "short_name": "Pure=Retail",
+  "name": "Pure-Retail App",
+  "icons": [
+    {
+      "src": "PureRetail_Logo.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "PureRetail_Logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
