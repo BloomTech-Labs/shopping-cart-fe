@@ -26,13 +26,12 @@ const CheckoutForm = (props) => {
       }
       if (res.paymentIntent) {
         axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
-        .then(res => {
-          history.push('/success')
-        })
-        .catch(err => {
-          message.error('An Error Occurred', err)
-        })
-        
+          .then(res => {
+            history.push('/success')
+          })
+          .catch(err => {
+            message.error('An Error Occurred', err)
+          })
       } else {
         message.error('Transaction failed')
       }

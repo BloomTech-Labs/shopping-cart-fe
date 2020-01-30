@@ -61,7 +61,7 @@ const Expanded = ({ inventory, currency }) => {
             }
             description={
               <div className='list'>
-            <div>{currency}{item.price}</div>
+                <div>{currency}{item.price}</div>
                 <div id='delete' onClick={e => showDeleteConfirm(item._id)}>
                   <Button>Delete </Button>
                 </div>

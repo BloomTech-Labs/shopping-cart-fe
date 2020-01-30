@@ -8,7 +8,6 @@ import history from './history'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-
 ReactDOM.render(
   <Router history={history}>
     <Provider store={store}>

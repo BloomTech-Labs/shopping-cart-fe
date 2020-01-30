@@ -6,7 +6,7 @@ import InjectedCheckoutForm from './CheckoutForm'
 const MyStoreCheckout = (props) => {
   return (
     <Elements>
-      <InjectedCheckoutForm clientId={props.clientId} cartId={props.cartId}/>
+      <InjectedCheckoutForm clientId={props.clientId} cartId={props.cartId} />
     </Elements>
   )
 }
