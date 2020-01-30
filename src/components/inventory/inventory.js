@@ -48,7 +48,7 @@ const Inventory = () => {
         </div>
         <div className='content' style={{ paddingTop: '10px' }}>
           <div>
-              <h2 style={{ color: 'darkgrey', paddingBottom: '15px' }}>{storeDetails.user.storeName ? storeDetails.user.storeName : 'Your Store'}</h2>
+            <h2 style={{ color: 'darkgrey', paddingBottom: '15px' }}>{storeDetails.user.storeName ? storeDetails.user.storeName : 'Your Store'}</h2>
           </div>
           <div>
             <Tabs className='tabs' defaultActiveKey='1'>
@@ -80,7 +80,7 @@ const Items = ({ inventory, currency }) => {
               title={
                 <div className='list title short'>
                   <h3>{item.name}</h3>
-              <div>{currency}{item.price}</div>
+                  <div>{currency}{item.price}</div>
                 </div>
               }
               description={

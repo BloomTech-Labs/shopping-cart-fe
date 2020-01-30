@@ -42,9 +42,9 @@ const CartHeader = ({
       </Col>
       <Col span={12} className='total'>
         {
-          displayTotal 
-          ? `Total: ${sign}${totalPrice(cartContents).toFixed(2)}` 
-          : <Input onChange={change} placeholder='Search...' />
+          displayTotal
+            ? `Total: ${sign}${totalPrice(cartContents).toFixed(2)}`
+            : <Input onChange={change} placeholder='Search...' />
         }
       </Col>
       <NavLink to='/review'>
