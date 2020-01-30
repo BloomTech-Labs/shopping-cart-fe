@@ -1,101 +1,141 @@
-import React, { useState, useEffect } from 'react'
-import axiosWithAuth from '../Auth/axiosWithAuth'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { Form, Input, Select, Button, message, Spin, Modal } from 'antd'
-import '../../less/index.less'
-import Logo from '../elements/logo'
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../Auth/axiosWithAuth";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+  Form,
+  Input,
+  Select,
+  Button,
+  message,
+  Spin,
+  Modal,
+  Upload,
+  Icon
+} from "antd";
+import "../../less/index.less";
+import Logo from "../elements/logo";
 import {
   logout,
   setLoading,
   setStore as updateStore,
   deleteAccount,
   getCurrentUser
-} from '../../state/actionCreators'
-import history from '../../history'
+} from "../../state/actionCreators";
+import history from "../../history";
+import axios from "axios";
 
-const storeUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/'
+const storeUrl = "https://shopping-cart-eu3.herokuapp.com/api/store/";
 
-const { Option } = Select
+const { Option } = Select;
 
 const EditProfile = ({ dispatch, isLoading, form }) => {
   const [store, setStore] = useState({
-    ownerName: '',
-    currency: '',
-    storeName: '',
-    imageUrl: '',
-    address: ''
-  })
+    ownerName: "",
+    currency: "",
+    storeName: "",
+    imageUrl: "",
+    address: ""
+  });
 
   useEffect(() => {
-    dispatch(setLoading(true))
-    dispatch(getCurrentUser())
+    dispatch(setLoading(true));
+    dispatch(getCurrentUser());
     axiosWithAuth()
       .get(storeUrl)
       .then(res => {
-        const { ownerName, currency, storeName, address } = res.data
-        setStore({ ownerName, currency, storeName, address })
-        dispatch(setLoading(false))
+        const { ownerName, currency, storeName, address, imageUrl } = res.data;
+        setStore({ ownerName, currency, storeName, address, imageUrl });
+        dispatch(setLoading(false));
       })
       .catch(err => {
-        dispatch(setLoading(false))
-        setErrors(err.response.data)
-      })
-  }, [dispatch])
+        dispatch(setLoading(false));
+        setErrors(err.response.data);
+      });
+  }, [dispatch]);
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const handleChange = e => {
-    setStore({ ...store, [e.target.name]: e.target.value })
-  }
+    setStore({ ...store, [e.target.name]: e.target.value });
+  };
 
   const handleLogout = () => {
     // delete token from local storage and redirect to login
-    dispatch(logout())
-    history.push('/')
-  }
+    dispatch(logout());
+    history.push("/");
+  };
 
   const handleDeleteAccount = () => {
-    const { confirm } = Modal
+    const { confirm } = Modal;
     confirm({
-      title: 'Are you sure you want to delete your account?',
-      okText: 'Yes',
-      okType: 'danger',
-      cancelText: 'No',
-      onOk () {
-        dispatch(setLoading(true))
-        dispatch(deleteAccount())
-        dispatch(logout())
-        history.push('/register')
+      title: "Are you sure you want to delete your account?",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        dispatch(setLoading(true));
+        dispatch(deleteAccount());
+        dispatch(logout());
+        history.push("/register");
       },
-      onCancel () {}
-    })
-  }
+      onCancel() {}
+    });
+  };
 
   const handleSubmit = e => {
-    e.preventDefault()
-    dispatch(setLoading(true))
-    setErrors({})
+    e.preventDefault();
+    dispatch(setLoading(true));
+    setErrors({});
     form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (err) {
-        message.error('Enter Required Fields')
+        message.error("Enter Required Fields");
       }
 
+      const payload = {
+        ownerName: values.ownerName,
+        currency: values.currency,
+        address: values.address,
+        storeName: values.storeName,
+        imageUrl: store.imageUrl
+      };
+
       axiosWithAuth()
-        .put(storeUrl, values)
+        .put(storeUrl, payload)
         .then(res => {
-          dispatch(updateStore(res.data))
-          message.success('Your store has been updated')
-          history.push('/dashboard')
+          dispatch(updateStore(res.data));
+          message.success("Your store has been updated");
+          history.push("/dashboard");
         })
         .catch(errors => {
-          message.error(Object.values(errors.response.data)[0])
-          setErrors(errors.response.data)
-        })
-    })
-  }
+          message.error(Object.values(errors.response.data)[0]);
+          setErrors(errors.response.data);
+        });
+    });
+  };
 
-  const { getFieldDecorator } = form
+  const dummyRequest = ({ file, onSuccess }) => {
+    const image = new FormData();
+    image.append("upload_preset", "pure-retail");
+    image.append("file", file);
+    const config = {
+      headers: { "X-Requested-With": "XMLHttpRequest" }
+    };
+    axios
+      .post("https://api.cloudinary.com/v1_1/pureretail/upload", image, config)
+      .then(res => {
+        const secureUrl = res.data.secure_url;
+        setStore({ ...store, imageUrl: secureUrl });
+      });
+  };
+  const uploadButton = (
+    <div id="upload-button">
+      <Icon type={isLoading? "loading":"plus"} />
+      <div className="ant-upload-text">Upload</div>
+    </div>
+  );
+
+  const { getFieldDecorator } = form;
 
   const formItemLayout = {
     labelCol: {
@@ -106,7 +146,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
       xs: { span: 24 },
       sm: { span: 16 }
     }
-  }
+  };
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -118,148 +158,167 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
         offset: 8
       }
     }
-  }
+  };
 
   const createStore = (
-    <div className='cover' style={{ height: "auto" }}>
+    <div className="cover" style={{ height: "auto" }}>
       <Logo />
-      <p className='text'>You currently haven't created a store yet</p>
-      <p className='text'>
-        Click{' '}
-        <Link className='link' to='/createstore'>
+      <p className="text">You currently haven't created a store yet</p>
+      <p className="text">
+        Click{" "}
+        <Link className="link" to="/createstore">
           here
-        </Link>{' '}
+        </Link>{" "}
         to create one
       </p>
-      <Button onClick={handleLogout} type='primary' htmlType='button'>
+      <Button onClick={handleLogout} type="primary" htmlType="button">
         Logout
       </Button>
     </div>
-  )
+  );
 
   const editProfile = (
-    <Spin spinning={isLoading}>
-      <div className='cover' style={{ height: "auto" }}>
-        <Logo />
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <div id='header'>Edit your profile</div>
+    //<Spin spinning={isLoading}>
+    <div className="cover" style={{ height: "auto" }}>
+      {
+        store.imageUrl ?
+      <div id="add-logo-image">
+        <Upload
+          name="avatar"
+          listType="picture-card"
+          className="avatar-uploader"
+          showUploadList={false}
+          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          customRequest={dummyRequest}
+        >
+          {store.imageUrl ? (
+            <img src={store.imageUrl} alt="avatar" style={{ width: "100%", height:"100%" }} />
+          ) : (
+            uploadButton
+          )}
+        </Upload>
+      </div> :  <Logo />
+      }
+      <Form {...formItemLayout} onSubmit={handleSubmit}>
+        <div id="header">Edit your profile</div>
 
-          <Form.Item>
-            {getFieldDecorator('ownerName', {
-              initialValue: store.ownerName,
-              rules: [
-                {
-                  message: 'Enter your name'
-                },
-                {
-                  required: true,
-                  message: 'Enter your name'
-                }
-              ]
-            })(
-              <Input
-                onChange={handleChange}
-                name='ownerName'
-                placeholder='Name of Store owner'
-              />
-            )}
-          </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("ownerName", {
+            initialValue: store.ownerName,
+            rules: [
+              {
+                message: "Enter your name"
+              },
+              {
+                required: true,
+                message: "Enter your name"
+              }
+            ]
+          })(
+            <Input
+              onChange={handleChange}
+              name="ownerName"
+              placeholder="Name of Store owner"
+            />
+          )}
+        </Form.Item>
 
-          <Form.Item hasFeedback>
-            {getFieldDecorator('currency', {
-              initialValue: store.currency,
-              rules: [
-                {
-                  required: true,
-                  message: 'Select preferred currency'
-                }
-              ]
-            })(
-              <Select name='currency' placeholder='Select your currency'>
-              <Option value='POU'>British Pounds (GBP / £)</Option>
-              <Option value='EUR'>Euros (EUR / €)</Option>
-              <Option value='YEN'>Japanse Yen (JPY / ¥)</Option>
-              <Option value='DOL'>US Dollars (USD / $)</Option>
-              </Select>
-            )}
-          </Form.Item>
+        <Form.Item hasFeedback>
+          {getFieldDecorator("currency", {
+            initialValue: store.currency,
+            rules: [
+              {
+                required: true,
+                message: "Select preferred currency"
+              }
+            ]
+          })(
+            <Select name="currency" placeholder="Select your currency">
+              <Option value="POU">British Pounds (GBP / £)</Option>
+              <Option value="EUR">Euros (EUR / €)</Option>
+              <Option value="YEN">Japanse Yen (JPY / ¥)</Option>
+              <Option value="DOL">US Dollars (USD / $)</Option>
+            </Select>
+          )}
+        </Form.Item>
 
-          <Form.Item>
-            {getFieldDecorator('storeName', {
-              initialValue: store.storeName,
-              rules: [
-                {
-                  message: 'Store name is required'
-                },
-                {
-                  required: true,
-                  message: 'Store name is required'
-                }
-              ]
-            })(
-              <Input
-                onChange={handleChange}
-                name='storeName'
-                placeholder='Store name'
-              />
-            )}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('address', {
-              initialValue: store.address,
-              rules: [
-                {
-                  message: 'Store address is required'
-                },
-                {
-                  required: true,
-                  message: 'Store address is required'
-                }
-              ]
-            })(
-              <Input
-                onChange={handleChange}
-                name='address'
-                placeholder='Store address'
-              />
-            )}
-          </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("storeName", {
+            initialValue: store.storeName,
+            rules: [
+              {
+                message: "Store name is required"
+              },
+              {
+                required: true,
+                message: "Store name is required"
+              }
+            ]
+          })(
+            <Input
+              onChange={handleChange}
+              name="storeName"
+              placeholder="Store name"
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("address", {
+            initialValue: store.address,
+            rules: [
+              {
+                message: "Store address is required"
+              },
+              {
+                required: true,
+                message: "Store address is required"
+              }
+            ]
+          })(
+            <Input
+              onChange={handleChange}
+              name="address"
+              placeholder="Store address"
+            />
+          )}
+        </Form.Item>
 
-          <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
-              Update
-            </Button>
-          </Form.Item>
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit">
+            Update
+          </Button>
+        </Form.Item>
 
-          <Form.Item {...tailFormItemLayout}>
-            <Button onClick={handleLogout} type='primary' htmlType='button'>
-              Logout
-            </Button>
-          </Form.Item>
+        <Form.Item {...tailFormItemLayout}>
+          <Button onClick={handleLogout} type="primary" htmlType="button">
+            Logout
+          </Button>
+        </Form.Item>
 
-          <Form.Item {...tailFormItemLayout}>
-            <Button
-              onClick={handleDeleteAccount}
-              id='delete-btn'
-              type='link'
-              htmlType='button'
-              style={{ marginBottom: '25px'}}
-            >
-              Delete account
-            </Button>
-          </Form.Item>
-        </Form>
-      </div>
-    </Spin>
-  )
+        <Form.Item {...tailFormItemLayout}>
+          <Button
+            onClick={handleDeleteAccount}
+            id="delete-btn"
+            type="link"
+            htmlType="button"
+            style={{ marginBottom: "25px" }}
+          >
+            Delete account
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+    //</Spin>
+  );
 
-  return errors.message ? createStore : editProfile
-}
+  return errors.message ? createStore : editProfile;
+};
 
-const EditForm = Form.create()(EditProfile)
+const EditForm = Form.create()(EditProfile);
 
 const mapStateToProps = state => ({
-  isLoading: state.user.isLoading
-})
+  isLoading: state.user.isLoading,
+  imageUrl: state.user.user.imageUrl
+});
 
-export default connect(mapStateToProps, null)(EditForm)
+export default connect(mapStateToProps, null)(EditForm);
