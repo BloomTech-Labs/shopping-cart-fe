@@ -1,7 +1,6 @@
 import React from 'react'
 import { Icon } from 'antd'
 import { NavLink } from 'react-router-dom'
-import '../../less/index.less'
 
 function Nav () {
   return (

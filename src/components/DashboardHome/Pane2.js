@@ -1,5 +1,4 @@
 import React from 'react'
-import './Dashboard.css'
 import { Icon } from 'antd'
 import moment from 'moment'
 

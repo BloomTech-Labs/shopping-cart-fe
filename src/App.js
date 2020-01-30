@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch } from 'react-router-dom'
-import './App.css'
+import './less/index.less'
 import WrappedRegistrationForm from './components/register'
 import LoginForm from './components/login'
 import ResetPasswordForm from './components/resetPassword'

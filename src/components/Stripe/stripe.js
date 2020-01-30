@@ -4,7 +4,6 @@ import { StripeProvider } from "react-stripe-elements";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { Collapse } from "antd";
-import "../../less/index.less";
 import * as creators from "../../state/actionCreators";
 import useCurrency from "../hooks/useCurrency";
 

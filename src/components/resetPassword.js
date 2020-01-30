@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message, Spin } from 'antd'
-import '../less/index.less'
 import Logo from './elements/logo'
 import * as creators from '../state/actionCreators'
 
