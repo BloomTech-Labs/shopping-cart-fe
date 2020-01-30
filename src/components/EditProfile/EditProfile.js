@@ -13,7 +13,6 @@ import {
   Upload,
   Icon
 } from "antd";
-import "../../less/index.less";
 import Logo from "../elements/logo";
 import {
   logout,
@@ -130,7 +129,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
   };
   const uploadButton = (
     <div id="upload-button">
-      <Icon type={isLoading? "loading":"plus"} />
+      <Icon type={isLoading ? "loading" : "plus"} />
       <div className="ant-upload-text">Upload</div>
     </div>
   );
@@ -180,25 +179,30 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
   const editProfile = (
     //<Spin spinning={isLoading}>
     <div className="cover" style={{ height: "auto" }}>
-      {
-        store.imageUrl ?
-      <div id="add-logo-image">
-        <Upload
-          name="avatar"
-          listType="picture-card"
-          className="avatar-uploader"
-          showUploadList={false}
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          customRequest={dummyRequest}
-        >
-          {store.imageUrl ? (
-            <img src={store.imageUrl} alt="avatar" style={{ width: "100%", height:"100%" }} />
-          ) : (
-            uploadButton
-          )}
-        </Upload>
-      </div> :  <Logo />
-      }
+      {store.imageUrl ? (
+        <div id="add-logo-image">
+          <Upload
+            name="avatar"
+            listType="picture-card"
+            className="avatar-uploader"
+            showUploadList={false}
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            customRequest={dummyRequest}
+          >
+            {store.imageUrl ? (
+              <img
+                src={store.imageUrl}
+                alt="avatar"
+                style={{ width: "100%", height: "100%" }}
+              />
+            ) : (
+              uploadButton
+            )}
+          </Upload>
+        </div>
+      ) : (
+        <Logo />
+      )}
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <div id="header">Edit your profile</div>
 

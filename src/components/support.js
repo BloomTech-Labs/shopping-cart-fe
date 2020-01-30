@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../less/index.less'
 import Logo from './elements/logo'
 
 const Support = () => {
