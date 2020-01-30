@@ -4,7 +4,7 @@ import Nav from '../elements/nav'
 import Dashboard from './Dashboard'
 // import Footer from '../DashboardHome/Footer'
 
-function Home () {
+const Home = () => {
   return (
     <div>
       <Dashboard />
