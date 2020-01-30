@@ -1,19 +1,25 @@
 import React from 'react'
-// import './Dashboard.css'
+import './Dashboard.css'
 import { Icon } from 'antd'
+import moment from 'moment'
 
-const Pane2 = () => {
+const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
+  const date = moment(checkoutDate)
+
   return (
     <div className='Card2'>
       <div className='PaneFlex'>
         <Icon type='check-circle' style={{ color: '#BFD7EA' }} />
         <div className='StoreTitle'>
-          <h2>Calvin Klein Boxers Shorts</h2>
-          <p>Fine linen, rare edition, worn by Bieber</p>
+          <h2 className='pull-left'>{name}</h2>
+          <p className='pull-left'>{description}</p>
         </div>
         <div className='StorePrice'>
-          <h2>+₦500</h2>
-          <p>Dec. 14</p>
+          <h2>{date.format('MMM D YYYY')}</h2>
+          <p>
+            {currencySymbol}
+            {price}
+          </p>
         </div>
       </div>
     </div>
