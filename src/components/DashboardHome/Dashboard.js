@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import './Dashboard.css'
 import Content from './DashContent'
 import { Button, message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
