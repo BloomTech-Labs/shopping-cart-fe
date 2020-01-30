@@ -172,10 +172,10 @@ export const getStore = (sellerId, signal) => dispatch => {
     })
 }
 
-export const setStoreUrl = url => {
+export const setStoreUrl = () => {
   return {
     type: types.SET_STORE_URL,
-    payload: url
+    payload: window.location.pathname
   }
 }
 
