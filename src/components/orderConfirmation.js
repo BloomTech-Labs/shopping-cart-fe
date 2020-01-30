@@ -62,11 +62,14 @@ const Confirmation = (props) => {
     axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
       .then(res => {
         dispatch(creators.getCart(cartId))
-        history.push('/dashboard')
       })
       .catch(err => {
         message.error('An Error Occurred', err)
       })
+  }
+
+  const routeToDash = () => {
+    history.push('/dashboard')
   }
 
   const { getFieldDecorator } = props.form
@@ -282,8 +285,8 @@ const Confirmation = (props) => {
             }
             {
               cartContents.checkedOut && cartContents.finalLock
-                ? <div style={{ backgroundColor: '#FF6663', color: 'white' }}>
-                  Transaction Complete
+                ? <div onClick={routeToDash} style={{ backgroundColor: '#FF6663', color: 'white' }}>
+                  Transaction Complete! Go to Dashboard.
                   </div>
                 : null
             }

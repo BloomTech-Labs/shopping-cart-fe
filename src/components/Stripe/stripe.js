@@ -26,7 +26,7 @@ const Stripe = props => {
     axios
       .post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', {
         amount: cartContents.agreedPrice
-          ? cartContents.agreedPrice.toFixed(2) * 100
+          ? cartContents.agreedPrice.toFixed(2)
           : 0,
         storeId: cartContents.storeId
       })
@@ -38,7 +38,6 @@ const Stripe = props => {
         console.log(err)
       })
   }, [stripeId, cartContents])
-
   return (
     <div className='payments-cover'>
       <div className='checkout'>
@@ -153,7 +152,7 @@ const Stripe = props => {
         <div className='save'>
           <NavLink to={`/store/${cartContents.storeId}`}>
             <div className='save-btn'>Abort Transaction</div>
-          </NavLink>
+s          </NavLink>
           {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
           </div> */}
