@@ -120,7 +120,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
   }
 
   const createStore = (
-    <div className='cover' style={{ height: "auto" }}>
+    <div className='cover' style={{ height: 'auto' }}>
       <Logo />
       <p className='text'>You currently haven't created a store yet</p>
       <p className='text'>
@@ -138,7 +138,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
 
   const editProfile = (
     <Spin spinning={isLoading}>
-      <div className='cover' style={{ height: "auto" }}>
+      <div className='cover' style={{ height: 'auto' }}>
         <Logo />
         <Form {...formItemLayout} onSubmit={handleSubmit}>
           <div id='header'>Edit your profile</div>
@@ -175,10 +175,10 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
               ]
             })(
               <Select name='currency' placeholder='Select your currency'>
-              <Option value='POU'>British Pounds (GBP / £)</Option>
-              <Option value='EUR'>Euros (EUR / €)</Option>
-              <Option value='YEN'>Japanse Yen (JPY / ¥)</Option>
-              <Option value='DOL'>US Dollars (USD / $)</Option>
+                <Option value='POU'>British Pounds (GBP / £)</Option>
+                <Option value='EUR'>Euros (EUR / €)</Option>
+                <Option value='YEN'>Japanse Yen (JPY / ¥)</Option>
+                <Option value='DOL'>US Dollars (USD / $)</Option>
               </Select>
             )}
           </Form.Item>
@@ -242,7 +242,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
               id='delete-btn'
               type='link'
               htmlType='button'
-              style={{ marginBottom: '25px'}}
+              style={{ marginBottom: '25px' }}
             >
               Delete account
             </Button>

@@ -55,18 +55,21 @@ const Confirmation = (props) => {
 
   const confirmPayment = e => {
     e.preventDefault()
-      const payload = {
-        amount: cartContents.agreedPrice * 100,
-        cartId: cartId
-      }
-      axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
-        .then(res => {
-          dispatch(creators.getCart(cartId))
-          history.push('/dashboard')
-        })
-        .catch(err => {
-          message.error('An Error Occurred', err)
-        })
+    const payload = {
+      amount: cartContents.agreedPrice * 100,
+      cartId: cartId
+    }
+    axios.put('https://shopping-cart-eu3.herokuapp.com/api/payment/complete', payload)
+      .then(res => {
+        dispatch(creators.getCart(cartId))
+      })
+      .catch(err => {
+        message.error('An Error Occurred', err)
+      })
+  }
+
+  const routeToDash = () => {
+    history.push('/dashboard')
   }
 
   const { getFieldDecorator } = props.form
@@ -169,7 +172,7 @@ const Confirmation = (props) => {
                     <div onClick={() => add(item._id)} className='clicks'>+</div>
                     </div> : <div className='controls'>
                     <div className='clicks count'>{item.quantity}</div>
-                           </div>}
+                  </div>}
                   <List.Item.Meta
                   title={item.name}
                   description={`${sign}${item.price}`}
@@ -189,7 +192,7 @@ const Confirmation = (props) => {
             />
           </div>
           <div className='summary left'>
-            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents).toFixed(2) : cartContents.total ? cartContents.total.toFixed(2) : undefined }</span></div>
+            <div className='units'><span style={{ color: '#FF6663' }}>Total:</span> <span>{sign}{editedCart.contents ? totalPrice(editedCart.contents).toFixed(2) : cartContents.total ? cartContents.total.toFixed(2) : undefined}</span></div>
           </div>
         </div>
       </div>
@@ -268,24 +271,24 @@ const Confirmation = (props) => {
                 : null
             }{
               cartContents.finalLock && !cartContents.checkedOut
-              ? <Popconfirm
-              title='Are you sure you want to confirm?'
-              onConfirm={confirmPayment}
-              okText='Yes'
-              cancelText='No'
-              >
-              <Button type='primary'>
+                ? <Popconfirm
+                  title='Are you sure you want to confirm?'
+                  onConfirm={confirmPayment}
+                  okText='Yes'
+                  cancelText='No'
+                  >
+                  <Button type='primary'>
               Confirm Payment
-            </Button>
-              </Popconfirm>
-            : null
+                  </Button>
+                  </Popconfirm>
+                : null
             }
             {
               cartContents.checkedOut && cartContents.finalLock
-              ?<div style={{ backgroundColor: '#FF6663', color: 'white' }}>
-                  Transaction Complete
+                ? <div onClick={routeToDash} style={{ backgroundColor: '#FF6663', color: 'white' }}>
+                  Transaction Complete! Go to Dashboard.
                   </div>
-              : null
+                : null
             }
           </Form.Item>
         </Form>
