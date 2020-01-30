@@ -1,7 +1,7 @@
 import React from 'react'
 import './Dashboard.css'
 
-const Pane1 = ({ currency, amount }) => {
+const Pane1 = ({ currency, amount, monthSales }) => {
   return (
     <div>
       <h2 style={{ textAlign: 'left', marginLeft: '40px', paddingTop: '20px' }}>
@@ -14,7 +14,7 @@ const Pane1 = ({ currency, amount }) => {
           </p>
           <p className='earnings'>
             <span className='currency'>{currency}</span>
-            {amount}
+            {monthSales}
           </p>
         </div>
         <div className='Cards2'>

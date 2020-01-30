@@ -21,7 +21,11 @@ const Content = ({ currency, storeId }) => {
     <div>
       <Tabs defaultActiveKey='1' className='content'>
         <TabPane tab='Overview' key='1'>
-          <Pane1 currency={sign} amount={dashboard && dashboard.totalSales} />
+          <Pane1
+            currency={sign}
+            amount={dashboard && dashboard.totalSales}
+            monthSales={dashboard && dashboard.monthSales}
+          />
         </TabPane>
         <TabPane tab='Sales History' key='2'>
           {dashboard &&
