@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../less/index.less'
 import Stripe from './stripe'
 
 function StripeMain (props) {

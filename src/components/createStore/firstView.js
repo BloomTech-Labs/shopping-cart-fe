@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Form, Input, Select, Button, message } from 'antd'
-import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import Logo from '../elements/logo'
 import history from '../../history'

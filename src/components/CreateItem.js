@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
-import '../less/index.less'
 import axios from 'axios'
 import AxiosAuth from './Auth/axiosWithAuth'
 import history from '../history'
