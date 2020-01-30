@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button } from 'antd'
 import axios from 'axios'
-import './SellerAccount.css'
 import Nav from '../elements/nav'
 import withAuth from '../Auth/axiosWithAuth'
 

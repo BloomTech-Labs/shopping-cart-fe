@@ -3,7 +3,6 @@ import axiosWithAuth from '../Auth/axiosWithAuth'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Form, Input, Select, Button, message, Spin, Modal } from 'antd'
-import '../../less/index.less'
 import Logo from '../elements/logo'
 import {
   logout,

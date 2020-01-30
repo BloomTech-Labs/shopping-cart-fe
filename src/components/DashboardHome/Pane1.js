@@ -1,5 +1,4 @@
 import React from 'react'
-import './Dashboard.css'
 
 const Pane1 = ({ currency, amount, monthSales }) => {
   return (
