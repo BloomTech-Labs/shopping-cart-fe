@@ -17,7 +17,6 @@ const Content = ({ currency, storeId }) => {
   }, [dispatch, storeId])
   // const user = useSelector(state => state.user.user)
   const dashboard = useSelector(state => state.dashboard)
-  console.log(sign)
   return (
     <div>
       <Tabs defaultActiveKey='1' className='content'>
@@ -33,7 +32,7 @@ const Content = ({ currency, storeId }) => {
                 currencySymbol={sign}
                 currency={currency.toUpperCase()}
                 key={sale._id}
-                name={sale.name}
+                name={sale.name.trim()}
                 price={sale.price}
                 description={sale.description}
                 checkoutDate={sale.checkoutDate}

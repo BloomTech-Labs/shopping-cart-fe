@@ -2,7 +2,6 @@ import React from 'react'
 import './Dashboard.css'
 
 const Pane1 = ({ currency, amount }) => {
-  console.log(currency)
   return (
     <div>
       <h2 style={{ textAlign: 'left', marginLeft: '40px', paddingTop: '20px' }}>
