@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import '../../less/index.less'
 import ReviewMain from './review'
 import CartHeader from '../elements/cartHeader'
 

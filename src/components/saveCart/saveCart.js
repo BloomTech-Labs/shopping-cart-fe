@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'
-import '../../less/index.less'
 import useCurrency from '../hooks/useCurrency'
 
 const SaveCart = props => {

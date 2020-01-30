@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
-import '../../less/index.less'
 import * as creators from '../../state/actionCreators'
 import useCurrency from '../hooks/useCurrency'
 

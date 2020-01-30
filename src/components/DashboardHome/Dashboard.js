@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import './Dashboard.css'
 import Content from './DashContent'
 import { Button, message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
@@ -49,9 +48,15 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='storeUrl'>
-        <p id='storeUrl' style={{ marginBottom: '1.3rem' }}>{user && url}</p>
+        <p id='storeUrl' style={{ marginBottom: '1.3rem' }}>
+          {user && url}
+        </p>
         <CopyToClipboard text={url}>
-          <span><Button ghost onClick={copied}>Copy URL</Button></span>
+          <span>
+            <Button ghost onClick={copied}>
+              Copy URL
+            </Button>
+          </span>
         </CopyToClipboard>
         <div className='share'>
           <FacebookShareButton url={user && url}>
@@ -72,7 +77,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='dashDiv'>
-        <Content currency={user.currency} />
+        <Content storeId={user._id} currency={user.currency} />
       </div>
     </div>
   )

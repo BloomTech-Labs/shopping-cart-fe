@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { Carousel, Button, Icon, Typography } from 'antd'
-import '../../less/index.less'
 import { useDispatch, useSelector } from 'react-redux'
 import * as creators from '../../state/actionCreators'
 const { Paragraph } = Typography
