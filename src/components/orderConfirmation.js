@@ -287,7 +287,7 @@ const Confirmation = (props) => {
             {
               cartContents.checkedOut && cartContents.finalLock
                 ? <div onClick={routeToDash} style={{ backgroundColor: '#FF6663', color: 'white' }}>
-                  Transaction Complete
+                  Transaction Complete! Go to Dashboard.
                   </div>
                 : null
             }
