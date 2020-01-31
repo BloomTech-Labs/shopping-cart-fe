@@ -42,7 +42,6 @@ const Confirmation = (props) => {
           .put(`https://shopping-cart-eu3.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
           .then(res => {
             dispatch(creators.getCart(cartId))
-            history.push('/dashboard')
           })
           .catch(err => {
             console.log(err)
