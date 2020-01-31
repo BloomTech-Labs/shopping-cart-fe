@@ -185,7 +185,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           <img
             src={store.imageUrl ? store.imageUrl : logo}
             alt='avatar'
-            style={{ width: '100%', height: '100%', position: 'relative' }}
+            style={{ width: '100%', height: '100%', position: 'relative', opacity: '0.5'}}
           />
           <Icon
             type='camera'
