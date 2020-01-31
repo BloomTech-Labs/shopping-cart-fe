@@ -193,7 +193,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
         </Upload>
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <div id="header">Edit your profile</div>
+        <div id="header" style={{ margin: '2rem' }}>Edit your profile</div>
 
         <Form.Item>
           {getFieldDecorator("ownerName", {
