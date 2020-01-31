@@ -191,9 +191,9 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
             type='camera'
             style={{
               position: 'relative',
-              bottom: '2.8rem',
-              left: '2.8rem',
-              fontSize: '2.3rem'
+              bottom: '28px',
+              left: '28px',
+              fontSize: '23px'
             }}
           />
         </Upload>
