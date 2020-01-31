@@ -8,12 +8,9 @@ import {
   Select,
   Button,
   message,
-  Spin,
   Modal,
   Upload,
   Icon,
-  Popover,
-  Tooltip
 } from "antd";
 import Logo from "../elements/logo";
 import {
@@ -130,12 +127,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
         setStore({ ...store, imageUrl: secureUrl });
       });
   };
-  const uploadButton = (
-    <div id="upload-button">
-      <Icon type={isLoading ? "loading" : "plus"} />
-      <div className="ant-upload-text">Upload</div>
-    </div>
-  );
+  
   const { getFieldDecorator } = form;
 
   const formItemLayout = {
@@ -190,13 +182,14 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           customRequest={dummyRequest}
         >
-          <Tooltip placement="leftTop" arrowPointAtCenter title="Upload New Picture">
-            <img
-              src={store.imageUrl ? store.imageUrl : logo}
-              alt="avatar"
-              style={{ width: "100%", height: "100%" }}
-            />
-          </Tooltip>
+        <div style={{ position: 'relative'}}>
+          <img
+            src={store.imageUrl ? store.imageUrl : logo}
+            alt="avatar"
+            style={{ width: "100%", height: "100%" }}
+          />
+          <Icon type="camera" style={{ position: 'relative', bottom: '22px', left: '28px', fontSize: '2.3rem' }}/> 
+        </div>
         </Upload>
       </div>
       <Form {...formItemLayout} onSubmit={handleSubmit}>
