@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from '../../images/PureRetail_Logo.png'
 
-
 const Logo = () => {
   return (
     <div id='logo'>
