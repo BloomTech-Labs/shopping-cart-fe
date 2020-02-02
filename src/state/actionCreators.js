@@ -186,9 +186,9 @@ export const saveCart = cart => {
   }
 }
 
-export const getSalesHistory = storeId => dispatch => {
+export const getSalesHistory = () => dispatch => {
   AxiosAuth()
-    .get(`https://shopping-cart-eu3.herokuapp.com/api/store/${storeId}/sales`)
+    .get('https://shopping-cart-eu3.herokuapp.com/api/store/sales')
     .then(res => {
       dispatch({ type: types.GET_SALES_HISTORY, payload: res.data })
     })

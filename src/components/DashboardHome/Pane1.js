@@ -11,19 +11,27 @@ const Pane1 = ({ currency, amount, monthSales }) => {
           <p style={{ color: 'white', paddingTop: '20px' }}>
             This month you earned:
           </p>
-          <p className='earnings'>
-            <span className='currency'>{currency}</span>
-            {monthSales}
-          </p>
+          {monthSales > 0 ? (
+            <p className='earnings'>
+              <span className='currency'>{currency}</span>
+              {monthSales}
+            </p>
+          ) : (
+            <p className='currency'>No sales made this month</p>
+          )}
         </div>
         <div className='Cards2'>
           <p style={{ color: 'white', paddingTop: '20px' }}>
             Lifetime earnings:
           </p>
-          <p className='earnings'>
-            <span className='currency'>{currency}</span>
-            {amount}
-          </p>
+          {amount > 0 ? (
+            <p className='earnings'>
+              <span className='currency'>{currency}</span>
+              {amount}
+            </p>
+          ) : (
+            <p className='currency'>No sales made yet</p>
+          )}
         </div>
       </div>
     </div>

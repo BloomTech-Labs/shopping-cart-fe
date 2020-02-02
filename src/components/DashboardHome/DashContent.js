@@ -12,9 +12,8 @@ const Content = ({ currency, storeId }) => {
   const dispatch = useDispatch()
   const sign = useCurrency(currency)
   useEffect(() => {
-    dispatch(actionCreators.getSalesHistory(storeId))
+    dispatch(actionCreators.getSalesHistory())
   }, [dispatch, storeId])
-  // const user = useSelector(state => state.user.user)
   const dashboard = useSelector(state => state.dashboard)
   return (
     <div>
