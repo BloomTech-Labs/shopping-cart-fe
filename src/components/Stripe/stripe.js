@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { StripeProvider } from "react-stripe-elements";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { Collapse } from "antd";
-import * as creators from "../../state/actionCreators";
-import useCurrency from "../hooks/useCurrency";
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { StripeProvider } from 'react-stripe-elements'
+import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import { Collapse } from 'antd'
+import * as creators from '../../state/actionCreators'
+import useCurrency from '../hooks/useCurrency'
 
 import MyStoreCheckout from './MyStoreCheckout'
 
@@ -152,7 +152,8 @@ const Stripe = props => {
         <div className='save'>
           <NavLink to={`/store/${cartContents.storeId}`}>
             <div className='save-btn'>Abort Transaction</div>
-s          </NavLink>
+s
+          </NavLink>
           {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
           </div> */}
