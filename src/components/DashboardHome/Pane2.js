@@ -7,7 +7,22 @@ const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
 
   return (
     <div className='Card2'>
-      <div className='PaneFlex'>
+      <div className='sales-history'>
+        <Icon type='check-circle' style={{ color: '#BFD7EA', flexBasis: 1 }} />
+        <div className='product-description'>
+          <p>{name}</p>
+          <p>{description.slice(0, 30)}...</p>
+        </div>
+        <div className='date-price'>
+          <p>{date.format('MMM D YYYY')}</p>
+          <p>
+            {currencySymbol}
+            {price}
+          </p>
+        </div>
+      </div>
+      {/* <p>hello</p> */}
+      {/* <div className='PaneFlex'>
         <Icon type='check-circle' style={{ color: '#BFD7EA' }} />
         <div className='StoreTitle'>
           <h2 className='pull-left'>{name}</h2>
@@ -20,7 +35,7 @@ const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
             {price}
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
