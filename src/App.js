@@ -23,6 +23,7 @@ import Support from './components/support'
 import SaveCartMain from './components/saveCart'
 import Account from './components/SellerAccount/SellerAccount'
 import Confirmation from './components/orderConfirmation'
+import NoMatch from './components/noMatch'
 
 function App () {
   return (
@@ -46,6 +47,7 @@ function App () {
       <PublicRoute path='/success' component={OrderSuccessPage} />
       <PublicRoute exact path='/support' component={Support} />
       <PrivateRoute path='/account' component={Account} />
+      <PublicRoute component={NoMatch} />
     </Switch>
   )
 }
