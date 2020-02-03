@@ -26,6 +26,7 @@ import axios from "axios";
 import logo from "../../images/PureRetail_Logo.png";
 
 const storeUrl = "https://shopping-cart-eu3.herokuapp.com/api/store/";
+const updatePhoneUrl = "https://shopping-cart-eu3.herokuapp.com/api/auth/phone";
 
 const { Option } = Select;
 
@@ -94,7 +95,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     e.preventDefault();
     dispatch(setLoading(true));
     setErrors({});
-    form.validateFieldsAndScroll({ force: true }, (err, values) => {
+    form.validateFieldsAndScroll({ force: true }, async (err, values) => {
       if (err) {
         message.error("Enter Required Fields");
       }
@@ -107,17 +108,22 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
         imageUrl: store.imageUrl
       };
 
-      axiosWithAuth()
-        .put(storeUrl, payload)
-        .then(res => {
-          dispatch(updateStore(res.data));
+      try {
+        await axiosWithAuth().put(updatePhoneUrl, {
+          phone: store.phone
+        });
+
+        const response = await axiosWithAuth().put(storeUrl, payload);
+        if (response) {
+          dispatch(updateStore(response.data));
           message.success("Your store has been updated");
           history.push("/dashboard");
-        })
-        .catch(errors => {
-          message.error(Object.values(errors.response.data)[0]);
-          setErrors(errors.response.data);
-        });
+        }
+      } catch (errors) {
+        dispatch(setLoading(false));
+        message.error(Object.values(errors.response.data)[0]);
+        return setErrors(Object.values(errors.response.data)[0]);
+      }
     });
   };
 
@@ -220,8 +226,8 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           </div>
 
           <Form.Item>
-            {getFieldDecorator("number", {
-              initialValue: store.phone,
+            {getFieldDecorator("phone", {
+              initialValue: store && store.phone && store.phone.toString(),
               rules: [
                 {
                   message: "Enter valid Whatsapp number"
@@ -234,8 +240,8 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
             })(
               <Input
                 onChange={handleChange}
+                name="phone"
                 placeholder="e.g. 2348000001231"
-                name="number"
               />
             )}
           </Form.Item>
@@ -348,7 +354,9 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     </Spin>
   );
 
-  return errors.message ? createStore : editProfile;
+  return errors.message === "There is no store with that id"
+    ? createStore
+    : editProfile;
 };
 
 const EditForm = Form.create()(EditProfile);

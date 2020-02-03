@@ -32,7 +32,7 @@ const Content = ({ currency, storeId }) => {
             dashboard.transactionDetails.map(sale => (
               <Pane2
                 currencySymbol={sign}
-                currency={currency.toUpperCase()}
+                currency={currency && currency.toUpperCase()}
                 key={sale._id}
                 name={sale.name.trim()}
                 price={sale.price}
