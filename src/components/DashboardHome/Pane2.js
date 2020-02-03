@@ -2,7 +2,14 @@ import React from 'react'
 import { Icon } from 'antd'
 import moment from 'moment'
 
-const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
+const Pane2 = ({
+  currencySymbol,
+  name,
+  description,
+  price,
+  checkoutDate,
+  quantity
+}) => {
   const date = moment(checkoutDate)
 
   return (
@@ -12,6 +19,7 @@ const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
         <div className='product-description'>
           <p>{name}</p>
           <p>{description.slice(0, 30)}...</p>
+          <p>Quantity: {quantity}</p>
         </div>
         <div className='date-price'>
           <p>{date.format('MMM D YYYY')}</p>
@@ -21,21 +29,6 @@ const Pane2 = ({ currencySymbol, name, description, price, checkoutDate }) => {
           </p>
         </div>
       </div>
-      {/* <p>hello</p> */}
-      {/* <div className='PaneFlex'>
-        <Icon type='check-circle' style={{ color: '#BFD7EA' }} />
-        <div className='StoreTitle'>
-          <h2 className='pull-left'>{name}</h2>
-          <p className='pull-left'>{description}</p>
-        </div>
-        <div className='StorePrice'>
-          <h2>{date.format('MMM D YYYY')}</h2>
-          <p>
-            {currencySymbol}
-            {price}
-          </p>
-        </div>
-      </div> */}
     </div>
   )
 }

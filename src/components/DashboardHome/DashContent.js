@@ -38,6 +38,7 @@ const Content = ({ currency, storeId }) => {
                 price={sale.price}
                 description={sale.description}
                 checkoutDate={sale.checkoutDate}
+                quantity={sale.quantity}
               />
             ))
           ) : (
