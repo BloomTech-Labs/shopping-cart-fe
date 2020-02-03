@@ -105,11 +105,11 @@ const RegistrationForm = props => {
               {getFieldDecorator('number', {
                 rules: [
                   {
-                    message: 'Enter valid phone number'
+                    message: 'Enter valid Whatsapp number'
                   },
                   {
                     required: true,
-                    message: 'Enter valid phone number'
+                    message: 'Enter valid Whatsapp number'
                   }
                 ]
               })(
