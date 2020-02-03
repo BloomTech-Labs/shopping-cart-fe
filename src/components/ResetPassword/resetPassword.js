@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import Logo from '../elements/logo'
 import * as creators from '../../state/actionCreators'
-import image from '../../images/register.png'
+import image from '../../images/security.png'
 
 const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
 
@@ -70,7 +70,7 @@ const ResetPassword = props => {
         <div className='desktop-logo'>
           <h2 className='register-text'>Reset Password</h2>
           <div className='desktop-logo-large'>
-            <img src={image} alt='PureRetail Logo' width='300' height='300' />
+            <img src={image} alt='PureRetail Logo' width='372' height='372' />
           </div>
         </div>
         <Logo />

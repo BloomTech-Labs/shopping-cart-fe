@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Logo from '../elements/logo'
 import history from '../../history'
 import * as creators from '../../state/actionCreators'
-import image from '../../images/register.png'
+import image from '../../images/security.png'
 
 const SetNewPassword = props => {
   const dispatch = useDispatch()
@@ -98,7 +98,7 @@ const SetNewPassword = props => {
         <div className='desktop-logo'>
           <h2 className='register-text'>Set new password</h2>
           <div className='desktop-logo-large'>
-            <img src={image} alt='PureRetail Logo' width='300' height='300' />
+            <img src={image} alt='PureRetail Logo' width='372' height='372' />
           </div>
         </div>
         <Logo />
