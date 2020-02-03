@@ -12,20 +12,23 @@ const Content = ({ currency, storeId }) => {
   const dispatch = useDispatch()
   const sign = useCurrency(currency)
   useEffect(() => {
-    dispatch(actionCreators.getSalesHistory(storeId))
+    dispatch(actionCreators.getSalesHistory())
   }, [dispatch, storeId])
-  // const user = useSelector(state => state.user.user)
   const dashboard = useSelector(state => state.dashboard)
   return (
     <div>
       <Tabs defaultActiveKey='1' className='content'>
         <TabPane tab='Overview' key='1'>
-          <Pane1 currency={sign} amount={dashboard && dashboard.totalSales} />
+          <Pane1
+            currency={sign}
+            amount={dashboard && dashboard.totalSales}
+            monthSales={dashboard && dashboard.monthSales}
+          />
         </TabPane>
         <TabPane tab='Sales History' key='2'>
           {dashboard &&
-            dashboard.transactionDetails &&
-            dashboard.transactionDetails.length &&
+          dashboard.transactionDetails &&
+          dashboard.transactionDetails.length > 0 ? (
             dashboard.transactionDetails.map(sale => (
               <Pane2
                 currencySymbol={sign}
@@ -35,8 +38,12 @@ const Content = ({ currency, storeId }) => {
                 price={sale.price}
                 description={sale.description}
                 checkoutDate={sale.checkoutDate}
+                quantity={sale.quantity}
               />
-            ))}
+            ))
+          ) : (
+            <p>You haven't made any sales yet</p>
+          )}
         </TabPane>
       </Tabs>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pane1 = ({ currency, amount }) => {
+const Pane1 = ({ currency, amount, monthSales }) => {
   return (
     <div>
       <h2 style={{ textAlign: 'left', marginLeft: '40px', paddingTop: '20px' }}>
@@ -11,19 +11,27 @@ const Pane1 = ({ currency, amount }) => {
           <p style={{ color: 'white', paddingTop: '20px' }}>
             This month you earned:
           </p>
-          <p className='earnings'>
-            <span className='currency'>{currency}</span>
-            {amount}
-          </p>
+          {monthSales > 0 ? (
+            <p className='earnings'>
+              <span className='currency'>{currency}</span>
+              {monthSales}
+            </p>
+          ) : (
+            <p className='currency'>No sales made this month</p>
+          )}
         </div>
         <div className='Cards2'>
           <p style={{ color: 'white', paddingTop: '20px' }}>
             Lifetime earnings:
           </p>
-          <p className='earnings'>
-            <span className='currency'>{currency}</span>
-            {amount}
-          </p>
+          {amount > 0 ? (
+            <p className='earnings'>
+              <span className='currency'>{currency}</span>
+              {amount}
+            </p>
+          ) : (
+            <p className='currency'>No sales made yet</p>
+          )}
         </div>
       </div>
     </div>
