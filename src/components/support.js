@@ -5,8 +5,15 @@ import Logo from './elements/logo'
 
 const Support = () => {
   return (
-    <div className='cover' style={{ justifyContent: 'space-between' }}>
-      <div style={{ marginTop: '2rem'}}>
+    <div style={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100vh',
+        textAlign: 'center',
+        padding: '4rem 2rem'
+      }}>
+      <div>
           <Logo />
           <div>
             <h2 id='header' style={{ marginTop: '3rem'}}>Support</h2>
@@ -17,7 +24,7 @@ const Support = () => {
             <p style={{ fontSize: 'medium' }}>for support.</p>
           </div>
       </div>
-      <div style={{ marginBottom: '2rem'}}>
+      <div>
         <Link to='/'>
             <Button>Back to Login</Button>
         </Link>
