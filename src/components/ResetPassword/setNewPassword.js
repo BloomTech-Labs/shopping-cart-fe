@@ -114,7 +114,7 @@ const SetNewPassword = props => {
               <Input.Password
                 placeholder='New Password'
                 prefix={
-                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                 }
               />
             )}
@@ -135,7 +135,7 @@ const SetNewPassword = props => {
                 onBlur={handleConfirmBlur}
                 placeholder='Confirm New Password'
                 prefix={
-                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                 }
               />
             )}

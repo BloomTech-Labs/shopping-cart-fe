@@ -92,7 +92,7 @@ const ResetPassword = props => {
               <Input
                 placeholder='Phone number'
                 prefix={
-                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
                 }
               />
             )}
