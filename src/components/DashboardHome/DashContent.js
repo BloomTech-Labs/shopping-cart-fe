@@ -27,8 +27,8 @@ const Content = ({ currency, storeId }) => {
         </TabPane>
         <TabPane tab='Sales History' key='2'>
           {dashboard &&
-            dashboard.transactionDetails &&
-            dashboard.transactionDetails.length &&
+          dashboard.transactionDetails &&
+          dashboard.transactionDetails.length > 0 ? (
             dashboard.transactionDetails.map(sale => (
               <Pane2
                 currencySymbol={sign}
@@ -39,7 +39,10 @@ const Content = ({ currency, storeId }) => {
                 description={sale.description}
                 checkoutDate={sale.checkoutDate}
               />
-            ))}
+            ))
+          ) : (
+            <p>You haven't made any sales yet</p>
+          )}
         </TabPane>
       </Tabs>
     </div>
