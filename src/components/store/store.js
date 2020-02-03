@@ -117,28 +117,28 @@ const Items = ({
           </NavLink>
         ) : (
           <NavLink to={`/product/${item._id}`}>
-          <img
-            style={{ width: '100%', borderRadius: '1rem' }}
-            alt='item'
-            src={stockImage}
-          />
-        </NavLink>
-          )
+            <img
+              style={{ width: '100%', borderRadius: '1rem' }}
+              alt='item'
+              src={stockImage}
+            />
+          </NavLink>
+      )
       }
     >
 
       <Meta
         title={
           <div className='small-label'>
-              <div className='item-text'>
+            <div className='item-text'>
               <NavLink to={`/product/${item._id}`}>
                 <p>{item.name}</p>
                 <div className='sprice'>
                   {currency}
                   {item.price}
                 </div>
-                </NavLink>
-              </div>
+              </NavLink>
+            </div>
             <div>
               {!btnChange(item) ? (
                 <Button
@@ -150,15 +150,15 @@ const Items = ({
                   Add to Cart
                 </Button>
               ) : (
-                  <Button
-                    onClick={() => removeItem(item)}
-                    style={{ color: 'dodgerblue' }}
-                    type='link'
-                    size='large'
-                  >
+                <Button
+                  onClick={() => removeItem(item)}
+                  style={{ color: 'dodgerblue' }}
+                  type='link'
+                  size='large'
+                >
                     Remove from Cart
                 </Button>
-                )}
+              )}
             </div>
           </div>
         }
@@ -206,24 +206,24 @@ const LargeItems = ({
           </NavLink>
         ) : (
           <NavLink to={`/product/${item._id}`}>
-          <img
-            style={{ width: '100%', height: 'auto', margin: '0' }}
-            alt='item'
-            src={stockImage}
-          />
-        </NavLink>
-          )
+            <img
+              style={{ width: '100%', height: 'auto', margin: '0' }}
+              alt='item'
+              src={stockImage}
+            />
+          </NavLink>
+      )
       }
     >
       <Meta
         title={
           <div className='label'>
             <NavLink to={`/product/${item._id}`}>
-            <h3 className='desc'>{item.name}</h3>
-            <div className='price'>
-              {currency}
-              {item.price}
-            </div>
+              <h3 className='desc'>{item.name}</h3>
+              <div className='price'>
+                {currency}
+                {item.price}
+              </div>
             </NavLink>
             <div className='add'>
               {!btnChange(item) ? (
@@ -236,15 +236,15 @@ const LargeItems = ({
                   Add to Cart
                 </Button>
               ) : (
-                  <Button
-                    onClick={() => removeItem(item)}
-                    style={{ color: 'dodgerblue' }}
-                    type='link'
-                    size='large'
-                  >
+                <Button
+                  onClick={() => removeItem(item)}
+                  style={{ color: 'dodgerblue' }}
+                  type='link'
+                  size='large'
+                >
                     Remove from Cart
                 </Button>
-                )}
+              )}
             </div>
           </div>
         }

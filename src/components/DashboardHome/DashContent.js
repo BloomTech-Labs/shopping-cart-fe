@@ -29,21 +29,21 @@ const Content = ({ currency, storeId }) => {
           {dashboard &&
           dashboard.transactionDetails &&
           dashboard.transactionDetails.length > 0 ? (
-            dashboard.transactionDetails.map(sale => (
-              <Pane2
-                currencySymbol={sign}
-                currency={currency && currency.toUpperCase()}
-                key={sale._id}
-                name={sale.name.trim()}
-                price={sale.price}
-                description={sale.description}
-                checkoutDate={sale.checkoutDate}
-                quantity={sale.quantity}
-              />
-            ))
-          ) : (
-            <p>You haven't made any sales yet</p>
-          )}
+              dashboard.transactionDetails.map(sale => (
+                <Pane2
+                  currencySymbol={sign}
+                  currency={currency && currency.toUpperCase()}
+                  key={sale._id}
+                  name={sale.name.trim()}
+                  price={sale.price}
+                  description={sale.description}
+                  checkoutDate={sale.checkoutDate}
+                  quantity={sale.quantity}
+                />
+              ))
+            ) : (
+              <p>You haven't made any sales yet</p>
+            )}
         </TabPane>
       </Tabs>
     </div>
