@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd'
 import axios from 'axios'
-import AxiosAuth from './Auth/axiosWithAuth'
-import history from '../history'
-import { setLoading, setErrors, clearErrors } from '../state/actionCreators'
-import * as creators from '../state/actionCreators'
-import useCurrency from './hooks/useCurrency'
+import AxiosAuth from '../Auth/axiosWithAuth'
+import history from '../../history'
+import { setLoading, setErrors, clearErrors } from '../../state/actionCreators'
+import * as creators from '../../state/actionCreators'
+import useCurrency from '../hooks/useCurrency'
 
 function UpdateItem (props) {
   const [item, setItem] = useState([])
@@ -39,8 +39,9 @@ function UpdateItem (props) {
         }))
         setFileList(newFileList)
         setItem(res.data)
+        props.dispatch(setLoading(false))
       })
-  }, [itemId])
+  }, [itemId, props])
 
   const handleChange = info => {
     let fileList = [...info.fileList]
@@ -85,6 +86,9 @@ function UpdateItem (props) {
         ...cloudList,
         ...fileList.filter(image => image.url).map(image => image.url)
       ]
+      if (!images.length) {
+        return message.error("Upload an image");
+      }
       const payload = {
         name: values.name,
         description: values.description,
@@ -181,7 +185,7 @@ function UpdateItem (props) {
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('stock', {
-              initialValue: item.stock
+              initialValue: item.stock ? item.stock: null
             })(<Input placeholder='Stock' />)}
           </Form.Item>
           <Form.Item>

@@ -16,7 +16,7 @@ const Login = props => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
       const payload = {
-        phone: values.number,
+        phone: values.number.trim(),
         password: values.password
       }
       if (!err) {
@@ -111,7 +111,7 @@ const Login = props => {
                   className='form-input'
                   placeholder='Phone number'
                   prefix={
-                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
@@ -129,7 +129,7 @@ const Login = props => {
                   className='form-input'
                   placeholder='Password'
                   prefix={
-                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
