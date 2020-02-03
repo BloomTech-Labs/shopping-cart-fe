@@ -3,9 +3,9 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message, Spin, Modal } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
-import Logo from './elements/logo'
-import history from '../history'
-import * as creators from '../state/actionCreators'
+import Logo from '../elements/logo'
+import history from '../../history'
+import * as creators from '../../state/actionCreators'
 
 const SetNewPassword = props => {
   const dispatch = useDispatch()

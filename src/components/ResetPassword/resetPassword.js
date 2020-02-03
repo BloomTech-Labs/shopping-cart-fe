@@ -3,8 +3,8 @@ import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message, Spin } from 'antd'
-import Logo from './elements/logo'
-import * as creators from '../state/actionCreators'
+import Logo from '../elements/logo'
+import * as creators from '../../state/actionCreators'
 
 const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
 
