@@ -5,15 +5,22 @@ import Logo from './elements/logo'
 
 const NoMatch = () => {
   return (
-    <div className='cover' style={{ justifyContent: 'space-between' }}>
-      <div style={{ marginTop: '2rem'}}>
+    <div style={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100vh',
+        textAlign: 'center',
+        padding: '4rem 2rem'
+      }}>
+      <div>
           <Logo />
           <div>
             <h2 id='header' style={{ marginTop: '3rem'}}>404: Not Found</h2>
             <p style={{ fontSize: 'medium' }}>Oops! It looks like the page you're looking for doesn't exist. Sorry!</p>
           </div>
       </div>
-      <div style={{ marginBottom: '2rem'}}>
+      <div>
         <Link to='/support'>
             <Button>Get Support</Button>
         </Link>
