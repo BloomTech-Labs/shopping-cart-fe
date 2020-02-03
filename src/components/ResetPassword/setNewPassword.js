@@ -96,7 +96,7 @@ const SetNewPassword = props => {
     <Spin spinning={isLoading}>
       <div className='cover'>
         <div className='desktop-logo'>
-          <h2 className='register-text'>Set new password</h2>
+          <h2 className='reset-password-text'>Set new password</h2>
           <div className='desktop-logo-large'>
             <img src={image} alt='PureRetail Logo' width='372' height='372' />
           </div>
