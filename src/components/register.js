@@ -114,7 +114,7 @@ const RegistrationForm = props => {
               })(
                 <Input
                   className='input'
-                  placeholder='Phone number'
+                  placeholder='e.g. 2348000001231'
                   prefix={
                     <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
                   }
