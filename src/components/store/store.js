@@ -4,6 +4,7 @@ import { Card, Tabs, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 import * as creators from '../../state/actionCreators'
 import useCurrency from '../hooks/useCurrency'
+import stockImage from '../../images/PureRetail_Logo.png'
 
 const { TabPane } = Tabs
 const { Meta } = Card
@@ -115,7 +116,13 @@ const Items = ({
             />
           </NavLink>
         ) : (
-            undefined
+          <NavLink to={`/product/${item._id}`}>
+          <img
+            style={{ width: '100%', borderRadius: '1rem' }}
+            alt='item'
+            src={stockImage}
+          />
+        </NavLink>
           )
       }
     >
@@ -198,7 +205,13 @@ const LargeItems = ({
             />
           </NavLink>
         ) : (
-            undefined
+          <NavLink to={`/product/${item._id}`}>
+          <img
+            style={{ width: '100%', height: 'auto', margin: '0' }}
+            alt='item'
+            src={stockImage}
+          />
+        </NavLink>
           )
       }
     >
