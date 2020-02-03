@@ -52,6 +52,7 @@ const RegistrationForm = props => {
   }
   const validateToNextPassword = (rule, value, callback) => {
     const { form } = props
+
     if (value && confirmDirty) {
       form.validateFields(['confirm'], { force: true })
     }
@@ -116,7 +117,7 @@ const RegistrationForm = props => {
                   className='input'
                   placeholder='e.g. 2348000001231'
                   prefix={
-                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.25)' }} />
+                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
@@ -137,7 +138,7 @@ const RegistrationForm = props => {
                   className='input'
                   placeholder='Password'
                   prefix={
-                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
@@ -159,7 +160,7 @@ const RegistrationForm = props => {
                   onBlur={handleConfirmBlur}
                   placeholder='Confirm Password'
                   prefix={
-                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
