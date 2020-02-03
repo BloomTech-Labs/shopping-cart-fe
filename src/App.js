@@ -25,6 +25,17 @@ import Account from './components/SellerAccount/SellerAccount'
 import Confirmation from './components/orderConfirmation'
 
 function App () {
+  window.addEventListener("load", () => {
+    function handleNetworkChange(event) {
+      if (navigator.onLine) {
+        document.body.classList.remove("offline");
+      } else {
+        document.body.classList.add("offline");
+      }
+    }
+    window.addEventListener("online", handleNetworkChange);
+    window.addEventListener("offline", handleNetworkChange);
+  });
   return (
     <Switch>
       <PublicRoute path='/register' component={WrappedRegistrationForm} />
