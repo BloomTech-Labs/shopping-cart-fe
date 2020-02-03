@@ -87,7 +87,7 @@ function UpdateItem (props) {
         ...fileList.filter(image => image.url).map(image => image.url)
       ]
       if (!images.length) {
-        return message.error("Upload an image");
+        return message.error('Upload an image')
       }
       const payload = {
         name: values.name,
@@ -185,7 +185,7 @@ function UpdateItem (props) {
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('stock', {
-              initialValue: item.stock ? item.stock: null
+              initialValue: item.stock ? item.stock : null
             })(<Input placeholder='Stock' />)}
           </Form.Item>
           <Form.Item>

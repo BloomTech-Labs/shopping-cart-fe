@@ -1,95 +1,95 @@
-import React, { useState, useCallback } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { Icon, List, message, Modal } from "antd";
-import * as creators from "../../state/actionCreators";
-import { NavLink } from "react-router-dom";
-import AddEmail from "../elements/saveForlaterModal";
-import history from "../../history";
-import useCurrency from "../hooks/useCurrency";
+import React, { useState, useCallback } from 'react'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { Icon, List, message, Modal } from 'antd'
+import * as creators from '../../state/actionCreators'
+import { NavLink } from 'react-router-dom'
+import AddEmail from '../elements/saveForlaterModal'
+import history from '../../history'
+import useCurrency from '../hooks/useCurrency'
 
 const ReviewMain = props => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [formRef, setFormRef] = useState(null);
-  const cartContents = useSelector(state => state.cart);
-  const sellerId = useSelector(state => state.user.user._id);
-  const dispatch = useDispatch();
-  const storeDetails = useSelector(state => state.user.user);
-  const sign = useCurrency(storeDetails.currency);
+  const [isVisible, setIsVisible] = useState(false)
+  const [formRef, setFormRef] = useState(null)
+  const cartContents = useSelector(state => state.cart)
+  const sellerId = useSelector(state => state.user.user._id)
+  const dispatch = useDispatch()
+  const storeDetails = useSelector(state => state.user.user)
+  const sign = useCurrency(storeDetails.currency)
 
   const increment = id => {
-    dispatch(creators.increment(id));
-  };
+    dispatch(creators.increment(id))
+  }
   const decrement = id => {
-    dispatch(creators.decrement(id));
-  };
+    dispatch(creators.decrement(id))
+  }
   const removeItem = item => {
-    dispatch(creators.subtractFromCart(item));
-  };
+    dispatch(creators.subtractFromCart(item))
+  }
   const showModal = () => {
-    setIsVisible(true);
-  };
+    setIsVisible(true)
+  }
   const handleCancel = () => {
-    setIsVisible(false);
-  };
+    setIsVisible(false)
+  }
   const saveFormRef = useCallback(node => {
     if (node !== null) {
-      setFormRef(node);
+      setFormRef(node)
     }
-  }, []);
+  }, [])
   const totalPrice = arr => {
     return arr.reduce((sum, item) => {
-      return sum + item.price * item.quantity;
-    }, 0);
-  };
+      return sum + item.price * item.quantity
+    }, 0)
+  }
   const success = () => {
-    const secondsToGo = 3;
+    const secondsToGo = 3
     const modal = Modal.success({
-      title: "Sent! ",
-      content: "Check your email for your cart link"
-    });
+      title: 'Sent! ',
+      content: 'Check your email for your cart link'
+    })
     setTimeout(() => {
-      history.push(`/store/${sellerId}`);
-      modal.destroy();
-    }, secondsToGo * 1000);
-  };
+      history.push(`/store/${sellerId}`)
+      modal.destroy()
+    }, secondsToGo * 1000)
+  }
   const handleCreate = props => {
     formRef.validateFields((err, values) => {
       if (!err) {
         const contents = cartContents.map(cart => {
-          return { product: cart.productId, quantity: cart.quantity };
-        });
+          return { product: cart.productId, quantity: cart.quantity }
+        })
         const payload = {
           email: values.email,
           contents: contents,
           total: totalPrice(cartContents),
           agreedPrice: totalPrice(cartContents),
-          paymentPreference: "card"
-        };
+          paymentPreference: 'card'
+        }
         axios
           .post(
             `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart`,
             payload
           )
           .then(res => {
-            formRef.resetFields();
-            success();
-            setIsVisible(false);
+            formRef.resetFields()
+            success()
+            setIsVisible(false)
           })
           .catch(error => {
-            message.error(error.message);
-          });
+            message.error(error.message)
+          })
       }
-    });
-  };
+    })
+  }
   return (
-    <div className="cover review">
-      <div className="store-top review-top">
-        <div className="review-text">
-          <Icon type="shopping-cart" style={{ fontSize: "3rem" }} />
-          <div id="rev">
+    <div className='cover review'>
+      <div className='store-top review-top'>
+        <div className='review-text'>
+          <Icon type='shopping-cart' style={{ fontSize: '3rem' }} />
+          <div id='rev'>
             <h4>Review Your Order</h4>
-            <p id="grey">
+            <p id='grey'>
               This is your chance to check your order before going to payments.
               Make it count.
             </p>
@@ -101,27 +101,26 @@ const ReviewMain = props => {
             </p>
           </div>
         </div>
-        <div className="content">
+        <div className='content'>
           <List
-            itemLayout="horizontal"
+            itemLayout='horizontal'
             dataSource={cartContents}
             renderItem={item => (
               <List.Item>
-                <div className="controls">
+                <div className='controls'>
                   <div
                     onClick={() => decrement(item.productId)}
-                    className="clicks"
+                    className='clicks'
                   >
                     -
                   </div>
-                  <div className="clicks count">{item.quantity}</div>
+                  <div className='clicks count'>{item.quantity}</div>
                   <div
                     onClick={() =>
                       item.quantity >= 20
                         ? message.warning("You can't add more than 20 quantities per item")
-                        : increment(item.productId)
-                    }
-                    className="clicks"
+                        : increment(item.productId)}
+                    className='clicks'
                   >
                     +
                   </div>
@@ -132,7 +131,7 @@ const ReviewMain = props => {
                 />
                 <div
                   onClick={() => removeItem({ _id: item.productId })}
-                  className="cancel"
+                  className='cancel'
                 >
                   X
                 </div>
@@ -140,11 +139,11 @@ const ReviewMain = props => {
             )}
           />
           {cartContents.length > 0 ? (
-            <div className="button-body">
+            <div className='button-body'>
               <div
                 onClick={showModal}
-                style={{ backgroundColor: "#0B3954" }}
-                className="button"
+                style={{ backgroundColor: '#0B3954' }}
+                className='button'
               >
                 Save for later
               </div>
@@ -154,19 +153,19 @@ const ReviewMain = props => {
                 onCancel={handleCancel}
                 onCreate={handleCreate}
               />
-              <NavLink to="/savecart">
-                <div style={{ backgroundColor: "#FF6663" }} className="button">
+              <NavLink to='/savecart'>
+                <div style={{ backgroundColor: '#FF6663' }} className='button'>
                   Go to Checkout
                 </div>
               </NavLink>
             </div>
           ) : (
-            "Please add items to your cart!"
+            'Please add items to your cart!'
           )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ReviewMain;
+export default ReviewMain
