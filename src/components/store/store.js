@@ -115,19 +115,24 @@ const Items = ({
             />
           </NavLink>
         ) : (
-          undefined
-        )
+            undefined
+          )
       }
     >
+
       <Meta
         title={
           <div className='small-label'>
-            <p>{item.name}</p>
-            <div className='sprice'>
-              {currency}
-              {item.price}
-            </div>
-            <div className='sadd'>
+              <div className='item-text'>
+              <NavLink to={`/product/${item._id}`}>
+                <p>{item.name}</p>
+                <div className='sprice'>
+                  {currency}
+                  {item.price}
+                </div>
+                </NavLink>
+              </div>
+            <div>
               {!btnChange(item) ? (
                 <Button
                   onClick={() => dispatchItem(item)}
@@ -138,15 +143,15 @@ const Items = ({
                   Add to Cart
                 </Button>
               ) : (
-                <Button
-                  onClick={() => removeItem(item)}
-                  style={{ color: 'dodgerblue' }}
-                  type='link'
-                  size='large'
-                >
-                  Remove from Cart
+                  <Button
+                    onClick={() => removeItem(item)}
+                    style={{ color: 'dodgerblue' }}
+                    type='link'
+                    size='large'
+                  >
+                    Remove from Cart
                 </Button>
-              )}
+                )}
             </div>
           </div>
         }
@@ -193,18 +198,20 @@ const LargeItems = ({
             />
           </NavLink>
         ) : (
-          undefined
-        )
+            undefined
+          )
       }
     >
       <Meta
         title={
           <div className='label'>
+            <NavLink to={`/product/${item._id}`}>
             <h3 className='desc'>{item.name}</h3>
             <div className='price'>
               {currency}
               {item.price}
             </div>
+            </NavLink>
             <div className='add'>
               {!btnChange(item) ? (
                 <Button
@@ -216,15 +223,15 @@ const LargeItems = ({
                   Add to Cart
                 </Button>
               ) : (
-                <Button
-                  onClick={() => removeItem(item)}
-                  style={{ color: 'dodgerblue' }}
-                  type='link'
-                  size='large'
-                >
-                  Remove from Cart
+                  <Button
+                    onClick={() => removeItem(item)}
+                    style={{ color: 'dodgerblue' }}
+                    type='link'
+                    size='large'
+                  >
+                    Remove from Cart
                 </Button>
-              )}
+                )}
             </div>
           </div>
         }
