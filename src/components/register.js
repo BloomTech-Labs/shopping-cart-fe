@@ -15,7 +15,7 @@ const RegistrationForm = props => {
     e.preventDefault()
     props.form.validateFieldsAndScroll((err, values) => {
       const payload = {
-        phone: values.number,
+        phone: values.number.trim(),
         password: values.password
       }
       if (!err) {
