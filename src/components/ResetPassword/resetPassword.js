@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Form, Input, Icon, Button, message, Spin } from 'antd'
 import Logo from '../elements/logo'
 import * as creators from '../../state/actionCreators'
+import image from '../../images/register.png'
 
 const URL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/recover'
 
@@ -66,48 +67,56 @@ const ResetPassword = props => {
   const resetPasswordForm = (
     <Spin spinning={isLoading}>
       <div className='cover'>
-        <Logo />
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <div id='header'>
-            <h2>Reset Password</h2>
+        <div className='desktop-logo'>
+          <h2 className='register-text'>Reset Password</h2>
+          <div className='desktop-logo-large'>
+            <img src={image} alt='PureRetail Logo' width='300' height='300' />
           </div>
-          <div id='instruction-text'>
-            <p>
-              Enter your registered phone number to receive a password reset
-              link via SMS:
-            </p>
-          </div>
-          <Form.Item>
-            {getFieldDecorator('number', {
-              rules: [
-                {
-                  message: 'Enter a valid phone number'
-                },
-                {
-                  required: true,
-                  message: 'Enter a valid phone number'
-                }
-              ]
-            })(
-              <Input
-                placeholder='Phone number'
-                prefix={
-                  <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
-                }
-              />
-            )}
-          </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
-              Get link
-            </Button>
-          </Form.Item>
-        </Form>
-        <div id='back-to-login'>
-          <Link to='/'>Back to login</Link>
         </div>
-        <div id='contact-support'>
-          <Link to='/support'>Contact support</Link>
+        <Logo />
+        <div className='desktop-form-reset'>
+          <Form {...formItemLayout} onSubmit={handleSubmit}>
+            <div id='header'>
+              <h2>Reset Password</h2>
+            </div>
+            <div id='instruction-text'>
+              <p>
+                Enter your registered phone number to receive a password reset
+                link via SMS:
+              </p>
+            </div>
+            <Form.Item>
+              {getFieldDecorator('number', {
+                rules: [
+                  {
+                    message: 'Enter a valid phone number'
+                  },
+                  {
+                    required: true,
+                    message: 'Enter a valid phone number'
+                  }
+                ]
+              })(
+                <Input
+                  placeholder='Phone number'
+                  prefix={
+                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item {...tailFormItemLayout}>
+              <Button type='primary' htmlType='submit'>
+                Get link
+              </Button>
+            </Form.Item>
+          </Form>
+          <div id='back-to-login'>
+            <Link to='/'>Back to login</Link>
+          </div>
+          <div id='contact-support'>
+            <Link to='/support'>Contact support</Link>
+          </div>
         </div>
       </div>
     </Spin>
