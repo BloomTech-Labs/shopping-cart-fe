@@ -86,6 +86,9 @@ function UpdateItem (props) {
         ...cloudList,
         ...fileList.filter(image => image.url).map(image => image.url)
       ]
+      if (!images.length) {
+        return message.error("Upload an image");
+      }
       const payload = {
         name: values.name,
         description: values.description,
