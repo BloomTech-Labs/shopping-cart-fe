@@ -39,8 +39,9 @@ function UpdateItem (props) {
         }))
         setFileList(newFileList)
         setItem(res.data)
+        props.dispatch(setLoading(false))
       })
-  }, [itemId])
+  }, [itemId, props])
 
   const handleChange = info => {
     let fileList = [...info.fileList]
@@ -181,7 +182,7 @@ function UpdateItem (props) {
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('stock', {
-              initialValue: item.stock
+              initialValue: item.stock ? item.stock: null
             })(<Input placeholder='Stock' />)}
           </Form.Item>
           <Form.Item>
