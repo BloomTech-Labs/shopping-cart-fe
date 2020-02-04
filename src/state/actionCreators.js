@@ -40,14 +40,14 @@ export const getCart = cartId => dispatch => {
     })
 }
 
-export function increment (id) {
+export function increment(id) {
   return {
     type: types.INCREMENT,
     payload: id
   }
 }
 
-export function decrement (id) {
+export function decrement(id) {
   return {
     type: types.DECREMENT,
     payload: id
@@ -187,12 +187,15 @@ export const saveCart = cart => {
 }
 
 export const getSalesHistory = () => dispatch => {
+  setLoading(true)
   AxiosAuth()
     .get('https://shopping-cart-eu3.herokuapp.com/api/store/sales')
     .then(res => {
+      setLoading(false)
       dispatch({ type: types.GET_SALES_HISTORY, payload: res.data })
     })
     .catch(err => {
+      setLoading(false)
       console.log(err)
     })
 }
