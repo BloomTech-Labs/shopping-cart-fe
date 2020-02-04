@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Logo from '../elements/logo'
 import history from '../../history'
 import * as creators from '../../state/actionCreators'
+import image from '../../images/security.png'
 
 const SetNewPassword = props => {
   const dispatch = useDispatch()
@@ -94,62 +95,70 @@ const SetNewPassword = props => {
   const setNewPasswordForm = (
     <Spin spinning={isLoading}>
       <div className='cover'>
-        <Logo />
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <div id='header'>
-            <h2>Reset password</h2>
+        <div className='desktop-logo'>
+          <h2 className='reset-password-text'>Set new password</h2>
+          <div className='desktop-logo-large'>
+            <img src={image} alt='PureRetail Logo' width='372' height='372' />
           </div>
-          <Form.Item hasFeedback>
-            {getFieldDecorator('password', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please input your new password!'
-                },
-                {
-                  validator: validateToNextPassword
-                }
-              ]
-            })(
-              <Input.Password
-                placeholder='New Password'
-                prefix={
-                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
-                }
-              />
-            )}
-          </Form.Item>
-          <Form.Item hasFeedback>
-            {getFieldDecorator('confirm', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please confirm your new password!'
-                },
-                {
-                  validator: compareToFirstPassword
-                }
-              ]
-            })(
-              <Input.Password
-                onBlur={handleConfirmBlur}
-                placeholder='Confirm New Password'
-                prefix={
-                  <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
-                }
-              />
-            )}
-          </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
-              Reset
-            </Button>
-          </Form.Item>
-        </Form>
-        <div id='or_login'>
-          <p>
-            or <Link to='/'>login</Link> instead
-          </p>
+        </div>
+        <Logo />
+        <div className='desktop-form'>
+          <Form {...formItemLayout} onSubmit={handleSubmit}>
+            <div id='header'>
+              <h2>Set new password</h2>
+            </div>
+            <Form.Item hasFeedback>
+              {getFieldDecorator('password', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input your new password!'
+                  },
+                  {
+                    validator: validateToNextPassword
+                  }
+                ]
+              })(
+                <Input.Password
+                  placeholder='New Password'
+                  prefix={
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item hasFeedback>
+              {getFieldDecorator('confirm', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please confirm your new password!'
+                  },
+                  {
+                    validator: compareToFirstPassword
+                  }
+                ]
+              })(
+                <Input.Password
+                  onBlur={handleConfirmBlur}
+                  placeholder='Confirm New Password'
+                  prefix={
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item {...tailFormItemLayout}>
+              <Button type='primary' htmlType='submit'>
+                Reset
+              </Button>
+            </Form.Item>
+          </Form>
+          <div id='or_login'>
+            <p>
+              or <Link to='/'>login</Link> instead
+            </p>
+          </div>
         </div>
       </div>
     </Spin>
