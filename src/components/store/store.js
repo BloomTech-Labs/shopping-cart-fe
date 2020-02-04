@@ -26,7 +26,7 @@ const StoreMain = props => {
   const currency = useCurrency(storeDetails.currency)
   const isLoading = useSelector(state => state.user.isLoading)
 
-  function searchObj(obj, string) {
+  function searchObj (obj, string) {
     const regExpFlags = 'gi'
     const regExp = new RegExp(string, regExpFlags)
     return JSON.stringify(obj).match(regExp)
@@ -34,7 +34,7 @@ const StoreMain = props => {
   const removeItem = item => {
     dispatch(creators.subtractFromCart(item))
   }
-  const searchFilter = inventory.filter(function(obj) {
+  const searchFilter = inventory.filter(function (obj) {
     return searchObj(obj, searchString)
   })
   const dispatchItem = item => {

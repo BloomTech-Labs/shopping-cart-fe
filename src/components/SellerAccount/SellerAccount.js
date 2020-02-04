@@ -7,7 +7,7 @@ import withAuth from '../Auth/axiosWithAuth'
 const storeURL = 'https://shopping-cart-eu3.herokuapp.com/api/store'
 const stripeURL = 'https://shopping-cart-eu3.herokuapp.com/api/auth/stripe'
 
-function Account() {
+function Account () {
   const [stripeId, setStripeId] = useState('')
   const [storeId, setStoreId] = useState('')
   useEffect(() => {
