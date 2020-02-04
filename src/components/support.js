@@ -8,7 +8,7 @@ const Support = () => {
     <div style={{ 
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         height: '100vh',
         textAlign: 'center',
         padding: '4rem 2rem'
@@ -24,7 +24,7 @@ const Support = () => {
             <p style={{ fontSize: 'medium' }}>for support.</p>
           </div>
       </div>
-      <div>
+      <div style={{ marginTop: '7rem' }}>
         <Link to='/'>
             <Button>Back to Login</Button>
         </Link>
