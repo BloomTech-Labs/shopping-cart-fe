@@ -173,7 +173,6 @@ export const getStore = (sellerId, signal) => dispatch => {
 }
 
 export const setStoreUrl = () => {
-  console.log(window.location.pathname)
   return {
     type: types.SET_STORE_URL,
     payload: window.location.pathname

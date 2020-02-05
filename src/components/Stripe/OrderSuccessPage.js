@@ -1,20 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'antd'
+import { useSelector } from 'react-redux'
 
 const OrderSuccessPage = props => {
-  const storeDetails = JSON.parse(localStorage.getItem('user'))
-  const storeUrl = localStorage.getItem('storeUrl')
+  const storeDetails = useSelector(state => state.user.user)
+  const storeUrl = `/store/${storeDetails &&
+    storeDetails.storeName &&
+    storeDetails.storeName
+      .toLowerCase()
+      .split(' ')
+      .join('-')}-${storeDetails && storeDetails._id}`
 
   return (
     <div className='cover'>
       <div className='store-logo'>
-        {storeDetails.imageUrl === null ? (
+        {storeDetails && storeDetails.imageUrl === null ? (
           undefined
         ) : (
           <img
             alt='logo'
-            src={storeDetails.imageUrl}
+            src={storeDetails && storeDetails.imageUrl}
             className='image'
             width='150'
             style={{ borderRadius: '50%' }}
@@ -28,7 +34,9 @@ const OrderSuccessPage = props => {
       </p>
 
       <Button id='delete-btn' type='link' htmlType='button'>
-        <Link to={storeUrl}>Back to {storeDetails.storeName}</Link>
+        <Link onClick={() => localStorage.clear()} to={storeUrl}>
+          Back to {storeDetails && storeDetails.storeName}
+        </Link>
       </Button>
     </div>
   )

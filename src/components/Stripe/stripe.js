@@ -16,12 +16,28 @@ const Stripe = props => {
   const [clientId, setClientId] = useState('')
   const [stripeId, setStripeId] = useState('')
   const cartContents = useSelector(state => state.savedCart)
+  const store = useSelector(state => state.user.user)
   const savedDate = new Date(cartContents.checkoutDate || 0)
   const sign = useCurrency(cartContents.currency)
   const dispatch = useDispatch()
+
+  // dispatch(creators.getStore(cartContents.storeId))
   useEffect(() => {
     dispatch(creators.getCart(cartId))
   }, [dispatch, cartId])
+
+  useEffect(() => {
+    dispatch(creators.getStore(cartContents.storeId))
+  }, [dispatch, cartContents])
+
+  const url = `/store/${store &&
+    store.storeName &&
+    store.storeName
+      .toLowerCase()
+      .split(' ')
+      .join('-')}-${store && store._id}`
+  console.log(url)
+
   useEffect(() => {
     axios
       .post('https://shopping-cart-eu3.herokuapp.com/api/payment/charge', {
@@ -151,8 +167,7 @@ const Stripe = props => {
         </Collapse>
         <div className='save'>
           <NavLink to={`/store/${cartContents.storeId}`}>
-            <div className='save-btn'>Abort Transaction</div>
-s
+            <div className='save-btn'>Abort Transaction</div>s
           </NavLink>
           {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
