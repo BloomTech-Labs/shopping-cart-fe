@@ -40,14 +40,14 @@ export const getCart = cartId => dispatch => {
     })
 }
 
-export function increment(id) {
+export function increment (id) {
   return {
     type: types.INCREMENT,
     payload: id
   }
 }
 
-export function decrement(id) {
+export function decrement (id) {
   return {
     type: types.DECREMENT,
     payload: id

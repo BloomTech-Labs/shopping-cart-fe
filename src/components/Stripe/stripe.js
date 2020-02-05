@@ -36,7 +36,6 @@ const Stripe = props => {
       .toLowerCase()
       .split(' ')
       .join('-')}-${store && store._id}`
-  console.log(url)
 
   useEffect(() => {
     axios
