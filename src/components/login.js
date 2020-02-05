@@ -144,9 +144,6 @@ const Login = props => {
             <p>
               or <Link to='/register'>register</Link> instead
             </p>
-          </div>
-
-          <div id='or_login'>
             <p>
               <Link to='/resetpassword'>Forgot password?</Link>
             </p>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'antd'
 import Logo from './elements/logo'
 
-const Support = () => {
+const NoMatch = () => {
   return (
     <div style={{ 
         display: 'flex',
@@ -16,21 +16,17 @@ const Support = () => {
       <div>
           <Logo />
           <div>
-            <h2 id='header' style={{ marginTop: '3rem'}}>Support</h2>
-            <p style={{ fontSize: 'medium' }}>Please contact</p>
-            <p style={{ fontSize: 'large' }}>
-              <a href='mailto:pureretail12345@gmail.com'>pureretail12345@gmail.com</a>
-            </p>
-            <p style={{ fontSize: 'medium' }}>for support.</p>
+            <h2 id='header' style={{ marginTop: '3rem'}}>404: Not Found</h2>
+            <p style={{ fontSize: 'medium' }}>Oops! It looks like the page you're looking for doesn't exist. Sorry!</p>
           </div>
       </div>
       <div style={{ marginTop: '7rem' }}>
-        <Link to='/'>
-            <Button>Back to Login</Button>
+        <Link to='/support'>
+            <Button>Get Support</Button>
         </Link>
       </div>
     </div>
   )
 }
 
-export default Support
+export default NoMatch
