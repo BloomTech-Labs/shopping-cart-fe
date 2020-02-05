@@ -3,12 +3,12 @@ import axios from 'axios'
 import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import useCurrency from '../hooks/useCurrency'
+import moment from 'moment'
 
 const SaveCart = props => {
   const [delivery, setDelivery] = useState(true)
   const cartContents = useSelector(state => state.cart)
   const sellerId = useSelector(state => state.user.user._id)
-  // const dispatch = useDispatch()
   const storeDetails = useSelector(state => state.user.user)
   const sign = useCurrency(storeDetails.currency)
   const checkoutCart = cartContents.filter(item => {
@@ -39,7 +39,8 @@ const SaveCart = props => {
   const info = values => {
     Modal.info({
       title: 'Forwarding to WhatsApp',
-      content: 'When you click OK you\'ll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.',
+      content:
+        "When you click OK you'll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.",
       onOk () {
         const payload = {
           contents,
@@ -54,8 +55,8 @@ const SaveCart = props => {
         }
         axios
           .post(
-          `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
-          payload
+            `https://shopping-cart-eu3.herokuapp.com/api/store/${sellerId}/cart/submit`,
+            payload
           )
           .then(res => {
             const { text, sellerPhone } = res.data
@@ -67,6 +68,15 @@ const SaveCart = props => {
       }
     })
   }
+
+  const disabledDate = current =>
+    // Can not select days before today
+    current &&
+    current <
+      moment()
+        .endOf('day')
+        .subtract(1, 'day')
+
   const { getFieldDecorator } = props.form
 
   const formItemLayout = {
@@ -101,11 +111,13 @@ const SaveCart = props => {
           <div className='order'>
             <p>Order Summary</p>
             <div className='summary'>
-              {
-                checkoutCart.map(item => (
-                  <div className='units' key={item.productId}>{item.name} ({item.quantity} unit{item.quantity > 1 ? 's' : ''}) - {sign}{item.price}</div>
-                ))
-              }
+              {checkoutCart.map(item => (
+                <div className='units' key={item.productId}>
+                  {item.name} ({item.quantity} unit
+                  {item.quantity > 1 ? 's' : ''}) - {sign}
+                  {item.price}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -120,25 +132,40 @@ const SaveCart = props => {
             <Form.Item label='Delivery option'>
               {getFieldDecorator('delivery')(
                 <Radio.Group>
-                  <Radio onClick={toggleAddyTrue} value='Delivery'>Delivery</Radio>
-                  <Radio onClick={toggleAddyFalse} value='Collection'>Collection</Radio>
+                  <Radio onClick={toggleAddyTrue} value='Delivery'>
+                    Delivery
+                  </Radio>
+                  <Radio onClick={toggleAddyFalse} value='Collection'>
+                    Collection
+                  </Radio>
                 </Radio.Group>
               )}
             </Form.Item>
             <span className={delivery ? 'addy' : 'info'}>
-              Please wait for confirmation from the seller that your order is available and then collect it from: {storeDetails.address}
+              Please wait for confirmation from the seller that your order is
+              available and then collect it from: {storeDetails.address}
             </span>
             <span className={delivery ? 'info' : 'addy'}>
-                Enter your delivery address in the field below if you opt for delivery.
-                If you would rather collect the item in person, the seller will contact you with the Whatsapp number you provided above
+              Enter your delivery address in the field below if you opt for
+              delivery. If you would rather collect the item in person, the
+              seller will contact you with the Whatsapp number you provided
+              above
             </span>
-            <Form.Item className={delivery ? 'ant-row ant-form-item' : 'addy'} label='Delivery Address'>
+            <Form.Item
+              className={delivery ? 'ant-row ant-form-item' : 'addy'}
+              label='Delivery Address'
+            >
               {getFieldDecorator('address', {
-                rules: [{ required: false, message: 'Please input your address!' }]
+                rules: [
+                  { required: false, message: 'Please input your address!' }
+                ]
               })(<Input />)}
             </Form.Item>
             <Form.Item label='Collection/Delivery date'>
-              {getFieldDecorator('date', config)(<DatePicker />)}
+              {getFieldDecorator(
+                'date',
+                config
+              )(<DatePicker disabledDate={disabledDate} />)}
             </Form.Item>
             <Form.Item label='Payment preference'>
               {getFieldDecorator('payment')(
