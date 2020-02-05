@@ -73,6 +73,7 @@ export function userReducer (state = initialUserState, action) {
       }
 
     case types.SET_STORE_URL:
+      localStorage.setItem('storeUrl', action.payload)
       return {
         ...state,
         storeUrl: action.payload
