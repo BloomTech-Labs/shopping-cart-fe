@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Tabs, Button } from 'antd'
+import { Card, Tabs, Button, Spin } from 'antd'
 import { NavLink } from 'react-router-dom'
 import * as creators from '../../state/actionCreators'
 import useCurrency from '../hooks/useCurrency'
@@ -14,14 +14,17 @@ const StoreMain = props => {
 
   const dispatch = useDispatch()
   useEffect(() => {
+    creators.setLoading(true)
     dispatch(creators.getProducts(sellerId))
     dispatch(creators.getStore(sellerId))
     dispatch(creators.setStoreUrl(window.location.href))
+    creators.setLoading(false)
   }, [sellerId, dispatch])
   const inventory = useSelector(state => state.store)
   const storeDetails = store.user
   const searchString = useSelector(state => state.search)
   const currency = useCurrency(storeDetails.currency)
+  const isLoading = useSelector(state => state.user.isLoading)
 
   function searchObj (obj, string) {
     const regExpFlags = 'gi'
@@ -39,43 +42,45 @@ const StoreMain = props => {
   }
   return (
     <div className='cover store'>
-      <div className='store-top'>
-        <div className='store-info'>
-          <div className='store-logo' id='create-store-logo'>
-            <div className='content' style={{ paddingTop: '0' }}>
-              <div>
-                <h2 style={{ paddingTop: '0' }}>{storeDetails.storeName}</h2>
-              </div>
-              <div className='card-bucket'>
-                <Tabs className='tabs' defaultActiveKey='1'>
-                  <TabPane tab='Small Detail' key='1'>
-                    <div className='wrap'>
-                      <Items
-                        inventory={searchString ? searchFilter : inventory}
-                        currency={currency}
-                        dispatchItem={dispatchItem}
-                        cartContents={cartContents}
-                        removeItem={removeItem}
-                      />
-                    </div>
-                  </TabPane>
-                  <TabPane tab='Large Detail' key='2'>
-                    <div className='large_wrap'>
-                      <LargeItems
-                        inventory={searchString ? searchFilter : inventory}
-                        currency={currency}
-                        dispatchItem={dispatchItem}
-                        cartContents={cartContents}
-                        removeItem={removeItem}
-                      />
-                    </div>
-                  </TabPane>
-                </Tabs>
+      <Spin spinning={isLoading}>
+        <div className='store-top'>
+          <div className='store-info'>
+            <div className='store-logo' id='create-store-logo'>
+              <div className='content' style={{ paddingTop: '0' }}>
+                <div>
+                  <h2 style={{ paddingTop: '0' }}>{storeDetails.storeName}</h2>
+                </div>
+                <div className='card-bucket'>
+                  <Tabs className='tabs' defaultActiveKey='1'>
+                    <TabPane tab='Small Detail' key='1'>
+                      <div className='wrap'>
+                        <Items
+                          inventory={searchString ? searchFilter : inventory}
+                          currency={currency}
+                          dispatchItem={dispatchItem}
+                          cartContents={cartContents}
+                          removeItem={removeItem}
+                        />
+                      </div>
+                    </TabPane>
+                    <TabPane tab='Large Detail' key='2'>
+                      <div className='large_wrap'>
+                        <LargeItems
+                          inventory={searchString ? searchFilter : inventory}
+                          currency={currency}
+                          dispatchItem={dispatchItem}
+                          cartContents={cartContents}
+                          removeItem={removeItem}
+                        />
+                      </div>
+                    </TabPane>
+                  </Tabs>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Spin>
     </div>
   )
 }
@@ -123,10 +128,9 @@ const Items = ({
               src={stockImage}
             />
           </NavLink>
-      )
+        )
       }
     >
-
       <Meta
         title={
           <div className='small-label'>
@@ -156,7 +160,7 @@ const Items = ({
                   type='link'
                   size='large'
                 >
-                    Remove from Cart
+                  Remove from Cart
                 </Button>
               )}
             </div>
@@ -212,7 +216,7 @@ const LargeItems = ({
               src={stockImage}
             />
           </NavLink>
-      )
+        )
       }
     >
       <Meta
@@ -242,7 +246,7 @@ const LargeItems = ({
                   type='link'
                   size='large'
                 >
-                    Remove from Cart
+                  Remove from Cart
                 </Button>
               )}
             </div>

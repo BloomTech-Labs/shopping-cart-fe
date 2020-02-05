@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Tabs } from 'antd'
+import { Tabs, Spin } from 'antd'
 import useCurrency from '../hooks/useCurrency'
 import Pane1 from './Pane1'
 import Pane2 from './Pane2'
@@ -13,17 +13,21 @@ const Content = ({ currency, storeId }) => {
   const sign = useCurrency(currency)
   useEffect(() => {
     dispatch(actionCreators.getSalesHistory())
+    dispatch(actionCreators.setLoading(false))
   }, [dispatch, storeId])
   const dashboard = useSelector(state => state.dashboard)
+  const isLoading = useSelector(state => state.user.isLoading)
   return (
     <div>
       <Tabs defaultActiveKey='1' className='content'>
         <TabPane tab='Overview' key='1'>
-          <Pane1
-            currency={sign}
-            amount={dashboard && dashboard.totalSales}
-            monthSales={dashboard && dashboard.monthSales}
-          />
+          <Spin spinning={isLoading}>
+            <Pane1
+              currency={sign}
+              amount={dashboard && dashboard.totalSales}
+              monthSales={dashboard && dashboard.monthSales}
+            />
+          </Spin>
         </TabPane>
         <TabPane tab='Sales History' key='2'>
           {dashboard &&
