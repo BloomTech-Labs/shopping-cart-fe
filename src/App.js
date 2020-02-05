@@ -26,15 +26,16 @@ import Confirmation from './components/orderConfirmation'
 import NoMatch from './components/noMatch'
 
 function App () {
+  const token = localStorage.getItem('token');
   return (
     <Switch>
       <PublicRoute path='/register' component={WrappedRegistrationForm} />
-      <PublicRoute exact path='/' component={LoginForm} />
+      <PublicRoute exact path='/' component={token ? Home : LoginForm} />
       <PrivateRoute path='/inventory' component={Main} />
       <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
       <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
       <PublicRoute path='/store/:id' component={Store} />
-      <PublicRoute path='/cart/:id' component={localStorage.getItem('token') ? Confirmation : StripeMain} />
+      <PublicRoute path='/cart/:id' component={token ? Confirmation : StripeMain} />
       <PublicRoute path='/review' component={Review} />
       <PublicRoute path='/savecart' component={SaveCartMain} />
       <PrivateRoute path='/createstore' component={CreateStoreForm} />
