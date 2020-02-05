@@ -26,30 +26,56 @@ import Confirmation from './components/orderConfirmation'
 import NoMatch from './components/noMatch'
 
 function App () {
-  const token = localStorage.getItem('token');
+  window.addEventListener('load', () => {
+    function handleNetworkChange(event) {
+      if (navigator.onLine) {
+        document.getElementById('offline-notification').style.display = 'none'
+      } else {
+        document.getElementById('offline-notification').style.display = 'flex'
+      }
+    }
+    window.addEventListener('online', handleNetworkChange);
+    window.addEventListener('offline', handleNetworkChange);
+  });
   return (
-    <Switch>
-      <PublicRoute path='/register' component={WrappedRegistrationForm} />
-      <PublicRoute exact path='/' component={token ? Home : LoginForm} />
-      <PrivateRoute path='/inventory' component={Main} />
-      <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
-      <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
-      <PublicRoute path='/store/:id' component={Store} />
-      <PublicRoute path='/cart/:id' component={token ? Confirmation : StripeMain} />
-      <PublicRoute path='/review' component={Review} />
-      <PublicRoute path='/savecart' component={SaveCartMain} />
-      <PrivateRoute path='/createstore' component={CreateStoreForm} />
-      <PrivateRoute path='/addlogo' component={AddLogoForm} />
-      <PrivateRoute path='/profile' component={UpdateProfile} />
-      <PrivateRoute path='/createitem' component={CreateItem} />
-      <PrivateRoute path='/dashboard' component={Home} />
-      <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
-      <PublicRoute path='/product/:id' component={Single} />
-      <PublicRoute path='/success' component={OrderSuccessPage} />
-      <PublicRoute exact path='/support' component={Support} />
-      <PrivateRoute path='/account' component={Account} />
-      <PublicRoute component={NoMatch} />
-    </Switch>
+    <>
+      <Switch>
+        <PublicRoute path='/register' component={WrappedRegistrationForm} />
+        <PublicRoute exact path='/' component={LoginForm} />
+        <PrivateRoute path='/inventory' component={Main} />
+        <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
+        <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
+        <PublicRoute path='/store/:id' component={Store} />
+        <PublicRoute path='/cart/:id' component={localStorage.getItem('token') ? Confirmation : StripeMain} />
+        <PublicRoute path='/review' component={Review} />
+        <PublicRoute path='/savecart' component={SaveCartMain} />
+        <PrivateRoute path='/createstore' component={CreateStoreForm} />
+        <PrivateRoute path='/addlogo' component={AddLogoForm} />
+        <PrivateRoute path='/profile' component={UpdateProfile} />
+        <PrivateRoute path='/createitem' component={CreateItem} />
+        <PrivateRoute path='/dashboard' component={Home} />
+        <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+        <PublicRoute path='/product/:id' component={Single} />
+        <PublicRoute path='/success' component={OrderSuccessPage} />
+        <PublicRoute exact path='/support' component={Support} />
+        <PrivateRoute path='/account' component={Account} />
+      </Switch>
+      <div id='offline-notification' style={{
+        position: 'fixed',
+        bottom: '0px',
+        width: '100vw',
+        height: '4vh',
+        textAlign: 'center',
+        backgroundColor: '#ff6663',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        color: 'white',
+        fontSize: 'medium',
+        display: 'none'
+      }}>
+        Offline Mode
+      </div>
+    </>
   )
 }
 
