@@ -40,14 +40,14 @@ export const getCart = cartId => dispatch => {
     })
 }
 
-export function increment (id) {
+export function increment(id) {
   return {
     type: types.INCREMENT,
     payload: id
   }
 }
 
-export function decrement (id) {
+export function decrement(id) {
   return {
     type: types.DECREMENT,
     payload: id
@@ -173,6 +173,7 @@ export const getStore = (sellerId, signal) => dispatch => {
 }
 
 export const setStoreUrl = () => {
+  console.log(window.location.pathname)
   return {
     type: types.SET_STORE_URL,
     payload: window.location.pathname

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'antd'
-import { useSelector } from 'react-redux'
 
 const OrderSuccessPage = props => {
-  const storeUrl = useSelector(state => state.user.storeUrl)
-  const storeDetails = useSelector(state => state.user.user)
+  const storeDetails = JSON.parse(localStorage.getItem('user'))
+  const storeUrl = localStorage.getItem('storeUrl')
 
   return (
     <div className='cover'>
