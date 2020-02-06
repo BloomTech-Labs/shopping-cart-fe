@@ -166,7 +166,7 @@ const Stripe = props => {
         </Collapse>
         <div className='save'>
           <NavLink to={`/store/${cartContents.storeId}`}>
-            <div className='save-btn'>Abort Transaction</div>s
+            <div className='save-btn'>Abort Transaction</div>
           </NavLink>
           {/* <div style={{ backgroundColor: '#FF6663' }} className='save-btn'>
             Complete Transaction
