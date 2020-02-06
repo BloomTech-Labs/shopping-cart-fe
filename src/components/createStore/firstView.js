@@ -55,7 +55,7 @@ const CreateStore = props => {
   return (
     <div id='create-store' className='cover'>
       <div className='desktop-logo-large'>
-        <img src={store_image} alt='PureRetail Logo' width='300' height='300' />
+        <img src={store_image} alt='Create Store Image' width='300' height='300' />
       </div>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>

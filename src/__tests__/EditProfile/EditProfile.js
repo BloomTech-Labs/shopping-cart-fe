@@ -7,7 +7,7 @@ import Container from '../../components/EditProfile/EditProfile'
 describe('edit profile', () => {
   test('renders the logo', () => {
     const { getByAltText } = renderWithProviders(<Container />)
-    const logo = getByAltText(/pureretail logo/i)
+    const logo = getByAltText(/avatar/i)
     expect(logo).toBeVisible()
   })
   test('renders the title', () => {
