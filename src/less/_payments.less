@@ -1,0 +1,163 @@
+.payments-cover {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: space-around;
+    font-family: "Lato", sans-serif;
+
+    @media (min-width:@desktop){
+        justify-content: center;
+        align-items: center;
+      }
+
+    .lower {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width:@desktop){
+            width: 60%;
+          }
+
+        .infotext {
+            font-size: 1.8rem;
+            margin-bottom: 1.3rem;
+        }
+
+        #header p {
+            margin-bottom: 2rem;
+            font-size: 1.6rem;      
+        }
+
+        .info {
+            margin-bottom: 3rem;
+            font-size: 1.6rem;        
+        }
+
+        .save {
+            width: 100%;
+            font-size: 1.4rem;
+            margin-top: 5rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .save-btn {
+                margin-top: 4rem;
+                width: 14rem;
+                height: 6rem;
+                color: white;
+                background-color: #0B3954;
+                font-size: 2rem;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @media (min-width:@desktop){
+                    cursor: pointer;
+                  }
+            }
+        }
+
+        h4 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+        }
+    }
+
+    .checkout {
+        box-sizing: border-box;
+        width: 100%;
+        padding-top: 6rem;
+
+        @media (min-width:@desktop){
+            width: 60%;
+          }
+
+
+        h4 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+        }
+
+        .order {
+            width: 100%;
+            color: #0B3954;
+
+            .left {
+                margin-top: 4rem;
+                text-align: left;
+            }
+
+            .summary {
+                font-size: 1.8rem;
+                margin-top: 2rem;
+                margin-bottom: 4rem;
+
+                .controls {
+                    box-sizing: border-box;
+                    display: flex;
+                    width: 25%;
+
+                    .clicks {
+                        width: 33.3%;
+                        background-color: black;
+                        color: white;
+                        height: 100%;
+            
+                        @media (min-width:@desktop){
+                            cursor: pointer;
+                          }
+                    }
+            
+                    .count {
+                        background-color: #BFD7EA;
+                        color: black;
+            
+                        @media (min-width:@desktop){
+                            cursor: default;
+                          }
+                    }
+                }
+
+                .units {
+                    margin-bottom: 1.3rem;
+                    background-color: silver;
+                    box-sizing: border-box;
+                    padding: 1.8rem;
+                    font-weight: bold;
+                }
+
+                .stop {
+                    margin-bottom: 1.5rem;
+                    background-color: #BFD7EA;
+                    box-sizing: border-box;
+                    padding: 1.8rem;
+                }
+            }
+
+            .ant-list-items {
+                display: flex;
+                flex-direction: column;
+                font-size: 2rem;
+        
+                .ant-list-item-meta-title {
+                    font-size: 1.8rem;
+                }
+        
+                .ant-list-item-meta-description {
+                    font-size: 1.6rem;
+                }
+            }
+            
+            p {
+                font-size: 1.8rem;
+                font-weight: bolder;
+            }
+        }
+    }
+}
