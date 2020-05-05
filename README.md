@@ -2,7 +2,7 @@
 
 # Pure Retail: A platform for market traders, craftspeople, and hobbyists.
 
-You can find the deployed project at [Pure Retail](https://app.pure-retail.com/).
+You can find the deployed project at [Pure Retail](https://app.pure-retail.com/). 
 
 ## Project Overview
 
