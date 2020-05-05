@@ -2,6 +2,7 @@ import * as types from './actionTypes';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
 import axios from 'axios';
 
+//TEST
 const getUserUrl = 'https://whispering-dawn-20611.herokuapp.com/api/store/';
 
 export const updateForm = (details) => ({
