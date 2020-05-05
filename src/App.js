@@ -24,6 +24,8 @@ import SaveCartMain from './components/saveCart'
 import Account from './components/SellerAccount/SellerAccount'
 import Confirmation from './components/orderConfirmation'
 import NoMatch from './components/noMatch'
+// importing WelcomeScreen
+import WelcomeScreenForm from './components/WelcomeScreen'
 
 function App () {
   window.addEventListener('load', () => {
@@ -40,7 +42,10 @@ function App () {
   return (
     <>
       <Switch>
+        
         <PublicRoute path='/register' component={WrappedRegistrationForm} />
+        {/* {Import WelcomeScreen} */}
+        <PublicRoute path='/dashboard' component={WelcomeScreenForm} />
         <PublicRoute exact path='/' component={LoginForm} />
         <PrivateRoute path='/inventory' component={Main} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
