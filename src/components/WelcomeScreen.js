@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   Input,
@@ -12,75 +12,101 @@ import {
 const { Option } = Select;
 
 const WelcomeScreen = (props) => {
+  const [form, setForm] = useState({
+    businessName: '',
+    ownerName: '',
+    testing: ''
+  });
+
   const { getFieldDecorator } = props.form;
-  console.log('this is getFieldDecorator', getFieldDecorator);
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
+  const { setFieldsValue} = props.form;
+
+  const onChange = (e) => {
+    // setForm({ ...form, [e.target.name]: e.target.value });
+    // console.log(form);
+    setFieldsValue({
+    
+    })
   };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
+      // we will need to change this logic
+      const payload = {
+        name: values.name,
+        currency: values.currency,
+      };
+      if (!err) {
+        console.log(err);
+      } else {
+        message.error('Enter Required Fields');
+      }
+    });
   };
+
   return (
     <div>
       <h1>This is the welcome Screen Form</h1>
-      return (
-      <Form {...formItemLayout}>
-        <div id='header'>
-          <h2 id='get-started'>Lets get started!</h2>
-          <p>
-            You're in! Let's get your account started in a few clicks. First,
-            tell us how you'd like to be addressed and how you'd like to be
-            paid.
-          </p>
-        </div>
-        <Form.Item>
-          {getFieldDecorator('name', {
-            rules: [
-              {
-                message: 'Must enter a store name!',
-              },
-              {
-                required: true,
-                message: 'Enter your name',
-              },
-            ],
-          })(<Input placeholder='Enter Business Name' />)}
+      <Form onSubmit={onSubmit}>
+        {/* Business Name - String */}
+        <Form.Item
+          label='Business Name'
+          name='businessName'
+          rules={[
+            {
+              required: true,
+              message: 'Business name here!',
+            },
+          ]}>
+          <Input
+            name='businessName'
+            placeholder='enter business name'
+            value={form.businessName}
+            onChange={onChange}
+          />
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('name', {
-            rules: [
-              {
-                message: 'Must enter a store name!',
-              },
-              {
-                required: true,
-                message: 'Enter your name',
-              },
-            ],
-          })(<Input placeholder='Enter Owner Name' />)}
+        {/* Owner Name - String */}
+        <Form.Item
+          label='Owner Name'
+          name='ownerName'
+          rules={[
+            {
+              required: true,
+              message: 'Owner name here!',
+            },
+          ]}>
+          <Input
+            name='ownerName'
+            placeholder='enter owner name'
+            value={form.ownerName}
+            onChange={onChange}
+          />
         </Form.Item>
 
-        <Form.Item {...tailFormItemLayout}>
-          <Button type='primary' htmlType='submit'>
-            Next
-          </Button>
+        <Form.Item label='some label' name='some name'>
+          {getFieldDecorator('name', {
+            rules: [
+              {
+                required: true,
+                message: 'Enter your name',
+              },
+            ],
+          })(<Input value={form.testing} placeholder='My name is...' />)}
         </Form.Item>
+
+        {/* Address */}
+
+        {/* (Secondary Address) Building / Unit / Suite - String */}
+        {/* City - String */}
+        {/* State - String */}
+        {/* Zip Code - Number */}
+        {/* Business Hours - String/Time */}
+        {/* Curbside business Hours - String/Time */}
+
+        <Button type='primary' htmlType='submit'>
+          Add Branding
+        </Button>
       </Form>
     </div>
   );
