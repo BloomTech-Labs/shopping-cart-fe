@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/LABS-EU3/shopping_cart_frontend.svg?branch=develop)](https://travis-ci.org/LABS-EU3/shopping_cart_frontend) [![Maintainability](https://api.codeclimate.com/v1/badges/fef3896e6f1133033b85/maintainability)](https://codeclimate.com/github/LABS-EU3/shopping_cart_frontend/maintainability)
+[![Build Status](https://travis-ci.org/LABS-EU3/shopping_cart_frontend.svg?branch=develop)](https://travis-ci.org/LABS-EU3/shopping_cart_frontend) [![Maintainability](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/maintainability)][![test coverage](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/test_coverage)]](https://codeclimate.com/github/LABS-EU3/shopping_cart_frontend/maintainability)
 
 # Pure Retail: A platform for market traders, craftspeople, and hobbyists.
 
