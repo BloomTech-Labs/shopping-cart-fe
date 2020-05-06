@@ -1,5 +1,3 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/maintainability) ![test coverage](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/test_coverage)] (https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe)]
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe) [![Test Coverage](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe/progress/coverage)
 # Pure Retail: A platform for market traders, craftspeople, and hobbyists.
 
