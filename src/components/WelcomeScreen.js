@@ -22,6 +22,7 @@ const WelcomeScreen = (props) => {
         value={props.values.businessName}
         placeholder='business name'
       />
+      {/* need this on all fields */}
       {props.touched && props.errors.businessName && <p>enter please</p>}
       <br />
       {/* Owner name */}
@@ -32,6 +33,7 @@ const WelcomeScreen = (props) => {
         value={props.values.ownerName}
         placeholder='your name'
       />
+      {props.touched && props.errors.ownerName && <p>enter, please</p>}
       <br />
       {/* Address */}
       <label htmlFor='address'>Address</label>
@@ -41,6 +43,7 @@ const WelcomeScreen = (props) => {
         value={props.values.address}
         placeholder='address'
       />
+      {props.touched && props.errors.address && <p>address, please</p>}
       <br />
       {/* Second Address */}
       <label htmlFor='owner name'>Second Address</label>
@@ -50,6 +53,7 @@ const WelcomeScreen = (props) => {
         value={props.values.secondAddress}
         placeholder='secondary address'
       />
+      {props.touched && props.errors.secondAddress && <p>enter if needed</p>}
       <br />
       {/* City */}
       <label htmlFor='city'>City</label>
@@ -59,6 +63,7 @@ const WelcomeScreen = (props) => {
         value={props.values.city}
         placeholder='your city'
       />
+      {props.touched && props.errors.city && <p>City required</p>}
       <br />
       {/* State */}
       <label htmlFor='state'>State</label>
@@ -68,6 +73,7 @@ const WelcomeScreen = (props) => {
         value={props.values.state}
         placeholder='your state'
       />
+      {props.touched && props.errors.state && <p>enter State</p>}
       <br />
       {/* Zip Code */}
       <label htmlFor='zip code'>Zip Code</label>
@@ -77,6 +83,7 @@ const WelcomeScreen = (props) => {
         placeholder='your zip code'
         value={props.values.zipcode}
       />
+      {props.touched && props.errors.zipcode && <p>enter Zipcode</p>}
       <br />
       {/* Hours */}
       <label htmlFor='store hours'>Store Hours</label>
@@ -86,6 +93,7 @@ const WelcomeScreen = (props) => {
         value={props.values.hours}
         placeholder='hours of operation'
       />
+      {props.touched && props.errors.hours && <p>enter Hours of Operation</p>}
       <br />
       {/* Curbside Hours */}
       <label htmlFor='curbside hours'>Curbside Pickup Hours</label>
@@ -95,6 +103,7 @@ const WelcomeScreen = (props) => {
         value={props.values.curbHours}
         placeholder='curbside pickup hours'
       />
+      {props.touched && props.errors.curbHours && <p>enter Curbside hours</p>}
       <br />
       <button type='submit'>Submit</button>
     </Form>
