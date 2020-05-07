@@ -11,6 +11,7 @@ import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
 
 const loginURL = 'https://whispering-dawn-20611.herokuapp.com/api/auth/login';
 const storeURL = 'https://whispering-dawn-20611.herokuapp.com/api/store';
+
 const Login = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
