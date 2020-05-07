@@ -1,168 +1,130 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useFormik, withFormik, Form, Field, ErrorMessage } from 'formik';
+import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import { pushOnboardInfo } from '../state/actionCreators';
+import { ADD_ONBOARDING } from '../state/actionTypes';
 
-const WelcomeScreen = ({ values, touched, handleChange, errors, status }) => {
-  const [owners, setOwners] = useState({
-    businessName: '',
-  });
+const WelcomeScreen = (props) => {
+  const [sellerData, setSellerData] = useState({});
 
-  const formik = useFormik({
-    initialValues: {
-      businessName: '',
-      ownerName: '',
-      address: '',
-      secondAddress: '',
-      city: '',
-      state: '',
-      zipcode: '',
-      hours: '', // format may need changed
-      curbHours: '', // format may need changed
-    },
-    validationSchema: Yup.object({
-      businessName: Yup.string()
-        .max(25, 'Must be 15 characters or less')
-        .required('Required'),
-      ownerName: Yup.string()
-        .max(25, 'Must be 20 characters or less')
-        .required('Required'),
-      address: Yup.string()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-      secondAddress: Yup.string()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-      city: Yup.string()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-      state: Yup.string()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-      zipcode: Yup.number()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-      hours: Yup.number()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-      curbHours: Yup.number()
-        .max(25, 'Must be 30 characters or less')
-        .required('Required'),
-    }),
-  });
-
-  // right here onsubmit
-  const onSubmit = (e) => {
-    e.preventDefault(); // prevent re renders
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSellerData({ [e.target.name]: e.target.value });
+    console.log('this is the sellerdata', sellerData);
   };
 
-  const handlechange = (e) => {
-    setOwners({ [e.target.name]: e.target.value });
-  };
+  console.log('this be da props', props);
   return (
-    <form>
+    <Form>
       {/* Business Name */}
       <label htmlFor='business name'>Business Name</label>
       <Field
         name='businessName'
         type='text'
+        value={props.values.businessName}
+        placeholder='business name'
         onChange={handleChange}
-        value={formik.values.businessName}
       />
-      {touched.businessName && errors.businessName && (
-        <p>{errors.businessName}</p>
-      )}
+      <br />
       {/* Owner name */}
-      <label htmlFor='ownerName'>Owner Name</label>
+      <label htmlFor='owner name'>Owner Name</label>
       <Field
-        name='owner name'
+        name='ownerName'
         type='text'
-        // onChange / Values here
+        value={props.values.ownerName}
+        placeholder='your name'
+        onChange={handleChange}
       />
-
+      <br />
       {/* Address */}
-      <label htmlFor='ownerName'>Address</label>
+      <label htmlFor='address'>Address</label>
       <Field
         name='Address'
         type='text'
-        // onChange / Values here
+        value={props.values.address}
+        placeholder='address'
+        onChange={handleChange}
       />
-
+      <br />
       {/* Second Address */}
-      <label htmlFor='ownerName'>Second Address</label>
+      <label htmlFor='owner name'>Second Address</label>
       <Field
-        name='Second Address'
+        name='secondAddress'
         type='text'
-        // onChange / Values here
+        value={props.values.secondAddress}
+        placeholder='secondary address'
+        onChange={handleChange}
       />
-
+      <br />
       {/* City */}
-      <label htmlFor='ownerName'>City</label>
+      <label htmlFor='city'>City</label>
       <Field
         name='city'
         type='text'
-        // onChange / Values here
+        value={props.values.city}
+        placeholder='your city'
+        onChange={handleChange}
       />
-
+      <br />
       {/* State */}
-      <label htmlFor='ownerName'>State</label>
+      <label htmlFor='state'>State</label>
       <Field
         name='state'
         type='text'
-        // onChange / Values here
+        value={props.values.state}
+        placeholder='your state'
+        onChange={handleChange}
       />
-
+      <br />
       {/* Zip Code */}
-      <label htmlFor='ownerName'>Zip Code</label>
+      <label htmlFor='zip code'>Zip Code</label>
       <Field
-        name='zip code'
+        name='zipCode'
         type='number'
-        // onChange / Values here
+        placeholder='your zip code'
+        value={props.values.zipcode}
+        onChange={handleChange}
       />
-
+      <br />
       {/* Hours */}
-      <label htmlFor='ownerName'>Store Hours</label>
+      <label htmlFor='store hours'>Store Hours</label>
       <Field
         name='store hours'
         type='text'
-        // onChange / Values here
+        value={props.values.hours}
+        placeholder='hours of operation'
+        onChange={handleChange}
       />
-
+      <br />
       {/* Curbside Hours */}
-      <label htmlFor='ownerName'>Curbside Pickup Hours</label>
+      <label htmlFor='curbside hours'>Curbside Pickup Hours</label>
       <Field
-        name='curbside hours'
+        name='curbsideHours'
         type='text'
-        // onChange / Values here
+        value={props.values.curbHours}
+        placeholder='curbside pickup hours'
+        onChange={handleChange}
       />
-
+      <br />
       <button type='submit'>Submit</button>
-    </form>
+    </Form>
   );
 };
 
 const WelcomeScreenForm = withFormik({
-  mapPropsToValues({
-    businessName,
-    ownerName,
-    address,
-    secondAddress,
-    city,
-    state,
-    zipcode,
-    hours,
-    curbHours,
-  }) {
+  mapPropsToValues: (values) => {
     return {
-      businessName: businessName || '',
-      ownerName: ownerName || '',
-      address: address || '',
-      secondAddress: secondAddress || '',
-      city: city || '',
-      state: state || '',
-      zipcode: zipcode || '',
-      hours: hours || '',
-      curbHours: curbHours || '',
+      businessName: values.businessName || '',
+      ownerName: values.ownerName || '',
+      address: values.address || '',
+      secondAddress: values.secondAddress || '',
+      city: values.city || '',
+      state: values.state || '',
+      zipcode: values.zipcode || '',
+      hours: values.hours || '',
+      curbHours: values.curbHours || '',
     };
   },
 
@@ -178,17 +140,23 @@ const WelcomeScreenForm = withFormik({
     curbHours: Yup.string(),
   }),
 
-  //   handleSubmit(values, { setStatus }) {
-  //     axios
-  //       .post("https://reqres.in/api/users", values)
-  //       .then(res => {
-  //         setStatus(res.data);
-  //         // console.log(`Our data:`, res.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   }
+  handleSubmit: (values, formikBag) => {
+    console.log(values);
+  },
 })(WelcomeScreen);
 
-export default WelcomeScreenForm;
+const mapStateToProps = (state) => {
+  return {
+    businessName: state.businessName,
+    ownerName: state.ownerName,
+    address: state.address,
+    secondAddress: state.secondAddress,
+    state: state.state,
+    zipcode: state.zipcode,
+    hours: state.hours,
+    curbHours: state.curbHours,
+  };
+};
+
+// connecting to our redux store
+export default connect(mapStateToProps, { pushOnboardInfo })(WelcomeScreenForm);

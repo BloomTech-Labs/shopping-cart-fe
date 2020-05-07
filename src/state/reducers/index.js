@@ -1,11 +1,12 @@
-import { combineReducers } from 'redux'
-import { formReducer } from './formReducer'
-import { userReducer } from './userReducer'
-import { storeReducer } from './storeReducer'
-import { cartReducer } from './cartReducer'
-import { searchReducer } from './searchReducer'
-import { savedCartReducer } from './savedCartReducer'
-import dashboardReducer from './dashboardReducer'
+import { combineReducers } from 'redux';
+import { formReducer } from './formReducer';
+import { userReducer } from './userReducer';
+import { storeReducer } from './storeReducer';
+import { cartReducer } from './cartReducer';
+import { searchReducer } from './searchReducer';
+import { savedCartReducer } from './savedCartReducer';
+import dashboardReducer from './dashboardReducer';
+import onboardReducer from './onboardReducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   search: searchReducer,
   savedCart: savedCartReducer,
-  dashboard: dashboardReducer
-})
+  dashboard: dashboardReducer,
+  onboard: onboardReducer,
+});
 
-export default rootReducer
+export default rootReducer;
