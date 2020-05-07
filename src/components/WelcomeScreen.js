@@ -4,7 +4,6 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
-import rootReducer from '../state/reducers/index';
 
 const WelcomeScreen = (props) => {
   console.log(props);
