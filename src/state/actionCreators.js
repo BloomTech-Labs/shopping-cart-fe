@@ -202,9 +202,18 @@ export const getSalesHistory = () => (dispatch) => {
 
 // onboarding actions
 
-export const pushOnboardInfo = () => (dispatch) => {
-  return {
-    type: types.ADD_ONBOARDING,
-    payload: null,
-  };
+export const postOnboard = (values) => (dispatch) => {
+  dispatch({ type: types.ADD_ONBOARDING, payload: values})
+
+    // // posting to backend
+    // axios.post('', )
+    // .then((res)=>{
+    //   // this action still needs to be created
+    //   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
+    // })
+    // .catch((err)=> {
+    //   // action still needs to be created
+    //   dispatch({type: types.POST_ONBOARDING_FAILURE})
+    //   console.log(err)
+    // })
 };
