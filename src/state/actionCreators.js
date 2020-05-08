@@ -199,3 +199,17 @@ export const getSalesHistory = () => (dispatch) => {
       console.log(err);
     });
 };
+
+//action creator to get orders
+export const getOrders = () => {
+  AxiosAuth()
+    .get("https://whispering-dawn-20611.herokuapp.com/api/store/orders")
+    .then((res) => {
+      return (dispatch) => {
+        dispatch({ type: types.GET_ORDERS, payload: res.data });
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
