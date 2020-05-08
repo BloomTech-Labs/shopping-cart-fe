@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
 
+
 const WelcomeScreen = (props) => {
   console.log(props);
   useEffect((values) => {
@@ -164,5 +165,7 @@ const mapStateToProps = (state) => {
     curbHours: state.onboard.curbHours,
   };
 };
+
+//I love LABS! -Eric
 
 export default connect(mapStateToProps, { postOnboard })(WelcomeScreenForm);
