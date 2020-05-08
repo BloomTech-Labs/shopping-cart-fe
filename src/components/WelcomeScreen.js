@@ -83,7 +83,7 @@ const WelcomeScreen = (props) => {
         placeholder='your zip code'
         value={props.values.zipcode}
       />
-      {props.touched && props.errors.zipcode && <p>enter Zipcode</p>}
+      {props.touched && props.errors.zipcode && <p>enter Zip Code</p>}
       <br />
       {/* Hours */}
       <label htmlFor='store hours'>Store Hours</label>
