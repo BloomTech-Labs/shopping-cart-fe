@@ -14,6 +14,9 @@ const Navbar = () => {
     dispatch(creators.getCurrentUser());
   }, [dispatch]);
   const user = useSelector((state) => state.user.user);
+  const url = `${window.location.origin.toString()}/store/${
+    user && user.storeName && user.storeName.toLowerCase().split(" ").join("-")
+  }-${user && user._id}`;
   const storeLogo = user.imageUrl ? user.imageUrl : NoLogo;
 
   const style = { color: "#0092ff", padding: "8px 0" };
@@ -79,12 +82,12 @@ const Navbar = () => {
           className='btn-container'
         >
           <Col>
-            <a href='#'>
+            <NavLink className='navlink' to='createItem'>
               <Button className='nav-primary'>Create Product</Button>
-            </a>
+            </NavLink>
           </Col>
           <Col>
-            <a href='#'>
+            <a href={url} target='_blank'>
               <Button className='nav-secondary'>View Store</Button>
             </a>
           </Col>

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as creators from "../../state/actionCreators";
 import { Table, Tag, Button } from "antd";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
@@ -8,6 +10,11 @@ import "antd/dist/antd.css";
 
 const Orders = (props) => {
   const [newData, setNewData] = useState();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(creators.getCurrentUser());
+  }, [dispatch]);
 
   const { Column, ColumnGroup } = Table;
   return (
