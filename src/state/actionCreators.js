@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
 import axios from 'axios';
+import history from '../history';
 
 const getUserUrl = 'https://shopping-cart-eu3.herokuapp.com/api/store/';
 
@@ -203,17 +204,21 @@ export const getSalesHistory = () => (dispatch) => {
 // onboarding actions
 
 export const postOnboard = (values) => (dispatch) => {
-  dispatch({ type: types.ADD_ONBOARDING, payload: values})
+  dispatch({ type: types.ADD_ONBOARDING, payload: values });
+  history.push('/brandview');
+  // // posting to backend
+  // axios.post('', )
+  // .then((res)=>{
+  //   // this action still needs to be created
+  //   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
+  // })
+  // .catch((err)=> {
+  //   // action still needs to be created
+  //   dispatch({type: types.POST_ONBOARDING_FAILURE})
+  //   console.log(err)
+  // })
+};
 
-    // // posting to backend
-    // axios.post('', )
-    // .then((res)=>{
-    //   // this action still needs to be created
-    //   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
-    // })
-    // .catch((err)=> {
-    //   // action still needs to be created
-    //   dispatch({type: types.POST_ONBOARDING_FAILURE})
-    //   console.log(err)
-    // })
+export const logoUpload = (cloudUrl) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_LOGO, payload: cloudUrl });
 };

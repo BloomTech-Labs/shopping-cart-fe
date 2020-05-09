@@ -6,14 +6,8 @@ import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
 
 const WelcomeScreen = (props) => {
-  console.log(props);
-  useEffect((values) => {
-    console.log('refreshing');
-    postOnboard(values);
-  }, []);
-
   return (
-    <Form>
+    <Form >
       {/* Business Name */}
       <label htmlFor='business name'>Business Name</label>
       <Field
