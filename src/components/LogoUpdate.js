@@ -7,8 +7,8 @@ const LogoUpdate = (props) => {
   const [cloudUrl, setCloudUrl] = useState(
     'https://i.gyazo.com/c07509b1684992e37e46b355e942dadf.png'
   );
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const uploadImage = (e) => {
     const files = e.target.files;
     setLoading(true);
@@ -25,13 +25,18 @@ const LogoUpdate = (props) => {
   console.log('logoupdate props', props);
   return (
     <div>
-      <h1>Did this change?</h1>
       <input type='file' onChange={uploadImage} />
       {loading ? (
         <p>Loading...</p>
       ) : (
         <img style={imageStyle} alt='logo' src={cloudUrl} />
       )}
+      <button
+        onClick={() => {
+          props.logoUpload(cloudUrl);
+        }}>
+        push please
+      </button>
     </div>
   );
 };
@@ -42,7 +47,7 @@ const LogoUpdate = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    logo: state.logo.logo,
+    logo: state.logo,
   };
 };
 
@@ -51,5 +56,3 @@ export default connect(mapStateToProps, { logoUpload })(LogoUpdate);
 const imageStyle = {
   height: '100px',
 };
-
-// connect(mapStateToProps, { postOnboard })(WelcomeScreenForm);

@@ -219,6 +219,6 @@ export const postOnboard = (values) => (dispatch) => {
   // })
 };
 
-export const logoUpload = (cloudUrl) => (dispatch) => {
-  dispatch({ type: types.UPLOAD_LOGO, payload: cloudUrl });
+export const logoUpload = (logo) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_LOGO, payload: logo });
 };
