@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as creators from "../../state/actionCreators";
+import useCurrency from "../hooks/useCurrency";
+import MonthlySales from "../totoalSales/monthlySales";
+import LifetimeSales from "../totoalSales/lifetimeSales";
+import * as actionCreators from "../../state/actionCreators";
 import { Table, Tag, Button } from "antd";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
@@ -8,17 +11,37 @@ import "antd/dist/antd.css";
 // import { data } from "../../db.js";
 // import { getOrders } from "../../utils/api";
 
-const Orders = (props) => {
+const Orders = (props, { currency, storeId }) => {
   const [newData, setNewData] = useState();
 
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(creators.getOrders());
+  // }, [dispatch]);
+
   const dispatch = useDispatch();
+  const sign = useCurrency(currency);
   useEffect(() => {
-    dispatch(creators.getCurrentUser());
-  }, [dispatch]);
+    dispatch(actionCreators.getSalesHistory());
+    dispatch(actionCreators.setLoading(false));
+  }, [dispatch, storeId]);
+  const dashboard = useSelector((state) => state.dashboard);
+  const isLoading = useSelector((state) => state.user.isLoading);
 
   const { Column, ColumnGroup } = Table;
   return (
-    <div>
+    <div className='order-view'>
+      <div className='sales-view'>
+        <MonthlySales
+          currency={sign}
+          monthSales={dashboard && dashboard.monthSales}
+        />
+        <LifetimeSales
+          currency={sign}
+          amount={dashboard && dashboard.totalSales}
+        />
+      </div>
+
       {/* <Button
         type='primary'
         onClick={() => {
@@ -28,6 +51,7 @@ const Orders = (props) => {
         View Orders
       </Button> */}
       <Table
+        className='order-display'
         dataSource={!props.state ? newData : props.state.orders}
         // loading={!props.state ? true : false}
       >
