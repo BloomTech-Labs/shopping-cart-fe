@@ -24,7 +24,7 @@ import SaveCartMain from "./components/saveCart";
 import Account from "./components/SellerAccount/SellerAccount";
 import Confirmation from "./components/orderConfirmation";
 import NoMatch from "./components/noMatch";
-import BasicDetails from "./components/Products/basicDetails";
+
 
 function App() {
   window.addEventListener("load", () => {
@@ -64,7 +64,7 @@ function App() {
         <PublicRoute exact path="/support" component={Support} />
         <PrivateRoute path="/account" component={Account} />
 
-        <PublicRoute path="/testingGrounds" component={BasicDetails} />
+      
       </Switch>
       <div
         id="offline-notification"
