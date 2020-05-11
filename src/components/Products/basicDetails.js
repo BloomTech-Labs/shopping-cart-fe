@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// Use State will be moved the view component once the other components are completed
 const BasicDetails = () => {
   const [formData, setFormData] = useState({
     productName: "",
