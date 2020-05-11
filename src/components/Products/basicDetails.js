@@ -13,7 +13,7 @@ const BasicDetails = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
   return (
-    <div className="basicDetailsContainer">
+    <div className="createProductContainer">
       <h3>Basic Details:</h3>
 
       <div className="formContainer">

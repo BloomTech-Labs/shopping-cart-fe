@@ -82,7 +82,7 @@ const AddVariants = () => {
 
 
   return (
-    <div className="variantContainer">
+    <div className="createProductContainer">
       <div className="HeaderContainer">
         <h3>Variants:</h3>
         <p>
@@ -95,13 +95,6 @@ const AddVariants = () => {
           className={active ? "disabled" : "variantButton"}
         >
           Add Variants
-        </button>
-        <button
-          onClick={() => {
-            console.log(formData);
-          }}
-        >
-          state
         </button>
       </div>
       {active ? (

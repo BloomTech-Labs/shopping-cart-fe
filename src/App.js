@@ -25,7 +25,6 @@ import Account from "./components/SellerAccount/SellerAccount";
 import Confirmation from "./components/orderConfirmation";
 import NoMatch from "./components/noMatch";
 
-
 function App() {
   window.addEventListener("load", () => {
     function handleNetworkChange(event) {
@@ -64,7 +63,7 @@ function App() {
         <PublicRoute exact path="/support" component={Support} />
         <PrivateRoute path="/account" component={Account} />
 
-      
+        
       </Switch>
       <div
         id="offline-notification"
