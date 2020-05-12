@@ -19,6 +19,7 @@ export const getCurrentUser = () => (dispatch) => {
           `https://whispering-dawn-20611.herokuapp.com/api/store/${res.data._id}/products`
         )
         .then((res) => {
+          console.log(res.data);
           const inventory = res.data;
           dispatch({ type: types.GET_INVENTORY, payload: inventory });
         });
