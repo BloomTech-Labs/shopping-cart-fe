@@ -222,3 +222,7 @@ export const postOnboard = (values) => (dispatch) => {
 export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
 };
+
+export const colorUpload = (color) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_COLOR, payload: color });
+};

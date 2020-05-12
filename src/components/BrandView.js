@@ -4,10 +4,15 @@ import ColorPicker from './ColorPicker';
 
 const BrandView = () => {
   return (
-    <div>
-      <h2>Is Brand View Displaying?</h2>
-      <LogoUpdate />
-      <ColorPicker />
+    <div className='brandWrapper'>
+      <div classname='headerWrapper'>
+        <h2 className='welcomeHeader'>Almost Done</h2>
+      </div>
+      <div className='brandForms'>
+        <LogoUpdate />
+        <ColorPicker />
+      </div>
+      <button className='addBranding'>Finish</button>
     </div>
   );
 };

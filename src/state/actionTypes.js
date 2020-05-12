@@ -23,4 +23,4 @@ export const GET_SALES_HISTORY = 'GET_SALES_HISTORY';
 // Our actions
 export const ADD_ONBOARDING = 'ADD_ONBOARDING';
 export const UPLOAD_LOGO = 'UPLOAD_LOGO';
-
+export const UPLOAD_COLOR = 'UPLOAD_COLOR';

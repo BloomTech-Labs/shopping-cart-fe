@@ -19,31 +19,28 @@ const LogoUpdate = (props) => {
       .post('https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload', data)
       .then((res) => {
         setCloudUrl(res.data.secure_url);
+        props.logoUpload(cloudUrl);
       });
     setLoading(false);
   };
-  console.log('logoupdate props', props);
   return (
-    <div>
-      <input type='file' onChange={uploadImage} />
+    <div className='addLogo'>
+      <h3>Add your logo!</h3>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <img style={imageStyle} alt='logo' src={cloudUrl} />
+        <img className="logoPic" alt='logo' src={cloudUrl} />
       )}
-      <button
-        onClick={() => {
-          props.logoUpload(cloudUrl);
-        }}>
-        push please
-      </button>
+      <input id='uploadButton' type='file' onChange={uploadImage} />
+      <label
+          htmlFor="uploadButton"
+          className="fakeUploadButton"
+        >
+          Add Photo
+        </label>
     </div>
   );
 };
-
-// plans for tomorrow
-// get dispatch function working
-// style up both pages (welcomeScreen / brandUpdate )
 
 const mapStateToProps = (state) => {
   return {
@@ -53,6 +50,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { logoUpload })(LogoUpdate);
 
-const imageStyle = {
-  height: '100px',
-};
+const inputButton = {
+  background: 'red',
+}

@@ -8,6 +8,7 @@ import { savedCartReducer } from './savedCartReducer';
 import dashboardReducer from './dashboardReducer';
 import onboardReducer from './onboardReducer';
 import logoReducer from './logoReducer';
+import colorReducer from './colorReducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   onboard: onboardReducer,
   logo: logoReducer,
+  color: colorReducer,
 });
 
 export default rootReducer;

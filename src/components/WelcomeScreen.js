@@ -7,100 +7,133 @@ import { postOnboard } from '../state/actionCreators';
 
 const WelcomeScreen = (props) => {
   return (
-    <Form >
-      {/* Business Name */}
-      <label htmlFor='business name'>Business Name</label>
-      <Field
-        name='businessName'
-        type='text'
-        value={props.values.businessName}
-        placeholder='business name'
-      />
-      {/* need this on all fields */}
-      {props.touched && props.errors.businessName && <p>enter please</p>}
-      <br />
-      {/* Owner name */}
-      <label htmlFor='owner name'>Owner Name</label>
-      <Field
-        name='ownerName'
-        type='text'
-        value={props.values.ownerName}
-        placeholder='your name'
-      />
-      {props.touched && props.errors.ownerName && <p>enter, please</p>}
-      <br />
-      {/* Address */}
-      <label htmlFor='address'>Address</label>
-      <Field
-        name='address'
-        type='text'
-        value={props.values.address}
-        placeholder='address'
-      />
-      {props.touched && props.errors.address && <p>address, please</p>}
-      <br />
-      {/* Second Address */}
-      <label htmlFor='owner name'>Second Address</label>
-      <Field
-        name='secondAddress'
-        type='text'
-        value={props.values.secondAddress}
-        placeholder='secondary address'
-      />
-      {props.touched && props.errors.secondAddress && <p>enter if needed</p>}
-      <br />
-      {/* City */}
-      <label htmlFor='city'>City</label>
-      <Field
-        name='city'
-        type='text'
-        value={props.values.city}
-        placeholder='your city'
-      />
-      {props.touched && props.errors.city && <p>City required</p>}
-      <br />
-      {/* State */}
-      <label htmlFor='state'>State</label>
-      <Field
-        name='state'
-        type='text'
-        value={props.values.state}
-        placeholder='your state'
-      />
-      {props.touched && props.errors.state && <p>enter State</p>}
-      <br />
-      {/* Zip Code */}
-      <label htmlFor='zip code'>Zip Code</label>
-      <Field
-        name='zipcode'
-        type='text'
-        placeholder='your zip code'
-        value={props.values.zipcode}
-      />
-      {props.touched && props.errors.zipcode && <p>enter Zip Code</p>}
-      <br />
-      {/* Hours */}
-      <label htmlFor='store hours'>Store Hours</label>
-      <Field
-        name='hours'
-        type='text'
-        value={props.values.hours}
-        placeholder='hours of operation'
-      />
-      {props.touched && props.errors.hours && <p>enter Hours of Operation</p>}
-      <br />
-      {/* Curbside Hours */}
-      <label htmlFor='curbside hours'>Curbside Pickup Hours</label>
-      <Field
-        name='curbHours'
-        type='text'
-        value={props.values.curbHours}
-        placeholder='curbside pickup hours'
-      />
-      {props.touched && props.errors.curbHours && <p>enter Curbside hours</p>}
-      <br />
-      <button type='submit'>Submit</button>
-    </Form>
+    <div className='welcomeForm'>
+      <h1 className='welcomeHeader'>Welcome</h1>
+      <h2 className='welcomeP'>To finish the account creation process fill out the forms below</h2>
+      <Form>
+      <main className='infoColumns'>
+      <section className='middleWelcomeFields'>
+        {/* Business Name */}
+        <label htmlFor='business name' className='labelFont'>Business Name</label>
+        <Field
+          name='businessName'
+          type='text'
+          value={props.values.businessName}
+          placeholder='business name'
+          className='fieldsChar'
+        />
+        {/* need this on all fields */}
+        {props.touched && props.errors.businessName && <p className='errorWelcome'>enter please</p>}
+        
+          {/* Owner name */}
+          <label htmlFor='owner name' className='labelFont'>Owner Name</label>
+          <Field
+            name='ownerName'
+            type='text'
+            value={props.values.ownerName}
+            placeholder='your name'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.ownerName && <p className='errorWelcome'>enter, please</p>}
+          {/* Address */}
+          <label htmlFor='address'className='labelFont'>Address</label>
+          <Field
+            name='address'
+            type='text'
+            value={props.values.address}
+            placeholder='address'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.address && <p className='errorWelcome'>address, please</p>}
+
+          {/* Second Address */}
+          <label htmlFor='owner name' className='labelFont'>Second Address</label>
+
+          <Field
+            name='secondAddress'
+            type='text'
+            value={props.values.secondAddress}
+            placeholder='secondary address'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.secondAddress && (
+            <p className='errorWelcome'>enter if needed</p>
+          )}
+
+          {/* City */}
+          <label htmlFor='city' className='labelFont'>City</label>
+
+          <Field
+            name='city'
+            type='text'
+            value={props.values.city}
+            placeholder='your city'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.city && <p className='errorWelcome'>City required</p>}
+
+          {/* State */}
+          <label htmlFor='state' className='labelFont'>State</label>
+
+          <Field
+            name='state'
+            type='text'
+            value={props.values.state}
+            placeholder='your state'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.state && <p className='errorWelcome'>enter State</p>}
+
+          {/* Zip Code */}
+          <label htmlFor='zip code' className='labelFont'>Zip Code</label>
+
+          <Field
+            name='zipcode'
+            type='text'
+            placeholder='your zip code'
+            value={props.values.zipcode}
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.zipcode && <p className='errorWelcome'>enter Zip Code</p>}
+        </section>
+        {/* Hours */}
+        <section className='curbHoursSection'>
+          <label htmlFor='store hours' className='labelFont'>
+            Store Hours
+          </label>
+          <Field
+            name='hours'
+            type='text'
+            value={props.values.hours}
+            placeholder='hours of operation'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.hours && (
+            <p className='errorWelcome'>enter Hours of Operation</p>
+          )}
+
+          {/* Curbside Hours */}
+          <label htmlFor='curbside hours' className='labelFont'>
+            Curbside Pickup Hours
+          </label>
+          <Field
+            name='curbHours'
+            type='text'
+            value={props.values.curbHours}
+            placeholder='curbside pickup hours'
+            className='fieldsChar'
+          />
+          {props.touched && props.errors.curbHours && (
+            <p className='errorWelcome'>enter Curbside hours</p>
+          )}
+        </section>
+        </main>
+        <button className='addBranding' type='submit'>
+          Add Information
+        </button>
+      </Form>
+      
+    </div>
   );
 };
 
@@ -145,7 +178,7 @@ const WelcomeScreenForm = withFormik({
     formikBag.props.postOnboard(values);
   },
 })(WelcomeScreen);
-
+// redux 
 const mapStateToProps = (state) => {
   return {
     businessName: state.onboard.businessName,
