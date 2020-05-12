@@ -1,60 +1,46 @@
 import React, { useState } from "react";
-import create from "antd/lib/icon/IconFont";
 import trashIcon from "../../images/trash_icon.svg";
+import * as yup from "yup" 
+import {Field, Form, Formik} from "formik"
 
 
-
-const AddVariants = () => {
+const AddVariants = (props) => {
   //active = If a user has selected to start adding variants
   const [active, setActive] = useState(false);
   // formData = Holds the input field data until it is submited
   const [formData, setFormData] = useState({
     variantName: "",
-    variantDetails: {
-      option: "",
+      variantOption: "",
       variantPrice: ""
-    }
+
     
   });
   //createdVariants = The state that holds the variants that have been created (All variant data)
   const [createdVariants, setCreatedVariants] = useState([])
-
   const [errorMessage, setErrorMessage] = useState()
 
   function changeHandler(e) {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-
-  //because the keys in FormData are in another object the change hander had to be made for each key to access them correctly
-  function optionChangeHandler(e) {
-    e.preventDefault();
-    setFormData({...formData, "variantDetails": {...formData.variantDetails, ["option"]: e.target.value}})
-  }
-
-  function priceChangeHandler(e) {
-    e.preventDefault();
-    setFormData({...formData, "variantDetails": {...formData.variantDetails, ["variantPrice"]: e.target.value}})
-  }
   function submitHandler(e){
     e.preventDefault();
     if(!formData.variantName){
       return setErrorMessage("Missing Variant name")
     }
-    if(!formData.variantDetails.option){
+    if(!formData.variantOption){
       return setErrorMessage("Missing option name")
     }
-    if(!formData.variantDetails.variantPrice){
+    if(!formData.variantPrice){
       return setErrorMessage("Missing Variant price")
     }
    
     setCreatedVariants([...createdVariants, formData])
     setFormData({
       variantName: formData.variantName,
-      variantDetails: {
-        option: "",
-        variantPrice: ""
-      }
+      variantOption: "",
+      variantPrice: ""
+      
       
     })
     setErrorMessage("")
@@ -62,10 +48,10 @@ const AddVariants = () => {
   }
   
 
-  async function removeVariant(arg) {
+   function removeVariant(arg) {
     console.log(arg)
-    const newState = await createdVariants.filter((cv) => {
-      return cv.variantDetails.option !== arg;
+    const newState = createdVariants.filter((cv) => {
+      return cv.variantOption !== arg;
     });
     return setCreatedVariants(newState);
   }
@@ -73,11 +59,12 @@ const AddVariants = () => {
   function clearVariants(){
     setCreatedVariants([])
     setFormData({variantName: "",
-    variantDetails: {
-      option: "",
+      variantOption: "",
       variantPrice: ""
-    }})
+    })
   }
+
+ 
 
 
 
@@ -99,7 +86,7 @@ const AddVariants = () => {
       </div>
       {active ? (
         <div>
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} validat>
             <h3>{errorMessage} </h3>
           <label htmlFor="variantName">Variant Name</label>
           <input
@@ -110,22 +97,23 @@ const AddVariants = () => {
             onChange={changeHandler}
             disabled={createdVariants.length >= 1 ? true : false}
           />
+          {props.touched && props.error.variantName && <p>This is an error!</p>}
           <h3  onClick={clearVariants}>Clear Varaints</h3>
           <label htmlFor="option">Variant Option</label>
           <input
             type="text"
-            name="option"
+            name="variantOption"
             placeholder="example: Large"
-            value={formData.variantDetails.option}
-            onChange={optionChangeHandler}
+            value={formData.variantOption}
+            onChange={changeHandler}
           />
           <label htmlFor="variantPrice">Variant Price</label>
           <input
             type="number"
             name="variantPrice"
             placeholder="$1.99"
-            value={formData.variantDetails.variantPrice}
-            onChange={priceChangeHandler}
+            value={formData.variantPrice}
+            onChange={changeHandler}
           />
           <button type="submit" >Create Varaint</button>
           </form>
@@ -146,8 +134,8 @@ const VaraintChild =(props) =>{
   
   return(<div>
     <h1>{props.data.variantName}</h1>
-    <p>{props.data.variantDetails.option} / {props.data.variantDetails.variantPrice}</p>
-    <img src={trashIcon} onClick={()=>{props.removeVariant(props.data.variantDetails.option)}}/>
+    <p>{props.data.variantOption} / {props.data.variantPrice}</p>
+    <img src={trashIcon} onClick={()=>{props.removeVariant(props.data.variantOption)}}/>
 
     
   </div>)
