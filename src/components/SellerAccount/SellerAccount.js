@@ -4,8 +4,8 @@ import axios from 'axios';
 import Nav from '../elements/nav';
 import withAuth from '../Auth/axiosWithAuth';
 
-const storeURL = 'https://whispering-dawn-20611.herokuapp.com/api/store';
-const stripeURL = 'https://whispering-dawn-20611.herokuapp.com/api/auth/stripe';
+const storeURL = 'https://shopping-cart-be.herokuapp.com//api/store';
+const stripeURL = 'https://shopping-cart-be.herokuapp.com//api/auth/stripe';
 
 function Account() {
 	const [ stripeId, setStripeId ] = useState('');

@@ -7,7 +7,7 @@ import Logo from '../elements/logo';
 import * as creators from '../../state/actionCreators';
 import image from '../../images/security.png';
 
-const URL = 'https://whispering-dawn-20611.herokuapp.com/api/auth/recover';
+const URL = 'https://shopping-cart-be.herokuapp.com//api/auth/recover';
 
 const ResetPassword = (props) => {
 	const dispatch = useDispatch();

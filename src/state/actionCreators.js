@@ -3,7 +3,7 @@ import AxiosAuth from '../components/Auth/axiosWithAuth';
 import axios from 'axios';
 
 //TEST
-const getUserUrl = 'https://whispering-dawn-20611.herokuapp.com/api/store/';
+const getUserUrl = 'https://shopping-cart-be.herokuapp.com//api/store/';
 
 export const updateForm = (details) => ({
 	type: types.UPDATE_FORM,
@@ -16,7 +16,7 @@ export const getCurrentUser = () => (dispatch) => {
 		.then((res) => {
 			dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
 			AxiosAuth()
-				.get(`https://whispering-dawn-20611.herokuapp.com/api/store/${res.data._id}/products`)
+				.get(`https://shopping-cart-be.herokuapp.com//api/store/${res.data._id}/products`)
 				.then((res) => {
 					const inventory = res.data;
 					dispatch({ type: types.GET_INVENTORY, payload: inventory });
@@ -29,7 +29,7 @@ export const getCurrentUser = () => (dispatch) => {
 
 export const getCart = (cartId) => (dispatch) => {
 	axios
-		.get(`https://whispering-dawn-20611.herokuapp.com/api/store/cart/${cartId}`)
+		.get(`https://shopping-cart-be.herokuapp.com//api/store/cart/${cartId}`)
 		.then((res) => {
 			const savedCart = res.data;
 			dispatch({ type: types.SAVE_CART, payload: savedCart });
@@ -121,7 +121,7 @@ export const clearUser = () => {
 
 export const deleteStore = () => (dispatch) => {
 	AxiosAuth()
-		.delete('https://whispering-dawn-20611.herokuapp.com/api/store')
+		.delete('https://shopping-cart-be.herokuapp.com//api/store')
 		.then((res) => {
 			const message = res.data;
 			setLoading(true);
@@ -136,7 +136,7 @@ export const deleteStore = () => (dispatch) => {
 export const deleteAccount = () => (dispatch) => {
 	setLoading(true);
 	AxiosAuth()
-		.delete('https://whispering-dawn-20611.herokuapp.com/api/auth/account')
+		.delete('https://shopping-cart-be.herokuapp.com//api/auth/account')
 		.then((res) => {
 			logout();
 			dispatch({ type: types.DELETE_ACCOUNT });
@@ -148,7 +148,7 @@ export const deleteAccount = () => (dispatch) => {
 
 export const getProducts = (sellerId, signal) => (dispatch) => {
 	axios
-		.get(`https://whispering-dawn-20611.herokuapp.com/api/store/${sellerId}/products`)
+		.get(`https://shopping-cart-be.herokuapp.com//api/store/${sellerId}/products`)
 		.then((res) => {
 			const inventory = res.data;
 			dispatch({ type: types.GET_INVENTORY, payload: inventory });
@@ -160,7 +160,7 @@ export const getProducts = (sellerId, signal) => (dispatch) => {
 
 export const getStore = (sellerId, signal) => (dispatch) => {
 	axios
-		.get(`https://whispering-dawn-20611.herokuapp.com/api/store/${sellerId}`)
+		.get(`https://shopping-cart-be.herokuapp.com//api/store/${sellerId}`)
 		.then((res) => {
 			dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
 		})
@@ -186,7 +186,7 @@ export const saveCart = (cart) => {
 export const getSalesHistory = () => (dispatch) => {
 	setLoading(true);
 	AxiosAuth()
-		.get('https://whispering-dawn-20611.herokuapp.com/api/store/sales')
+		.get('https://shopping-cart-be.herokuapp.com//api/store/sales')
 		.then((res) => {
 			setLoading(false);
 			dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });

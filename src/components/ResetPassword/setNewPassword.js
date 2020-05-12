@@ -14,7 +14,7 @@ const SetNewPassword = (props) => {
 
 	const [ confirmDirty, setConfirmDirty ] = useState(false);
 	const token = window.location.href.split('=')[1];
-	const URL = `https://whispering-dawn-20611.herokuapp.com/api/auth/reset/${token}`;
+	const URL = `https://shopping-cart-be.herokuapp.com//api/auth/reset/${token}`;
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		props.form.validateFieldsAndScroll((err, values) => {

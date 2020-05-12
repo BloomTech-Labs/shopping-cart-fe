@@ -23,7 +23,7 @@ function beforeUpload(file) {
 	}
 	return isJpgOrPng && isLt2M;
 }
-const createStoreUrl = 'https://whispering-dawn-20611.herokuapp.com/api/store';
+const createStoreUrl = 'https://shopping-cart-be.herokuapp.com//api/store';
 
 const AddLogo = (props) => {
 	const dispatch = useDispatch();

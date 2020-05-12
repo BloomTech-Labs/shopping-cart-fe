@@ -19,7 +19,7 @@ const Expanded = ({ inventory, currency }) => {
 			cancelText: 'No',
 			onOk() {
 				AxiosAuth()
-					.delete(`https://whispering-dawn-20611.herokuapp.com/api/store/products/${id}`)
+					.delete(`https://shopping-cart-be.herokuapp.com//api/store/products/${id}`)
 					.then((res) => {
 						dispatch(creators.getCurrentUser());
 						message.success('Item Deleted');

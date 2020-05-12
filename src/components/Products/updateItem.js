@@ -14,7 +14,7 @@ function UpdateItem(props) {
 	const [ cloudList, setCloudList ] = useState([]);
 	const { TextArea } = Input;
 	const itemId = props.match.params.id;
-	const productURL = `https://whispering-dawn-20611.herokuapp.com/api/store/products/${itemId}`;
+	const productURL = `https://shopping-cart-be.herokuapp.com//api/store/products/${itemId}`;
 
 	const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ function UpdateItem(props) {
 
 	useEffect(
 		() => {
-			AxiosAuth().get(`https://whispering-dawn-20611.herokuapp.com/api/store/products/${itemId}`).then((res) => {
+			AxiosAuth().get(`https://shopping-cart-be.herokuapp.com//api/store/products/${itemId}`).then((res) => {
 				const newFileList = res.data.images.map((url, idx) => ({
 					uid: -idx,
 					name: `photo ${idx}.jpg`,

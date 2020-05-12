@@ -28,7 +28,7 @@ const CheckoutForm = (props) => {
 				};
 				if (res.paymentIntent) {
 					axios
-						.put('https://whispering-dawn-20611.herokuapp.com/api/payment/complete', payload)
+						.put('https://shopping-cart-be.herokuapp.com//api/payment/complete', payload)
 						.then((res) => {
 							history.push('/success');
 						})
