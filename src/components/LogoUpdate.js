@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { logoUpload } from '../state/actionCreators';
@@ -49,7 +49,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { logoUpload })(LogoUpdate);
-
-const inputButton = {
-  background: 'red',
-}

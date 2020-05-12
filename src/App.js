@@ -24,7 +24,6 @@ import SaveCartMain from './components/saveCart';
 import Account from './components/SellerAccount/SellerAccount';
 import Confirmation from './components/orderConfirmation';
 import NoMatch from './components/noMatch';
-// importing WelcomeScreen
 import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
@@ -49,7 +48,7 @@ function App() {
         <PublicRoute path='/welcome' component={WelcomeScreenForm} />
         <PublicRoute path='/brandview' component={BrandView} />
         <PublicRoute path='/colorpicker' component={ColorPicker} />
-        {/* Seperating */}
+        {/* Onboarding reformatted Above */}
         <PublicRoute exact path='/' component={LoginForm} />
         <PrivateRoute path='/inventory' component={Main} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
