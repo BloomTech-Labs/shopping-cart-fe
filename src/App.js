@@ -27,7 +27,7 @@ import OrderInfo from './components/UserOrderInfo/OrderInfo'
 
 function App () {
   window.addEventListener('load', () => {
-    function handleNetworkChange(event) {
+    function handleNetworkChange(event) { //What is this for?
       if (navigator.onLine) {
         document.getElementById('offline-notification').style.display = 'none'
       } else {
