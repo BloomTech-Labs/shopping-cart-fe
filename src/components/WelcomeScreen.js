@@ -195,7 +195,7 @@ const WelcomeScreenForm = withFormik({
     formikBag.props.postOnboard(values);
   },
 })(WelcomeScreen);
-// redux
+
 const mapStateToProps = (state) => {
   return {
     businessName: state.onboard.businessName,
@@ -208,7 +208,5 @@ const mapStateToProps = (state) => {
     curbHours: state.onboard.curbHours,
   };
 };
-
-//I love LABS! -Eric
 
 export default connect(mapStateToProps, { postOnboard })(WelcomeScreenForm);
