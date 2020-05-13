@@ -19,7 +19,7 @@ const LogoUpdate = (props) => {
       .post('https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload', data)
       .then((res) => {
         setCloudUrl(res.data.secure_url);
-        props.logoUpload(cloudUrl);
+        props.logoUpload(res.data.secure_url);
       });
     setLoading(false);
   };
@@ -29,15 +29,12 @@ const LogoUpdate = (props) => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <img className="logoPic" alt='logo' src={cloudUrl} />
+        <img className='logoPic' alt='logo' src={cloudUrl} />
       )}
       <input id='uploadButton' type='file' onChange={uploadImage} />
-      <label
-          htmlFor="uploadButton"
-          className="fakeUploadButton"
-        >
-          Add Photo
-        </label>
+      <label htmlFor='uploadButton' className='fakeUploadButton'>
+        Add Photo
+      </label>
     </div>
   );
 };

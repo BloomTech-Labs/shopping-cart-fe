@@ -1,11 +1,11 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
 
-
 const WelcomeScreen = (props) => {
+  console.log('touch me', Yup);
   return (
     <div className='welcomeForm'>
       <h1 className='welcomeHeader'>Welcome</h1>
@@ -25,7 +25,7 @@ const WelcomeScreen = (props) => {
               placeholder='business name'
               className='fieldsChar'
             />
-            {props.touched && props.errors.businessName && (
+            {props.touched.businessName && props.errors.businessName && (
               <p className='errorWelcome'>enter please</p>
             )}
 
@@ -39,7 +39,7 @@ const WelcomeScreen = (props) => {
               placeholder='your name'
               className='fieldsChar'
             />
-            {props.touched && props.errors.ownerName && (
+            {props.touched.ownerName && props.errors.ownerName && (
               <p className='errorWelcome'>enter, please</p>
             )}
             <label htmlFor='address' className='labelFont'>
@@ -52,7 +52,7 @@ const WelcomeScreen = (props) => {
               placeholder='address'
               className='fieldsChar'
             />
-            {props.touched && props.errors.address && (
+            {props.touched.address && props.errors.address && (
               <p className='errorWelcome'>address, please</p>
             )}
             <label htmlFor='owner name' className='labelFont'>
@@ -66,7 +66,7 @@ const WelcomeScreen = (props) => {
               placeholder='secondary address'
               className='fieldsChar'
             />
-            {props.touched && props.errors.secondAddress && (
+            {props.touched.secondAddress && props.errors.secondAddress && (
               <p className='errorWelcome'>enter if needed</p>
             )}
             <label htmlFor='city' className='labelFont'>
@@ -80,7 +80,7 @@ const WelcomeScreen = (props) => {
               placeholder='your city'
               className='fieldsChar'
             />
-            {props.touched && props.errors.city && (
+            {props.touched.city && props.errors.city && (
               <p className='errorWelcome'>City required</p>
             )}
 
@@ -95,7 +95,7 @@ const WelcomeScreen = (props) => {
               placeholder='your state'
               className='fieldsChar'
             />
-            {props.touched && props.errors.state && (
+            {props.touched.state && props.errors.state && (
               <p className='errorWelcome'>enter State</p>
             )}
             <label htmlFor='zip code' className='labelFont'>
@@ -103,14 +103,15 @@ const WelcomeScreen = (props) => {
             </label>
             <Field
               name='zipcode'
-              type='text'
+              type='number'
+              maxLength={5}
               placeholder='your zip code'
               value={props.values.zipcode}
               className='fieldsChar'
             />
-            {props.touched && props.errors.zipcode && (
-              <p className='errorWelcome'>enter Zip Code</p>
-            )}
+            <ErrorMessage name='zipcode'>
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </section>
           <section className='curbHoursSection'>
             <label htmlFor='store hours' className='labelFont'>
@@ -123,7 +124,7 @@ const WelcomeScreen = (props) => {
               placeholder='hours of operation'
               className='fieldsChar'
             />
-            {props.touched && props.errors.hours && (
+            {props.touched.hours && props.errors.hours && (
               <p className='errorWelcome'>enter Hours of Operation</p>
             )}
             <label htmlFor='curbside hours' className='labelFont'>
@@ -136,7 +137,7 @@ const WelcomeScreen = (props) => {
               placeholder='curbside pickup hours'
               className='fieldsChar'
             />
-            {props.touched && props.errors.curbHours && (
+            {props.touched.curbHours && props.errors.curbHours && (
               <p className='errorWelcome'>enter Curbside hours</p>
             )}
           </section>
@@ -181,8 +182,11 @@ const WelcomeScreenForm = withFormik({
     secondAddress: Yup.string(),
     city: Yup.string().required('Enter your city!'),
     state: Yup.string().required('Enter your state!'),
-    zipcode: Yup.string().required('Enter your Zip Code!'),
-    hours: Yup.string().required('Enter your store hours!'),
+    zipcode: Yup.string()
+      .max(5, '5 digits only!')
+      .required('Enter your Zip Code!'),
+
+    hours: Yup.string().max(5, 'need 5').required('Enter your store hours!'),
     curbHours: Yup.string(),
   }),
 

@@ -5,7 +5,7 @@ import ColorPicker from './ColorPicker';
 const BrandView = () => {
   return (
     <div className='brandWrapper'>
-      <div classname='headerWrapper'>
+      <div className='headerWrapper'>
         <h2 className='welcomeHeader'>Almost Done</h2>
       </div>
       <div className='brandForms'>
