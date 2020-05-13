@@ -41,7 +41,7 @@ const Confirmation = (props) => {
 			};
 			if (!err) {
 				AxiosAuth()
-					.put(`https://shopping-cart-be.herokuapp.com//api/store/cart/${cartId}/approve`, payload)
+					.put(`https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}/approve`, payload)
 					.then((res) => {
 						dispatch(creators.getCart(cartId));
 					})
@@ -66,7 +66,7 @@ const Confirmation = (props) => {
 			cartId: cartId
 		};
 		axios
-			.put('https://shopping-cart-be.herokuapp.com//api/payment/complete', payload)
+			.put('https://shopping-cart-be.herokuapp.com/api/payment/complete', payload)
 			.then((res) => {
 				dispatch(creators.getCart(cartId));
 			})

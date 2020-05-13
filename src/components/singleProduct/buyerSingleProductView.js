@@ -15,7 +15,7 @@ function SingleProductView(props) {
 		() => {
 			dispatch(creators.setLoading(true));
 			axios
-				.get(`https://shopping-cart-be.herokuapp.com//api/store/products/${itemId}`)
+				.get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
 				.then((res) => {
 					setProductState(res.data);
 					dispatch(creators.setLoading(false));

@@ -42,7 +42,7 @@ const Stripe = (props) => {
 	useEffect(
 		() => {
 			axios
-				.post('https://shopping-cart-be.herokuapp.com//api/payment/charge', {
+				.post('https://shopping-cart-be.herokuapp.com/api/payment/charge', {
 					amount: cartContents.agreedPrice ? cartContents.agreedPrice.toFixed(2) : 0,
 					storeId: cartContents.storeId
 				})

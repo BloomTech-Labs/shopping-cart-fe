@@ -9,8 +9,8 @@ import history from '../../history';
 import axios from 'axios';
 import logo from '../../images/PureRetail_Logo.png';
 
-const storeUrl = 'https://shopping-cart-be.herokuapp.com//api/store/';
-const updatePhoneUrl = 'https://shopping-cart-be.herokuapp.com//api/auth/phone';
+const storeUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
+const updatePhoneUrl = 'https://shopping-cart-be.herokuapp.com/api/auth/phone';
 
 const { Option } = Select;
 
