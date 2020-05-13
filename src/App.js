@@ -23,18 +23,10 @@ import Support from "./components/support";
 import SaveCartMain from "./components/saveCart";
 import Account from "./components/SellerAccount/SellerAccount";
 import Confirmation from "./components/orderConfirmation";
-import NoMatch from "./components/noMatch";
-// import AddPhoto from "./components/Products/addPhoto";
 
-<<<<<<< HEAD
 function App() {
   window.addEventListener("load", () => {
     function handleNetworkChange(event) {
-=======
-function App () {
-  window.addEventListener('load', () => {
-    function handleNetworkChange(event) { //What is this for?
->>>>>>> 56bf2818a27767f596f4dae760686da2414c87e5
       if (navigator.onLine) {
         document.getElementById("offline-notification").style.display = "none";
       } else {
@@ -48,6 +40,7 @@ function App () {
     <>
       <Switch>
         <PublicRoute path="/register" component={WrappedRegistrationForm} />
+        {/* Onboarding reformatted Above */}
         <PublicRoute exact path="/" component={LoginForm} />
         <PrivateRoute path="/inventory" component={Main} />
         <PublicRoute path="/resetpassword" component={ResetPasswordForm} />
@@ -69,8 +62,6 @@ function App () {
         <PublicRoute path="/success" component={OrderSuccessPage} />
         <PublicRoute exact path="/support" component={Support} />
         <PrivateRoute path="/account" component={Account} />
-
-        {/* <PublicRoute path="/testingGrounds" component={AddPhoto} /> */}
       </Switch>
       <div
         id="offline-notification"
@@ -85,7 +76,7 @@ function App () {
           alignItems: "center",
           color: "white",
           fontSize: "medium",
-          display: "none"
+          display: "none",
         }}
       >
         Offline Mode
