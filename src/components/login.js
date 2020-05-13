@@ -9,14 +9,9 @@ import history from '../history';
 import { connect } from 'react-redux';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
 
-<<<<<<< Updated upstream
-const loginURL = 'https://whispering-dawn-20611.herokuapp.com/api/auth/login';
-const storeURL = 'https://whispering-dawn-20611.herokuapp.com/api/store';
-
-=======
 const loginURL = 'https://shopping-cart-be.herokuapp.com//api/auth/login';
 const storeURL = 'https://shopping-cart-be.herokuapp.com//api/store';
->>>>>>> Stashed changes
+
 const Login = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
