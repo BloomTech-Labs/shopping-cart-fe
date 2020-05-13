@@ -37,8 +37,8 @@ function App() {
         document.getElementById('offline-notification').style.display = 'flex';
       }
     }
-    window.addEventListener('online', handleNetworkChange);
-    window.addEventListener('offline', handleNetworkChange);
+    window.addEventListener("online", handleNetworkChange);
+    window.addEventListener("offline", handleNetworkChange);
   });
   return (
     <>
