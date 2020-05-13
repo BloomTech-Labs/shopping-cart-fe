@@ -91,16 +91,19 @@ const Items = ({ inventory, currency }) => {
           <List.Item className='block'>
             <List.Item.Meta
               title={
-                <div className='list title short'>
-                  <h3>{item.name}</h3>
-                  <div className='item-description'>{item.description}</div>
+                <div className='title-formatter'>
+                  <div className='list title short'>
+                    <h3>{item.name}</h3>
+                    <div className='item-description'>{item.description}</div>
+                  </div>
+                  <img src={item.images[0]} alt='product image' />
                 </div>
               }
               description={
                 <div className='list short'>
                   <NavLink to={`/updateitem/${item._id}`}>
                     <div>
-                      <Button size='default'>Edit</Button>
+                      <NavLink to='#'>View</NavLink>
                     </div>
                   </NavLink>
                 </div>
