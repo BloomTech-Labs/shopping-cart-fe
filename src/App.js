@@ -23,7 +23,7 @@ import Support from './components/support'
 import SaveCartMain from './components/saveCart'
 import Account from './components/SellerAccount/SellerAccount'
 import Confirmation from './components/orderConfirmation'
-import NoMatch from './components/noMatch'
+import OrderInfo from './components/UserOrderInfo/OrderInfo'
 
 function App () {
   window.addEventListener('load', () => {
@@ -59,6 +59,7 @@ function App () {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
+        <PublicRoute path = '/user' component = {OrderInfo} />
       </Switch>
       <div id='offline-notification' style={{
         position: 'fixed',
