@@ -8,16 +8,8 @@ import { Table, Tag, Button } from "antd";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
 
-// import { data } from "../../db.js";
-// import { getOrders } from "../../utils/api";
-
 const Orders = (props, { currency, storeId }) => {
   const [newData, setNewData] = useState();
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(creators.getOrders());
-  // }, [dispatch]);
 
   const dispatch = useDispatch();
   const sign = useCurrency(currency);
@@ -42,18 +34,9 @@ const Orders = (props, { currency, storeId }) => {
         />
       </div>
 
-      {/* <Button
-        type='primary'
-        onClick={() => {
-          const info = props.getOrders(data);
-        }}
-      >
-        View Orders
-      </Button> */}
       <Table
         className='order-display'
         dataSource={!props.state ? newData : props.state.orders}
-        // loading={!props.state ? true : false}
       >
         <Column title='Order #' dataIndex='id' key='id' />
         <Column
@@ -97,12 +80,5 @@ const Orders = (props, { currency, storeId }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   console.log(state);
-//   return { state };
-// };
-
-// export default connect(mapStateToProps, { getOrders })(Orders);
 
 export default Orders;

@@ -34,7 +34,6 @@ const Dashboard = () => {
   };
   return (
     <div className='mainDiv'>
-      {/* <Navbar /> */}
       <div className='dashboardHeader'>
         <div className='welcomeHeader'>
           Welcome, <br />
