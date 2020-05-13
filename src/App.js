@@ -26,9 +26,15 @@ import Confirmation from "./components/orderConfirmation";
 import NoMatch from "./components/noMatch";
 // import AddPhoto from "./components/Products/addPhoto";
 
+<<<<<<< HEAD
 function App() {
   window.addEventListener("load", () => {
     function handleNetworkChange(event) {
+=======
+function App () {
+  window.addEventListener('load', () => {
+    function handleNetworkChange(event) { //What is this for?
+>>>>>>> 56bf2818a27767f596f4dae760686da2414c87e5
       if (navigator.onLine) {
         document.getElementById("offline-notification").style.display = "none";
       } else {
