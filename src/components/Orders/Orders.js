@@ -5,9 +5,6 @@ import { Table, Tag, Button } from "antd";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
 
-// import { data } from "../../db.js";
-// import { getOrders } from "../../utils/api";
-
 const Orders = (props) => {
   const [newData, setNewData] = useState();
 
@@ -19,18 +16,7 @@ const Orders = (props) => {
   const { Column, ColumnGroup } = Table;
   return (
     <div>
-      {/* <Button
-        type='primary'
-        onClick={() => {
-          const info = props.getOrders(data);
-        }}
-      >
-        View Orders
-      </Button> */}
-      <Table
-        dataSource={!props.state ? newData : props.state.orders}
-        // loading={!props.state ? true : false}
-      >
+      <Table dataSource={!props.state ? newData : props.state.orders}>
         <Column title='Order #' dataIndex='id' key='id' />
         <Column
           title='Customer Name'
@@ -73,12 +59,5 @@ const Orders = (props) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   console.log(state);
-//   return { state };
-// };
-
-// export default connect(mapStateToProps, { getOrders })(Orders);
 
 export default Orders;
