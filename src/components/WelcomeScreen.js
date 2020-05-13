@@ -110,7 +110,7 @@ const WelcomeScreen = (props) => {
               className='fieldsChar'
             />
             <ErrorMessage name='zipcode'>
-              {(msg) => <div>{msg}</div>}
+              {(msg) => <div className='errorWelcome'>{msg}</div>}
             </ErrorMessage>
           </section>
           <section className='curbHoursSection'>
@@ -184,9 +184,10 @@ const WelcomeScreenForm = withFormik({
     state: Yup.string().required('Enter your state!'),
     zipcode: Yup.string()
       .max(5, '5 digits only!')
+      .min(5, 'must be 5 digits')
       .required('Enter your Zip Code!'),
 
-    hours: Yup.string().max(5, 'need 5').required('Enter your store hours!'),
+    hours: Yup.string().required('Enter your store hours!'),
     curbHours: Yup.string(),
   }),
 
