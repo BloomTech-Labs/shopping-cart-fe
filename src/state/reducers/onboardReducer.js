@@ -6,7 +6,7 @@ const initialState = {
   secondAddress: '',
   city: '',
   state: '',
-  zipcode: '',
+  zipcode: null,
   hours: '',
   curbHours: '',
 };
