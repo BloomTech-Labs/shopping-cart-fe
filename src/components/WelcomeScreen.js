@@ -5,18 +5,18 @@ import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
 
 const WelcomeScreen = (props) => {
-  console.log('touch me', Yup);
   return (
     <div className='welcomeForm'>
       <h1 className='welcomeHeader'>Welcome</h1>
       <h2 className='welcomeP'>
         To finish the account creation process fill out the forms below
       </h2>
+      <p className='required'>required fields*</p>
       <Form>
         <main className='infoColumns'>
           <section className='middleWelcomeFields'>
             <label htmlFor='business name' className='labelFont'>
-              Business Name
+              Business Name*
             </label>
             <Field
               name='businessName'
@@ -26,11 +26,11 @@ const WelcomeScreen = (props) => {
               className='fieldsChar'
             />
             {props.touched.businessName && props.errors.businessName && (
-              <p className='errorWelcome'>enter please</p>
+              <p className='errorWelcome'>enter, please</p>
             )}
 
             <label htmlFor='owner name' className='labelFont'>
-              Owner Name
+              Owner Name*
             </label>
             <Field
               name='ownerName'
@@ -43,13 +43,13 @@ const WelcomeScreen = (props) => {
               <p className='errorWelcome'>enter, please</p>
             )}
             <label htmlFor='address' className='labelFont'>
-              Address
+              Address*
             </label>
             <Field
               name='address'
               type='text'
               value={props.values.address}
-              placeholder='address'
+              placeholder='your address'
               className='fieldsChar'
             />
             {props.touched.address && props.errors.address && (
@@ -63,14 +63,14 @@ const WelcomeScreen = (props) => {
               name='secondAddress'
               type='text'
               value={props.values.secondAddress}
-              placeholder='secondary address'
+              placeholder='your secondary address'
               className='fieldsChar'
             />
             {props.touched.secondAddress && props.errors.secondAddress && (
               <p className='errorWelcome'>enter if needed</p>
             )}
             <label htmlFor='city' className='labelFont'>
-              City
+              City*
             </label>
 
             <Field
@@ -85,7 +85,7 @@ const WelcomeScreen = (props) => {
             )}
 
             <label htmlFor='state' className='labelFont'>
-              State
+              State*
             </label>
 
             <Field
@@ -99,7 +99,7 @@ const WelcomeScreen = (props) => {
               <p className='errorWelcome'>enter State</p>
             )}
             <label htmlFor='zip code' className='labelFont'>
-              Zip Code
+              Zip Code*
             </label>
             <Field
               name='zipcode'
@@ -115,13 +115,13 @@ const WelcomeScreen = (props) => {
           </section>
           <section className='curbHoursSection'>
             <label htmlFor='store hours' className='labelFont'>
-              Store Hours
+              Store Hours*
             </label>
             <Field
               name='hours'
               type='text'
               value={props.values.hours}
-              placeholder='hours of operation'
+              placeholder='your hours of operation'
               className='fieldsChar'
             />
             {props.touched.hours && props.errors.hours && (
@@ -134,7 +134,7 @@ const WelcomeScreen = (props) => {
               name='curbHours'
               type='text'
               value={props.values.curbHours}
-              placeholder='curbside pickup hours'
+              placeholder='your curbside pickup hours'
               className='fieldsChar'
             />
             {props.touched.curbHours && props.errors.curbHours && (

@@ -7,6 +7,7 @@ const BrandView = () => {
     <div className='brandWrapper'>
       <div className='headerWrapper'>
         <h2 className='welcomeHeader'>Almost Done</h2>
+        <h3>Add your logo and most prominent brand color</h3>
       </div>
       <div className='brandForms'>
         <LogoUpdate />
