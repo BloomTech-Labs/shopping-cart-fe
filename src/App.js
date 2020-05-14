@@ -27,18 +27,20 @@ import NoMatch from './components/noMatch';
 import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
+import Update from './components/Update';
 
 function App() {
   window.addEventListener('load', () => {
-    function handleNetworkChange(event) { //What is this for?
+    function handleNetworkChange(event) {
+      //What is this for?
       if (navigator.onLine) {
         document.getElementById('offline-notification').style.display = 'none';
       } else {
         document.getElementById('offline-notification').style.display = 'flex';
       }
     }
-    window.addEventListener("online", handleNetworkChange);
-    window.addEventListener("offline", handleNetworkChange);
+    window.addEventListener('online', handleNetworkChange);
+    window.addEventListener('offline', handleNetworkChange);
   });
   return (
     <>
@@ -49,6 +51,7 @@ function App() {
         <PublicRoute path='/brandview' component={BrandView} />
         <PublicRoute path='/colorpicker' component={ColorPicker} />
         {/* Onboarding reformatted Above */}
+        <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
         <PrivateRoute path='/inventory' component={Main} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
