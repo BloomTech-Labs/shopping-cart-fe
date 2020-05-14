@@ -25,15 +25,9 @@ import Account from "./components/SellerAccount/SellerAccount";
 import Confirmation from "./components/orderConfirmation";
 import addVariants from "./components/Products/addVariants";
 
-<<<<<<< HEAD
 function App() {
   window.addEventListener("load", () => {
     function handleNetworkChange(event) {
-=======
-function App () {
-  window.addEventListener('load', () => {
-    function handleNetworkChange(event) { //What is this for?
->>>>>>> 56bf2818a27767f596f4dae760686da2414c87e5
       if (navigator.onLine) {
         document.getElementById("offline-notification").style.display = "none";
       } else {

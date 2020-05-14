@@ -75,7 +75,7 @@ const AddVariants = (props) => {
             }}
             className={active ? "disabled" : "variantButton"}
           >
-            Add Variants
+            Create Variants
           </button>
         </div>
 
@@ -133,7 +133,7 @@ const AddVariants = (props) => {
                   />
                 </div>
                 <div className="addBTNContainer">
-                  <button type="submit">Add Varaint</button>
+                  <button type="submit">Add Option</button>
                 </div>
               </div>
             </form>
