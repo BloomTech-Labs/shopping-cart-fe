@@ -67,7 +67,7 @@ const ReviewMain = (props) => {
 					paymentPreference: 'card'
 				};
 				axios
-					.post(`https://whispering-dawn-20611.herokuapp.com/api/store/${sellerId}/cart`, payload)
+					.post(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/cart`, payload)
 					.then((res) => {
 						formRef.resetFields();
 						success();

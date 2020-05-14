@@ -8,7 +8,7 @@ import history from '../history';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
 import { connect } from 'react-redux';
 
-const signupURL = 'https://whispering-dawn-20611.herokuapp.com/api/auth/register';
+const signupURL = 'https://shopping-cart-be.herokuapp.com/api/auth/register';
 const RegistrationForm = (props) => {
 	const [ confirmDirty, setConfirmDirty ] = useState(false);
 	const handleSubmit = (e) => {

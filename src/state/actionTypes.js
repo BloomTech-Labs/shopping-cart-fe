@@ -21,3 +21,7 @@ export const SET_STORE_URL = "SET_STORE_URL";
 export const SAVE_CART = "SAVE_CART";
 export const GET_SALES_HISTORY = "GET_SALES_HISTORY";
 export const GET_ORDERS = "GET_ORDERS";
+// Our actions
+export const ADD_ONBOARDING = "ADD_ONBOARDING";
+export const UPLOAD_LOGO = "UPLOAD_LOGO";
+export const UPLOAD_COLOR = "UPLOAD_COLOR";
