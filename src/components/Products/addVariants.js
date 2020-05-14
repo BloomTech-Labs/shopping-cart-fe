@@ -82,7 +82,6 @@ const AddVariants = (props) => {
         {active ? (
           <div className="VariantFormContainer">
             <form onSubmit={submitHandler}>
-              <h3>{errorMessage} </h3>
               <div className="variantNameContainer">
                 <div className="inputContainer">
                   <label htmlFor="variantName">Variant Name</label>
@@ -142,6 +141,7 @@ const AddVariants = (props) => {
           ""
         )}
       </div>
+      <div className={errorMessage ? "errorMessage" : ""}>{errorMessage}</div>
       {createdVariants ? (
         createdVariants.map((cv) => {
           return (
