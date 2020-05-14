@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const BasicDetails = () => {
-  const [formData, setFormData] = useState({
+  const [ formData, setFormData ] = useState({
     productName: "",
     price: "",
     category: "",
@@ -69,7 +69,7 @@ const BasicDetails = () => {
           placeholder="Give your product some details"
           value={formData.description}
           onChange={changeHandler}
-        ></textarea>
+        />
       </div>
     </div>
   );
