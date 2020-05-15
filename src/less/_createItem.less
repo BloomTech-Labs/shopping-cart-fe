@@ -1,155 +1,199 @@
 .ant-upload-list {
-  max-width: 85vw;
+	max-width: 85vw;
+}
+
+.createProductHeader {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1240px;
+	align-items: center;
+
+	h1 {
+		font-size: 45px;
+		color: black;
+		text-align: center;
+	}
+
+	.createProduct {
+		padding: 12px 22px;
+		background: #25a558;
+		font-weight: bold;
+		font-size: 14px;
+		color: white;
+		border-radius: 6px;
+		transition: all 0.5s;
+		cursor: pointer;
+	}
+}
+
+.basicDetailsVariantsContainer {
+	display: flex;
+	justify-content: space-between;
+	background: orange;
+	max-width: 1240px;
+
+	.leftContainer {
+		background-color: blue;
+		width: 100%;
+		max-width: 396px;
+	}
+
+	.rightContainer {
+		width: 100%;
+		max-width: 795px;
+	}
 }
 
 //Photo Component Sytling
 .photoContainer {
-  background: white;
-  border-radius: 4px;
-  padding: 20px 25px;
-  max-width: 400px;
+	background: white;
+	border-radius: 4px;
+	padding: 20px 25px;
+	max-width: 400px;
 
-  .PhotoHeaderContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+	.PhotoHeaderContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 10px;
 
-    h3 {
-      font-size: 18px;
-      font-weight: 700;
-    }
-  }
+		h3 {
+			font-size: 18px;
+			font-weight: 700;
+		}
+	}
 
-  .singleProductImage {
-    .productImage {
-      width: 100%;
-      border-radius: 6px;
-      max-width: 500px;
-      max-height: 500px;
-      box-shadow: 0px 10px 5px rgba(51, 51, 51, 0.15);
-    }
+	.singleProductImage {
+		.productImage {
+			width: 100%;
+			border-radius: 6px;
+			max-width: 500px;
+			max-height: 500px;
+			box-shadow: 0px 10px 5px rgba(51, 51, 51, 0.15);
+		}
 
-    .trashIcon {
-      margin-top: -50px;
-    }
-  }
+		.trashIcon {
+			margin-top: -50px;
+		}
+	}
 
-  h4 {
-    color: #999;
-  }
+	h4 {
+		color: #999;
+	}
 }
 
 #uploadButton {
-  display: none;
+	display: none;
 }
 
 .fakeUploadButton {
-  padding: 12px 22px;
-  background: white;
-  border: solid 2px #4285f4;
-  font-weight: bold;
-  font-size: 14px;
-  color: #4285f4;
-  border-radius: 6px;
-  transition: all 0.5s;
+	padding: 12px 22px;
+	background: white;
+	border: solid 2px #4285f4;
+	font-weight: bold;
+	font-size: 14px;
+	color: #4285f4;
+	border-radius: 6px;
+	transition: all 0.5s;
+	cursor: pointer;
 }
 
 .buttonDisabled {
-  background: lightgray;
-  border: solid 2px darkgrey;
-  color: darkgrey;
-  transition: all 0.5s;
+	background: lightgray;
+	border: solid 2px darkgrey;
+	color: darkgrey;
+	transition: all 0.5s;
 }
 //Photo Component Sytling
 
 .basicDetailsContainer {
-  background: white;
-  border-radius: 4px;
-  padding: 20px 25px;
-  max-width: 795px;
+	background: white;
+	border-radius: 4px;
+	padding: 20px 25px;
+	max-width: 795px;
+	margin-bottom: 35px;
 
-  h3 {
-    font-size: 18px;
-    font-weight: 700;
-  }
+	h3 {
+		font-size: 18px;
+		font-weight: 700;
+	}
 
-  label {
-    margin: 5px 0;
-    font-weight: bold;
-  }
+	label {
+		margin: 5px 0;
+		font-weight: bold;
+	}
 
-  .formContainer {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
-    grid-gap: 20px;
-    margin: 10px 0px;
+	.formContainer {
+		display: grid;
+		grid-template-columns: 2fr 1fr 2fr;
+		grid-gap: 20px;
+		margin: 10px 0px;
 
-    .inputContainer {
-      display: flex;
-      flex-flow: column;
-      justify-content: left;
+		.inputContainer {
+			display: flex;
+			flex-flow: column;
+			justify-content: left;
 
-      .productName,
-      .category {
-        border: solid 2px #aaa;
-        padding: 14px 10px;
-        color: #333;
-        border-radius: 6px;
-        font-size: 14px;
-        transition: all 0.5s;
+			.productName,
+			.category {
+				border: solid 2px #aaa;
+				padding: 14px 10px;
+				color: #333;
+				border-radius: 6px;
+				font-size: 14px;
+				transition: all 0.5s;
 
-        &:focus {
-          border: solid 2px #4285f4;
-        }
-      }
-    }
-  }
-  textarea {
-    width: 100%;
-    border: solid 2px #aaa;
-    padding: 14px 10px;
-    color: #333;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.5s;
+				&:focus {
+					border: solid 2px #4285f4;
+				}
+			}
+		}
+	}
+	textarea {
+		width: 100%;
+		border: solid 2px #aaa;
+		padding: 14px 10px;
+		color: #333;
+		border-radius: 6px;
+		font-size: 14px;
+		transition: all 0.5s;
 
-    &:focus {
-      border: solid 2px #4285f4;
-    }
-  }
+		&:focus {
+			border: solid 2px #4285f4;
+		}
+	}
 }
 
 .dollar {
-  display: inline-block;
-  position: relative;
-  font-weight: bold;
-  color: #aaa;
-  .price {
-    border: solid 2px #aaa;
-    padding: 14px 20px;
-    color: #333;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.5s;
+	display: inline-block;
+	position: relative;
+	font-weight: bold;
+	color: #aaa;
+	.price {
+		border: solid 2px #aaa;
+		padding: 14px 20px;
+		color: #333;
+		border-radius: 6px;
+		font-size: 14px;
+		transition: all 0.5s;
 
-    &:focus {
-      border: solid 2px #4285f4;
-    }
-  }
+		&:focus {
+			border: solid 2px #4285f4;
+		}
+	}
 }
 
 .dollar:before {
-  position: absolute;
-  content: "$";
-  left: 7px;
-  top: 13px;
-  font-size: 16px;
+	position: absolute;
+	content: "$";
+	left: 7px;
+	top: 13px;
+	font-size: 16px;
 }
 
 textarea,
 select,
 input,
 button {
-  outline: none;
+	outline: none;
 }
