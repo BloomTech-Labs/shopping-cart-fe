@@ -202,6 +202,7 @@ const mapStateToProps = (state) => {
     ownerName: state.onboard.ownerName,
     address: state.onboard.address,
     secondAddress: state.onboard.secondAddress,
+    city: state.onboard.city,
     state: state.onboard.state,
     zipcode: state.onboard.zipcode,
     hours: state.onboard.hours,

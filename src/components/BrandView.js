@@ -1,6 +1,7 @@
 import React from 'react';
 import LogoUpdate from './LogoUpdate';
 import ColorPicker from './ColorPicker';
+import history from '../history';
 
 const BrandView = () => {
   return (
@@ -13,7 +14,13 @@ const BrandView = () => {
         <LogoUpdate />
         <ColorPicker />
       </div>
-      <button className='addBranding'>Finish</button>
+      <button
+        className='addBranding'
+        onClick={() => {
+          history.push('/update');
+        }}>
+        Finish
+      </button>
     </div>
   );
 };

@@ -234,3 +234,15 @@ export const logoUpload = (logo) => (dispatch) => {
 export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
 };
+
+export const deleteSellerInfo = () => (dispatch) => {
+  dispatch({ type: types.DELETE_SELLER_INFO });
+};
+
+export const deleteSellerLogo = () => (dispatch) => {
+  dispatch({ type: types.DELETE_SELLER_LOGO });
+};
+
+export const deleteSellerColor = () => (dispatch) => {
+  dispatch({ type: types.DELETE_SELLER_COLOR });
+};
