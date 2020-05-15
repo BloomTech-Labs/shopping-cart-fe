@@ -1,61 +1,66 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Form, Input, Select, Button, message } from 'antd'
-import * as creators from '../../state/actionCreators'
-import Logo from '../elements/logo'
-import history from '../../history'
-import store_image from '../../images/store.png'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Form, Input, Select, Button, message } from 'antd';
+import * as creators from '../../state/actionCreators';
+import Logo from '../elements/logo';
+import history from '../../history';
+import store_image from '../../images/store.png';
 
-const { Option } = Select
+const { Option } = Select;
 
-const CreateStore = props => {
-  const dispatch = useDispatch()
+const CreateStore = (props) => {
+  const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       const payload = {
         name: values.name,
-        currency: values.currency
-      }
+        currency: values.currency,
+      };
       if (!err) {
-        dispatch(creators.updateForm(payload))
-        history.push('/addlogo')
+        dispatch(creators.updateForm(payload));
+        history.push('/addlogo');
       } else {
-        message.error('Enter Required Fields')
+        message.error('Enter Required Fields');
       }
-    })
-  }
+    });
+  };
 
-  const { getFieldDecorator } = props.form
+  const { getFieldDecorator } = props.form;
 
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
-      sm: { span: 8 }
+      sm: { span: 8 },
     },
     wrapperCol: {
       xs: { span: 24 },
-      sm: { span: 16 }
-    }
-  }
+      sm: { span: 16 },
+    },
+  };
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
         span: 24,
-        offset: 0
+        offset: 0,
       },
       sm: {
         span: 16,
-        offset: 8
-      }
-    }
-  }
+        offset: 8,
+      },
+    },
+  };
 
   return (
     <div id='create-store' className='cover'>
       <div className='desktop-logo-large'>
-        <img src={store_image} alt='Create Store Image' width='300' height='300' />
+        <img
+          src={store_image}
+          alt='Create Store Image'
+          width='300'
+          height='300'
+        />
       </div>
       <Logo />
       <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -71,13 +76,13 @@ const CreateStore = props => {
           {getFieldDecorator('name', {
             rules: [
               {
-                message: 'Enter your name'
+                message: 'Enter your name',
               },
               {
                 required: true,
-                message: 'Enter your name'
-              }
-            ]
+                message: 'Enter your name',
+              },
+            ],
           })(<Input placeholder='My name is...' />)}
         </Form.Item>
         <Form.Item hasFeedback>
@@ -85,9 +90,9 @@ const CreateStore = props => {
             rules: [
               {
                 required: true,
-                message: 'Select preferred currency'
-              }
-            ]
+                message: 'Select preferred currency',
+              },
+            ],
           })(
             <Select placeholder='... and I prefer to sell in'>
               <Option value='POU'>British Pounds (GBP / £)</Option>
@@ -104,9 +109,9 @@ const CreateStore = props => {
         </Form.Item>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-const CreateStoreForm = Form.create({ name: 'register' })(CreateStore)
+const CreateStoreForm = Form.create({ name: 'register' })(CreateStore);
 
-export default CreateStoreForm
+export default CreateStoreForm;

@@ -46,8 +46,8 @@ const AddPhoto = () => {
 
   //Removing A photo
 
-  async function removePhoto(arg) {
-    const newState = await cloudUrl.filter((cv) => {
+   function removePhoto(arg) {
+    const newState =  cloudUrl.filter((cv) => {
       return cv !== arg;
     });
     setImageCount(imageCount - 1);
@@ -80,7 +80,7 @@ const AddPhoto = () => {
         : cloudUrl.map((cv) => {
             return (
               <div className="singleProductImage">
-                <img className="productImage" src={cv} />
+                <img className="productImage" src={cv} key={Math.random() * Math.random()} />
                 <img
                   className="trashIcon"
                   src={trashIcon}

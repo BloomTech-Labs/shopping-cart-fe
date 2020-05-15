@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import Content from './DashContent'
-import { Button, message } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import * as creators from '../../state/actionCreators'
-import NoLogo from '../../images/PureRetail_Logo.png'
+import React, { useEffect } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import Content from "./DashContent";
+import { Button, message } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import * as creators from "../../state/actionCreators";
+import NoLogo from "../../images/PureRetail_Logo.png";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -15,32 +15,30 @@ import {
   TwitterIcon,
   LinkedinIcon,
   WhatsappIcon,
-  EmailIcon
-} from 'react-share'
+  EmailIcon,
+} from "react-share";
+import Navbar from "../Navbar";
 
 const Dashboard = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(creators.getCurrentUser())
-  }, [dispatch])
-  const user = useSelector(state => state.user.user)
-  const url = `${window.location.origin.toString()}/store/${user &&
-    user.storeName &&
-    user.storeName
-      .toLowerCase()
-      .split(' ')
-      .join('-')}-${user && user._id}`
-  const storeLogo = user.imageUrl ? user.imageUrl : NoLogo
+    dispatch(creators.getCurrentUser());
+  }, [dispatch]);
+  const user = useSelector((state) => state.user.user);
+  const url = `${window.location.origin.toString()}/store/${
+    user && user.storeName && user.storeName.toLowerCase().split(" ").join("-")
+  }-${user && user._id}`;
+  const storeLogo = user.imageUrl ? user.imageUrl : NoLogo;
   const copied = () => {
-    message.success('url copied successfully')
-  }
+    message.success("url copied successfully");
+  };
   return (
     <div className='mainDiv'>
       <div className='dashboardHeader'>
         <div className='welcomeHeader'>
           Welcome, <br />
           <span className='name'>
-            {user.ownerName ? user.ownerName : 'Seller'}!
+            {user.ownerName ? user.ownerName : "Seller"}!
           </span>
         </div>
         <div className='dashboardLogo'>
@@ -48,7 +46,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='storeUrl'>
-        <p id='storeUrl' style={{ marginBottom: '1.3rem' }}>
+        <p id='storeUrl' style={{ marginBottom: "1.3rem" }}>
           {user && url}
         </p>
         <CopyToClipboard text={url}>
@@ -80,7 +78,7 @@ const Dashboard = () => {
         <Content storeId={user._id} currency={user.currency} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -29,9 +29,9 @@ function App() {
   window.addEventListener("load", () => {
     function handleNetworkChange(event) {
       if (navigator.onLine) {
-        document.getElementById("offline-notification").style.display = "none";
+        document.getElementById('offline-notification').style.display = 'none';
       } else {
-        document.getElementById("offline-notification").style.display = "flex";
+        document.getElementById('offline-notification').style.display = 'flex';
       }
     }
     window.addEventListener("online", handleNetworkChange);
@@ -40,15 +40,20 @@ function App() {
   return (
     <>
       <Switch>
-        <PublicRoute path="/register" component={WrappedRegistrationForm} />
-        <PublicRoute exact path="/" component={LoginForm} />
-        <PrivateRoute path="/inventory" component={Main} />
-        <PublicRoute path="/resetpassword" component={ResetPasswordForm} />
-        <PublicRoute path="/setnewpassword" component={SetNewPasswordForm} />
-        <PublicRoute path="/store/:id" component={Store} />
+        <PublicRoute path='/register' component={WrappedRegistrationForm} />
+        {/* {Import WelcomeScreen} */}
+        <PublicRoute path='/welcome' component={WelcomeScreenForm} />
+        <PublicRoute path='/brandview' component={BrandView} />
+        <PublicRoute path='/colorpicker' component={ColorPicker} />
+        {/* Onboarding reformatted Above */}
+        <PublicRoute exact path='/' component={LoginForm} />
+        <PrivateRoute path='/inventory' component={Main} />
+        <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
+        <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
+        <PublicRoute path='/store/:id' component={Store} />
         <PublicRoute
-          path="/cart/:id"
-          component={localStorage.getItem("token") ? Confirmation : StripeMain}
+          path='/cart/:id'
+          component={localStorage.getItem('token') ? Confirmation : StripeMain}
         />
         <PublicRoute path="/review" component={Review} />
         <PublicRoute path="/savecart" component={SaveCartMain} />
@@ -67,21 +72,20 @@ function App() {
         
       </Switch>
       <div
-        id="offline-notification"
+        id='offline-notification'
         style={{
-          position: "fixed",
-          bottom: "0px",
-          width: "100vw",
-          height: "4vh",
-          textAlign: "center",
-          backgroundColor: "#ff6663",
-          justifyContent: "space-around",
-          alignItems: "center",
-          color: "white",
-          fontSize: "medium",
-          display: "none",
-        }}
-      >
+          position: 'fixed',
+          bottom: '0px',
+          width: '100vw',
+          height: '4vh',
+          textAlign: 'center',
+          backgroundColor: '#ff6663',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          color: 'white',
+          fontSize: 'medium',
+          display: 'none',
+        }}>
         Offline Mode
       </div>
     </>
