@@ -197,3 +197,112 @@ input,
 button {
 	outline: none;
 }
+
+.disabled {
+	display: none;
+}
+
+.VariantFormContainer {
+	.variantNameContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.inputContainer {
+			width: 80%;
+			.inputDisabled {
+				background: #ddd;
+				color: #999;
+			}
+		}
+		.clearBTN {
+			color: #ed1b50;
+			font-weight: bold;
+			font-size: 16px;
+			margin: 30px 0px 0px 0px;
+			opacity: 100%;
+			transition: all 0.2s;
+		}
+
+		.clearDisabled {
+			opacity: 0%;
+			transition: all 0.2s;
+		}
+	}
+
+	.addVariantContainer {
+		margin-top: 20px;
+		display: grid;
+		grid-template-columns: 2fr 2fr 1fr;
+		grid-gap: 20px;
+
+		input {
+			width: 100%;
+		}
+	}
+
+	.inputContainer {
+		display: flex;
+		flex-flow: column;
+		justify-content: left;
+	}
+	input {
+		border: solid 2px #aaa;
+		padding: 14px 10px;
+		color: #333;
+		border-radius: 6px;
+		font-weight: bold;
+		font-size: 14px;
+		transition: all 0.5s;
+
+		&:focus {
+			border: solid 2px #4285f4;
+		}
+	}
+}
+
+.addBTNContainer {
+	display: flex;
+	align-items: flex-end;
+	button {
+		padding: 12px 22px;
+		background: white;
+		border: solid 2px #4285f4;
+		height: 53px;
+		font-weight: bold;
+		font-size: 14px;
+		color: #4285f4;
+		border-radius: 6px;
+		transition: all 0.5s;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #4285f4;
+			color: white;
+		}
+	}
+}
+
+.cardContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #f7f7f7;
+	padding: 16px 25px;
+	border-bottom: solid 4px white;
+
+	p {
+		font-size: 14px;
+		font-weight: bold;
+		color: #333333;
+		margin: 0px;
+	}
+}
+
+.errorMessage {
+	color: #ed1b50;
+	background: #fee7ed;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+}
