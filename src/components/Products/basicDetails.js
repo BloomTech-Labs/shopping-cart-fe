@@ -11,7 +11,6 @@ const BasicDetails = ({ productData, setProductData }) => {
 
 	function changeHandler(e) {
 		e.preventDefault();
-		console.log(productData);
 		setProductData({ ...productData, [e.target.name]: e.target.value });
 	}
 	return (

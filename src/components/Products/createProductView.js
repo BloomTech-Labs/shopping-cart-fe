@@ -5,6 +5,9 @@ import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
 
 const CreateProductView = () => {
+	//state that enables or disables the Create Product button
+	const [ pushState, setPushState ] = useState(false);
+	// The object that will be pushed to database (it is not stored in redux)
 	const [ productData, setProductData ] = useState({
 		productName: '',
 		price: '',
@@ -13,6 +16,13 @@ const CreateProductView = () => {
 		photos: [],
 		variants: [ {} ]
 	});
+
+	//validation
+	function submitHandler() {
+		if (productData.photos.length === 0) {
+			return console.log('You need at least one photo!');
+		}
+	}
 
 	return (
 		<div>
