@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // Use State will be moved the view component once the other components are completed
 const BasicDetails = () => {
-  const [formData, setFormData] = useState({
+  const [ formData, setFormData ] = useState({
     productName: "",
     price: "",
     category: "",
@@ -14,7 +14,7 @@ const BasicDetails = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
   return (
-    <div className="basicDetailsContainer">
+    <div className="createProductContainer">
       <h3>Basic Details:</h3>
 
       <div className="formContainer">
@@ -70,7 +70,7 @@ const BasicDetails = () => {
           placeholder="Give your product some details"
           value={formData.description}
           onChange={changeHandler}
-        ></textarea>
+        />
       </div>
     </div>
   );
