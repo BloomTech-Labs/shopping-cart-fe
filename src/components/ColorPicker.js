@@ -6,7 +6,7 @@ import { colorUpload } from '../state/actionCreators';
 const ColorPicker = (props) => {
   const [color, setColor] = useState('');
   return (
-    <div>
+    <div className='colorPicker'>
       <h3>Select your brand color!</h3>
       <TwitterPicker
         color={color}
