@@ -58,7 +58,6 @@ function App() {
           path='/cart/:id'
           component={localStorage.getItem('token') ? Confirmation : StripeMain}
         />
-<<<<<<< HEAD
         <PublicRoute path='/review' component={Review} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
         <PrivateRoute path='/createstore' component={CreateStoreForm} />
@@ -72,23 +71,6 @@ function App() {
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
         <PublicRoute path='/testingGrounds' component={CreateProductView} />
-=======
-        <PublicRoute path="/review" component={Review} />
-        <PublicRoute path="/savecart" component={SaveCartMain} />
-        <PrivateRoute path="/createstore" component={CreateStoreForm} />
-        <PrivateRoute path="/addlogo" component={AddLogoForm} />
-        <PrivateRoute path="/profile" component={UpdateProfile} />
-        <PrivateRoute path="/createitem" component={CreateItem} />
-        <PrivateRoute path="/dashboard" component={Home} />
-        <PrivateRoute path="/updateitem/:id" component={UpdateItem} />
-        <PublicRoute path="/product/:id" component={Single} />
-        <PublicRoute path="/success" component={OrderSuccessPage} />
-        <PublicRoute exact path="/support" component={Support} />
-        <PrivateRoute path="/account" component={Account} />
-        <PublicRoute path="/testingGrounds" component={addVariants} />
-
-        
->>>>>>> bf1fb518b8176072c1b75018e2dbc89b2fd05b45
       </Switch>
       <div
         id='offline-notification'

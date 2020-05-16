@@ -2,38 +2,75 @@
 	max-width: 85vw;
 }
 
+.bgCover {
+	background: #efefef;
+}
+
+.createProductView {
+	width: 100%;
+	height: 100%;
+}
+
+.textContainer h3,
+.PhotoHeaderContainer h3,
+.basicDetailsContainer h3 {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+button,
+.setActive {
+	padding: 12px 22px;
+	background: white;
+	border: solid 2px #4285f4;
+	font-weight: bold;
+	font-size: 14px;
+	color: #4285f4;
+	border-radius: 6px;
+	transition: all 0.5s;
+	cursor: pointer;
+
+	&:hover {
+		background: #4285f4;
+		color: white;
+	}
+}
+
 .createProductHeader {
 	display: flex;
 	justify-content: space-between;
 	max-width: 1240px;
 	align-items: center;
-
-	h1 {
-		font-size: 45px;
-		color: black;
-		text-align: center;
-	}
+	margin: 0 auto;
 
 	.createProduct {
 		padding: 12px 22px;
 		background: #25a558;
+		border: none;
 		font-weight: bold;
 		font-size: 14px;
 		color: white;
 		border-radius: 6px;
 		transition: all 0.5s;
 		cursor: pointer;
+		transform: scale(1);
+
+		&:hover {
+			background: #4dcd80;
+			color: white;
+			box-shadow: 0px 5px 5px rgba(51, 51, 51, 0.09);
+			transform: scale(1.1);
+		}
 	}
 }
 
 .basicDetailsVariantsContainer {
 	display: flex;
 	justify-content: space-between;
-	background: orange;
+	margin: 0 auto;
 	max-width: 1240px;
 
 	.leftContainer {
-		background-color: blue;
 		width: 100%;
 		max-width: 396px;
 	}
@@ -56,11 +93,6 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 10px;
-
-		h3 {
-			font-size: 18px;
-			font-weight: 700;
-		}
 	}
 
 	.singleProductImage {
@@ -74,6 +106,7 @@
 
 		.trashIcon {
 			margin-top: -50px;
+			cursor: pointer;
 		}
 	}
 
@@ -96,6 +129,10 @@
 	border-radius: 6px;
 	transition: all 0.5s;
 	cursor: pointer;
+	&:hover {
+		background: #4285f4;
+		color: white;
+	}
 }
 
 .buttonDisabled {
@@ -107,16 +144,20 @@
 //Photo Component Sytling
 
 .basicDetailsContainer {
-	background: white;
+	margin-bottom: 35px;
 	border-radius: 4px;
+}
+.createProductContainer {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.basicDetailsContainer,
+.createProductContainer {
+	background: white;
+
 	padding: 20px 25px;
 	max-width: 795px;
-	margin-bottom: 35px;
-
-	h3 {
-		font-size: 18px;
-		font-weight: 700;
-	}
 
 	label {
 		margin: 5px 0;
@@ -210,8 +251,8 @@ button {
 		.inputContainer {
 			width: 80%;
 			.inputDisabled {
-				background: #ddd;
-				color: #999;
+				background: #f7f7f7;
+				color: #949494;
 			}
 		}
 		.clearBTN {
@@ -221,6 +262,7 @@ button {
 			margin: 30px 0px 0px 0px;
 			opacity: 100%;
 			transition: all 0.2s;
+			cursor: pointer;
 		}
 
 		.clearDisabled {
@@ -288,7 +330,11 @@ button {
 	align-items: center;
 	background: #f7f7f7;
 	padding: 16px 25px;
-	border-bottom: solid 4px white;
+	border-top: solid 4px white;
+
+	.trashcan {
+		cursor: pointer;
+	}
 
 	p {
 		font-size: 14px;
@@ -304,5 +350,11 @@ button {
 	font-size: 14px;
 	font-weight: bold;
 	padding: 5px;
+	text-align: center;
+}
+
+h1 {
+	font-size: 45px;
+	color: black;
 	text-align: center;
 }

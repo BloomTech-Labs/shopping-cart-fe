@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 //components
-import AxiosAuth from '../Auth/axiosWithAuth';
+import AxiosAuth from '../../components/Auth/axiosWithAuth';
 import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
-
+import AddVariants from './addVariants';
 const CreateProductView = () => {
 	//state that enables or disables the Create Product button
 	const [ pushState, setPushState ] = useState(false);
@@ -14,21 +14,36 @@ const CreateProductView = () => {
 		category: '',
 		description: '',
 		photos: [],
-		variants: [ {} ]
+		variants: []
 	});
 
 	//validation
 	function submitHandler() {
-		if (productData.photos.length === 0) {
-			return console.log('You need at least one photo!');
-		}
+		AxiosAuth()
+			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
+			.then((res) => {
+				console.log(res);
+				setProductData({
+					productName: '',
+					price: '',
+					category: '',
+					description: '',
+					photos: [],
+					variants: []
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
 
 	return (
-		<div>
+		<div className="createProductView">
 			<div className="createProductHeader">
 				<h1>Create Product</h1>
-				<button className="createProduct">Create Product</button>
+				<button onClick={submitHandler} className="createProduct">
+					Create Product
+				</button>
 			</div>
 			<div className="basicDetailsVariantsContainer">
 				<div className="leftContainer">
@@ -36,7 +51,7 @@ const CreateProductView = () => {
 				</div>
 				<div className="rightContainer">
 					<BasicDetails productData={productData} setProductData={setProductData} />
-					{/* <BasicDetails /> */}
+					<AddVariants productData={productData} setProductData={setProductData} />
 				</div>
 			</div>
 		</div>
