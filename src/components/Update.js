@@ -18,6 +18,8 @@ const Update = (props) => {
   const [cloudUrl, setCloudUrl] = useState(props.logo);
   const [loading, setLoading] = useState(false);
   const [color, setColor] = useState(props.color.color);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [confirmLogout, setConfirmLogout] = useState(false);
 
   console.log(props);
   const uploadImage = (e) => {
@@ -198,24 +200,61 @@ const Update = (props) => {
         <button className='addBranding' type='submit'>
           Add Information
         </button>
-        <button
-          onClick={() => {
-            localStorage.clear();
-            history.push('/');
-          }}>
-          Logout
-        </button>
-        <button
-          onClick={() => {
-            props.deleteSellerInfo();
-            props.deleteSellerLogo();
-            props.deleteSellerColor();
-            // uncomment below after delete logic finished
-            history.push('/welcome');
-          }}>
-          Delete Store
-        </button>
       </Form>
+      <p className={confirmDelete ? 'showMe' : 'hidden'}>
+        Are you sure you want to delete your store information?
+      </p>
+      <p className={confirmLogout ? 'showMe' : 'hidden'}>
+        Are you sure you want to logout?
+      </p>
+      {/* Delete Logic */}
+      <button
+        onClick={() => {
+          setConfirmDelete(true);
+        }}
+        className={confirmDelete || confirmLogout ? 'hidden' : 'showMe'}>
+        Delete Store
+      </button>
+      <button
+        className={confirmDelete ? 'showMe' : 'hidden'}
+        onClick={() => {
+          props.deleteSellerInfo();
+          props.deleteSellerLogo();
+          props.deleteSellerColor();
+          props.history.push('/welcome');
+        }}>
+        Confirm Deletion
+      </button>
+      {/* Start of Logout Button Logic */}
+      <button
+        className={confirmLogout || confirmDelete ? 'hidden' : 'showMe'}
+        onClick={() => {
+          setConfirmLogout(true);
+        }}>
+        Logout
+      </button>
+      <button
+        className={confirmLogout ? 'showMe' : 'hidden'}
+        onClick={() => {
+          localStorage.clear();
+          history.push('/');
+        }}>
+        Confirm Logout
+      </button>
+      <button
+        onClick={() => {
+          setConfirmDelete(!confirmDelete);
+        }}
+        className={!confirmDelete ? 'hidden' : 'showMe'}>
+        Don't delete my store!
+      </button>
+      <button
+        onClick={() => {
+          setConfirmLogout(!confirmLogout);
+        }}
+        className={!confirmLogout ? 'hidden' : 'showMe'}>
+        Don't log me out!
+      </button>
     </div>
   );
 };
@@ -292,6 +331,4 @@ export default connect(mapStateToProps, {
 })(ProfileUpdater);
 
 // still needs
-// postOnboard needs history.push taken off somehow or we can't use it inside of the 'Update' component - thinking I should call this 'put onboard' instead
-// some sort of 'in-between' for delete store and maybe log out
 // styling

@@ -3,6 +3,7 @@ import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
+import history from '../history';
 
 const WelcomeScreen = (props) => {
   return (
@@ -193,6 +194,7 @@ const WelcomeScreenForm = withFormik({
 
   handleSubmit: (values, formikBag) => {
     formikBag.props.postOnboard(values);
+    history.push('/brandview');
   },
 })(WelcomeScreen);
 

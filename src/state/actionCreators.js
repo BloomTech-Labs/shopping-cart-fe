@@ -213,7 +213,6 @@ export const getSalesHistory = () => (dispatch) => {
 
 export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
-  history.push('/brandview');
   // // posting to backend
   // axios.post('', )
   // .then((res)=>{
