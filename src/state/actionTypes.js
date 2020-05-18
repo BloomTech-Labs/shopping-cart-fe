@@ -20,3 +20,7 @@ export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 export const SET_STORE_URL = 'SET_STORE_URL'
 export const SAVE_CART = 'SAVE_CART'
 export const GET_SALES_HISTORY = 'GET_SALES_HISTORY'
+export const GET_ORDERS = 'GET_ORDERS'
+export const GET_ONE_ORDER = 'GET_ONE_ORDER'
+export const UPDATE_ORDER = "UPDATE_ORDER"
+export const DELETE_ORDER = "DELETE_ORDER"

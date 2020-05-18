@@ -19,6 +19,7 @@ const CartHeader = ({
   const dispatch = useDispatch()
   const cartContents = useSelector(state => state.cart)
   const storeDetails = useSelector(state => state.user.user)
+  
   const sign = useCurrency(storeDetails.currency)
   const totalPrice = (arr) => {
     return arr.reduce((sum, item) => {

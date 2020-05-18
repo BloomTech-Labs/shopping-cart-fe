@@ -3,11 +3,10 @@ import { Table, Button } from "antd"
 import {
   CloseOutlined,
   DeleteOutlined,
-  PauseCircleTwoTone,
 } from "@ant-design/icons"
 
 const { Column } = Table
-function OrderDetail() {
+function OrderDetail({}) {
   const data = [
     {
       quantity: 1,
@@ -71,6 +70,7 @@ function OrderDetail() {
                 fontSize: "14px",
                 fontWeight: "bold",
               }}
+            
             >
               Edit
             </Button>
