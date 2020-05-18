@@ -15,13 +15,11 @@ import { TwitterPicker } from 'react-color';
 import history from '../history';
 
 const Update = (props) => {
-  const [cloudUrl, setCloudUrl] = useState(props.logo);
   const [loading, setLoading] = useState(false);
   const [color, setColor] = useState(props.color.color);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmLogout, setConfirmLogout] = useState(false);
 
-  console.log(props);
   const uploadImage = (e) => {
     const files = e.target.files;
     setLoading(true);
@@ -31,230 +29,239 @@ const Update = (props) => {
     axios
       .post('https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload', data)
       .then((res) => {
-        setCloudUrl(res.data.secure_url);
         props.logoUpload(res.data.secure_url);
       });
     setLoading(false);
   };
 
   return (
-    <div>
-      <h1>Profile</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <img style={{ height: '50px' }} alt='logo' src={props.logo.logo} />
-      )}
-      <input id='uploadButton' type='file' onChange={uploadImage} />
-      <label htmlFor='uploadButton'>Change logo</label>
-      {/* Color stuffs */}
-      <div>
-        <h3>Select your brand color!</h3>
-        <TwitterPicker
-          color={color}
-          onChangeComplete={(color) => {
-            setColor(color.hex);
-            props.colorUpload(color.hex);
-          }}
-        />
-        <div
-          style={{
-            backgroundColor: props.color.color,
-            height: '50px',
-            transition: 'ease all 500ms',
-          }}>
-          Your Color
+    <div className='profileWrapper'>
+      <h1 className='profileHeader'>Profile</h1>
+      <div className='imageColorWrapper'>
+        <div className='image-color'>
+          <div className='logoDiv'>
+            <label className='logoChangeButton' htmlFor='uploadButton'>
+              Change logo
+            </label>
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <img
+                style={{ height: '100px' }}
+                alt='logo'
+                src={props.logo.logo}
+              />
+            )}
+            <input id='uploadButton' type='file' onChange={uploadImage} />
+          </div>
+          <div className='colorDiv'>
+            <h3 className='colorHeader'>Brand Color</h3>
+
+            <TwitterPicker
+              className='twitterPicker'
+              color={color}
+              onChangeComplete={(color) => {
+                setColor(color.hex);
+                props.colorUpload(color.hex);
+              }}
+            />
+            <div
+              style={{
+                margin: '1rem',
+                backgroundColor: props.color.color,
+                height: '50px',
+                transition: 'ease all 500ms',
+              }}></div>
+          </div>
         </div>
+        <Form className='profileForm'>
+          <div className='formTop'>
+            <div className='formTopLeft'>
+              <label htmlFor='business name'>Business Name*</label>
+              <br />
+              <Field
+                name='businessName'
+                type='text'
+                value={props.values.businessName}
+                placeholder={props.address}
+                className='formInputFields'
+              />
+              {props.touched.businessName && props.errors.businessName && (
+                <p className='formErrorHandling'>enter, please</p>
+              )}
+              <br />
+              <label htmlFor='owner name'>Owner Name*</label>
+              <br />
+              <Field
+                name='ownerName'
+                type='text'
+                value={props.values.ownerName}
+                placeholder={props.ownerName}
+                className='formInputFields'
+              />
+              {props.touched.ownerName && props.errors.ownerName && (
+                <p className='formErrorHandling'>enter, please</p>
+              )}
+              <br />
+              <label htmlFor='address'>Address*</label>
+              <br />
+              <Field
+                name='address'
+                type='text'
+                value={props.values.address}
+                placeholder={props.address}
+                className='formInputFields'
+              />
+              {props.touched.address && props.errors.address && (
+                <p className='formErrorHandling'>address, please</p>
+              )}
+              <br />
+              <label htmlFor='owner name'>Second Address</label>
+              <br />
+              <Field
+                name='secondAddress'
+                type='text'
+                value={props.values.secondAddress}
+                placeholder={props.secondAddress}
+                className='formInputFields'
+              />
+              {props.touched.secondAddress && props.errors.secondAddress && (
+                <p className='formErrorHandling'>enter if needed</p>
+              )}
+            </div>
+            <div className='formTopRight'>
+              <label htmlFor='city'>City*</label>
+              <br />
+              <Field
+                name='city'
+                type='text'
+                value={props.values.city}
+                placeholder={props.city}
+                className='formInputFields'
+              />
+              {props.touched.city && props.errors.city && (
+                <p className='formErrorHandling'>City required</p>
+              )}
+              <br />
+              <label htmlFor='state'>State*</label>
+              <br />
+              <Field
+                name='state'
+                type='text'
+                value={props.values.state}
+                placeholder={props.state}
+                className='formInputFields'
+              />
+              {props.touched.state && props.errors.state && (
+                <p className='formErrorHandling'>enter State</p>
+              )}
+              <br />
+              <label htmlFor='zip code'>Zip Code*</label>
+              <br />
+              <Field
+                name='zipcode'
+                type='number'
+                maxLength={5}
+                placeholder={props.zipcode}
+                value={props.values.zipcode}
+                className='formInputFields'
+              />
+              <ErrorMessage name='zipcode'>
+                {(msg) => <div className='formErrorHandling'>{msg}</div>}
+              </ErrorMessage>
+            </div>
+          </div>
+          <label htmlFor='store hours'>Store Hours*</label>
+          <br />
+          <Field
+            name='hours'
+            type='text'
+            value={props.values.hours}
+            placeholder={props.hours}
+            className='formInputFields'
+          />
+          {props.touched.hours && props.errors.hours && (
+            <p className='formErrorHandling'>enter Hours of Operation</p>
+          )}
+          <br />
+          <label htmlFor='curbside hours'>Curbside Pickup Hours</label>
+          <br />
+          <Field
+            name='curbHours'
+            type='text'
+            value={props.values.curbHours}
+            placeholder={props.curbHours}
+            className='formInputFields'
+          />
+          {props.touched.curbHours && props.errors.curbHours && (
+            <p className='formErrorHandling'>enter Curbside hours</p>
+          )}
+          <br />
+          <div className='buttonDiv'>
+            <button className='updateProfileButton' type='submit'>
+              Update Profile
+            </button>
+            <p className={confirmDelete ? 'showMe' : 'hidden'}>
+              Are you sure you want to delete your store information?
+            </p>
+            <p className={confirmLogout ? 'showMe' : 'hidden'}>
+              Are you sure you want to logout?
+            </p>
+            <div className='logoutDelete'>
+              <button
+                className={
+                  confirmLogout || confirmDelete ? 'hidden' : 'showMeLogout'
+                }
+                onClick={() => {
+                  setConfirmLogout(true);
+                }}>
+                Logout
+              </button>
+              <button
+                className={confirmLogout ? 'showMe' : 'hidden'}
+                onClick={() => {
+                  localStorage.clear();
+                  history.push('/');
+                }}>
+                Confirm Logout
+              </button>
+              <button
+                onClick={() => {
+                  setConfirmDelete(!confirmDelete);
+                }}
+                className={!confirmDelete ? 'hidden' : 'showMe'}>
+                Don't delete my store!
+              </button>
+              <button
+                onClick={() => {
+                  setConfirmLogout(!confirmLogout);
+                }}
+                className={!confirmLogout ? 'hidden' : 'showMe'}>
+                Don't log me out!
+              </button>
+              <button
+                onClick={() => {
+                  setConfirmDelete(true);
+                }}
+                className={
+                  confirmDelete || confirmLogout ? 'hidden' : 'showMe'
+                }>
+                Delete Store
+              </button>
+              <button
+                className={confirmDelete ? 'showMe' : 'hidden'}
+                onClick={() => {
+                  props.deleteSellerInfo();
+                  props.deleteSellerLogo();
+                  props.deleteSellerColor();
+                  props.history.push('/welcome');
+                }}>
+                Confirm Deletion
+              </button>
+            </div>
+          </div>
+        </Form>
       </div>
-      {/* Form stuffs */}
-      <Form>
-        <main className='infoColumns'>
-          <section className='middleWelcomeFields'>
-            <label htmlFor='business name' className='labelFont'>
-              Business Name*
-            </label>
-            <Field
-              name='businessName'
-              type='text'
-              value={props.values.businessName}
-              placeholder={props.address}
-              className='fieldsChar'
-            />
-            {props.touched.businessName && props.errors.businessName && (
-              <p className='errorWelcome'>enter, please</p>
-            )}
-
-            <label htmlFor='owner name' className='labelFont'>
-              Owner Name*
-            </label>
-            <Field
-              name='ownerName'
-              type='text'
-              value={props.values.ownerName}
-              placeholder={props.ownerName}
-              className='fieldsChar'
-            />
-            {props.touched.ownerName && props.errors.ownerName && (
-              <p className='errorWelcome'>enter, please</p>
-            )}
-            <label htmlFor='address' className='labelFont'>
-              Address*
-            </label>
-            <Field
-              name='address'
-              type='text'
-              value={props.values.address}
-              placeholder={props.address}
-              className='fieldsChar'
-            />
-            {props.touched.address && props.errors.address && (
-              <p className='errorWelcome'>address, please</p>
-            )}
-            <label htmlFor='owner name' className='labelFont'>
-              Second Address
-            </label>
-            {/* Started again with placeholders here */}
-            <Field
-              name='secondAddress'
-              type='text'
-              value={props.values.secondAddress}
-              placeholder={props.secondAddress}
-              className='fieldsChar'
-            />
-            {props.touched.secondAddress && props.errors.secondAddress && (
-              <p className='errorWelcome'>enter if needed</p>
-            )}
-            <label htmlFor='city' className='labelFont'>
-              City*
-            </label>
-
-            <Field
-              name='city'
-              type='text'
-              value={props.values.city}
-              placeholder={props.city}
-              className='fieldsChar'
-            />
-            {props.touched.city && props.errors.city && (
-              <p className='errorWelcome'>City required</p>
-            )}
-
-            <label htmlFor='state' className='labelFont'>
-              State*
-            </label>
-
-            <Field
-              name='state'
-              type='text'
-              value={props.values.state}
-              placeholder={props.state}
-              className='fieldsChar'
-            />
-            {props.touched.state && props.errors.state && (
-              <p className='errorWelcome'>enter State</p>
-            )}
-            <label htmlFor='zip code' className='labelFont'>
-              Zip Code*
-            </label>
-            <Field
-              name='zipcode'
-              type='number'
-              maxLength={5}
-              placeholder={props.zipcode}
-              value={props.values.zipcode}
-              className='fieldsChar'
-            />
-            <ErrorMessage name='zipcode'>
-              {(msg) => <div className='errorWelcome'>{msg}</div>}
-            </ErrorMessage>
-          </section>
-          <section className='curbHoursSection'>
-            <label htmlFor='store hours' className='labelFont'>
-              Store Hours*
-            </label>
-            <Field
-              name='hours'
-              type='text'
-              value={props.values.hours}
-              placeholder={props.hours}
-              className='fieldsChar'
-            />
-            {props.touched.hours && props.errors.hours && (
-              <p className='errorWelcome'>enter Hours of Operation</p>
-            )}
-            <label htmlFor='curbside hours' className='labelFont'>
-              Curbside Pickup Hours
-            </label>
-            <Field
-              name='curbHours'
-              type='text'
-              value={props.values.curbHours}
-              placeholder={props.curbHours}
-              className='fieldsChar'
-            />
-            {props.touched.curbHours && props.errors.curbHours && (
-              <p className='errorWelcome'>enter Curbside hours</p>
-            )}
-          </section>
-        </main>
-        <button className='addBranding' type='submit'>
-          Add Information
-        </button>
-      </Form>
-      <p className={confirmDelete ? 'showMe' : 'hidden'}>
-        Are you sure you want to delete your store information?
-      </p>
-      <p className={confirmLogout ? 'showMe' : 'hidden'}>
-        Are you sure you want to logout?
-      </p>
-      {/* Delete Logic */}
-      <button
-        onClick={() => {
-          setConfirmDelete(true);
-        }}
-        className={confirmDelete || confirmLogout ? 'hidden' : 'showMe'}>
-        Delete Store
-      </button>
-      <button
-        className={confirmDelete ? 'showMe' : 'hidden'}
-        onClick={() => {
-          props.deleteSellerInfo();
-          props.deleteSellerLogo();
-          props.deleteSellerColor();
-          props.history.push('/welcome');
-        }}>
-        Confirm Deletion
-      </button>
-      {/* Start of Logout Button Logic */}
-      <button
-        className={confirmLogout || confirmDelete ? 'hidden' : 'showMe'}
-        onClick={() => {
-          setConfirmLogout(true);
-        }}>
-        Logout
-      </button>
-      <button
-        className={confirmLogout ? 'showMe' : 'hidden'}
-        onClick={() => {
-          localStorage.clear();
-          history.push('/');
-        }}>
-        Confirm Logout
-      </button>
-      <button
-        onClick={() => {
-          setConfirmDelete(!confirmDelete);
-        }}
-        className={!confirmDelete ? 'hidden' : 'showMe'}>
-        Don't delete my store!
-      </button>
-      <button
-        onClick={() => {
-          setConfirmLogout(!confirmLogout);
-        }}
-        className={!confirmLogout ? 'hidden' : 'showMe'}>
-        Don't log me out!
-      </button>
     </div>
   );
 };
@@ -329,6 +336,3 @@ export default connect(mapStateToProps, {
   deleteSellerColor,
   postOnboard,
 })(ProfileUpdater);
-
-// still needs
-// styling

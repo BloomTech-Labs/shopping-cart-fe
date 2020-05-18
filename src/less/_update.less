@@ -1,7 +1,110 @@
-.hidden {
-  display: none;
-}
+.profileWrapper {
+  background: #e5e5e5;
+  width: 100%;
+  margin: 0 auto;
+  .profileHeader {
+    font-size: 2.3rem;
+    text-align: center;
+  }
 
-.showMe {
-  color: red;
+  .imageColorWrapper {
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+    .image-color {
+      .logoDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 98%;
+        padding: 2rem;
+        background: white;
+
+        .logoChangeButton {
+          background: #ffffff;
+          border: 1px solid #4285f4;
+          color: #4285f4;
+          box-sizing: border-box;
+          border-radius: 2px;
+          padding: 0.5rem;
+          margin: 0.8rem;
+        }
+      }
+      .colorDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .colorHeader {
+          text-align: center;
+          font-size: 1.5rem;
+        }
+        width: 98%;
+        padding: 2rem;
+        background: white;
+      }
+    }
+    .profileForm {
+      width: 50%;
+      background: white;
+      padding: 0.5rem;
+      @media (max-width: 900px) {
+        width: 98%;
+      }
+      .formInputFields {
+        width: 95%;
+      }
+      .formTop {
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        justify-content: space-around;
+        .formTopLeft {
+          width: 49%;
+          @media (max-width: 900px) {
+            width: 95%;
+          }
+        }
+        .formTopRight {
+          width: 49%;
+          @media (max-width: 900px) {
+            width: 95%;
+          }
+        }
+      }
+      .updateProfileButton {
+        background: #25a558;
+        border-radius: 2px;
+        color: white;
+        margin: 1rem;
+      }
+      .formErrorHandling {
+        color: red;
+      }
+      .hidden {
+        display: none;
+      }
+      .showMe {
+        background: #ffffff;
+        color: #f0134d;
+      }
+      .showMeLogout {
+        background: #f0134d;
+        color: #ffffff;
+      }
+      .buttonDiv {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logoutDelete {
+          margin: 0 2rem;
+        }
+      }
+    }
+  }
 }
