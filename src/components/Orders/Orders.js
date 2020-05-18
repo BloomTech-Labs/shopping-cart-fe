@@ -1,22 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import * as creators from "../../state/actionCreators";
+import { useDispatch, useSelector } from "react-redux";
+import useCurrency from "../hooks/useCurrency";
+import MonthlySales from "../totoalSales/monthlySales";
+import LifetimeSales from "../totoalSales/lifetimeSales";
+import * as actionCreators from "../../state/actionCreators";
 import { Table } from "antd";
-
 import "antd/dist/antd.css";
 
-const Orders = (props) => {
+const Orders = (props, { currency, storeId }) => {
   const [newData, setNewData] = useState();
 
   const dispatch = useDispatch();
+  const sign = useCurrency(currency);
   useEffect(() => {
-    dispatch(creators.getCurrentUser());
-  }, [dispatch]);
+    dispatch(actionCreators.getSalesHistory());
+    dispatch(actionCreators.setLoading(false));
+  }, [dispatch, storeId]);
+  const dashboard = useSelector((state) => state.dashboard);
+  const isLoading = useSelector((state) => state.user.isLoading);
 
   const { Column, ColumnGroup } = Table;
   return (
-    <div>
-      <Table dataSource={!props.state ? newData : props.state.orders}>
+    <div className='order-view'>
+      <div className='sales-view'>
+        <MonthlySales
+          currency={sign}
+          monthSales={dashboard && dashboard.monthSales}
+        />
+        <LifetimeSales
+          currency={sign}
+          amount={dashboard && dashboard.totalSales}
+        />
+      </div>
+
+      <Table
+        className='order-display'
+        dataSource={!props.state ? newData : props.state.orders}
+      >
         <Column title='Order #' dataIndex='id' key='id' />
         <Column
           title='Customer Name'

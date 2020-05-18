@@ -10,6 +10,7 @@ const { confirm } = Modal;
 const { Meta } = Card;
 
 const Expanded = ({ inventory, currency }) => {
+<<<<<<< HEAD
   const dispatch = useDispatch();
   function showDeleteConfirm(id) {
     confirm({
@@ -34,6 +35,30 @@ const Expanded = ({ inventory, currency }) => {
       onCancel() {},
     });
   }
+=======
+	const dispatch = useDispatch();
+	function showDeleteConfirm(id) {
+		confirm({
+			title: 'Are you sure you want to delete this item?',
+			okText: 'Yes',
+			okType: 'danger',
+			cancelText: 'No',
+			onOk() {
+				AxiosAuth()
+					.delete(`https://shopping-cart-be.herokuapp.com/api/store/products/${id}`)
+					.then((res) => {
+						dispatch(creators.getCurrentUser());
+						message.success('Item Deleted');
+						history.go(0);
+					})
+					.catch((error) => {
+						message.error(Object.values(error.response.data)[0]);
+					});
+			},
+			onCancel() {}
+		});
+	}
+>>>>>>> bf1fb518b8176072c1b75018e2dbc89b2fd05b45
 
   return (
     <Carousel>

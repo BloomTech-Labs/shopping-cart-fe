@@ -4,6 +4,7 @@ import axios from "axios";
 import { Carousel, Button, Icon, Typography, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import * as creators from "../../state/actionCreators";
+
 const { Paragraph } = Typography;
 function SingleProductView(props) {
   const [productState, setProductState] = useState([]);

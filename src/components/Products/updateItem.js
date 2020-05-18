@@ -9,12 +9,21 @@ import * as creators from "../../state/actionCreators";
 import useCurrency from "../hooks/useCurrency";
 
 function UpdateItem(props) {
+<<<<<<< HEAD
   const [item, setItem] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [cloudList, setCloudList] = useState([]);
   const { TextArea } = Input;
   const itemId = props.match.params.id;
   const productURL = `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`;
+=======
+	const [ item, setItem ] = useState([]);
+	const [ fileList, setFileList ] = useState([]);
+	const [ cloudList, setCloudList ] = useState([]);
+	const { TextArea } = Input;
+	const itemId = props.match.params.id;
+	const productURL = `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`;
+>>>>>>> bf1fb518b8176072c1b75018e2dbc89b2fd05b45
 
   const dispatch = useDispatch();
 
@@ -26,6 +35,7 @@ function UpdateItem(props) {
 
   const sign = useCurrency(currencyDescription);
 
+<<<<<<< HEAD
   useEffect(() => {
     AxiosAuth()
       .get(
@@ -42,6 +52,23 @@ function UpdateItem(props) {
         props.dispatch(setLoading(false));
       });
   }, [itemId, props]);
+=======
+	useEffect(
+		() => {
+			AxiosAuth().get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`).then((res) => {
+				const newFileList = res.data.images.map((url, idx) => ({
+					uid: -idx,
+					name: `photo ${idx}.jpg`,
+					url
+				}));
+				setFileList(newFileList);
+				setItem(res.data);
+				props.dispatch(setLoading(false));
+			});
+		},
+		[ itemId, props ]
+	);
+>>>>>>> bf1fb518b8176072c1b75018e2dbc89b2fd05b45
 
   const handleChange = (info) => {
     let fileList = [...info.fileList];

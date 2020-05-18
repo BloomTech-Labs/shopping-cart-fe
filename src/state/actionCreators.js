@@ -1,6 +1,7 @@
 import * as types from "./actionTypes";
 import AxiosAuth from "../components/Auth/axiosWithAuth";
 import axios from "axios";
+import history from "../history";
 
 const getUserUrl = "https://shopping-cart-be.herokuapp.com/api/store/";
 
@@ -16,7 +17,8 @@ export const getCurrentUser = () => (dispatch) => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
       AxiosAuth()
         .get(
-          `https://shopping-cart-be.herokuapp.com/api/store/${res.data._id}/products`
+          `https://shopping-cart-be.herokuapp.com
+/api/store/${res.data._id}/products`
         )
         .then((res) => {
           console.log(res.data);
@@ -151,7 +153,8 @@ export const deleteAccount = () => (dispatch) => {
 export const getProducts = (sellerId, signal) => (dispatch) => {
   axios
     .get(
-      `https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/products`
+      `https://shopping-cart-be.herokuapp.com
+/api/store/${sellerId}/products`
     )
     .then((res) => {
       const inventory = res.data;
@@ -164,7 +167,10 @@ export const getProducts = (sellerId, signal) => (dispatch) => {
 
 export const getStore = (sellerId, signal) => (dispatch) => {
   axios
-    .get(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}`)
+    .get(
+      `https://shopping-cart-be.herokuapp.com
+/api/store/${sellerId}`
+    )
     .then((res) => {
       console.log(res.data);
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
@@ -202,7 +208,6 @@ export const getSalesHistory = () => (dispatch) => {
     });
 };
 
-//action creator to get orders
 export const getOrders = () => {
   AxiosAuth()
     .get("https://shopping-cart-be.herokuapp.com/api/store/orders")
@@ -214,4 +219,30 @@ export const getOrders = () => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+// onboarding actions
+
+export const postOnboard = (values) => (dispatch) => {
+  dispatch({ type: types.ADD_ONBOARDING, payload: values });
+  history.push("/brandview");
+  // // posting to backend
+  // axios.post('', )
+  // .then((res)=>{
+  //   // this action still needs to be created
+  //   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
+  // })
+  // .catch((err)=> {
+  //   // action still needs to be created
+  //   dispatch({type: types.POST_ONBOARDING_FAILURE})
+  //   console.log(err)
+  // })
+};
+
+export const logoUpload = (logo) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_LOGO, payload: logo });
+};
+
+export const colorUpload = (color) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_COLOR, payload: color });
 };

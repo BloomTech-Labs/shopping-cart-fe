@@ -76,7 +76,7 @@ const Navbar = () => {
           </Col>
         </Row>
         <Row
-          justify='space-evenly'
+          justify='space-around'
           align='middle'
           gutter={[8, 8]}
           className='btn-container'

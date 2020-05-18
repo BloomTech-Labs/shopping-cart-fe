@@ -6,68 +6,65 @@ import useCurrency from "../hooks/useCurrency";
 import moment from "moment";
 
 const SaveCart = (props) => {
-  const [delivery, setDelivery] = useState(true);
-  const cartContents = useSelector((state) => state.cart);
-  const sellerId = useSelector((state) => state.user.user._id);
-  const storeDetails = useSelector((state) => state.user.user);
-  const sign = useCurrency(storeDetails.currency);
-  const checkoutCart = cartContents.filter((item) => {
-    return item.quantity > 0;
-  });
-  const contents = cartContents.map((cart) => {
-    return { product: cart.productId, quantity: cart.quantity };
-  });
-  const toggleAddyFalse = () => {
-    setDelivery(false);
-  };
-  const toggleAddyTrue = () => {
-    setDelivery(true);
-  };
-  const totalPrice = (arr) => {
-    return arr.reduce((sum, item) => {
-      return sum + item.price * item.quantity;
-    }, 0);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
-      if (!err) {
-        info(values);
-      }
-    });
-  };
-  const info = (values) => {
-    Modal.info({
-      title: "Forwarding to WhatsApp",
-      content:
-        "When you click OK you'll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.",
-      onOk() {
-        const payload = {
-          contents,
-          deliveryOrCollection: values.delivery,
-          checkoutDate: values.date._d,
-          paymentPreference: values.payment,
-          address: values.address ? values.address : "no address",
-          total: totalPrice(checkoutCart),
-          agreedPrice: totalPrice(checkoutCart),
-          email: "no@email.com",
-          storeId: sellerId,
-        };
-        axios
-          .post(
-            `https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/cart/submit`,
-            payload
-          )
-          .then((res) => {
-            const { text, sellerPhone } = res.data;
-            window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`;
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      },
-    });
-  };
+	const [ delivery, setDelivery ] = useState(true);
+	const cartContents = useSelector((state) => state.cart);
+	const sellerId = useSelector((state) => state.user.user._id);
+	const storeDetails = useSelector((state) => state.user.user);
+	const sign = useCurrency(storeDetails.currency);
+	const checkoutCart = cartContents.filter((item) => {
+		return item.quantity > 0;
+	});
+	const contents = cartContents.map((cart) => {
+		return { product: cart.productId, quantity: cart.quantity };
+	});
+	const toggleAddyFalse = () => {
+		setDelivery(false);
+	};
+	const toggleAddyTrue = () => {
+		setDelivery(true);
+	};
+	const totalPrice = (arr) => {
+		return arr.reduce((sum, item) => {
+			return sum + item.price * item.quantity;
+		}, 0);
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
+			if (!err) {
+				info(values);
+			}
+		});
+	};
+	const info = (values) => {
+		Modal.info({
+			title: 'Forwarding to WhatsApp',
+			content:
+				"When you click OK you'll be redirected to WhatsApp to contact the seller with your sales enquiry so they can confirm stock availability and delivery / collection details.",
+			onOk() {
+				const payload = {
+					contents,
+					deliveryOrCollection: values.delivery,
+					checkoutDate: values.date._d,
+					paymentPreference: values.payment,
+					address: values.address ? values.address : 'no address',
+					total: totalPrice(checkoutCart),
+					agreedPrice: totalPrice(checkoutCart),
+					email: 'no@email.com',
+					storeId: sellerId
+				};
+				axios
+					.post(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/cart/submit`, payload)
+					.then((res) => {
+						const { text, sellerPhone } = res.data;
+						window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`;
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			}
+		});
+	};
 
   const disabledDate = (current) =>
     // Can not select days before today
