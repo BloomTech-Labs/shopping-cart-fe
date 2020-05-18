@@ -47,7 +47,7 @@ const Navbar = () => {
               <NavLink to='dashboard' activeClassName='activeLink'>
                 <p>Home</p>
               </NavLink>
-              {/* <a href='#'>Home</a> */}
+             
             </div>
           </Col>
           <Col className='gutter-row' span={4}>
@@ -55,7 +55,7 @@ const Navbar = () => {
               <NavLink to='inventory' activeClassName='activeLink'>
                 <p>Store</p>
               </NavLink>
-              {/* <a href='#'>Store</a> */}
+             
             </div>
           </Col>
           <Col className='gutter-row' span={4}>
@@ -63,7 +63,7 @@ const Navbar = () => {
               <NavLink to='account' activeClassName='activeLink'>
                 <p>Account</p>
               </NavLink>
-              {/* <a href='#'>Account</a> */}
+              
             </div>
           </Col>
           <Col className='gutter-row' span={4}>
@@ -71,7 +71,7 @@ const Navbar = () => {
               <NavLink to='Profile' activeClassName='activeLink'>
                 <p>Profile</p>
               </NavLink>
-              {/* <a href='#'>Profile</a> */}
+              
             </div>
           </Col>
         </Row>
@@ -94,10 +94,7 @@ const Navbar = () => {
         </Row>
         <img src={storeLogo} alt='Store Logo' className='nav-store-logo' />
       </Row>
-      {/* <Divider
-        orientation='left'
-        style={{ color: "#333", fontWeight: "normal" }}
-      ></Divider> */}
+     
     </div>
   );
 };

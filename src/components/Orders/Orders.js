@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as creators from "../../state/actionCreators";
-import { Table, Tag, Button } from "antd";
-import { connect } from "react-redux";
+import { Table } from "antd";
+
 import "antd/dist/antd.css";
 
 const Orders = (props) => {
