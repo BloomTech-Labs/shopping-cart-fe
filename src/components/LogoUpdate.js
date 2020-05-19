@@ -24,7 +24,7 @@ const LogoUpdate = (props) => {
     setLoading(false);
   };
   return (
-    <div className='addLogo'>
+    <div >
       <h3>Add your logo!</h3>
       {loading ? (
         <p>Loading...</p>
