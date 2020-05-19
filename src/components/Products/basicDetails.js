@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 
 // Use State will be moved the view component once the other components are completed
-const BasicDetails = ({ productData, setProductData }) => {
+const BasicDetails = ({ productData, setProductData, errorState, setErrorState }) => {
 	const [ formData, setFormData ] = useState({
 		productName: '',
 		price: '',
 		category: '',
 		description: ''
 	});
+
+	console.log(errorState);
 
 	function changeHandler(e) {
 		e.preventDefault();
@@ -28,6 +30,7 @@ const BasicDetails = ({ productData, setProductData }) => {
 						onChange={changeHandler}
 						value={productData.productName}
 					/>
+					<div className={errorState === 'productName' ? 'error' : 'hideError'}>Add a Product name</div>
 				</div>
 				<div className="inputContainer">
 					<label>Price</label>
@@ -40,6 +43,7 @@ const BasicDetails = ({ productData, setProductData }) => {
 							onChange={changeHandler}
 							value={productData.price}
 						/>
+						<div className={errorState === 'price' ? 'error' : 'hideError'}>Add a Price name</div>
 					</div>
 				</div>
 				<div className="inputContainer">
@@ -52,6 +56,7 @@ const BasicDetails = ({ productData, setProductData }) => {
 						onChange={changeHandler}
 						value={productData.category}
 					/>
+					<div className={errorState === 'category' ? 'error' : 'hideError'}>Add a Category name</div>
 					{/* Once the there is an endpint there will need to be an axios call to get the cateogries that will be mapped as options below */}
 					<datalist id="category">
 						<option value="Chocolate" />

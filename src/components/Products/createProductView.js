@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 //components
 import AxiosAuth from '../../components/Auth/axiosWithAuth';
 import Addphoto from './addPhoto';
@@ -7,6 +7,8 @@ import AddVariants from './addVariants';
 const CreateProductView = () => {
 	//state that enables or disables the Create Product button
 	const [ pushState, setPushState ] = useState(false);
+	const [ stopFirstLoad, setStopFirstLoad ] = useState(false);
+	const [ errorState, setErrorState ] = useState('');
 	// The object that will be pushed to database (it is not stored in redux)
 	const [ productData, setProductData ] = useState({
 		productName: '',
@@ -17,24 +19,29 @@ const CreateProductView = () => {
 		variants: []
 	});
 
-	//validation
+	useLayoutEffect(
+		() => {
+			if (stopFirstLoad == false) {
+				return console.log('boopers');
+			}
+
+			if (!productData.productName) {
+				return setErrorState('productName');
+			}
+			if (!productData.price) {
+				return setErrorState('price');
+			}
+			if (!productData.category) {
+				return setErrorState('category');
+			}
+
+			setErrorState('');
+		},
+		[ productData, stopFirstLoad ]
+	);
+
 	function submitHandler() {
-		AxiosAuth()
-			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
-			.then((res) => {
-				console.log(res);
-				setProductData({
-					productName: '',
-					price: '',
-					category: '',
-					description: '',
-					photos: [],
-					variants: []
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		setStopFirstLoad(true);
 	}
 
 	return (
@@ -50,7 +57,12 @@ const CreateProductView = () => {
 					<Addphoto productData={productData} setProductData={setProductData} />
 				</div>
 				<div className="rightContainer">
-					<BasicDetails productData={productData} setProductData={setProductData} />
+					<BasicDetails
+						productData={productData}
+						setProductData={setProductData}
+						setErrorState={setErrorState}
+						errorState={errorState}
+					/>
 					<AddVariants productData={productData} setProductData={setProductData} />
 				</div>
 			</div>
