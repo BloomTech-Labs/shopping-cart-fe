@@ -36,6 +36,40 @@ const Confirmation = (props) => {
       return { product: cart.product, quantity: cart.quantity };
     });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.form.validateFieldsAndScroll((err, values) => {
+      const payload = {
+        storeId: cartContents.storeId,
+        agreedPrice: parseInt(values.agreedPrice),
+        total: totalPrice(editedCart.contents),
+        checkoutDate: values.checkoutDate._d,
+        paymentPreference: values.paymentPreference,
+        deliveryOrCollection: values.delivery,
+        contents,
+      };
+      if (!err) {
+        AxiosAuth()
+          .put(
+            `https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}/approve`,
+            payload
+          )
+          .then((res) => {
+            dispatch(creators.getCart(cartId));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        message.error("Enter Required Fields");
+      }
+    });
+  };
+
+  const disabledDate = (current) =>
+    // Can not select days before today
+    current && current < moment().endOf("day").subtract(1, "day");
+
   const confirmPayment = (e) => {
     e.preventDefault();
     const payload = {

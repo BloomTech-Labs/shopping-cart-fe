@@ -24,14 +24,17 @@ import SaveCartMain from "./components/saveCart";
 import Account from "./components/SellerAccount/SellerAccount";
 import Confirmation from "./components/orderConfirmation";
 import addVariants from "./components/Products/addVariants";
+import WelcomeScreenForm from "./components/WelcomeScreen";
+import BrandView from "./components/BrandView";
+import ColorPicker from "./components/ColorPicker";
 
 function App() {
   window.addEventListener("load", () => {
     function handleNetworkChange(event) {
       if (navigator.onLine) {
-        document.getElementById('offline-notification').style.display = 'none';
+        document.getElementById("offline-notification").style.display = "none";
       } else {
-        document.getElementById('offline-notification').style.display = 'flex';
+        document.getElementById("offline-notification").style.display = "flex";
       }
     }
     window.addEventListener("online", handleNetworkChange);
@@ -53,39 +56,38 @@ function App() {
         <PublicRoute path='/store/:id' component={Store} />
         <PublicRoute
           path='/cart/:id'
-          component={localStorage.getItem('token') ? Confirmation : StripeMain}
+          component={localStorage.getItem("token") ? Confirmation : StripeMain}
         />
-        <PublicRoute path="/review" component={Review} />
-        <PublicRoute path="/savecart" component={SaveCartMain} />
-        <PrivateRoute path="/createstore" component={CreateStoreForm} />
-        <PrivateRoute path="/addlogo" component={AddLogoForm} />
-        <PrivateRoute path="/profile" component={UpdateProfile} />
-        <PrivateRoute path="/createitem" component={CreateItem} />
-        <PrivateRoute path="/dashboard" component={Home} />
-        <PrivateRoute path="/updateitem/:id" component={UpdateItem} />
-        <PublicRoute path="/product/:id" component={Single} />
-        <PublicRoute path="/success" component={OrderSuccessPage} />
-        <PublicRoute exact path="/support" component={Support} />
-        <PrivateRoute path="/account" component={Account} />
-        <PublicRoute path="/testingGrounds" component={addVariants} />
-
-        
+        <PublicRoute path='/review' component={Review} />
+        <PublicRoute path='/savecart' component={SaveCartMain} />
+        <PrivateRoute path='/createstore' component={CreateStoreForm} />
+        <PrivateRoute path='/addlogo' component={AddLogoForm} />
+        <PrivateRoute path='/profile' component={UpdateProfile} />
+        <PrivateRoute path='/createitem' component={CreateItem} />
+        <PrivateRoute path='/dashboard' component={Home} />
+        <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+        <PublicRoute path='/product/:id' component={Single} />
+        <PublicRoute path='/success' component={OrderSuccessPage} />
+        <PublicRoute exact path='/support' component={Support} />
+        <PrivateRoute path='/account' component={Account} />
+        <PublicRoute path='/testingGrounds' component={addVariants} />
       </Switch>
       <div
         id='offline-notification'
         style={{
-          position: 'fixed',
-          bottom: '0px',
-          width: '100vw',
-          height: '4vh',
-          textAlign: 'center',
-          backgroundColor: '#ff6663',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          color: 'white',
-          fontSize: 'medium',
-          display: 'none',
-        }}>
+          position: "fixed",
+          bottom: "0px",
+          width: "100vw",
+          height: "4vh",
+          textAlign: "center",
+          backgroundColor: "#ff6663",
+          justifyContent: "space-around",
+          alignItems: "center",
+          color: "white",
+          fontSize: "medium",
+          display: "none",
+        }}
+      >
         Offline Mode
       </div>
     </>

@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { List, Input, Tabs, Button } from "antd";
 import { NavLink } from "react-router-dom";
-<<<<<<< HEAD
-=======
-// import '../../less/index.less'
->>>>>>> bf1fb518b8176072c1b75018e2dbc89b2fd05b45
 import * as creators from "../../state/actionCreators";
 import Expanded from "./expand";
 import useCurrency from "../hooks/useCurrency";
@@ -87,11 +83,7 @@ const Items = ({ inventory, currency }) => {
       dataSource={inventory}
       locale={{
         emptyText:
-<<<<<<< HEAD
-          "Click the plus button below to start adding items to your store",
-=======
           'Click the "create product" button above to start adding items to your store',
->>>>>>> bf1fb518b8176072c1b75018e2dbc89b2fd05b45
       }}
       renderItem={(item) => {
         return (
