@@ -43,37 +43,37 @@ function App() {
   return (
     <>
       <Switch>
-        <PublicRoute path="/register" component={WrappedRegistrationForm} />
+        <PublicRoute path='/register' component={WrappedRegistrationForm} />
         {/* {Import WelcomeScreen} */}
-        <PublicRoute path="/welcome" component={WelcomeScreenForm} />
-        <PublicRoute path="/brandview" component={BrandView} />
-        <PublicRoute path="/colorpicker" component={ColorPicker} />
+        <PublicRoute path='/welcome' component={WelcomeScreenForm} />
+        <PublicRoute path='/brandview' component={BrandView} />
+        <PublicRoute path='/colorpicker' component={ColorPicker} />
         {/* Onboarding reformatted Above */}
-        <PublicRoute exact path="/" component={LoginForm} />
-        <PrivateRoute path="/inventory" component={Main} />
-        <PublicRoute path="/resetpassword" component={ResetPasswordForm} />
-        <PublicRoute path="/setnewpassword" component={SetNewPasswordForm} />
-        <PublicRoute path="/store/:id" component={Store} />
+        <PublicRoute exact path='/' component={LoginForm} />
+        <PrivateRoute path='/inventory' component={Main} />
+        <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
+        <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
+        <PublicRoute path='/store/:id' component={Store} />
         <PublicRoute
-          path="/cart/:id"
+          path='/cart/:id'
           component={localStorage.getItem("token") ? Confirmation : StripeMain}
         />
-        <PublicRoute path="/review" component={Review} />
-        <PublicRoute path="/savecart" component={SaveCartMain} />
-        <PrivateRoute path="/createstore" component={CreateStoreForm} />
-        <PrivateRoute path="/addlogo" component={AddLogoForm} />
-        <PrivateRoute path="/profile" component={UpdateProfile} />
-        <PrivateRoute path="/createitem" component={CreateItem} />
-        <PrivateRoute path="/dashboard" component={Home} />
-        <PrivateRoute path="/updateitem/:id" component={UpdateItem} />
-        <PublicRoute path="/product/:id" component={Single} />
-        <PublicRoute path="/success" component={OrderSuccessPage} />
-        <PublicRoute exact path="/support" component={Support} />
-        <PrivateRoute path="/account" component={Account} />
-        <PublicRoute path="/testingGrounds" component={addVariants} />
+        <PublicRoute path='/review' component={Review} />
+        <PublicRoute path='/savecart' component={SaveCartMain} />
+        <PrivateRoute path='/createstore' component={CreateStoreForm} />
+        <PrivateRoute path='/addlogo' component={AddLogoForm} />
+        <PrivateRoute path='/profile' component={UpdateProfile} />
+        <PrivateRoute path='/createitem' component={CreateItem} />
+        <PrivateRoute path='/dashboard' component={Home} />
+        <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+        <PublicRoute path='/product/:id' component={Single} />
+        <PublicRoute path='/success' component={OrderSuccessPage} />
+        <PublicRoute exact path='/support' component={Support} />
+        <PrivateRoute path='/account' component={Account} />
+        <PublicRoute path='/testingGrounds' component={addVariants} />
       </Switch>
       <div
-        id="offline-notification"
+        id='offline-notification'
         style={{
           position: "fixed",
           bottom: "0px",

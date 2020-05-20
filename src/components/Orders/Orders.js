@@ -4,8 +4,7 @@ import useCurrency from "../hooks/useCurrency";
 import MonthlySales from "../totoalSales/monthlySales";
 import LifetimeSales from "../totoalSales/lifetimeSales";
 import * as actionCreators from "../../state/actionCreators";
-import { Table, Tag, Button } from "antd";
-import { connect } from "react-redux";
+import { Table } from "antd";
 import "antd/dist/antd.css";
 
 const Orders = (props, { currency, storeId }) => {
