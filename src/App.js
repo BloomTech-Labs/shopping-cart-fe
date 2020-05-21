@@ -70,11 +70,7 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-<<<<<<< HEAD
         <PublicRoute path='/testingGrounds' component={CreateProductView} />
-=======
-        <PublicRoute path='/testingGrounds' component={addVariants} />
->>>>>>> 3af492600f311f4da310dd80267ade3dea116799
       </Switch>
       <div
         id='offline-notification'
