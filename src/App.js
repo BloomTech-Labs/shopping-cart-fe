@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import './less/index.less';
@@ -28,37 +27,6 @@ import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
-=======
-import React from "react";
-import { Switch } from "react-router-dom";
-import "./less/index.less";
-import WrappedRegistrationForm from "./components/register";
-import LoginForm from "./components/login";
-import ResetPasswordForm from "./components/ResetPassword/resetPassword";
-import SetNewPasswordForm from "./components/ResetPassword/setNewPassword";
-import CreateStoreForm from "./components/createStore/firstView";
-import AddLogoForm from "./components/createStore/addLogo";
-import CreateItem from "./components/Products/CreateItem";
-import UpdateItem from "./components/Products/updateItem";
-import PrivateRoute from "./components/Auth/PrivateRoute";
-import PublicRoute from "./components/Auth/PublicRoute";
-import Main from "./components/inventory";
-import UpdateProfile from "./components/EditProfile";
-import Home from "./components/DashboardHome";
-import Store from "./components/store";
-import StripeMain from "./components/Stripe";
-import Review from "./components/review";
-import OrderSuccessPage from "./components/Stripe/OrderSuccessPage";
-import Single from "./components/singleProduct/index";
-import Support from "./components/support";
-import SaveCartMain from "./components/saveCart";
-import Account from "./components/SellerAccount/SellerAccount";
-import Confirmation from "./components/orderConfirmation";
-import addVariants from "./components/Products/addVariants";
-import WelcomeScreenForm from "./components/WelcomeScreen";
-import BrandView from "./components/BrandView";
-import ColorPicker from "./components/ColorPicker";
->>>>>>> 3af492600f311f4da310dd80267ade3dea116799
 
 function App() {
   window.addEventListener("load", () => {
