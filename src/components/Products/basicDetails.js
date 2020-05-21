@@ -2,15 +2,6 @@ import React, { useState } from 'react';
 
 // Use State will be moved the view component once the other components are completed
 const BasicDetails = ({ productData, setProductData, errorState, setErrorState }) => {
-	const [ formData, setFormData ] = useState({
-		productName: '',
-		price: '',
-		category: '',
-		description: ''
-	});
-
-	console.log(errorState);
-
 	function changeHandler(e) {
 		e.preventDefault();
 		setProductData({ ...productData, [e.target.name]: e.target.value });
@@ -21,7 +12,7 @@ const BasicDetails = ({ productData, setProductData, errorState, setErrorState }
 
 			<div className="formContainer">
 				<div className="inputContainer">
-					<label>Product Name</label>
+					<label className={errorState === 'productName' ? 'errorLabel' : ''}>Product Name</label>
 					<input
 						className="productName"
 						name="productName"
@@ -33,7 +24,7 @@ const BasicDetails = ({ productData, setProductData, errorState, setErrorState }
 					<div className={errorState === 'productName' ? 'error' : 'hideError'}>Add a Product name</div>
 				</div>
 				<div className="inputContainer">
-					<label>Price</label>
+					<label className={errorState === 'price' ? 'errorLabel' : ''}>Price</label>
 					<div className="dollar">
 						<input
 							className="price"
@@ -47,7 +38,7 @@ const BasicDetails = ({ productData, setProductData, errorState, setErrorState }
 					</div>
 				</div>
 				<div className="inputContainer">
-					<label>Category</label>
+					<label className={errorState === 'category' ? 'errorLabel' : ''}>Category</label>
 					<input
 						className="category"
 						list="category"

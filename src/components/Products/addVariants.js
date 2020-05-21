@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import trashIcon from '../../images/trash_icon.svg';
 
-const AddVariants = (props) => {
-	const { productData, setProductData } = props;
+const AddVariants = ({ formData, setFormData, productData, setProductData }) => {
+	const [ stopFirstLoad, setStopFirstLoad ] = useState(false);
 	//active = If a user has selected to start adding variants
 	const [ active, setActive ] = useState(false);
 	// formData = Holds the input field data until it is submited
-	const [ formData, setFormData ] = useState({
-		variantName: '',
-		variantOption: '',
-		variantPrice: ''
-	});
 
-	const [ errorMessage, setErrorMessage ] = useState();
+	const [ errorState, setErrorState ] = useState();
 
 	function changeHandler(e) {
 		e.preventDefault();
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
+
 	function submitHandler(e) {
 		e.preventDefault();
+		setStopFirstLoad(true);
 		if (!formData.variantName) {
-			return setErrorMessage('Missing Variant name');
+			return setErrorState('variantName');
 		}
 		if (!formData.variantOption) {
-			return setErrorMessage('Missing option name');
+			return setErrorState('option');
 		}
 		if (!formData.variantPrice) {
-			return setErrorMessage('Missing Variant price');
+			return setErrorState('variantPrice');
 		}
 
 		setProductData({ ...productData, ['variants']: [ ...productData.variants, formData ] });
@@ -36,7 +33,8 @@ const AddVariants = (props) => {
 			variantOption: '',
 			variantPrice: ''
 		});
-		setErrorMessage('');
+		setErrorState('');
+		setStopFirstLoad(false);
 	}
 
 	function removeVariant(arg) {
@@ -81,7 +79,9 @@ const AddVariants = (props) => {
 						<form onSubmit={submitHandler}>
 							<div className="variantNameContainer">
 								<div className="inputContainer">
-									<label htmlFor="variantName">Variant Name</label>
+									<label className={errorState === 'variantName' ? 'errorLabel' : ''}>
+										Variant Name
+									</label>
 									<input
 										className={productData.variants.length >= 1 ? 'inputDisabled' : ''}
 										type="text"
@@ -92,6 +92,7 @@ const AddVariants = (props) => {
 										disabled={productData.variants.length >= 1 ? true : false}
 									/>
 								</div>
+
 								<p
 									className={
 										productData.variants.length >= 1 ? 'clearBTN' : 'clearBTN clearDisabled '
@@ -101,9 +102,14 @@ const AddVariants = (props) => {
 									Clear Varaints
 								</p>
 							</div>
+							<div className={errorState === 'variantName' ? 'error' : 'hideError'}>
+								Add a variant name
+							</div>
 							<div className="addVariantContainer">
 								<div className="inputContainer">
-									<label htmlFor="option">Variant Option</label>
+									<label className={errorState === 'option' ? 'errorLabel' : ''} htmlFor="option">
+										Variant Option
+									</label>
 									<input
 										type="text"
 										name="variantOption"
@@ -111,9 +117,18 @@ const AddVariants = (props) => {
 										value={formData.variantOption}
 										onChange={changeHandler}
 									/>
+									<div className={errorState === 'option' ? 'error' : 'hideError'}>
+										Add a variant name
+									</div>
 								</div>
+
 								<div className="inputContainer">
-									<label htmlFor="variantPrice">Variant Price</label>
+									<label
+										className={errorState === 'variantPrice' ? 'errorLabel' : ''}
+										htmlFor="variantPrice"
+									>
+										Variant Price
+									</label>
 									<input
 										type="number"
 										name="variantPrice"
@@ -121,7 +136,11 @@ const AddVariants = (props) => {
 										value={formData.variantPrice}
 										onChange={changeHandler}
 									/>
+									<div className={errorState === 'variantPrice' ? 'error' : 'hideError'}>
+										Add a variant name
+									</div>
 								</div>
+
 								<div className="addBTNContainer">
 									<button type="submit">Add Option</button>
 								</div>
@@ -132,7 +151,6 @@ const AddVariants = (props) => {
 					''
 				)}
 			</div>
-			<div className={errorMessage ? 'errorMessage' : ''}>{errorMessage}</div>
 			{productData.variants.length >= 1 ? (
 				productData.variants.map((cv) => {
 					return <VaraintChild data={cv} removeVariant={removeVariant} key={Math.random() * Math.random()} />;

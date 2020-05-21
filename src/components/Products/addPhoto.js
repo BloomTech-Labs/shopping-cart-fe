@@ -3,7 +3,7 @@ import axios from 'axios';
 import AxiosAuth from '../Auth/axiosWithAuth';
 import trashIcon from '../../images/trash_icon.svg';
 
-const AddPhoto = ({ productData, setProductData }) => {
+const AddPhoto = ({ productData, setProductData, errorState }) => {
 	const [ imageCount, setImageCount ] = useState(0);
 
 	const [ loading, setLoading ] = useState(false);
@@ -80,6 +80,7 @@ const AddPhoto = ({ productData, setProductData }) => {
 					);
 				})
 			)}
+			<div className={errorState === 'photos' ? 'error' : 'hideError'}>You need to add a photo!</div>
 		</div>
 	);
 };
