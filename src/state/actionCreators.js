@@ -21,6 +21,7 @@ export const getCurrentUser = () => (dispatch) => {
 /api/store/${res.data._id}/products`
         )
         .then((res) => {
+          console.log(res.data);
           const inventory = res.data;
           dispatch({ type: types.GET_INVENTORY, payload: inventory });
         });
@@ -32,10 +33,7 @@ export const getCurrentUser = () => (dispatch) => {
 
 export const getCart = (cartId) => (dispatch) => {
   axios
-    .get(
-      `https://shopping-cart-be.herokuapp.com
-/api/store/cart/${cartId}`
-    )
+    .get(`https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}`)
     .then((res) => {
       const savedCart = res.data;
       dispatch({ type: types.SAVE_CART, payload: savedCart });
@@ -174,6 +172,7 @@ export const getStore = (sellerId, signal) => (dispatch) => {
 /api/store/${sellerId}`
     )
     .then((res) => {
+      console.log(res.data);
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
     })
     .catch((error) => {
@@ -211,7 +210,7 @@ export const getSalesHistory = () => (dispatch) => {
 
 export const getOrders = () => {
   AxiosAuth()
-    .get("https://whispering-dawn-20611.herokuapp.com/api/store/orders")
+    .get("https://shopping-cart-be.herokuapp.com/api/store/orders")
     .then((res) => {
       return (dispatch) => {
         dispatch({ type: types.GET_ORDERS, payload: res.data });

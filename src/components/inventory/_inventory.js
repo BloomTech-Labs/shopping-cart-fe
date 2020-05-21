@@ -83,27 +83,30 @@ const Items = ({ inventory, currency }) => {
       dataSource={inventory}
       locale={{
         emptyText:
-          'Click the "create product" button above to start adding items to your store',
+          "Click the 'create product' button above to start adding items to your store",
       }}
       renderItem={(item) => {
         return (
           <List.Item className='block'>
             <List.Item.Meta
               title={
-                <div className='list title short'>
-                  <h3>{item.name}</h3>
-                  <div>
-                    {currency}
-                    {item.price}
+                <div className='title-formatter'>
+                  <div className='list title short'>
+                    <h3>{item.name}</h3>
+                    <div className='item-description'>{item.description}</div>
                   </div>
+                  <img
+                    src={item.images[0]}
+                    alt='product image'
+                    className='product-image'
+                  />
                 </div>
               }
               description={
                 <div className='list short'>
-                  <div className='item-description'>{item.description}</div>
                   <NavLink to={`/updateitem/${item._id}`}>
                     <div>
-                      <Button size='default'>Edit</Button>
+                      <NavLink to='#'>View</NavLink>
                     </div>
                   </NavLink>
                 </div>
