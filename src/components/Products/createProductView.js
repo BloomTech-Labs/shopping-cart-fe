@@ -63,7 +63,15 @@ const CreateProductView = () => {
 		if (!readyToPost) {
 			return console.log(errorState, 'fix probelms first');
 		}
-		history.push('/dashboard');
+		AxiosAuth()
+			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		// history.push('/dashboard');
 	}
 
 	return (
