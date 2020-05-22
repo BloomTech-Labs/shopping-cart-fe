@@ -166,8 +166,8 @@ export const getStore = (sellerId, signal) => (dispatch) => {
   axios
     .get(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}`)
     .then((res) => {
-	  dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
-	  console.log(res.data)
+      dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
+      console.log(res.data)
     })
     .catch((error) => {
       setErrors(error.response.data)
@@ -190,7 +190,6 @@ export const getOneOrder = (orderId) => (dispatch) => {
     .get(`http://localhost:4000/api/store/order/${orderId}`)
     .then((res) => {
       dispatch({ type: types.GET_ONE_ORDER, payload: res.data })
-     
     })
     .catch((error) => {
       setErrors(error.response)
@@ -201,14 +200,15 @@ export const updateOrder = (details) => (dispatch) => {
   axios.put(`http://localhost:4000/api/store/order/5ebb470f0d20bf0b10ded8f5`)
 }
 export const deleteOrder = (orderId) => (dispatch) => {
-  axios.delete(`http://localhost:4000/api/store/order/${orderId}`, orderId)
-  .then(res => {
-    dispatch({type: types.DELETE_ORDER})
-    console.log(res)
-  })
-  .catch(err => {
-    setErrors(err.response.data)
-  })
+  axios
+    .delete(`http://localhost:4000/api/store/order/${orderId}`, orderId)
+    .then((res) => {
+      dispatch({ type: types.DELETE_ORDER })
+      console.log(res)
+    })
+    .catch((err) => {
+      setErrors(err.response.data)
+    })
 }
 //DONE
 export const setStoreUrl = () => {
@@ -237,4 +237,31 @@ export const getSalesHistory = () => (dispatch) => {
       setLoading(false)
       console.log(err)
     })
+}
+
+export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
+  dispatch({type: types.DELETE_ORDER_PRODUCT})
+  axios.delete(
+    `http://localhost:4000/api/store/${order_id}/${orderItem_id}`,
+  )
+  .then(res => {
+    console.log("res:", res)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+
+export const updateOrderProduct = (order_id, orderItem_id, ) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ORDER_PRODUCT})
+  axios.put(
+    `http://localhost:4000/api/store/${order_id}/${orderItem_id}`,
+  )
+  .then(res => {
+    console.log("res:", res)
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }

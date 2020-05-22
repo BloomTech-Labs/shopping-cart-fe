@@ -1,88 +1,22 @@
-import React from "react"
-import { Table, Button } from "antd"
-import {
-  CloseOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons"
+import React, {useEffect, useState} from "react"
 
-const { Column } = Table
-function OrderDetail({}) {
-  const data = [
-    {
-      quantity: 1,
-      product: "Baked Potato",
-    },
-    {
-      quantity: 2,
-      product: "T-shirt",
-    },
-    {
-      quantity: 2,
-      product: "T-shirt",
-    },
-    {
-      quantity: 2,
-      product: "T-shirt",
-    },
-    {
-      quantity: 2,
-      product: "T-shirt",
-    },
-    {
-      quantity: 2,
-      product: "Computer",
-    },
-  ]
+function OrderDetail({ orderItem, deleteProduct, order }) {
+
+
+
   return (
     <div>
-      <Table
-        dataSource={data}
-        pagination={false}
-        style={{ background: "white", width: "auto", height: "min-content", fontWeight:"bold", fontSize: '16px',}}
-      >
-        <Column
-          title="Quantity"
-          dataIndex="quantity"
-          key="quantity"
-          style={{ fontSize: "20px" }}
-        />
-        
-        <Column key="action" render={() => <CloseOutlined />} />
-        <Column title="Product" dataIndex="product" key="product" />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column
-          key="action"
-          render={() => (
-            <Button
-              type="default"
-              style={{
-                border: "none",
-                color: "#007FFF",
-                fontSize: "14px",
-                fontWeight: "bold",
-              }}
-            
-            >
-              Edit
-            </Button>
-          )}
-        />
-        <Column
-          key="action"
-          render={() => (
-            <DeleteOutlined style={{ color: "red", fontSize: "20px" }} />
-          )}
-        />
-      </Table>
+      {orderItem &&
+        orderItem.map((item) => {
+          return (
+            <div>
+              <div>{item.product.name} </div>
+              <div>{item.quantity}</div>
+              <button onClick = {() => (deleteProduct(order._id, item._id))}>Remove</button>
+              <button onClick = {() => ((order._id, item._id))}>Remove</button>
+            </div>
+          )
+        })}
     </div>
   )
 }

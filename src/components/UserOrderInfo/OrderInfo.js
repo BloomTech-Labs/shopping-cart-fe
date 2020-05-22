@@ -8,7 +8,7 @@ function OrderInfo(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(action.getOneOrder("5ebc90555800f634d81f61d1"))
+    dispatch(action.getOneOrder("5ec72317f4595e43404d4d25"))
   }, [dispatch])
 
   const order = useSelector((state) => state.order)
@@ -19,27 +19,17 @@ function OrderInfo(props) {
   // const deleteOrder = (id) => {
   //   dispatch(action.deleteOrder(id))
   // }
-
-  // const items = orderItem.map(item => {
-  //   return {product: item.product, quantity: item.quantity}
-  // })
-
-  // console.log(items)
-
+  const deleteProduct = (orderId, itemId) => {
+      dispatch(action.deleteOrderProduct(orderId, itemId))
+  }
 
   return (
     <div
       className="site-card-border-less-wrapper"
       style={{ display: "flex", justifyContent: "flex-start" }}
     >
-     
       <UserInfo order={order} />
-      <OrderDetail />
-      <div>
-        {orderItem && orderItem.map(item => (
-          <h1>{item.product}</h1>
-        ))}
-      </div>
+      <OrderDetail orderItem={orderItem} deleteProduct= {deleteProduct} order={order} />
     </div>
   )
 }

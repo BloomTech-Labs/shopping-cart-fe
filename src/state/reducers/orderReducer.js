@@ -3,7 +3,7 @@ import * as types from "../actionTypes"
 const initialOrders = []
 
 const deleteOrder = (state, action) => {
-  const removed = state.filter(obj => {
+  const removed = state.filter((obj) => {
     return obj.orderId !== action.payload._id
   })
   return removed
@@ -18,6 +18,10 @@ export function orderReducer(state = initialOrders, action) {
       return
     case types.DELETE_ORDER:
       return deleteOrder(state, action)
+    case types.DELETE_ORDER_PRODUCT:
+      return state
+    case types.UPDATE_ORDER_PRODUCT:
+      return 
     default:
       return state
   }
