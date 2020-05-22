@@ -9,7 +9,7 @@ const CreateProductView = () => {
 	// valdation for posting - if true that it posts and pushes to the dashboard screen
 	const [ readyToPost, setReadyToPost ] = useState(false);
 	//Prevents useEffect from running on inital load
-	const [ stopFirstLoad, setStopFirstLoad ] = useState(false);
+	const [ checkErrors, setCheckErros ] = useState(false);
 	//Keeps track of what field is empty
 	const [ errorState, setErrorState ] = useState();
 	// The object that is posted
@@ -27,12 +27,25 @@ const CreateProductView = () => {
 		variantOption: '',
 		variantPrice: ''
 	});
-
 	//Used to check input fields for validation in real time
 	useEffect(
 		() => {
-			if (stopFirstLoad == false) {
-				return console.log('bloopistnesserness');
+			if (
+				productData.productName.length > 0 &&
+				productData.price.length > 0 &&
+				productData.category.length > 0 &&
+				productData.photos.length > 0
+			) {
+				return setCheckErros(true);
+			}
+		},
+		[ productData ]
+	);
+
+	useEffect(
+		() => {
+			if (checkErrors === false) {
+				return console.log('not ready');
 			}
 
 			if (!productData.productName) {
@@ -54,24 +67,28 @@ const CreateProductView = () => {
 			console.log('Its now true');
 			setReadyToPost(true);
 		},
-		[ productData, stopFirstLoad ]
+		[ productData, checkErrors ]
 	);
 
 	// Post to the server if all checks out
 	function submitHandler() {
-		setStopFirstLoad(true);
-		if (!readyToPost) {
-			return console.log(errorState, 'fix probelms first');
-		}
-		AxiosAuth()
-			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-		// history.push('/dashboard');
+		setCheckErros(true);
+		console.log(readyToPost);
+		setTimeout(function() {
+			if (readyToPost === false) {
+				return console.log(readyToPost);
+			}
+
+			AxiosAuth()
+				.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+			history.push('/dashboard');
+		}, 1000);
 	}
 
 	return (
@@ -105,6 +122,14 @@ const CreateProductView = () => {
 						setProductData={setProductData}
 					/>
 				</div>
+				<button
+					onClick={() => {
+						console.log('errorState', errorState, 'readyToPost', readyToPost);
+					}}
+				>
+					{' '}
+					Console Log
+				</button>
 			</div>
 		</div>
 	);
