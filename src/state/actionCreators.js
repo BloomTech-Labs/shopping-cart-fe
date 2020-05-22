@@ -253,15 +253,17 @@ export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
 }
 
 
-export const updateOrderProduct = (order_id, orderItem_id, ) => (dispatch) => {
+export const updateOrderProduct = (order_id, orderItem_id, payload ) => (dispatch) => {
   dispatch({ type: types.UPDATE_ORDER_PRODUCT})
   axios.put(
-    `http://localhost:4000/api/store/${order_id}/${orderItem_id}`,
+    `http://localhost:4000/api/store/${order_id}/${orderItem_id}`, payload
   )
   .then(res => {
-    console.log("res:", res)
+    dispatch({ type: types.UPDATE_ORDER_PRODUCT, payload})
+    console.log(res)
   })
   .catch(err => {
     console.log(err)
+    alert("Profile update failed, please try again!");
   })
 }

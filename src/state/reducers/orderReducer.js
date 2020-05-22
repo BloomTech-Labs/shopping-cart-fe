@@ -1,6 +1,8 @@
 import * as types from "../actionTypes"
 
-const initialOrders = []
+const initialOrders = {
+  product: null
+}
 
 const deleteOrder = (state, action) => {
   const removed = state.filter((obj) => {
@@ -21,7 +23,10 @@ export function orderReducer(state = initialOrders, action) {
     case types.DELETE_ORDER_PRODUCT:
       return state
     case types.UPDATE_ORDER_PRODUCT:
-      return 
+      return {
+        ...state, 
+        product: action.newProduct
+      }
     default:
       return state
   }

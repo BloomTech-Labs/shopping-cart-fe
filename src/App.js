@@ -59,7 +59,7 @@ function App () {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        <PrivateRoute path = '/user' component = {OrderInfo} />
+        <PublicRoute path = '/user' component = {OrderInfo} />
       </Switch>
       <div id='offline-notification' style={{
         position: 'fixed',
