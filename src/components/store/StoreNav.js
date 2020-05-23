@@ -10,13 +10,15 @@ import cart_icon from '../../images/cart-icon.svg';
 
 const StoreNav = (
 	{
-		// logoPath,
 		// badgeCount = 0,
 	}
 ) => {
 	const dispatch = useDispatch();
 	const cartContents = useSelector((state) => state.cart);
 	const storeDetails = useSelector((state) => state.user.user);
+
+	console.log('🛑', cartContents);
+
 	const sign = useCurrency(storeDetails.currency);
 
 	const totalQuantity = (arr) => {
@@ -30,7 +32,11 @@ const StoreNav = (
 	return (
 		<div className="navMasterContainer">
 			<div>
-				<img className="storeLogo" src={NoLogo} />
+				{storeDetails.imageUrl ? (
+					<img className="storeLogo" src={storeDetails.imageUrl} />
+				) : (
+					<img className="storeLogo" src={NoLogo} />
+				)}
 			</div>
 			<div className="fakeSearchBar">
 				<img className="searchIcon" src={search_icon} />

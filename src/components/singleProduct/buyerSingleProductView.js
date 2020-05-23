@@ -1,71 +1,90 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import { Carousel, Button, Icon, Typography, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import * as creators from '../../state/actionCreators';
 
-const { Paragraph } = Typography;
 function SingleProductView(props) {
-	const [ productState, setProductState ] = useState([]);
+	//productState is used only for the values that is submitted to the cart
+	const [ productState, setProductState ] = useState([
+		{
+			name: '',
+			price: null,
+			productId: '',
+			quantity: 1
+		}
+	]);
+	//Full Product is used to populate the interface
+	const [ fullProduct, setFullProduct ] = useState([]);
 	const itemId = props.productId;
 	const dispatch = useDispatch();
 	const cartContents = useSelector((state) => state.cart);
-	const isLoading = useSelector((state) => state.user.isLoading);
+
+	function changeHandler(e) {
+		e.preventDefault();
+		setProductState({ ...productState, [e.target.name]: e.target.value });
+	}
+
+	function logger() {
+		console.log('fullProduct', fullProduct);
+	}
+
 	useEffect(
 		() => {
-			dispatch(creators.setLoading(true));
 			axios
 				.get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
 				.then((res) => {
-					setProductState(res.data);
-					dispatch(creators.setLoading(false));
+					setFullProduct(res.data);
+					console.log('😍', res.data);
+					setProductState({
+						name: res.data.name,
+						price: res.data.price,
+						productId: res.data._id,
+						quantity: 1
+					});
+					console.log(productState);
 				})
 				.catch((err) => {
-					dispatch(creators.setLoading(false));
 					console.log(err);
 				});
 		},
 		[ itemId, dispatch ]
 	);
 
-	console.log('productState', productState);
-
 	const dispatchItem = (item) => {
 		dispatch(creators.addToCart(item));
 	};
-	const removeItem = (item) => {
-		dispatch(creators.subtractFromCart(item));
-	};
-	const btnChange = (item) => {
-		const itemObj = cartContents.find(({ productId }) => productId === item._id);
-		return itemObj;
-	};
+
 	return (
 		<div className="singleProductContainer">
 			<div className="photoSection">
 				<div className="allPhotos">
-					{/* Map over all images here */}
-					<img src={productState.images} />
-					<img src={productState.images} />
-					<img src={productState.images} />
+					{fullProduct.images ? (
+						fullProduct.images.map((cv) => {
+							return <img src={cv} />;
+						})
+					) : (
+						''
+					)}
 				</div>
 			</div>
 			<div className="productInfoContatiner">
-				<h2>This is my title</h2>
-				<h1> $99.99</h1>
+				{/* <button onClick={logger}> Logger</button> */}
+				<h2>{fullProduct.name}</h2>
+				<h1> ${fullProduct.price}</h1>
 				<div className="divider" />
 				<h3 className="description"> Description</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus, nisl quis elementum
-					sodales, ligula ipsum porta metus, in vestibulum erat dolor id felis. Pellentesque consequat nulla
-					ut porttitor ultrices. Aenean interdum et dolor sit amet iaculis. Pellentesque ac nisi sed nunc
-					convallis finibus.
-				</p>
+				<p>{fullProduct.description}</p>
 				<div className="productOptions">
 					<div className="quantity">
-						<label htmlFor="quantity">Quantity</label>
-						<input name="quantity" type="number" />
+						<label htmlFor="productQuantity">Quantity</label>
+						<input
+							name="quantity"
+							type="number"
+							min="1"
+							value={productState.quantity}
+							onChange={changeHandler}
+						/>
 					</div>
 					{/* If there are varaitns for the product add input else don't */}
 					{/* Everything in the variants should be data grabbed from the redux store */}
@@ -80,7 +99,9 @@ function SingleProductView(props) {
 						</select>
 					</div>
 				</div>
-				<button className="addToCart"> Add To Cart </button>
+				<button className="addToCart" onClick={() => dispatchItem(productState)}>
+					Add To Cart
+				</button>
 			</div>
 		</div>
 	);

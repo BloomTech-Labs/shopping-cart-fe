@@ -23,7 +23,7 @@ function StoreView(props) {
 	const storeDetails = store.user;
 	const searchString = useSelector((state) => state.search);
 
-	console.log('🍕', inventory);
+	console.log('🍕', storeDetails);
 
 	// SearchObj is what parases the string (no idea how it works)
 	function searchObj(obj, string) {
@@ -39,7 +39,7 @@ function StoreView(props) {
 	return (
 		<div>
 			<div>
-				<StoreNav />
+				<StoreNav storeDetails={storeDetails} />
 				<AllProducts searchString={searchString} searchFilter={searchFilter} inventory={inventory} />
 			</div>
 		</div>
