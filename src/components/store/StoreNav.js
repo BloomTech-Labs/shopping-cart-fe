@@ -2,22 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as creators from '../../state/actionCreators';
-import useCurrency from '../hooks/useCurrency';
 import NoLogo from '../../images/PureRetail_Logo.png';
-
+import history from '../../history';
 import search_icon from '../../images/search-icon.svg';
 import cart_icon from '../../images/cart-icon.svg';
 
-const StoreNav = (
-	{
-		// badgeCount = 0,
-	}
-) => {
+const StoreNav = () => {
 	const dispatch = useDispatch();
 	const cartContents = useSelector((state) => state.cart);
 	const storeDetails = useSelector((state) => state.user.user);
-
-	console.log('🛑', cartContents);
 
 	const totalQuantity = (arr) => {
 		return arr.reduce((sum, item) => {
@@ -29,7 +22,11 @@ const StoreNav = (
 	};
 	return (
 		<div className="navMasterContainer">
-			<div>
+			<div
+				onClick={() => {
+					history.goBack();
+				}}
+			>
 				{storeDetails.imageUrl ? (
 					<img className="storeLogo" src={storeDetails.imageUrl} />
 				) : (
@@ -42,7 +39,9 @@ const StoreNav = (
 			</div>
 			<div className="cartAboutContainer">
 				<p className="aboutUs"> About Us</p>
-				<div className="badge">{totalQuantity(cartContents)}</div>
+				<div className="badge">
+					<div className="badgeNumber">{totalQuantity(cartContents)}</div>
+				</div>
 				<img src={cart_icon} />
 			</div>
 		</div>
