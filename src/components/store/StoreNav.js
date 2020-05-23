@@ -19,11 +19,9 @@ const StoreNav = (
 
 	console.log('🛑', cartContents);
 
-	const sign = useCurrency(storeDetails.currency);
-
 	const totalQuantity = (arr) => {
 		return arr.reduce((sum, item) => {
-			return sum + item.quantity;
+			return sum + parseInt(item.quantity);
 		}, 0);
 	};
 	const change = (e) => {
@@ -44,7 +42,7 @@ const StoreNav = (
 			</div>
 			<div className="cartAboutContainer">
 				<p className="aboutUs"> About Us</p>
-				<div className="badge">10</div>
+				<div className="badge">{totalQuantity(cartContents)}</div>
 				<img src={cart_icon} />
 			</div>
 		</div>
