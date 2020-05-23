@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react"
 import OrderChangeForm from "./OrderChangeForm"
 import OrderProductCard from "./OrderProductCard"
+import { useSelector, useDispatch } from 'react-redux';
 
-function OrderProductTable() {
+
+
+function OrderProductTable(props) {
+  const dispatch = useDispatch();
+  const orderItem = useSelector((state) => state.initialOrder)
   const ourProducts = [
     {
       id: 1,
@@ -64,11 +69,15 @@ function OrderProductTable() {
             editProduct={editProduct}
             showProduct={showProduct}
             setShowProduct={setShowProduct}
+            onClick={props.toggleEdit()}
+            className={props.initialOrder.isEditing ? 'showMe' : 'hidden'}
           />
         </div>
       ))}
     </div>
   )
 }
+
+
 
 export default OrderProductTable

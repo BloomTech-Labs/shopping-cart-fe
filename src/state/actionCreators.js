@@ -267,3 +267,7 @@ export const updateOrderProduct = (order_id, orderItem_id, payload ) => (dispatc
     alert("Profile update failed, please try again!");
   })
 }
+
+export const toggleEdit = () => (dispatch) => {
+  dispatch({ type: types.TOGGLE_EDIT})
+}

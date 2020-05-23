@@ -1,8 +1,19 @@
 import * as types from "../actionTypes"
 
-const initialOrders = {
-  completed: false,
-}
+const initialOrders = [
+  {
+    id: 1,
+    productName: "banana",
+    variant: "large",
+    isEditing: false,
+  },
+  {
+    id: 2,
+    productName: "apple",
+    variant: "medium",
+    isEditing: false,
+  }
+]
 
 const deleteOrder = (state, action) => {
   const removed = state.filter((obj) => {
@@ -12,7 +23,7 @@ const deleteOrder = (state, action) => {
 }
 export function orderReducer(state = initialOrders, action) {
   switch (action.type) {
-    case types.GET_ORDERS:
+    case types.GET_ORDERS: 
       return action.payload
     case types.GET_ONE_ORDER:
       return action.payload
@@ -27,6 +38,9 @@ export function orderReducer(state = initialOrders, action) {
         ...state, 
         product: action.newProduct
       }
+    case types.TOGGLE_EDIT:
+      return state.map(item => 
+        item.id === initialOrders.id ? { ...item, completed: !item.completed } : item)
     default:
       return state
   }
