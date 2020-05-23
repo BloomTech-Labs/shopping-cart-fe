@@ -24,6 +24,7 @@ import SaveCartMain from './components/saveCart'
 import Account from './components/SellerAccount/SellerAccount'
 import Confirmation from './components/orderConfirmation'
 import OrderInfo from './components/UserOrderInfo/OrderInfo'
+import OrderProductCard from './components/UserOrderInfo/OrderProductCard'
 
 function App () {
   window.addEventListener('load', () => {
@@ -60,6 +61,7 @@ function App () {
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
         <PublicRoute path = '/user' component = {OrderInfo} />
+        <PublicRoute path = '/orderpcard' component = {OrderProductCard} />
       </Switch>
       <div id='offline-notification' style={{
         position: 'fixed',

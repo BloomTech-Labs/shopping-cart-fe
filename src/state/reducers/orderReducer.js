@@ -1,7 +1,7 @@
 import * as types from "../actionTypes"
 
 const initialOrders = {
-  product: null
+  completed: false,
 }
 
 const deleteOrder = (state, action) => {
@@ -17,7 +17,7 @@ export function orderReducer(state = initialOrders, action) {
     case types.GET_ONE_ORDER:
       return action.payload
     case types.UPDATE_ORDER:
-      return
+      return 
     case types.DELETE_ORDER:
       return deleteOrder(state, action)
     case types.DELETE_ORDER_PRODUCT:
