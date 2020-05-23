@@ -14,7 +14,7 @@ import PublicRoute from './components/Auth/PublicRoute';
 import Main from './components/inventory';
 import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
-import Store from './components/store';
+import StoreView from './components/store/StoreView';
 import StripeMain from './components/Stripe';
 import Review from './components/review';
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
@@ -53,7 +53,7 @@ function App() {
         <PrivateRoute path='/inventory' component={Main} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
         <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
-        <PublicRoute path='/store/:id' component={Store} />
+        <PublicRoute path='/store/:id' component={StoreView} />
         <PublicRoute
           path='/cart/:id'
           component={localStorage.getItem("token") ? Confirmation : StripeMain}

@@ -7,9 +7,10 @@ const ProductCard = (props) => {
 		<div className="productCardContainer">
 			<NavLink to={`/product/${_id}`}>
 				<img className="productImage" src={images[0]} />
-
-				<p>{name}</p>
-				<h3>{price}</h3>
+				<div className="productInfo">
+					<p>{name}</p>
+					<h3>${price}</h3>
+				</div>
 			</NavLink>
 		</div>
 	);

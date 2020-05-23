@@ -29,7 +29,7 @@ function SingleProductView(props) {
 		[ itemId, dispatch ]
 	);
 
-	console.log('🚀', itemId);
+	console.log('productState', productState);
 
 	const dispatchItem = (item) => {
 		dispatch(creators.addToCart(item));
@@ -42,65 +42,46 @@ function SingleProductView(props) {
 		return itemObj;
 	};
 	return (
-		<div className="single-cover">
-			<Spin spinning={isLoading}>
-				<div className="kol">
-					<Carousel className="img">
-						{productState.images &&
-							productState.images.length &&
-							productState.images.map((item, index) => (
-								<div key={index}>
-									<img style={{ width: '100%', margin: '0' }} src={item} alt="product" />
-								</div>
-							))}
-					</Carousel>
-					<div className="subKol">
-						<div className="subNameDesc">
-							<h1>{productState.name}</h1>
-							<div>
-								<Paragraph ellipsis={{ rows: 3, expandable: true }}>
-									{productState.description}
-								</Paragraph>
-							</div>
-						</div>
-						<div className="subButton">
-							{!btnChange(productState) ? (
-								<Button style={{ border: '0' }} onClick={() => dispatchItem(productState)}>
-									Add to Cart
-								</Button>
-							) : (
-								<Button
-									style={{ backgroundColor: '#FF6663', border: '0' }}
-									onClick={() => removeItem(productState)}
-								>
-									Remove from Cart
-								</Button>
-							)}
-						</div>
-						<NavLink to="/review">
-							<div
-								style={{
-									backgroundColor: '#00000',
-									border: '0',
-									borderRadius: '1.5rem'
-								}}
-								className="subFooter"
-							>
-								<h1>Go to your cart</h1>
-								<Icon
-									style={{
-										fontSize: '2.5rem',
-										color: 'white',
-										marginTop: '0.9rem',
-										marginLeft: '0.4rem'
-									}}
-									type="shopping-cart"
-								/>
-							</div>
-						</NavLink>
+		<div className="singleProductContainer">
+			<div className="photoSection">
+				<div className="allPhotos">
+					{/* Map over all images here */}
+					<img src={productState.images} />
+					<img src={productState.images} />
+					<img src={productState.images} />
+				</div>
+			</div>
+			<div className="productInfoContatiner">
+				<h2>This is my title</h2>
+				<h1> $99.99</h1>
+				<div className="divider" />
+				<h3 className="description"> Description</h3>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus, nisl quis elementum
+					sodales, ligula ipsum porta metus, in vestibulum erat dolor id felis. Pellentesque consequat nulla
+					ut porttitor ultrices. Aenean interdum et dolor sit amet iaculis. Pellentesque ac nisi sed nunc
+					convallis finibus.
+				</p>
+				<div className="productOptions">
+					<div className="quantity">
+						<label htmlFor="quantity">Quantity</label>
+						<input name="quantity" type="number" />
+					</div>
+					{/* If there are varaitns for the product add input else don't */}
+					{/* Everything in the variants should be data grabbed from the redux store */}
+					<div className="variant">
+						<label htmlFor="">Chosen Name</label>
+						<select name="">
+							<option disabled selected value>
+								-- select an option --
+							</option>
+							<option value="var1">Var 1</option>
+							<option value="var2">Var 2</option>
+						</select>
 					</div>
 				</div>
-			</Spin>
+				<button className="addToCart"> Add To Cart </button>
+			</div>
 		</div>
 	);
 }
