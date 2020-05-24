@@ -35,7 +35,6 @@ function SingleProductView(props) {
 				.get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
 				.then((res) => {
 					setFullProduct(res.data);
-					console.log('😍', res.data);
 					setProductState({
 						name: res.data.name,
 						price: res.data.price,

@@ -42,7 +42,9 @@ const StoreNav = () => {
 				<div className="badge">
 					<div className="badgeNumber">{totalQuantity(cartContents)}</div>
 				</div>
-				<img src={cart_icon} />
+				<NavLink to="/cart">
+					<img src={cart_icon} />
+				</NavLink>
 			</div>
 		</div>
 	);

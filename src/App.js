@@ -16,7 +16,7 @@ import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
 import StoreView from './components/store/StoreView';
 import StripeMain from './components/Stripe';
-import Review from './components/review';
+import CartView from './components/cart/CartView';
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
 import Single from './components/singleProduct/index';
 import Support from './components/support';
@@ -58,7 +58,7 @@ function App() {
           path='/cart/:id'
           component={localStorage.getItem("token") ? Confirmation : StripeMain}
         />
-        <PublicRoute path='/review' component={Review} />
+        <PublicRoute path='/cart' component={CartView} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
         <PrivateRoute path='/createstore' component={CreateStoreForm} />
         <PrivateRoute path='/addlogo' component={AddLogoForm} />

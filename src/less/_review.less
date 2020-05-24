@@ -1,133 +1,59 @@
-.review {
-    background-color: #DADADA;
-    height: auto;
-    padding-bottom: 30rem;
-}
+.cartMasterContainer {
+	width: 100%;
+	padding: 0px 100px;
 
-.review-top {
-    padding-top: 3rem;
+	.tableHeader {
+		background: rgba(5, 46, 117, 0.10);
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		padding: 12px 25px;
+		max-height: 45px;
+		display: grid;
+		grid-template-columns: 50% 16% 16% 16%;
 
-    @media (min-width:@desktop){
-        width: 60%;
-      }
+		p {
+			margin: 0px;
+			font-weight: 700;
+		}
+	}
 
-    .ant-list-item {
-        margin-bottom: 1.5rem;
-        background-color: white;
-        padding: 1.3rem;
-    }
+	.cartProductCard {
+		display: grid;
+		grid-template-columns: 50% 10% 6% 6% 10% 10% 8%;
+		padding: 25px;
+		background: white;
+		align-items: center;
 
-    .ant-list-items {
-        display: flex;
-        flex-direction: column;
-        font-size: 2rem;
+		h3 {
+			font-size: 18px;
+			font-weight: 700;
+			color: black;
+			margin: 0px;
+		}
 
-        .ant-list-item-meta-title {
-            font-size: 1.8rem;
-        }
+		p {
+			font-size: 14px;
+			font-weight: 500;
+			color: rgba(0, 0, 0, 0.7);
+			margin: 0;
+		}
 
-        .ant-list-item-meta-description {
-            font-size: 1.6rem;
-        }
-    }
+		.productSection {
+			display: flex;
+			align-items: center;
 
-    .controls {
-        box-sizing: border-box;
-        display: flex;
-        width: 25%;
+			.productInfo {
+				margin-left: 15px;
+			}
+		}
 
-        .clicks {
-            width: 33.3%;
-            background-color: black;
-            color: white;
-            height: 100%;
+		.equalsIcon {
+			margin: 0 auto;
+		}
 
-            @media (min-width:@desktop){
-                cursor: pointer;
-              }
-        }
-
-        .count {
-            background-color: #BFD7EA;
-            color: black;
-
-            @media (min-width:@desktop){
-                cursor: default;
-              }
-        }
-    }
-
-    .review-text {
-        width: 100%;
-        height: 30vh;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        padding-top: 3rem;
-        justify-content: space-around;
-
-        #rev {
-            height: 45%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        h4 {
-            font-size: 2rem;
-        }
-
-        p {
-            font-size: 1.3rem;
-        }
-
-        #grey {
-            color: gray;
-        }
-
-    }
-}
-
-.content {
-    font-size: 1.5rem;
-
-    .button-body {
-        height: 5.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
-
-        @media (min-width:@desktop){
-            justify-content: space-around;
-          }
-
-        .button {
-            width: 15rem;
-            height: 6rem;
-            background-color: #0B3954;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.8rem;
-
-            @media (min-width:@desktop){
-                cursor: pointer;
-              }
-        }
-    }
-}
-
-.cancel {
-    background-color: #0B3954;
-    width: 10%;
-    height: 100%;
-    color: white;
-    box-sizing: border-box;
-
-    @media (min-width:@desktop){
-        cursor: pointer;
-      }
+		.deleteIcon {
+			margin-left: auto;
+			cursor: pointer;
+		}
+	}
 }
