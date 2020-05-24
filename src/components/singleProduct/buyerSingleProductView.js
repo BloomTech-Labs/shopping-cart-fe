@@ -11,7 +11,8 @@ function SingleProductView(props) {
 			name: '',
 			price: null,
 			productId: '',
-			quantity: 1
+			quantity: 1,
+			images: []
 		}
 	]);
 	//Full Product is used to populate the interface
@@ -22,11 +23,7 @@ function SingleProductView(props) {
 
 	function changeHandler(e) {
 		e.preventDefault();
-		setProductState({ ...productState, [e.target.name]: e.target.value });
-	}
-
-	function logger() {
-		console.log('fullProduct', fullProduct);
+		setProductState({ ...productState, [e.target.name]: parseInt(e.target.value) });
 	}
 
 	useEffect(
@@ -39,7 +36,8 @@ function SingleProductView(props) {
 						name: res.data.name,
 						price: res.data.price,
 						productId: res.data._id,
-						quantity: 1
+						quantity: 1,
+						images: [ res.data.images ]
 					});
 					console.log(productState);
 				})
@@ -51,6 +49,7 @@ function SingleProductView(props) {
 	);
 
 	const dispatchItem = (item) => {
+		console.log('🎩', item);
 		dispatch(creators.addToCart(item));
 	};
 
@@ -77,13 +76,21 @@ function SingleProductView(props) {
 				<div className="productOptions">
 					<div className="quantity">
 						<label htmlFor="productQuantity">Quantity</label>
-						<input
-							name="quantity"
-							type="number"
-							min="1"
-							value={productState.quantity}
-							onChange={changeHandler}
-						/>
+						<select name="quantity" onChange={changeHandler}>
+							<option disabled selected value>
+								select an quantity
+							</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
 					</div>
 					{/* If there are varaitns for the product add input else don't */}
 					{/* Everything in the variants should be data grabbed from the redux store */}
@@ -91,7 +98,7 @@ function SingleProductView(props) {
 						<label htmlFor="">Chosen Name</label>
 						<select name="">
 							<option disabled selected value>
-								-- select an option --
+								select an option
 							</option>
 							<option value="var1">Var 1</option>
 							<option value="var2">Var 2</option>

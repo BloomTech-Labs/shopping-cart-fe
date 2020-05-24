@@ -4,7 +4,7 @@ const initialCart = [];
 
 const remItem = (state, action) => {
 	const open = state.filter(function(obj) {
-		return obj.productId !== action.payload._id;
+		return obj.productId !== action.payload.productId;
 	});
 	return open;
 };
@@ -38,7 +38,9 @@ const sub = (num) => {
 };
 
 const fxnSub = (state, action) => {
+	console.log('state', state, 'action', action);
 	const itemObj = state.find(({ productId }) => productId === action.payload);
+	console.log('itemObj', itemObj);
 	const close = state.map((item) => {
 		if (item.productId === itemObj.productId) {
 			return {
@@ -64,9 +66,11 @@ export function cartReducer(state = initialCart, action) {
 					productId: action.payload.productId,
 					quantity: action.payload.quantity,
 					price: action.payload.price,
-					name: action.payload.name
+					name: action.payload.name,
+					images: action.payload.images
 				}
 			];
+
 		case types.REMOVE_ITEM_FROM_CART:
 			return remItem(state, action);
 		case types.INCREMENT:

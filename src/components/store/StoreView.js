@@ -23,10 +23,6 @@ function StoreView(props) {
 	const storeDetails = store.user;
 	const searchString = useSelector((state) => state.search);
 
-	console.log('🍕store', store);
-	console.log('👍sellerId', sellerId);
-	console.log('💜storeDetails', storeDetails);
-
 	// SearchObj is what parases the string (no idea how it works)
 	function searchObj(obj, string) {
 		const regExpFlags = 'gi';

@@ -84,6 +84,13 @@ export const addToCart = (item) => {
 	};
 };
 
+export const updateCartQuantity = (id) => {
+	return {
+		type: types.UPDATE_CART_QUANTITY,
+		payload: id
+	};
+};
+
 export const subtractFromCart = (item) => {
 	return {
 		type: types.REMOVE_ITEM_FROM_CART,

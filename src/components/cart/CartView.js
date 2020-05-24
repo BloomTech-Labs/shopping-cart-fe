@@ -13,10 +13,6 @@ const CartView = (props) => {
 	const sellerId = useSelector((state) => state.user.user._id);
 	const storeDetails = useSelector((state) => state.user.user);
 
-	const removeItem = (item) => {
-		dispatch(creators.subtractFromCart(item));
-	};
-
 	useEffect(
 		() => {
 			console.log('🍕', storeDetails);

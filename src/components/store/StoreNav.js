@@ -14,7 +14,7 @@ const StoreNav = () => {
 
 	const totalQuantity = (arr) => {
 		return arr.reduce((sum, item) => {
-			return sum + parseInt(item.quantity);
+			return sum + item.quantity;
 		}, 0);
 	};
 	const change = (e) => {

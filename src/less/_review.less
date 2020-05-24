@@ -8,18 +8,28 @@
 		border-top-right-radius: 10px;
 		padding: 12px 25px;
 		max-height: 45px;
-		display: grid;
-		grid-template-columns: 50% 16% 16% 16%;
+		display: flex;
 
 		p {
 			margin: 0px;
 			font-weight: 700;
 		}
+
+		.productTitle {
+			width: 50%;
+		}
+
+		.priceTitle,
+		.quantityTitle,
+		.totalTitle {
+			width: 20%;
+		}
 	}
 
 	.cartProductCard {
-		display: grid;
-		grid-template-columns: 50% 10% 6% 6% 10% 10% 8%;
+		display: flex;
+		justify-content: space-between;
+
 		padding: 25px;
 		background: white;
 		align-items: center;
@@ -38,9 +48,43 @@
 			margin: 0;
 		}
 
+		.quantityContainer {
+			display: flex;
+			align-items: center;
+
+			.quantityBTN {
+				background: #052e75;
+				border-radius: 100px;
+				width: 24px;
+				height: 24px;
+				margin: 0px 8px;
+				cursor: pointer;
+			}
+
+			.quantityCounter {
+				border: solid 2px #cfcfcf;
+				border-radius: 6px;
+				width: 55px;
+				height: 55px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+		}
+
 		.productSection {
 			display: flex;
 			align-items: center;
+			width: 40%;
+
+			.cartImage {
+				width: 70px;
+				height: 70px;
+				object-fit: cover;
+				background-position: 50% 50%;
+				border-radius: 4px;
+			}
 
 			.productInfo {
 				margin-left: 15px;
@@ -48,11 +92,9 @@
 		}
 
 		.equalsIcon {
-			margin: 0 auto;
 		}
 
 		.deleteIcon {
-			margin-left: auto;
 			cursor: pointer;
 		}
 	}
