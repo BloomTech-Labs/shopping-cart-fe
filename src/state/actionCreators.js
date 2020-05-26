@@ -1,7 +1,6 @@
 import * as types from './actionTypes';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
 import axios from 'axios';
-import history from '../history';
 
 const getUserUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
 
@@ -213,35 +212,66 @@ export const getSalesHistory = () => (dispatch) => {
 
 export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
+  console.log(values);
   // // posting to backend
-  // axios.post('', )
-  // .then((res)=>{
-  //   // this action still needs to be created
-  //   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
-  // })
-  // .catch((err)=> {
-  //   // action still needs to be created
-  //   dispatch({type: types.POST_ONBOARDING_FAILURE})
-  //   console.log(err)
-  // })
+  AxiosAuth()
+    .post('http://localhost:4000/api/store', values)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+// put all seller data to backend
+export const profileUpdate = (values) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROFILE, payload: values });
+  AxiosAuth()
+    .put('http://localhost:4000/api/store', values)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
+  // logo put here
+  AxiosAuth()
+    .put('http://localhost:4000/api/store', logo)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
+  // color put here
+  AxiosAuth()
+    // needs URL update
+    .put('http://localhost:4000/api/store', color)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
-export const deleteSellerInfo = () => (dispatch) => {
+export const deleteSellerInfo = (values) => (dispatch) => {
   dispatch({ type: types.DELETE_SELLER_INFO });
-};
-
-export const deleteSellerLogo = () => (dispatch) => {
-  dispatch({ type: types.DELETE_SELLER_LOGO });
-};
-
-export const deleteSellerColor = () => (dispatch) => {
-  dispatch({ type: types.DELETE_SELLER_COLOR });
+  // store delete here
+  AxiosAuth()
+    .delete('http://localhost:4000/api/store', values)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };

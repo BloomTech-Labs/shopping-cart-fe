@@ -25,6 +25,4 @@ export const ADD_ONBOARDING = 'ADD_ONBOARDING';
 export const UPLOAD_LOGO = 'UPLOAD_LOGO';
 export const UPLOAD_COLOR = 'UPLOAD_COLOR';
 export const DELETE_SELLER_INFO = 'DELETE_SELLER_INFO';
-// Have to finish these still
-export const DELETE_SELLER_LOGO = 'DELETE_SELLER_LOGO';
-export const DELETE_SELLER_COLOR = 'DELETE_SELLER_COLOR';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';

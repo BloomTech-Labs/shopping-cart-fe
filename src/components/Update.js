@@ -7,9 +7,8 @@ import {
   logoUpload,
   colorUpload,
   deleteSellerInfo,
-  deleteSellerLogo,
-  deleteSellerColor,
   postOnboard,
+  profileUpdate,
 } from '../state/actionCreators';
 import { TwitterPicker } from 'react-color';
 import history from '../history';
@@ -70,6 +69,7 @@ const Update = (props) => {
                 margin: '1rem',
                 backgroundColor: props.color.color,
                 height: '50px',
+                width: '50%',
                 transition: 'ease all 500ms',
               }}></div>
           </div>
@@ -250,11 +250,9 @@ const Update = (props) => {
               </button>
               <button
                 className={confirmDelete ? 'showMe' : 'hidden'}
-                onClick={() => {
-                  props.deleteSellerInfo();
-                  props.deleteSellerLogo();
-                  props.deleteSellerColor();
-                  props.history.push('/welcome');
+                onClick={(values) => {
+                  props.deleteSellerInfo(values);
+                  history.push('/welcome');
                 }}>
                 Confirm Deletion
               </button>
@@ -308,7 +306,7 @@ const ProfileUpdater = withFormik({
   }),
 
   handleSubmit: (values, formikBag) => {
-    formikBag.props.postOnboard(values);
+    formikBag.props.profileUpdate(values);
   },
 })(Update);
 
@@ -332,7 +330,6 @@ export default connect(mapStateToProps, {
   logoUpload,
   colorUpload,
   deleteSellerInfo,
-  deleteSellerLogo,
-  deleteSellerColor,
   postOnboard,
+  profileUpdate,
 })(ProfileUpdater);
