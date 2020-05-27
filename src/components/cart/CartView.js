@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import history from '../../history';
 
 import CartTable from './CartTable';
+import NoLogo from '../../images/PureRetail_Logo.png';
 
 const CartView = (props) => {
 	const dispatch = useDispatch();
@@ -27,17 +28,23 @@ const CartView = (props) => {
 	};
 
 	return (
-		<div>
+		<div className="cartMasterContainer">
 			<div className="cartHeader">
 				<div
+					className="backButton"
 					onClick={() => {
 						history.goBack();
 					}}
 				>
-					{' '}
-					Back
+					← Back
 				</div>
-				<img src="" />
+				<div className="logoContainer">
+					{storeDetails.imageUrl ? (
+						<img className="storeLogo" src={storeDetails.imageUrl} />
+					) : (
+						<img className="storeLogo" src={NoLogo} />
+					)}
+				</div>
 			</div>
 			<CartTable cartContents={cartContents} />
 		</div>

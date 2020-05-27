@@ -6,6 +6,7 @@ import equals_icon from '../../images/equals-icon.svg';
 import delete_icon from '../../images/delete-icon.svg';
 import add_icon from '../../images/add-icon.svg';
 import subtract_icon from '../../images/subtract-icon.svg';
+import emptyCartGraphic from '../../images/emptyCartGraphic.svg';
 
 const CartTable = ({ cartContents }) => {
 	const dispatch = useDispatch();
@@ -29,12 +30,20 @@ const CartTable = ({ cartContents }) => {
 
 	return (
 		<div className="cartMasterContainer">
-			<div className="tableHeader">
-				<p className="productTitle"> Product</p>
-				<p className="priceTitle"> Price</p>
-				<p className="quantityTitle"> Quantity</p>
-				<p className="totalTitle"> Total</p>
-			</div>
+			{cartContents.length > 0 ? (
+				<div className="tableHeader">
+					<p className="productTitle"> Product</p>
+					<p className="priceTitle"> Price</p>
+					<p className="quantityTitle"> Quantity</p>
+					<p className="totalTitle"> Total</p>
+				</div>
+			) : (
+				<div className="emptyCart">
+					<img src={emptyCartGraphic} />
+					<h1>This is awkward... </h1>
+					<h2>You don’t have’t any items in your cart </h2>
+				</div>
+			)}
 
 			{cartContents ? (
 				cartContents.map((cv) => {

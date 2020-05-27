@@ -1,6 +1,45 @@
 .cartMasterContainer {
 	width: 100%;
+	padding: 0 100px;
+
+	.cartHeader {
+		display: grid;
+		grid-template-columns: 20% 20% 20% 20% 20%;
+		justify-content: center;
+
+		.backButton {
+			font-size: 18px;
+			color: #052e75;
+			margin: 0;
+		}
+
+		.logoContainer {
+			max-width: 150px;
+			max-height: 80px;
+
+			img {
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.cartMasterContainer {
+	width: 100%;
 	padding: 0px 100px;
+
+	.emptyCart {
+		display: flex;
+		justify-content: center;
+		flex-flow: column;
+		margin-top: 150px;
+
+		h1,
+		h2 {
+			text-align: center;
+		}
+	}
 
 	.tableHeader {
 		background: rgba(5, 46, 117, 0.10);
