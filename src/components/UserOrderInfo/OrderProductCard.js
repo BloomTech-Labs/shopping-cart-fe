@@ -1,25 +1,22 @@
 import React, { useState } from "react"
 import { DeleteOutlined } from "@ant-design/icons"
 
-const OrderProductCard = (props) => {
-  const [hide, setHide] = useState(true)
-
+const OrderProductCard = ({ item, deleteProduct }) => {
   return (
-
-    <div className={props.showProduct ? "productChar" : "hidden"}>
-      <div>Product: {props.product.productName}</div>
-      <div>Quantity: {props.product.quantity}</div>
-      <div>Variant: {props.product.variant}</div>
+    <div>
+      <h3>Product: {item.product.name} </h3>
+      <h3>Quantity: {item.quantity} </h3>
+      <h3>Variant: {item.product.variant[0].variantOption} </h3>
       <div>
-        <button onClick={() => props.editProduct(props.product.id)}>Edit</button>
-        <button className={hide ? "" : ""}>Delete</button>
+        <button>Edit</button>
+        <button onClick={() => deleteProduct(item.id)}>Delete</button>
         {/* above button  */}
-        <p className={"hidden"}>Are you sure?</p>
-        <button className={"hidden"} deleteProduct={props.deleteProduct}>
+        {/* <p c>Are you sure?</p>
+        <button >
           <DeleteOutlined />
           Confirm Delete
         </button>
-        <button>No</button>
+        <button>No</button> */}
       </div>
     </div>
   )

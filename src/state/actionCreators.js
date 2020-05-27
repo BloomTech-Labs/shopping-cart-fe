@@ -238,7 +238,7 @@ export const getSalesHistory = () => (dispatch) => {
       console.log(err)
     })
 }
-
+// DELETE order
 export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
   dispatch({type: types.DELETE_ORDER_PRODUCT})
   axios.delete(
@@ -252,7 +252,7 @@ export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
   })
 }
 
-
+// PUT order
 export const updateOrderProduct = (order_id, orderItem_id, payload ) => (dispatch) => {
   dispatch({ type: types.UPDATE_ORDER_PRODUCT})
   axios.put(
@@ -268,6 +268,3 @@ export const updateOrderProduct = (order_id, orderItem_id, payload ) => (dispatc
   })
 }
 
-export const toggleEdit = () => (dispatch) => {
-  dispatch({ type: types.TOGGLE_EDIT})
-}

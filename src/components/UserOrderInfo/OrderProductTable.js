@@ -1,83 +1,111 @@
 import React, { useEffect, useState } from "react"
 import OrderChangeForm from "./OrderChangeForm"
 import OrderProductCard from "./OrderProductCard"
-import { useSelector, useDispatch } from 'react-redux';
-
-
 
 function OrderProductTable(props) {
-  const dispatch = useDispatch();
-  const orderItem = useSelector((state) => state.initialOrder)
   const ourProducts = [
     {
-      id: 1,
-      quantity: 2,
-      productName: "Apple",
-      variants: ["Small", "Medium", "Large", "XL"],
+      id: "1",
+      product: {
+        id: "1",
+        name: "Banana",
+        variant: [
+          {
+            id: "11",
+            variantName: "Color",
+            variantPrice: 1000,
+            variantOption: "Very Orange",
+          },
+          {
+            id: "12",
+            variantName: "size",
+            variantPrice: 2000,
+            variantOption: "Medium",
+          },
+        ],
+      },
+      quantity: 1,
     },
     {
-      id: 2,
-      quantity: 5,
-      productName: "Banana",
-      variants: ["Smaller", "Mediumer", "Largeer", "XLer"],
+      id: "2",
+      product: {
+        id: "2",
+        name: "Apple",
+        variant: [
+          {
+            id: "13",
+            variantName: "size",
+            variantPrice: 5,
+            variantOption: "Small",
+          },
+          {
+            id: "14",
+            variantName: "size",
+            variantPrice: 6,
+            variantOption: "Medium",
+          },
+        ],
+      },
+      quantity: 1,
     },
   ]
+
   const [products, setProducts] = useState(ourProducts)
   const [editing, setEditing] = useState(false)
-  const [showProduct, setShowProduct] = useState(true)
-  const [currentProduct, setCurrentProduct] = useState({
-    id: null,
-    quantity: null,
-    productName: "",
-    variant: "",
+
+  const [productInput, setProductInput] = useState({
+    id: Date.now(),
+    product: {
+      id: null,
+      name: "",
+      variant: [
+        {
+          id: null,
+          variantName: "size",
+          variantPrice: null,
+          variantOption: "",
+        },
+      ],
+    },
+    quantity: 1,
   })
-  const updateProduct = (id, newProduct) => {
-    setEditing(false)
-    setShowProduct(true)
+
+  const deleteProduct = (id) => {
+    setProducts(products.filter((item) => item.id !== id))
+  }
+
+  const updateProduct = (id, updatedProduct) => {
     setProducts(
-      products.map((product) => (product.id === id ? newProduct : product))
+      products.map((item) => (item.id === id ? updatedProduct : item))
     )
   }
 
-  const editProduct = (product) => {
-    setProducts(
-    
-    )
-    setEditing(true)
-    setShowProduct(false)
-    setCurrentProduct({id: product.id, quantity: product.quantity, productName: product.productName, variant: product.variant })
-    
+  const editProduct = (item) => {
+    setProductInput({
+      id: item.id,
+      quantity: item.quantity,
+      variantOption:  [...item.product.variant[0].variantOption ],
+    })
   }
-
-  console.log("Edit Product", editProduct)
 
   return (
     <div>
-      {products.map((product) => (
+      {products.map((item) => (
         <div>
           <OrderChangeForm
-            editing={editing}
-            product={product}
-            setEditing={setEditing}
+            item={item}
             updateProduct={updateProduct}
-            currentProduct= {currentProduct}
+            productInput={productInput}
           />
           <OrderProductCard
-            product={product}
-            setEditing={setEditing}
-            editing={editing}
+            item={item}
+            deleteProduct={deleteProduct}
             editProduct={editProduct}
-            showProduct={showProduct}
-            setShowProduct={setShowProduct}
-            onClick={props.toggleEdit()}
-            className={props.initialOrder.isEditing ? 'showMe' : 'hidden'}
           />
         </div>
       ))}
     </div>
   )
 }
-
-
 
 export default OrderProductTable

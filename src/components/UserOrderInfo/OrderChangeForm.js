@@ -1,50 +1,56 @@
 import React, { useState, useEffect } from "react"
 
-const OrderChangeForm = ({ product, editing, updateProduct,currentProduct  }) => {
-  // The body some piece of state => Put request
-  const [order, setOrder] = useState(currentProduct)
+const OrderChangeForm = ({ item, productInput, updateProduct }) => {
+  const [input, setInput] = useState(productInput)
 
-  useEffect(() => {
-    setOrder(currentProduct)
-  }, [currentProduct])
-
-  const onChangeHandle = (e) => {
-    setOrder({ [e.target.name]: e.target.value })
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    updateProduct(input.id, input)
   }
-  
+
+  console.log("console log for input", input)
+  console.log("console log for product", input.product)
+  console.log("console log for variant", input.product.variant)
   return (
-    <div className={!editing ? "hidden" : "showEdit"}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          updateProduct(order.id, order)
-        }}
-      >
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          disabled
+          type="text"
+          name="name"
+          value={item.product.name}
+          placeholder={item.product.name}
+        />
         <input
           type="number"
-          name="quantity"
-          placeholder={product.quantity}
-          value={order.quantity}
-          onChange={onChangeHandle}
+          value={productInput.quantity}
+          placeholder={item.quantity}
+          onChange={(e) => {
+            setInput({
+              ...input,
+              quantity: e.target.value,
+            })
+          }}
         />
-        {/* Product */}
-        <p>{product.productName}</p>
-        {/* Variant */}
-        <label>Variants</label>
 
         <select
-          name="variants"
-          value={order.variants}
-          onChange={onChangeHandle}
+          value={input.product.variant[0].variantOption}
+          onChange={(e) => {
+            setInput({
+              ...input.product.variant[0],
+              variantOption: e.target.value
+            })
+          }}
         >
-          {product.variants.map((v) => {
+          {item.product.variant.map((v, index) => {
             return (
-              <option key={v} value={v}>
-                {v}
+              <option key={index} value={v.variantOption}>
+                {v.variantOption}
               </option>
             )
           })}
         </select>
+
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -52,4 +58,3 @@ const OrderChangeForm = ({ product, editing, updateProduct,currentProduct  }) =>
 }
 
 export default OrderChangeForm
-

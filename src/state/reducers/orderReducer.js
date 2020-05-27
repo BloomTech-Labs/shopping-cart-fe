@@ -38,9 +38,6 @@ export function orderReducer(state = initialOrders, action) {
         ...state, 
         product: action.newProduct
       }
-    case types.TOGGLE_EDIT:
-      return state.map(item => 
-        item.id === initialOrders.id ? { ...item, completed: !item.completed } : item)
     default:
       return state
   }
