@@ -1,114 +1,116 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { Carousel, Button, Icon, Typography, Spin } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import * as creators from "../../state/actionCreators";
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import * as creators from '../../state/actionCreators';
 
-const { Paragraph } = Typography;
 function SingleProductView(props) {
-  const [productState, setProductState] = useState([]);
-  const itemId = props.productId;
-  const dispatch = useDispatch();
-  const cartContents = useSelector((state) => state.cart);
-  const isLoading = useSelector((state) => state.user.isLoading);
-  useEffect(() => {
-    dispatch(creators.setLoading(true));
-    axios
-      .get(
-        `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`
-      )
-      .then((res) => {
-        setProductState(res.data);
-        dispatch(creators.setLoading(false));
-      })
-      .catch((err) => {
-        dispatch(creators.setLoading(false));
-        console.log(err);
-      });
-  }, [itemId, dispatch]);
+	//productState is used only for the values that is submitted to the cart
+	const [ productState, setProductState ] = useState([
+		{
+			name: '',
+			price: null,
+			productId: '',
+			quantity: 1,
+			images: []
+		}
+	]);
+	//Full Product is used to populate the interface
+	const [ fullProduct, setFullProduct ] = useState([]);
+	const itemId = props.productId;
+	const dispatch = useDispatch();
+	const cartContents = useSelector((state) => state.cart);
 
-  const dispatchItem = (item) => {
-    dispatch(creators.addToCart(item));
-  };
-  const removeItem = (item) => {
-    dispatch(creators.subtractFromCart(item));
-  };
-  const btnChange = (item) => {
-    const itemObj = cartContents.find(
-      ({ productId }) => productId === item._id
-    );
-    return itemObj;
-  };
-  return (
-    <div className='single-cover'>
-      <Spin spinning={isLoading}>
-        <div className='kol'>
-          <Carousel className='img'>
-            {productState.images &&
-              productState.images.length &&
-              productState.images.map((item, index) => (
-                <div key={index}>
-                  <img
-                    style={{ width: "100%", margin: "0" }}
-                    src={item}
-                    alt='product'
-                  />
-                </div>
-              ))}
-          </Carousel>
-          <div className='subKol'>
-            <div className='subNameDesc'>
-              <h1>{productState.name}</h1>
-              <div>
-                <Paragraph ellipsis={{ rows: 3, expandable: true }}>
-                  {productState.description}
-                </Paragraph>
-              </div>
-            </div>
-            <div className='subButton'>
-              {!btnChange(productState) ? (
-                <Button
-                  style={{ border: "0" }}
-                  onClick={() => dispatchItem(productState)}
-                >
-                  Add to Cart
-                </Button>
-              ) : (
-                <Button
-                  style={{ backgroundColor: "#FF6663", border: "0" }}
-                  onClick={() => removeItem(productState)}
-                >
-                  Remove from Cart
-                </Button>
-              )}
-            </div>
-            <NavLink to='/review'>
-              <div
-                style={{
-                  backgroundColor: "#00000",
-                  border: "0",
-                  borderRadius: "1.5rem",
-                }}
-                className='subFooter'
-              >
-                <h1>Go to your cart</h1>
-                <Icon
-                  style={{
-                    fontSize: "2.5rem",
-                    color: "white",
-                    marginTop: "0.9rem",
-                    marginLeft: "0.4rem",
-                  }}
-                  type='shopping-cart'
-                />
-              </div>
-            </NavLink>
-          </div>
-        </div>
-      </Spin>
-    </div>
-  );
+	function changeHandler(e) {
+		e.preventDefault();
+		setProductState({ ...productState, [e.target.name]: parseInt(e.target.value) });
+	}
+
+	useEffect(
+		() => {
+			axios
+				.get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
+				.then((res) => {
+					setFullProduct(res.data);
+					setProductState({
+						name: res.data.name,
+						price: res.data.price,
+						productId: res.data._id,
+						quantity: 1,
+						images: [ res.data.images ]
+					});
+					console.log(productState);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		},
+		[ itemId, dispatch ]
+	);
+
+	const dispatchItem = (item) => {
+		console.log('🎩', item);
+		dispatch(creators.addToCart(item));
+	};
+
+	return (
+		<div className="singleProductContainer">
+			<div className="photoSection">
+				<div className="allPhotos">
+					{fullProduct.images ? (
+						fullProduct.images.map((cv) => {
+							return <img src={cv} />;
+						})
+					) : (
+						''
+					)}
+				</div>
+			</div>
+			<div className="productInfoContatiner">
+				{/* <button onClick={logger}> Logger</button> */}
+				<h2>{fullProduct.name}</h2>
+				<h1> ${fullProduct.price}</h1>
+				<div className="divider" />
+				<h3 className="description"> Description</h3>
+				<p>{fullProduct.description}</p>
+				<div className="productOptions">
+					<div className="quantity">
+						<label htmlFor="productQuantity">Quantity</label>
+						<select name="quantity" onChange={changeHandler}>
+							<option disabled selected value>
+								select an quantity
+							</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					{/* If there are varaitns for the product add input else don't */}
+					{/* Everything in the variants should be data grabbed from the redux store */}
+					<div className="variant">
+						<label htmlFor="">Chosen Name</label>
+						<select name="">
+							<option disabled selected value>
+								select an option
+							</option>
+							<option value="var1">Var 1</option>
+							<option value="var2">Var 2</option>
+						</select>
+					</div>
+				</div>
+				<button className="addToCart" onClick={() => dispatchItem(productState)}>
+					Add To Cart
+				</button>
+			</div>
+		</div>
+	);
 }
 
 export default SingleProductView;

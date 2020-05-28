@@ -1,32 +1,32 @@
-import React from "react";
-import { Switch } from "react-router-dom";
-import "./less/index.less";
-import WrappedRegistrationForm from "./components/register";
-import LoginForm from "./components/login";
-import ResetPasswordForm from "./components/ResetPassword/resetPassword";
-import SetNewPasswordForm from "./components/ResetPassword/setNewPassword";
-import CreateStoreForm from "./components/createStore/firstView";
-import AddLogoForm from "./components/createStore/addLogo";
-import CreateItem from "./components/Products/CreateItem";
-import UpdateItem from "./components/Products/updateItem";
-import PrivateRoute from "./components/Auth/PrivateRoute";
-import PublicRoute from "./components/Auth/PublicRoute";
-import Main from "./components/inventory";
-import UpdateProfile from "./components/EditProfile";
-import Home from "./components/DashboardHome";
-import Store from "./components/store";
-import StripeMain from "./components/Stripe";
-import Review from "./components/review";
-import OrderSuccessPage from "./components/Stripe/OrderSuccessPage";
-import Single from "./components/singleProduct/index";
-import Support from "./components/support";
-import SaveCartMain from "./components/saveCart";
-import Account from "./components/SellerAccount/SellerAccount";
-import Confirmation from "./components/orderConfirmation";
-import addVariants from "./components/Products/addVariants";
-import WelcomeScreenForm from "./components/WelcomeScreen";
-import BrandView from "./components/BrandView";
-import ColorPicker from "./components/ColorPicker";
+import React from 'react';
+import { Switch } from 'react-router-dom';
+import './less/index.less';
+import WrappedRegistrationForm from './components/register';
+import LoginForm from './components/login';
+import ResetPasswordForm from './components/ResetPassword/resetPassword';
+import SetNewPasswordForm from './components/ResetPassword/setNewPassword';
+import CreateStoreForm from './components/createStore/firstView';
+import AddLogoForm from './components/createStore/addLogo';
+import CreateItem from './components/Products/CreateItem';
+import UpdateItem from './components/Products/updateItem';
+import PrivateRoute from './components/Auth/PrivateRoute';
+import PublicRoute from './components/Auth/PublicRoute';
+import Main from './components/inventory';
+import UpdateProfile from './components/EditProfile';
+import Home from './components/DashboardHome';
+import StoreView from './components/store/StoreView';
+import StripeMain from './components/Stripe';
+import CartView from './components/cart/CartView';
+import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
+import Single from './components/singleProduct/index';
+import Support from './components/support';
+import SaveCartMain from './components/saveCart';
+import Account from './components/SellerAccount/SellerAccount';
+import Confirmation from './components/orderConfirmation';
+import WelcomeScreenForm from './components/WelcomeScreen';
+import BrandView from './components/BrandView';
+import ColorPicker from './components/ColorPicker';
+import CreateProductView from "./components/Products/createProductView"
 
 function App() {
   window.addEventListener("load", () => {
@@ -53,12 +53,12 @@ function App() {
         <PrivateRoute path='/inventory' component={Main} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
         <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
-        <PublicRoute path='/store/:id' component={Store} />
+        <PublicRoute path='/store/:id' component={StoreView} />
         <PublicRoute
           path='/cart/:id'
           component={localStorage.getItem("token") ? Confirmation : StripeMain}
         />
-        <PublicRoute path='/review' component={Review} />
+        <PublicRoute path='/cart' component={CartView} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
         <PrivateRoute path='/createstore' component={CreateStoreForm} />
         <PrivateRoute path='/addlogo' component={AddLogoForm} />
@@ -70,7 +70,7 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        <PublicRoute path='/testingGrounds' component={addVariants} />
+        <PublicRoute path='/testingGrounds' component={CreateProductView} />
       </Switch>
       <div
         id='offline-notification'

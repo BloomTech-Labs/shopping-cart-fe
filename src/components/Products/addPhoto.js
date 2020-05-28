@@ -1,98 +1,88 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import AxiosAuth from "../Auth/axiosWithAuth";
-import trashIcon from "../../images/trash_icon.svg";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import AxiosAuth from '../Auth/axiosWithAuth';
+import trashIcon from '../../images/trash_icon.svg';
 
-const AddPhoto = () => {
-  const [imageCount, setImageCount] = useState(0);
-  const [cloudUrl, setCloudUrl] = useState([]);
-  const [loading, setLoading] = useState(false);
+const AddPhoto = ({ productData, setProductData, errorState }) => {
+	const [ imageCount, setImageCount ] = useState(0);
 
-  //Adding A photo
-  const uploadImage = (e) => {
-    setLoading(false);
+	const [ loading, setLoading ] = useState(false);
 
-    //Ensuring the photo isnt too large and the right file type
-    if (imageCount === 3) {
-      return "Photo Limit Reach!";
-    }
+	//Adding A photo
+	const uploadImage = (e) => {
+		setLoading(false);
 
-    if (e.target.files[0].size > 500000) {
-      return alert("Photo is too large!");
-    }
+		//Ensuring the photo isnt too large and the right file type
+		if (imageCount === 3) {
+			return 'Photo Limit Reach!';
+		}
 
-    if (
-      e.target.files[0].type !== "image/png" &&
-      e.target.files[0].type !== "image/jpeg"
-    ) {
-      return alert("File type not accepted");
-    }
+		if (e.target.files[0].size > 500000) {
+			return alert('Photo is too large!');
+		}
 
-    const files = e.target.files;
-    setLoading(true);
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "ShoppingCart-Products");
+		if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpeg') {
+			return alert('File type not accepted');
+		}
 
-    axios
-      .post("https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload", data)
-      .then((res) => {
-        setCloudUrl([...cloudUrl, res.data.secure_url]);
-      });
+		const files = e.target.files;
+		setLoading(true);
+		const data = new FormData();
+		data.append('file', files[0]);
+		data.append('upload_preset', 'ShoppingCart-Products');
 
-    setImageCount(imageCount + 1);
-    setLoading(false);
-  };
+		axios.post('https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload', data).then((res) => {
+			setProductData({ ...productData, ['photos']: [ ...productData.photos, res.data.secure_url ] });
+		});
 
-  //Removing A photo
+		setImageCount(imageCount + 1);
+		setLoading(false);
+	};
 
-   function removePhoto(arg) {
-    const newState =  cloudUrl.filter((cv) => {
-      return cv !== arg;
-    });
-    setImageCount(imageCount - 1);
-    return setCloudUrl(newState);
-  }
+	//Removing A photo
 
-  return (
-    <div className="photoContainer">
-      <div className="PhotoHeaderContainer">
-        <h3>Photos</h3>
-        <input id="uploadButton" type="file" onChange={uploadImage} />
-        <label
-          className={
-            imageCount === 3
-              ? "fakeUploadButton buttonDisabled"
-              : "fakeUploadButton"
-          }
-          htmlFor="uploadButton"
-        >
-          Add Photo
-        </label>
-      </div>
-      <h4 className="validationMessage">
-        {imageCount === 3
-          ? "Photo maximum reached. Remove Photos to add more"
-          : ""}
-      </h4>
-      {loading
-        ? "Loading..."
-        : cloudUrl.map((cv) => {
-            return (
-              <div className="singleProductImage">
-                <img className="productImage" src={cv} key={Math.random() * Math.random()} />
-                <img
-                  className="trashIcon"
-                  src={trashIcon}
-                  onClick={() => {
-                    removePhoto(cv);
-                  }}
-                />
-              </div>
-            );
-          })}
-    </div>
-  );
+	function removePhoto(arg) {
+		const newState = productData.photos.filter((cv) => {
+			return cv !== arg;
+		});
+		setImageCount(imageCount - 1);
+		return setProductData({ ...productData, ['photos']: newState });
+	}
+
+	return (
+		<div className="photoContainer">
+			<div className="PhotoHeaderContainer">
+				<h3>Photos</h3>
+				<input id="uploadButton" type="file" onChange={uploadImage} />
+				<label
+					className={imageCount === 3 ? 'fakeUploadButton buttonDisabled' : 'fakeUploadButton'}
+					htmlFor="uploadButton"
+				>
+					Add Photo
+				</label>
+			</div>
+			<h4 className="validationMessage">{imageCount === 3 ? 'Three photo limit met' : ''}</h4>
+			{loading ? (
+				'Loading...'
+			) : (
+				productData.photos.map((cv) => {
+					return (
+						<div className="singleProductImage">
+							<img className="productImage" src={cv} key={Math.random() * Math.random()} />
+							<img
+								className="trashIcon"
+								src={trashIcon}
+								onClick={() => {
+									removePhoto(cv);
+								}}
+							/>
+						</div>
+					);
+				})
+			)}
+			<div className={errorState === 'photos' ? 'error' : 'hideError'}>You need to add a photo!</div>
+		</div>
+	);
 };
 
 export default AddPhoto;
