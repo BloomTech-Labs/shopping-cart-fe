@@ -12,43 +12,36 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 	function changeHandler(e) {
 		e.preventDefault();
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+		console.log('formData', formData);
+	}
+
+	function variantNameHandler(e) {
+		e.preventDefault();
+		setProductData({ ...productData, [e.target.name]: e.target.value });
 	}
 
 	function submitHandler(e) {
 		e.preventDefault();
-		setStopFirstLoad(true);
-		if (!formData.variantName) {
-			return setErrorState('variantName');
-		}
-		if (!formData.variantOption) {
-			return setErrorState('option');
-		}
-		if (!formData.variantPrice) {
-			return setErrorState('variantPrice');
-		}
-
-		setProductData({ ...productData, ['variants']: [ ...productData.variants, formData ] });
+		setProductData({ ...productData, ['variantDetails']: [ ...productData.variantDetails, formData ] });
 		setFormData({
-			variantName: formData.variantName,
 			variantOption: '',
 			variantPrice: ''
 		});
-		setErrorState('');
-		setStopFirstLoad(false);
 	}
 
 	function removeVariant(arg) {
-		console.log(arg);
-		const newState = productData.variants.filter((cv) => {
+		console.log('This is arg', arg);
+		const newState = productData.variantDetails.filter((cv) => {
+			console.log('this is cv', cv);
 			return cv.variantOption !== arg;
 		});
-		return setProductData({ ...productData, ['variants']: newState });
+
+		return setProductData({ ...productData, ['variantDetails']: newState });
 	}
 
 	function clearVariants() {
-		setProductData({ ...productData, ['variants']: [] });
+		setProductData({ ...productData, ['variantDetails']: [] });
 		setFormData({
-			variantName: '',
 			variantOption: '',
 			variantPrice: ''
 		});
@@ -83,19 +76,17 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 										Variant Name
 									</label>
 									<input
-										className={productData.variants.length >= 1 ? 'inputDisabled' : ''}
 										type="text"
 										name="variantName"
 										placeholder="Variant Name Here"
-										value={formData.variantName}
-										onChange={changeHandler}
-										disabled={productData.variants.length >= 1 ? true : false}
+										value={productData.variantName}
+										onChange={variantNameHandler}
 									/>
 								</div>
 
 								<p
 									className={
-										productData.variants.length >= 1 ? 'clearBTN' : 'clearBTN clearDisabled '
+										productData.variantDetails.length >= 1 ? 'clearBTN' : 'clearBTN clearDisabled '
 									}
 									onClick={clearVariants}
 								>
@@ -151,8 +142,8 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 					''
 				)}
 			</div>
-			{productData.variants.length >= 1 ? (
-				productData.variants.map((cv) => {
+			{productData.variantDetails.length >= 1 ? (
+				productData.variantDetails.map((cv) => {
 					return <VaraintChild data={cv} removeVariant={removeVariant} key={Math.random() * Math.random()} />;
 				})
 			) : (
@@ -168,7 +159,7 @@ const VaraintChild = (props) => {
 	return (
 		<div className="cardContainer">
 			<p>
-				{props.data.variantName}: {props.data.variantOption} | ${props.data.variantPrice}
+				{props.data.variantOption} | ${props.data.variantPrice}
 			</p>
 			<img
 				className="trashcan"

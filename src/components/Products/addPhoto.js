@@ -32,7 +32,7 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 		data.append('upload_preset', 'ShoppingCart-Products');
 
 		axios.post('https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload', data).then((res) => {
-			setProductData({ ...productData, ['photos']: [ ...productData.photos, res.data.secure_url ] });
+			setProductData({ ...productData, ['images']: [ ...productData.images, res.data.secure_url ] });
 		});
 
 		setImageCount(imageCount + 1);
@@ -42,11 +42,11 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 	//Removing A photo
 
 	function removePhoto(arg) {
-		const newState = productData.photos.filter((cv) => {
+		const newState = productData.images.filter((cv) => {
 			return cv !== arg;
 		});
 		setImageCount(imageCount - 1);
-		return setProductData({ ...productData, ['photos']: newState });
+		return setProductData({ ...productData, ['images']: newState });
 	}
 
 	return (
@@ -65,7 +65,7 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 			{loading ? (
 				'Loading...'
 			) : (
-				productData.photos.map((cv) => {
+				productData.images.map((cv) => {
 					return (
 						<div className="singleProductImage">
 							<img className="productImage" src={cv} key={Math.random() * Math.random()} />
