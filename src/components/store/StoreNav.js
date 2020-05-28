@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as creators from '../../state/actionCreators';
@@ -11,6 +11,14 @@ const StoreNav = () => {
 	const dispatch = useDispatch();
 	const cartContents = useSelector((state) => state.cart);
 	const storeDetails = useSelector((state) => state.user.user);
+	const sellerId = localStorage.getItem('sellerId');
+
+	useEffect(
+		() => {
+			dispatch(creators.getStore(sellerId));
+		},
+		[ sellerId, dispatch ]
+	);
 
 	const totalQuantity = (arr) => {
 		return arr.reduce((sum, item) => {

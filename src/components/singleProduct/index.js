@@ -5,13 +5,12 @@ import SingleProductView from './buyerSingleProductView';
 
 function Single(props) {
 	const productId = props.match.params.id;
-	const [ up, setUp ] = useState(false);
-	const cartContents = useSelector((state) => state.cart);
 	const store = useSelector((state) => state.user);
+	console.log('store', store);
 
 	return (
 		<div>
-			<StoreNav />
+			<StoreNav store={store} />
 			<SingleProductView productId={productId} />
 		</div>
 	);

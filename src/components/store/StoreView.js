@@ -6,7 +6,6 @@ import StoreNav from './StoreNav';
 
 function StoreView(props) {
 	const sellerId = props.match.params.id.split('-').pop();
-	const cartContents = useSelector((state) => state.cart);
 	const store = useSelector((state) => state.user);
 
 	const dispatch = useDispatch();
@@ -22,6 +21,9 @@ function StoreView(props) {
 	const inventory = useSelector((state) => state.store);
 	const storeDetails = store.user;
 	const searchString = useSelector((state) => state.search);
+	const localStoreId = localStorage.getItem('sellerId');
+
+	console.log('localStorage', localStoreId);
 
 	// SearchObj is what parases the string (no idea how it works)
 	function searchObj(obj, string) {

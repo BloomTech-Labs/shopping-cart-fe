@@ -19,7 +19,6 @@ function SingleProductView(props) {
 	const [ fullProduct, setFullProduct ] = useState([]);
 	const itemId = props.productId;
 	const dispatch = useDispatch();
-	const cartContents = useSelector((state) => state.cart);
 
 	function changeHandler(e) {
 		e.preventDefault();
@@ -49,7 +48,6 @@ function SingleProductView(props) {
 	);
 
 	const dispatchItem = (item) => {
-		console.log('🎩', item);
 		dispatch(creators.addToCart(item));
 	};
 
@@ -67,7 +65,6 @@ function SingleProductView(props) {
 				</div>
 			</div>
 			<div className="productInfoContatiner">
-				{/* <button onClick={logger}> Logger</button> */}
 				<h2>{fullProduct.name}</h2>
 				<h1> ${fullProduct.price}</h1>
 				<div className="divider" />
