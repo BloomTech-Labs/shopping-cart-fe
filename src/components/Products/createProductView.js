@@ -5,12 +5,11 @@ import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
 import AddVariants from './addVariants';
 import Navbar from '../Navbar';
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateProductView = () => {
-	// valdation for posting - if true that it posts and pushes to the dashboard screen
-	const [ readyToPost, setReadyToPost ] = useState(false);
-	//Prevents useEffect from running on inital load
-	const [ checkErrors, setCheckErros ] = useState(false);
+	// inventory gets all of the products from the redux store (redux store is calling the db)
+	  const inventory = useSelector((state) => state.store);
 	//Keeps track of what field is empty
 	const [ errorState, setErrorState ] = useState();
 	// The object that is posted
@@ -33,16 +32,16 @@ const CreateProductView = () => {
 
 	// Post to the server if all checks out
 	function submitHandler() {
-		console.log('errorState', errorState);
+		
 
 		if (!productData.productName) {
 			return setErrorState('productName');
 		}
-		console.log('errorState', errorState);
+	
 		if (!productData.price) {
 			return setErrorState('price');
 		}
-		console.log('errorState', errorState);
+		
 		if (!productData.category) {
 			return setErrorState('category');
 		}
@@ -54,7 +53,6 @@ const CreateProductView = () => {
 		AxiosAuth()
 			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
 			.then((res) => {
-				console.log('🍕🔥✅', res);
 				history.push('/dashboard');
 			})
 			.catch((error) => {
@@ -84,6 +82,7 @@ const CreateProductView = () => {
 				</div>
 				<div className="rightContainer">
 					<BasicDetails
+					inventory={inventory}
 						productData={productData}
 						setProductData={setProductData}
 						setErrorState={setErrorState}

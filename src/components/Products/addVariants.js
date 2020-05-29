@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import trashIcon from '../../images/trash_icon.svg';
 
 const AddVariants = ({ formData, setFormData, productData, setProductData }) => {
-	const [ stopFirstLoad, setStopFirstLoad ] = useState(false);
 	//active = If a user has selected to start adding variants
 	const [ active, setActive ] = useState(false);
-	// formData = Holds the input field data until it is submited
+	// formData = state used for variantOption & Variant price to be added to to #ProductData when function #submitHandler is used
 
 	const [ errorState, setErrorState ] = useState();
 
 	function changeHandler(e) {
 		e.preventDefault();
 		setFormData({ ...formData, [e.target.name]: e.target.value });
-		console.log('formData', formData);
 	}
 
 	function variantNameHandler(e) {
@@ -25,11 +23,11 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 		if (!productData.variantName) {
 			return setErrorState('variantName');
 		}
-		console.log('errorState', errorState);
+
 		if (!formData.variantOption) {
 			return setErrorState('variantOption');
 		}
-		console.log('errorState', errorState);
+
 		if (!formData.variantPrice) {
 			return setErrorState('variantPrice');
 		}
@@ -44,12 +42,9 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 	}
 
 	function removeVariant(arg) {
-		console.log('This is arg', arg);
 		const newState = productData.variantDetails.filter((cv) => {
-			console.log('this is cv', cv);
 			return cv.variantOption !== arg;
 		});
-
 		return setProductData({ ...productData, ['variantDetails']: newState });
 	}
 
