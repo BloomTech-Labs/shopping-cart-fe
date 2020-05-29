@@ -7,7 +7,6 @@ import ResetPasswordForm from './components/ResetPassword/resetPassword';
 import SetNewPasswordForm from './components/ResetPassword/setNewPassword';
 import CreateStoreForm from './components/createStore/firstView';
 import AddLogoForm from './components/createStore/addLogo';
-import CreateItem from './components/Products/CreateItem';
 import UpdateItem from './components/Products/updateItem';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import PublicRoute from './components/Auth/PublicRoute';
@@ -63,14 +62,13 @@ function App() {
         <PrivateRoute path='/createstore' component={CreateStoreForm} />
         <PrivateRoute path='/addlogo' component={AddLogoForm} />
         <PrivateRoute path='/profile' component={UpdateProfile} />
-        <PrivateRoute path='/createitem' component={CreateItem} />
+        <PrivateRoute path='/createitem' component={CreateProductView} />
         <PrivateRoute path='/dashboard' component={Home} />
         <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
         <PublicRoute path='/product/:id' component={Single} />
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        <PublicRoute path='/testingGrounds' component={CreateProductView} />
       </Switch>
       <div
         id='offline-notification'

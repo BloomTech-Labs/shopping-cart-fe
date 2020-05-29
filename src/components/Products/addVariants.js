@@ -22,6 +22,20 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 
 	function submitHandler(e) {
 		e.preventDefault();
+		if (!productData.variantName) {
+			return setErrorState('variantName');
+		}
+		console.log('errorState', errorState);
+		if (!formData.variantOption) {
+			return setErrorState('variantOption');
+		}
+		console.log('errorState', errorState);
+		if (!formData.variantPrice) {
+			return setErrorState('variantPrice');
+		}
+
+		setErrorState('');
+
 		setProductData({ ...productData, ['variantDetails']: [ ...productData.variantDetails, formData ] });
 		setFormData({
 			variantOption: '',
@@ -40,7 +54,7 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 	}
 
 	function clearVariants() {
-		setProductData({ ...productData, ['variantDetails']: [] });
+		setProductData({ ...productData, ['variantDetails']: [], ['variantName']: '' });
 		setFormData({
 			variantOption: '',
 			variantPrice: ''
@@ -75,30 +89,42 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 									<label className={errorState === 'variantName' ? 'errorLabel' : ''}>
 										Variant Name
 									</label>
-									<input
-										type="text"
-										name="variantName"
-										placeholder="Variant Name Here"
-										value={productData.variantName}
-										onChange={variantNameHandler}
-									/>
+									{productData.variantDetails.length >= 1 ? (
+										<div className="VariantNameContainer">
+											<div className="createdVariantName">{productData.variantName}</div>{' '}
+											<p
+												className={
+													productData.variantDetails.length >= 1 ? (
+														'clearBTN'
+													) : (
+														'clearBTN clearDisabled '
+													)
+												}
+												onClick={clearVariants}
+											>
+												Clear Varaints
+											</p>
+										</div>
+									) : (
+										<input
+											type="text"
+											name="variantName"
+											placeholder="Variant Name Here"
+											value={productData.variantName}
+											onChange={variantNameHandler}
+										/>
+									)}
 								</div>
-
-								<p
-									className={
-										productData.variantDetails.length >= 1 ? 'clearBTN' : 'clearBTN clearDisabled '
-									}
-									onClick={clearVariants}
-								>
-									Clear Varaints
-								</p>
 							</div>
 							<div className={errorState === 'variantName' ? 'error' : 'hideError'}>
 								Add a variant name
 							</div>
 							<div className="addVariantContainer">
 								<div className="inputContainer">
-									<label className={errorState === 'option' ? 'errorLabel' : ''} htmlFor="option">
+									<label
+										className={errorState === 'variantOption' ? 'errorLabel' : ''}
+										htmlFor="option"
+									>
 										Variant Option
 									</label>
 									<input
@@ -108,7 +134,7 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 										value={formData.variantOption}
 										onChange={changeHandler}
 									/>
-									<div className={errorState === 'option' ? 'error' : 'hideError'}>
+									<div className={errorState === 'variantOption' ? 'error' : 'hideError'}>
 										Add a variant name
 									</div>
 								</div>

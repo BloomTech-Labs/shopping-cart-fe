@@ -80,7 +80,7 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 					);
 				})
 			)}
-			<div className={errorState === 'photos' ? 'error' : 'hideError'}>You need to add a photo!</div>
+			<div className={errorState === 'images' ? 'error' : 'hideError'}>You need to add a photo!</div>
 		</div>
 	);
 };
