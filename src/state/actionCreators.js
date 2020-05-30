@@ -21,8 +21,11 @@ export const getCurrentUser = () => (dispatch) => {
 /api/store/${res.data._id}/products`
 				)
 				.then((res) => {
-					console.log(res.data);
-					const inventory = res.data;
+					const getAllCategories = res.data.map((cv) => {
+						return cv.category;
+					});
+					const allUniqueCategories = [ ...new Set(getAllCategories) ];
+					const inventory = { ...res.data, allUniqueCategories };
 					dispatch({ type: types.GET_INVENTORY, payload: inventory });
 				});
 		})

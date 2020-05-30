@@ -6,6 +6,9 @@ const BasicDetails = ({ productData, setProductData, errorState, setErrorState, 
 		e.preventDefault();
 		setProductData({ ...productData, [e.target.name]: e.target.value });
 	}
+
+	console.log('basic Details', inventory.allUniqueCategories);
+
 	return (
 		<div className="basicDetailsContainer">
 			<h3>Basic Details:</h3>
@@ -48,11 +51,10 @@ const BasicDetails = ({ productData, setProductData, errorState, setErrorState, 
 						value={productData.category}
 					/>
 					<div className={errorState === 'category' ? 'error' : 'hideError'}>Add a Category name</div>
-					{/* Once the there is an endpint there will need to be an axios call to get the cateogries that will be mapped as options below */}
 					<datalist id="category">
-						{inventory ? (
-							inventory.map((option) => {
-								return <option value={option.category} />;
+						{inventory.allUniqueCategories ? (
+							inventory.allUniqueCategories.map((option) => {
+								return <option value={option} />;
 							})
 						) : (
 							''

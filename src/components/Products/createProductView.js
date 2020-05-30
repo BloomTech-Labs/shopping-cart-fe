@@ -5,7 +5,7 @@ import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
 import AddVariants from './addVariants';
 import Navbar from '../Navbar';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CreateProductView = () => {
 	// inventory gets all of the products from the redux store (redux store is calling the db)
@@ -23,15 +23,18 @@ const CreateProductView = () => {
 		variantDetails: []
 	});
 
+	
+
 	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array)
 	const [ formData, setFormData ] = useState({
-		variantOption: '',
-		variantPrice: ''
+		option: '',
+		price: ''
 	});
 	//Used to check input fields for validation in real time
 
 	// Post to the server if all checks out
 	function submitHandler() {
+
 		
 
 		if (!productData.productName) {
@@ -53,6 +56,7 @@ const CreateProductView = () => {
 		AxiosAuth()
 			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
 			.then((res) => {
+				console.log(res)
 				history.push('/dashboard');
 			})
 			.catch((error) => {
@@ -70,6 +74,7 @@ const CreateProductView = () => {
 				<button onClick={submitHandler} className="createProduct">
 					Save Product
 				</button>
+				
 			</div>
 			<div className="basicDetailsVariantsContainer">
 				<div className="leftContainer">

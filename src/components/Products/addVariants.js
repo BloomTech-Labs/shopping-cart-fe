@@ -24,11 +24,11 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 			return setErrorState('variantName');
 		}
 
-		if (!formData.variantOption) {
+		if (!formData.option) {
 			return setErrorState('variantOption');
 		}
 
-		if (!formData.variantPrice) {
+		if (!formData.price) {
 			return setErrorState('variantPrice');
 		}
 
@@ -36,14 +36,14 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 
 		setProductData({ ...productData, ['variantDetails']: [ ...productData.variantDetails, formData ] });
 		setFormData({
-			variantOption: '',
-			variantPrice: ''
+			option: '',
+			price: ''
 		});
 	}
 
 	function removeVariant(arg) {
 		const newState = productData.variantDetails.filter((cv) => {
-			return cv.variantOption !== arg;
+			return cv.option !== arg;
 		});
 		return setProductData({ ...productData, ['variantDetails']: newState });
 	}
@@ -51,8 +51,8 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 	function clearVariants() {
 		setProductData({ ...productData, ['variantDetails']: [], ['variantName']: '' });
 		setFormData({
-			variantOption: '',
-			variantPrice: ''
+			option: '',
+			price: ''
 		});
 	}
 
@@ -124,9 +124,9 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 									</label>
 									<input
 										type="text"
-										name="variantOption"
+										name="option"
 										placeholder="example: Large"
-										value={formData.variantOption}
+										value={formData.option}
 										onChange={changeHandler}
 									/>
 									<div className={errorState === 'variantOption' ? 'error' : 'hideError'}>
@@ -143,9 +143,9 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 									</label>
 									<input
 										type="number"
-										name="variantPrice"
+										name="price"
 										placeholder="Example: 1.99"
-										value={formData.variantPrice}
+										value={formData.price}
 										onChange={changeHandler}
 									/>
 									<div className={errorState === 'variantPrice' ? 'error' : 'hideError'}>
@@ -180,13 +180,13 @@ const VaraintChild = (props) => {
 	return (
 		<div className="cardContainer">
 			<p>
-				{props.data.variantOption} | ${props.data.variantPrice}
+				{props.data.option} | ${props.data.price}
 			</p>
 			<img
 				className="trashcan"
 				src={trashIcon}
 				onClick={() => {
-					props.removeVariant(props.data.variantOption);
+					props.removeVariant(props.data.option);
 				}}
 			/>
 		</div>
