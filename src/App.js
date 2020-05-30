@@ -27,7 +27,7 @@ import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from './components/Products/createProductView';
-import CategoryPicker from './components/categoryPicker';
+import CategoryPicker from './components/categories/CategoryPicker';
 function App() {
   window.addEventListener('load', () => {
     function handleNetworkChange(event) {
