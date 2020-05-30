@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 // the route is '/category'
 
 const CategoryPicker = (props) => {
+  const [cat, setCat] = useState('');
   const storeCategories = products.map((item) => {
     return item.category;
   });
@@ -18,7 +19,12 @@ const CategoryPicker = (props) => {
       {uniqueCategories &&
         uniqueCategories.map((item) => {
           return (
-            <button onClick={console.log('button clicked')}>{item}</button>
+            <button
+              onClick={() => {
+                setCat(item);
+              }}>
+              {item}
+            </button>
           );
         })}
       {/* Rendering the cards here */}
