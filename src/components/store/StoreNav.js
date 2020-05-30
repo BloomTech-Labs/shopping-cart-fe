@@ -6,12 +6,30 @@ import NoLogo from '../../images/PureRetail_Logo.png';
 import history from '../../history';
 import search_icon from '../../images/search-icon.svg';
 import cart_icon from '../../images/cart-icon.svg';
+import axios from 'axios';
 
 const StoreNav = () => {
 	const dispatch = useDispatch();
 	const cartContents = useSelector((state) => state.cart);
 	const storeDetails = useSelector((state) => state.user.user);
 	const sellerId = localStorage.getItem('sellerId');
+
+	
+	useEffect(() => {
+		const Url = 'https://sellers-information-from-the-backend'
+		axios.get(Url)
+			.then(res => {
+				const color = res.data.color
+				const image = res.data.image
+			}) 
+
+			.catch(error => console.log(error))
+	}, [])
+	
+
+		//set a VARIABLE to the COLOR (string) received
+		//set a VARIABLE to the LOGO(string) received
+		//then use that VARIABLE to add the COLOR & LOGO
 
 	useEffect(
 		() => {
