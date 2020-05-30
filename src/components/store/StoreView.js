@@ -38,8 +38,9 @@ function StoreView(props) {
 
 	return (
 		<div>
+			{console.log(props)}
 			<div>
-				<StoreNav storeDetails={storeDetails} store={store} />
+				<StoreNav  match={props.match} storeDetails={storeDetails} store={store} />
 				<AllProducts searchString={searchString} searchFilter={searchFilter} inventory={inventory} />
 			</div>
 		</div>
