@@ -1,14 +1,10 @@
-.ant-upload-list {
-	max-width: 85vw;
-}
-
 .bgCover {
 	background: #efefef;
 }
 
 .createProductView {
 	width: 100%;
-	height: 100%;
+	margin-top: 100px;
 }
 
 .textContainer h3,
@@ -150,6 +146,16 @@ button,
 .createProductContainer {
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
+
+	.HeaderContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		button {
+			max-height: 50px;
+		}
+	}
 }
 
 .basicDetailsContainer,
@@ -249,25 +255,37 @@ button {
 		justify-content: space-between;
 		align-items: center;
 		.inputContainer {
-			width: 80%;
+			width: 100%;
 			.inputDisabled {
 				background: #f7f7f7;
 				color: #949494;
 			}
 		}
-		.clearBTN {
-			color: #ed1b50;
-			font-weight: bold;
-			font-size: 16px;
-			margin: 30px 0px 0px 0px;
-			opacity: 100%;
-			transition: all 0.2s;
-			cursor: pointer;
-		}
 
-		.clearDisabled {
-			opacity: 0%;
-			transition: all 0.2s;
+		.VariantNameContainer {
+			display: flex;
+			align-items: baseline;
+
+			.createdVariantName {
+				font-size: 22px;
+				font-weight: 700;
+				margin-right: 10px;
+			}
+
+			.clearBTN {
+				color: #ed1b50;
+				font-weight: bold;
+				font-size: 16px;
+				margin: 0px;
+				opacity: 100%;
+				transition: all 0.2s;
+				cursor: pointer;
+			}
+
+			.clearDisabled {
+				opacity: 0%;
+				transition: all 0.2s;
+			}
 		}
 	}
 

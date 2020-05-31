@@ -1,78 +1,73 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import history from '../../history';
 import AxiosAuth from '../../components/Auth/axiosWithAuth';
 import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
 import AddVariants from './addVariants';
+import Navbar from '../Navbar';
+import { useSelector } from "react-redux";
 
 const CreateProductView = () => {
-	// valdation for posting - if true that it posts and pushes to the dashboard screen
-	const [ readyToPost, setReadyToPost ] = useState(false);
-	//Prevents useEffect from running on inital load
-	const [ stopFirstLoad, setStopFirstLoad ] = useState(false);
+	// inventory gets all of the products from the redux store (redux store is calling the db)
+	const inventory = useSelector((state) => state.store);
 	//Keeps track of what field is empty
 	const [ errorState, setErrorState ] = useState();
-	// The object that is posted
+	// The full object that is posted
 	const [ productData, setProductData ] = useState({
 		productName: '',
 		price: '',
 		category: '',
 		description: '',
-		photos: [],
-		variants: []
-	});
-	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array)
-	const [ formData, setFormData ] = useState({
+		images: [],
 		variantName: '',
-		variantOption: '',
-		variantPrice: ''
+		variantDetails: []
 	});
 
-	//Used to check input fields for validation in real time
-	useEffect(
-		() => {
-			if (stopFirstLoad == false) {
-				return console.log('bloopistnesserness');
-			}
+	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the variantDetails array)
+	const [ formData, setFormData ] = useState({
+		option: '',
+		price: ''
+	});
 
-			if (!productData.productName) {
-				return setErrorState('productName');
-			}
-			console.log(errorState);
-			if (!productData.price) {
-				return setErrorState('price');
-			}
-			if (!productData.category) {
-				return setErrorState('category');
-			}
-
-			if (productData.photos.length < 1) {
-				return setErrorState('photos');
-			}
-
-			setErrorState('');
-			console.log('Its now true');
-			setReadyToPost(true);
-		},
-		[ productData, stopFirstLoad ]
-	);
-
-	// Post to the server if all checks out
 	function submitHandler() {
-		setStopFirstLoad(true);
-		if (!readyToPost) {
-			return console.log(errorState, 'fix probelms first');
+		if (!productData.productName) {
+			return setErrorState('productName');
 		}
-		history.push('/dashboard');
+	
+		if (!productData.price) {
+			return setErrorState('price');
+		}
+		
+		if (!productData.category) {
+			return setErrorState('category');
+		}
+
+		if (productData.images.length < 1) {
+			return setErrorState('images');
+		}
+
+		AxiosAuth()
+			.post('https://shopping-cart-be.herokuapp.com/api/store/products', productData)
+			.then((res) => {
+				console.log(res)
+				history.push('/dashboard');
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	return (
+		<>
+		<Navbar />
 		<div className="createProductView">
+			
 			<div className="createProductHeader">
 				<h1>Create Product</h1>
 				<button onClick={submitHandler} className="createProduct">
-					Create Product
+					Save Product
 				</button>
+				
 			</div>
 			<div className="basicDetailsVariantsContainer">
 				<div className="leftContainer">
@@ -85,6 +80,7 @@ const CreateProductView = () => {
 				</div>
 				<div className="rightContainer">
 					<BasicDetails
+					inventory={inventory}
 						productData={productData}
 						setProductData={setProductData}
 						setErrorState={setErrorState}
@@ -99,6 +95,7 @@ const CreateProductView = () => {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 };
 

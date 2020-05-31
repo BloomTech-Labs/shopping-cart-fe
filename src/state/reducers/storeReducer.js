@@ -1,13 +1,13 @@
-import * as types from '../actionTypes'
+import * as types from '../actionTypes';
 
-const initialStoreState = []
+const initialStoreState = [];
 
-export function storeReducer (state = initialStoreState, action) {
-  switch (action.type) {
-    case types.GET_INVENTORY:
-      return action.payload
+export function storeReducer(state = initialStoreState, action) {
+	switch (action.type) {
+		case types.GET_INVENTORY:
+			return action.payload;
 
-    default:
-      return state
-  }
+		default:
+			return state;
+	}
 }
