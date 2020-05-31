@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
+import axios from 'axios';
 // the route is '/category'
 
 const CategoryPicker = (props) => {
@@ -163,9 +164,7 @@ const products = [
     price: '$9999.00',
     category: 'Hero',
     description: 'The bestest princess',
-    images: [
-      'https://i.gyazo.com/7db90642f805684530e9dc8b693d5e08.png'
-    ],
+    images: ['https://i.gyazo.com/7db90642f805684530e9dc8b693d5e08.png'],
     variantName: '',
     variantDetails: [
       {
