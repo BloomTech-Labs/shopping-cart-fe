@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-// Use State will be moved the view component once the other components are completed
-const BasicDetails = ({ productData, setProductData, errorState, setErrorState, inventory }) => {
+//Destructured props are coming from createProductView.js
+const BasicDetails = ({ productData, setProductData, errorState, inventory }) => {
 	function changeHandler(e) {
 		e.preventDefault();
 		setProductData({ ...productData, [e.target.name]: e.target.value });
 	}
-
-	console.log('basic Details', inventory.allUniqueCategories);
 
 	return (
 		<div className="basicDetailsContainer">
@@ -54,7 +52,7 @@ const BasicDetails = ({ productData, setProductData, errorState, setErrorState, 
 					<datalist id="category">
 						{inventory.allUniqueCategories ? (
 							inventory.allUniqueCategories.map((option) => {
-								return <option value={option} />;
+								return <option value={option} key={Math.random()} />;
 							})
 						) : (
 							''

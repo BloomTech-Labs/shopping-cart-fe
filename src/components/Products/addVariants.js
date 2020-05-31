@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import trashIcon from '../../images/trash_icon.svg';
-
+//Destructured props are coming from createProductView.js
 const AddVariants = ({ formData, setFormData, productData, setProductData }) => {
 	//active = If a user has selected to start adding variants
 	const [ active, setActive ] = useState(false);
-	// formData = state used for variantOption & Variant price to be added to to #ProductData when function #submitHandler is used
-
+	// This slice of state is used for error handling with just the variants
 	const [ errorState, setErrorState ] = useState();
 
 	function changeHandler(e) {
@@ -63,7 +62,10 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 					<div className="textContainer">
 						<h3>Variants:</h3>
 						<p>
-							Product options a customer can choose from. <a>Learn More</a>
+							Product options a customer can choose from.{' '}
+							<a href="https://www.google.com/search?q=Defnine+A+variant&rlz=1C5CHFA_enUS872US872&oq=Defnine+A+variant&aqs=chrome..69i57j0l7.3486j1j7&sourceid=chrome&ie=UTF-8">
+								Learn More
+							</a>
 						</p>
 					</div>
 					<button
@@ -176,6 +178,7 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 
 export default AddVariants;
 
+//Child component
 const VaraintChild = (props) => {
 	return (
 		<div className="cardContainer">
@@ -185,6 +188,7 @@ const VaraintChild = (props) => {
 			<img
 				className="trashcan"
 				src={trashIcon}
+				alt="A trash can icon, when clicked delete a variant"
 				onClick={() => {
 					props.removeVariant(props.data.option);
 				}}

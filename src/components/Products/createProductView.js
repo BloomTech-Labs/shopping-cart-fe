@@ -9,10 +9,10 @@ import { useSelector } from "react-redux";
 
 const CreateProductView = () => {
 	// inventory gets all of the products from the redux store (redux store is calling the db)
-	  const inventory = useSelector((state) => state.store);
+	const inventory = useSelector((state) => state.store);
 	//Keeps track of what field is empty
 	const [ errorState, setErrorState ] = useState();
-	// The object that is posted
+	// The full object that is posted
 	const [ productData, setProductData ] = useState({
 		productName: '',
 		price: '',
@@ -23,20 +23,13 @@ const CreateProductView = () => {
 		variantDetails: []
 	});
 
-	
-
-	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array)
+	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the variantDetails array)
 	const [ formData, setFormData ] = useState({
 		option: '',
 		price: ''
 	});
-	//Used to check input fields for validation in real time
 
-	// Post to the server if all checks out
 	function submitHandler() {
-
-		
-
 		if (!productData.productName) {
 			return setErrorState('productName');
 		}
