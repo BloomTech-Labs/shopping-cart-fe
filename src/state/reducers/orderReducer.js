@@ -1,18 +1,6 @@
 import * as types from "../actionTypes"
 
 const initialOrders = [
-  {
-    id: 1,
-    productName: "banana",
-    variant: "large",
-    isEditing: false,
-  },
-  {
-    id: 2,
-    productName: "apple",
-    variant: "medium",
-    isEditing: false,
-  }
 ]
 
 const deleteOrder = (state, action) => {

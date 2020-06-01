@@ -1,22 +1,15 @@
-import React, { useState } from "react"
-import { DeleteOutlined } from "@ant-design/icons"
+import React from "react"
 
-const OrderProductCard = ({ item, deleteProduct }) => {
+
+const OrderProductCard = ({ item, deleteProduct, editProduct }) => {
   return (
     <div>
-      <h3>Product: {item.product.name} </h3>
+      <h3>Product: {item.product.productName} </h3>
       <h3>Quantity: {item.quantity} </h3>
-      <h3>Variant: {item.product.variant[0].variantOption} </h3>
+      <h3>Variant: {item.product.variantDetails[0].option} </h3>
       <div>
-        <button>Edit</button>
-        <button onClick={() => deleteProduct(item.id)}>Delete</button>
-        {/* above button  */}
-        {/* <p c>Are you sure?</p>
-        <button >
-          <DeleteOutlined />
-          Confirm Delete
-        </button>
-        <button>No</button> */}
+        <button onClick={() => editProduct(item)}>Edit</button>
+        <button onClick={() => deleteProduct(item._id)}>Delete</button>
       </div>
     </div>
   )

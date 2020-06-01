@@ -1,139 +1,24 @@
 import React from "react"
-import { Card, Tag, Button } from "antd"
 
-function UserInfo({ order, orderItem }) {
+function UserInfo({ order }) {
+  const [orderStatus, setOrderStatus] = React.useState(order.orderStatus)
+
   return (
-    <div style={{ marginRight: 20 }}>
-      <Card style={{ width: 400, marginBottom: "10px" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginBottom: "10px",
-          }}
-        >
-          <div
-            style={{
-              padding: "0px",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              borderBottom: "0.5px solid grey",
-            }}
-          >
-            <div style={{}}>
-              <p
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "0px",
-                  color: "black",
-                }}
-              >
-           Andy DOe
-              </p>
-              <p
-                style={{
-                  color: "grey",
-                  marginBottom: "0px",
-                  fontWeight: "bold",
-                }}
-              >
-                409-790-6464
-              </p>
-            </div>
-            <div>
-              <p style={{ fontWeight: "bold", fontSize: "14px" }}>
-                {order._id}
-              </p>
-
-              <Tag
-                color="#ffbf00"
-                style={{
-                  color: "black",
-                  fontSize: 14,
-                  fontWeight: "bold",
-                  marginBottom: "1em",
-                }}
-              >
-                Not Ready
-              </Tag>
-            </div>
-          </div>
-          <div
-            style={{
-              padding: "0px",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginTop: "15px",
-            }}
-          >
-            <div>
-              <p
-                style={{
-                  marginBottom: "0px",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}
-              >
-                Order Created
-              </p>
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  marginBottom: "0px",
-                  color: "black",
-                }}
-              >
-                {order.orderCreated}
-              </p>
-            </div>
-            <div>
-              <p
-                style={{
-                  marginBottom: "0px",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}
-              >
-                Order Completed
-              </p>
-              <p
-                style={{
-                  fontSize: "14px",
-                  marginBottom: "0px",
-                  fontWeight: "bold",
-                }}
-              >
-                {order.orderCompleted}
-              </p>
-            </div>
-          </div>
-        </div>
-      </Card>
-      <Button
-        style={{
-          marginRight: 20,
-          color: "white",
-          background: "green",
-          fontWeight: "bold",
-          height: 40,
-        }}
-      >
-        Order Ready
-      </Button>
-      <Button
-        style={{
-          color: "black",
-          background: "Grey",
-          fontWeight: "bold",
-          height: 40,
-        }}
-      >
-        Cancel Order
-      </Button>
+    <div style={{ background: "pink" }}>
+      <div>
+        <h3>Andy Doe</h3>
+        <h3>409-790-6464</h3>
+        <h3>Order Number: {order._id}</h3>
+        {orderStatus === false ? <h4>Not ready</h4> : <h4>Ready</h4>}
+        <h3>Order Made: {order.orderCreated}</h3>
+        <h3>Order Completed: {order.orderCompleted}</h3>
+      </div>
+      <div>
+        <button onClick={() => setOrderStatus(!orderStatus)}>
+          Order Ready
+        </button>
+        <button>Cancel Order</button>
+      </div>
     </div>
   )
 }

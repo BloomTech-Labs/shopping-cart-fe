@@ -162,12 +162,24 @@ export const getProducts = (sellerId, signal) => (dispatch) => {
     })
 }
 
+export const getOneProduct = (productId) => (dispatch) => {
+  axios
+    .get(`http://localhost:4000/api/store/products/${productId}`)
+    .then((res) => {
+      console.log("RES", res)
+      dispatch({ type: types.GET_ONE_PRODUCT, payload: res.data })
+    })
+    .catch((error) => {
+      setErrors(error.response)
+    })
+}
+
 export const getStore = (sellerId, signal) => (dispatch) => {
   axios
     .get(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}`)
     .then((res) => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
-      console.log(res.data)
+     
     })
     .catch((error) => {
       setErrors(error.response.data)
@@ -240,31 +252,30 @@ export const getSalesHistory = () => (dispatch) => {
 }
 // DELETE order
 export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
-  dispatch({type: types.DELETE_ORDER_PRODUCT})
-  axios.delete(
-    `http://localhost:4000/api/store/${order_id}/${orderItem_id}`,
-  )
-  .then(res => {
-    console.log("res:", res)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+  dispatch({ type: types.DELETE_ORDER_PRODUCT })
+  axios
+    .delete(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`)
+    .then((res) => {
+      console.log("res:", res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 // PUT order
-export const updateOrderProduct = (order_id, orderItem_id, payload ) => (dispatch) => {
-  dispatch({ type: types.UPDATE_ORDER_PRODUCT})
-  axios.put(
-    `http://localhost:4000/api/store/${order_id}/${orderItem_id}`, payload
-  )
-  .then(res => {
-    dispatch({ type: types.UPDATE_ORDER_PRODUCT, payload})
-    console.log(res)
-  })
-  .catch(err => {
-    console.log(err)
-    alert("Profile update failed, please try again!");
-  })
+export const updateOrderProduct = (order_id, orderItem_id, payload) => (
+  dispatch
+) => {
+  dispatch({ type: types.UPDATE_ORDER_PRODUCT })
+  axios
+    .put(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`, payload)
+    .then((res) => {
+      dispatch({ type: types.UPDATE_ORDER_PRODUCT, payload })
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+      alert("Profile update failed, please try again!")
+    })
 }
-

@@ -2,108 +2,75 @@ import React, { useEffect, useState } from "react"
 import OrderChangeForm from "./OrderChangeForm"
 import OrderProductCard from "./OrderProductCard"
 
-function OrderProductTable(props) {
-  const ourProducts = [
-    {
-      id: "1",
-      product: {
-        id: "1",
-        name: "Banana",
-        variant: [
-          {
-            id: "11",
-            variantName: "Color",
-            variantPrice: 1000,
-            variantOption: "Very Orange",
-          },
-          {
-            id: "12",
-            variantName: "size",
-            variantPrice: 2000,
-            variantOption: "Medium",
-          },
-        ],
-      },
-      quantity: 1,
-    },
-    {
-      id: "2",
-      product: {
-        id: "2",
-        name: "Apple",
-        variant: [
-          {
-            id: "13",
-            variantName: "size",
-            variantPrice: 5,
-            variantOption: "Small",
-          },
-          {
-            id: "14",
-            variantName: "size",
-            variantPrice: 6,
-            variantOption: "Medium",
-          },
-        ],
-      },
-      quantity: 1,
-    },
-  ]
-
-  const [products, setProducts] = useState(ourProducts)
+function OrderProductTable({ orderItem, oneProduct }) {
+  const [products, setProducts] = useState()
   const [editing, setEditing] = useState(false)
 
+  useEffect(() => {
+    setProducts(orderItem)
+  }, [orderItem])
+
+  console.log("products", products)
   const [productInput, setProductInput] = useState({
-    id: Date.now(),
+    _id: "",
     product: {
-      id: null,
+      _id: null,
       name: "",
-      variant: [
+      variantName: "size",
+      variantDetails: [
         {
-          id: null,
-          variantName: "size",
-          variantPrice: null,
-          variantOption: "",
+          _id: null,
+          price: null,
+          option: "",
         },
       ],
     },
     quantity: 1,
   })
 
-  const deleteProduct = (id) => {
-    setProducts(products.filter((item) => item.id !== id))
+  const deleteProduct = (_id) => {
+    setProducts(products.filter((item) => item._id !== _id))
   }
 
-  const updateProduct = (id, updatedProduct) => {
+  const updateProduct = (_id, updatedProduct) => {
+    setEditing(false)
     setProducts(
-      products.map((item) => (item.id === id ? updatedProduct : item))
+      products.map((item) => (item._id === _id ? updatedProduct : item))
     )
   }
 
   const editProduct = (item) => {
+    setEditing(true)
     setProductInput({
-      id: item.id,
+      _id: item._id,
       quantity: item.quantity,
-      variantOption:  [...item.product.variant[0].variantOption ],
+      product: {
+        ...item.product,
+      },
     })
   }
-
+  
   return (
     <div>
-      {products.map((item) => (
-        <div>
-          <OrderChangeForm
-            item={item}
-            updateProduct={updateProduct}
-            productInput={productInput}
-          />
-          <OrderProductCard
-            item={item}
-            deleteProduct={deleteProduct}
-            editProduct={editProduct}
-          />
-        </div>
-      ))}
+      {editing && (
+        <OrderChangeForm
+          updateProduct={updateProduct}
+          productInput={productInput}
+          products={products}
+          editing={editing}
+          oneProduct={oneProduct}
+        />
+      )}
+      {products &&
+        products.map((item) => (
+          <div>
+            <OrderProductCard
+              item={item}
+              deleteProduct={deleteProduct}
+              editProduct={editProduct}
+            />
+          </div>
+        ))}
     </div>
   )
 }

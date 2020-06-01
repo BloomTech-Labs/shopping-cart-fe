@@ -1,30 +1,64 @@
 import React, { useState, useEffect } from "react"
+import axios from 'axios'
 
-const OrderChangeForm = ({ item, productInput, updateProduct }) => {
+const OrderChangeForm = ({ productInput, updateProduct }) => {
   const [input, setInput] = useState(productInput)
+  
+  const [oneProduct, setOneProduct] = useState()
 
+  useEffect(() => {
+    axios.get(`http://localhost:4000/api/store/products/${input.product._id}`)
+      .then(res => {
+        setOneProduct(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [input.product._id])
+
+  // useEffect(() => {
+  //   axios.get(
+  //     `http://localhost:4000/api/store/$/products`
+  //   )
+  //   .then(res => { 
+  //     console.log("RES", res)
+  //   })
+  // }, [input._id])
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-    updateProduct(input.id, input)
+    updateProduct(input._id, input)
   }
+  
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      product: {
+        ...input.product,
+        variantDetails: [
+          {
+            option: e.target.value,
+          },
+        ],
+      },
+    })
+  }
+  
+  console.log("Input:", input)
+  // console.log("OneProduct", oneProduct)
 
-  console.log("console log for input", input)
-  console.log("console log for product", input.product)
-  console.log("console log for variant", input.product.variant)
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input
-          disabled
-          type="text"
-          name="name"
-          value={item.product.name}
-          placeholder={item.product.name}
-        />
+      <select
+          value={input.productName}
+          onChange={handleChange}
+        >
+          
+        </select>
         <input
           type="number"
-          value={productInput.quantity}
-          placeholder={item.quantity}
+          value={input.quantity}
           onChange={(e) => {
             setInput({
               ...input,
@@ -32,25 +66,14 @@ const OrderChangeForm = ({ item, productInput, updateProduct }) => {
             })
           }}
         />
-
         <select
-          value={input.product.variant[0].variantOption}
-          onChange={(e) => {
-            setInput({
-              ...input.product.variant[0],
-              variantOption: e.target.value
-            })
-          }}
+          value={input.product.variantDetails.option}
+          onChange={handleChange}
         >
-          {item.product.variant.map((v, index) => {
-            return (
-              <option key={index} value={v.variantOption}>
-                {v.variantOption}
-              </option>
-            )
-          })}
+          {oneProduct && oneProduct.variantDetails.map((v) => (
+            <option>{v.option}</option>
+          ))}
         </select>
-
         <button type="submit">Submit</button>
       </form>
     </div>

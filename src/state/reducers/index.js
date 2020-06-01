@@ -7,6 +7,7 @@ import { searchReducer } from './searchReducer'
 import { savedCartReducer } from './savedCartReducer'
 import dashboardReducer from './dashboardReducer'
 import { orderReducer } from './orderReducer'
+import { productReducer } from './productReducer'
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   search: searchReducer,
   savedCart: savedCartReducer,
   dashboard: dashboardReducer,
-  order: orderReducer
+  order: orderReducer,
+  product: productReducer
 })
 
 export default rootReducer
