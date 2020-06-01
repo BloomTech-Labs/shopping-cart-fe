@@ -190,6 +190,32 @@ export const getStore = (sellerId, signal) => (dispatch) => {
 		});
 };
 
+export const getOneOrder = (orderId) => (dispatch) => {
+	axios
+		.get(`http://localhost:4000/api/store/order/${orderId}`)
+		.then((res) => {
+			dispatch({ type: types.GET_ONE_ORDER, payload: res.data });
+		})
+		.catch((error) => {
+			setErrors(error.response);
+		});
+};
+
+export const updateOrder = (details) => (dispatch) => {
+	axios.put(`http://localhost:4000/api/store/order/5ebb470f0d20bf0b10ded8f5`);
+};
+export const deleteOrder = (orderId) => (dispatch) => {
+	axios
+		.delete(`http://localhost:4000/api/store/order/${orderId}`, orderId)
+		.then((res) => {
+			dispatch({ type: types.DELETE_ORDER });
+			console.log(res);
+		})
+		.catch((err) => {
+			setErrors(err.response.data);
+		});
+};
+//DONE
 export const setStoreUrl = () => {
 	return {
 		type: types.SET_STORE_URL,

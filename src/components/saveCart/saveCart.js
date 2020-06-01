@@ -11,6 +11,7 @@ const SaveCart = (props) => {
 	const sellerId = useSelector((state) => state.user.user._id);
 	const storeDetails = useSelector((state) => state.user.user);
 	const sign = useCurrency(storeDetails.currency);
+	
 	const checkoutCart = cartContents.filter((item) => {
 		return item.quantity > 0;
 	});
