@@ -1,9 +1,9 @@
-import * as types from "./actionTypes"
-import AxiosAuth from "../components/Auth/axiosWithAuth"
-import axios from "axios"
+import * as types from './actionTypes';
+import AxiosAuth from '../components/Auth/axiosWithAuth';
+import axios from 'axios';
+import history from '../history';
 
-//TEST
-const getUserUrl = "https://shopping-cart-be.herokuapp.com/api/store/"
+const getUserUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
 
 export const updateForm = (details) => ({
   type: types.UPDATE_FORM,
@@ -11,23 +11,28 @@ export const updateForm = (details) => ({
 })
 
 export const getCurrentUser = () => (dispatch) => {
-  AxiosAuth()
-    .get(getUserUrl)
-    .then((res) => {
-      dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
-      AxiosAuth()
-        .get(
-          `https://shopping-cart-be.herokuapp.com/api/store/${res.data._id}/products`
-        )
-        .then((res) => {
-          const inventory = res.data
-          dispatch({ type: types.GET_INVENTORY, payload: inventory })
-        })
-    })
-    .catch((error) => {
-      setErrors(error.response.data)
-    })
-}
+	AxiosAuth()
+		.get(getUserUrl)
+		.then((res) => {
+			dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
+			AxiosAuth()
+				.get(
+					`https://shopping-cart-be.herokuapp.com
+/api/store/${res.data._id}/products`
+				)
+				.then((res) => {
+					const getAllCategories = res.data.map((cv) => {
+						return cv.category;
+					});
+					const allUniqueCategories = [ ...new Set(getAllCategories) ];
+					const inventory = { ...res.data, allUniqueCategories };
+					dispatch({ type: types.GET_INVENTORY, payload: inventory });
+				});
+		})
+		.catch((error) => {
+			setErrors(error.response.data);
+		});
+};
 
 export const getCart = (cartId) => (dispatch) => {
   axios
@@ -81,6 +86,13 @@ export const addToCart = (item) => {
     payload: item,
   }
 }
+
+export const updateCartQuantity = (id) => {
+	return {
+		type: types.UPDATE_CART_QUANTITY,
+		payload: id
+	};
+};
 
 export const subtractFromCart = (item) => {
   return {
@@ -187,15 +199,20 @@ export const getStore = (sellerId, signal) => (dispatch) => {
 }
 //MINE
 export const getOrders = (storeId) => (dispatch) => {
-  axios
-    .get(`http://localhost:4000/api/store/${storeId}/order`)
-    .then((res) => {
-      dispatch({ type: types.GET_ORDERS, payload: res.data })
-    })
-    .catch((error) => {
-      setErrors(error.response)
-    })
-}
+
+	axios
+		.get(
+			`https://shopping-cart-be.herokuapp.com
+/api/store/${storeId}/products`
+		)
+		.then((res) => {
+			const inventory = res.data;
+			dispatch({ type: types.GET_INVENTORY, payload: inventory });
+		})
+		.catch((error) => {
+			setErrors(error.response.data);
+		});
+  }
 
 export const getOneOrder = (orderId) => (dispatch) => {
   axios
@@ -278,4 +295,41 @@ export const updateOrderProduct = (order_id, orderItem_id, payload) => (
       console.log(err)
       alert("Profile update failed, please try again!")
     })
-}
+    setLoading(true);
+    AxiosAuth()
+		.get('https://shopping-cart-be.herokuapp.com/api/store/sales')
+		.then((res) => {
+      setLoading(false);
+			dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });
+		})
+		.catch((err) => {
+      setLoading(false);
+			console.log(err);
+		});
+  }
+
+// onboarding actions
+
+export const postOnboard = (values) => (dispatch) => {
+	dispatch({ type: types.ADD_ONBOARDING, payload: values });
+	history.push('/brandview');
+	// // posting to backend
+	// axios.post('', )
+	// .then((res)=>{
+	//   // this action still needs to be created
+	//   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
+	// })
+	// .catch((err)=> {
+	//   // action still needs to be created
+	//   dispatch({type: types.POST_ONBOARDING_FAILURE})
+	//   console.log(err)
+	// })
+};
+
+export const logoUpload = (logo) => (dispatch) => {
+	dispatch({ type: types.UPLOAD_LOGO, payload: logo });
+};
+
+export const colorUpload = (color) => (dispatch) => {
+	dispatch({ type: types.UPLOAD_COLOR, payload: color });
+};

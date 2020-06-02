@@ -1,15 +1,15 @@
-import React from 'react'
-import Inventory from './inventory'
-import Nav from '../elements/nav'
-// import Footer from '../DashboardHome/Footer'
+import React from "react";
 
-function Main () {
+import Inventory from "./_inventory";
+import Navbar from "../Navbar";
+
+function Main() {
   return (
     <div>
+      <Navbar />
       <Inventory />
-      <Nav />
     </div>
-  )
+  );
 }
 
-export default Main
+export default Main;

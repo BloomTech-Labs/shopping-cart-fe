@@ -1,15 +1,16 @@
-import React from 'react'
-import EditProfile from './EditProfile'
-import Nav from '../elements/nav'
+import React from "react";
+import EditProfile from "./EditProfile";
+import Navbar from "../Navbar";
+// import Nav from '../elements/nav'
 // import Footer from '../DashboardHome/Footer'
 
-function UpdateProfile () {
+function UpdateProfile() {
   return (
     <div>
+      <Navbar />
       <EditProfile />
-      <Nav />
     </div>
-  )
+  );
 }
 
-export default UpdateProfile
+export default UpdateProfile;
