@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const ProductCard = (props) => {
-  // needs styling fixes
-  console.log('product card props', props);
   return (
     <NavLink to={`/product/${props.id}`}>
       <div className='cardWrapper'>

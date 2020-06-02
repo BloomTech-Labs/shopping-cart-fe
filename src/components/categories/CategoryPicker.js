@@ -4,8 +4,6 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import * as creators from '../../state/actionCreators';
 
-// the route is '/category'
-
 const CategoryPicker = ({ uniqueCategories, setCategorySearch }) => {
   const inventory = useSelector((state) => state.store);
   const dispatch = useDispatch();
@@ -37,7 +35,6 @@ const CategoryPicker = ({ uniqueCategories, setCategorySearch }) => {
                 className='categoryButton'
                 onClick={() => {
                   setCategorySearch(item.toLowerCase());
-                  // filterProd();
                 }}>
                 {item}
               </button>

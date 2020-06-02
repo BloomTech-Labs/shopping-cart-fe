@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react';
-// import ProductCard from './ProductCard';
 import ProductCard from '../categories/ProductCard';
 
 const AllProducts = ({
-  searchFilter,
-  searchString,
   categorySearch,
-  testProducts,
   filteredProducts,
   inventory,
 }) => {
-  console.log(inventory);
   return (
     <div className='ProductAreaContainer'>
       {categorySearch.length === 0
