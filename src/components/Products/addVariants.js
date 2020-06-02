@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import trashIcon from '../../images/trash_icon.svg';
-
+//Destructured props are coming from createProductView.js
 const AddVariants = ({ formData, setFormData, productData, setProductData }) => {
-	const [ stopFirstLoad, setStopFirstLoad ] = useState(false);
 	//active = If a user has selected to start adding variants
 	const [ active, setActive ] = useState(false);
-	// formData = Holds the input field data until it is submited
-
+	// This slice of state is used for error handling with just the variants
 	const [ errorState, setErrorState ] = useState();
 
 	function changeHandler(e) {
@@ -14,43 +12,46 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
 
+	function variantNameHandler(e) {
+		e.preventDefault();
+		setProductData({ ...productData, [e.target.name]: e.target.value });
+	}
+
 	function submitHandler(e) {
 		e.preventDefault();
-		setStopFirstLoad(true);
-		if (!formData.variantName) {
+		if (!productData.variantName) {
 			return setErrorState('variantName');
 		}
-		if (!formData.variantOption) {
-			return setErrorState('option');
+
+		if (!formData.option) {
+			return setErrorState('variantOption');
 		}
-		if (!formData.variantPrice) {
+
+		if (!formData.price) {
 			return setErrorState('variantPrice');
 		}
 
-		setProductData({ ...productData, ['variants']: [ ...productData.variants, formData ] });
-		setFormData({
-			variantName: formData.variantName,
-			variantOption: '',
-			variantPrice: ''
-		});
 		setErrorState('');
-		setStopFirstLoad(false);
+
+		setProductData({ ...productData, ['variantDetails']: [ ...productData.variantDetails, formData ] });
+		setFormData({
+			option: '',
+			price: ''
+		});
 	}
 
 	function removeVariant(arg) {
-		console.log(arg);
-		const newState = productData.variants.filter((cv) => {
-			return cv.variantOption !== arg;
+		const newState = productData.variantDetails.filter((cv) => {
+			return cv.option !== arg;
 		});
-		return setProductData({ ...productData, ['variants']: newState });
+		return setProductData({ ...productData, ['variantDetails']: newState });
 	}
 
 	function clearVariants() {
-		setProductData({ ...productData, ['variants']: [] });
+		setProductData({ ...productData, ['variantDetails']: [], ['variantName']: '' });
 		setFormData({
-			variantName: '',
-			variantOption: '',
-			variantPrice: ''
+			option: '',
+			price: ''
 		});
 	}
 
@@ -61,7 +62,10 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 					<div className="textContainer">
 						<h3>Variants:</h3>
 						<p>
-							Product options a customer can choose from. <a>Learn More</a>
+							Product options a customer can choose from.{' '}
+							<a href="https://www.google.com/search?q=Defnine+A+variant&rlz=1C5CHFA_enUS872US872&oq=Defnine+A+variant&aqs=chrome..69i57j0l7.3486j1j7&sourceid=chrome&ie=UTF-8">
+								Learn More
+							</a>
 						</p>
 					</div>
 					<button
@@ -82,42 +86,52 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 									<label className={errorState === 'variantName' ? 'errorLabel' : ''}>
 										Variant Name
 									</label>
-									<input
-										className={productData.variants.length >= 1 ? 'inputDisabled' : ''}
-										type="text"
-										name="variantName"
-										placeholder="Variant Name Here"
-										value={formData.variantName}
-										onChange={changeHandler}
-										disabled={productData.variants.length >= 1 ? true : false}
-									/>
+									{productData.variantDetails.length >= 1 ? (
+										<div className="VariantNameContainer">
+											<div className="createdVariantName">{productData.variantName}</div>{' '}
+											<p
+												className={
+													productData.variantDetails.length >= 1 ? (
+														'clearBTN'
+													) : (
+														'clearBTN clearDisabled '
+													)
+												}
+												onClick={clearVariants}
+											>
+												Clear Varaints
+											</p>
+										</div>
+									) : (
+										<input
+											type="text"
+											name="variantName"
+											placeholder="Variant Name Here"
+											value={productData.variantName}
+											onChange={variantNameHandler}
+										/>
+									)}
 								</div>
-
-								<p
-									className={
-										productData.variants.length >= 1 ? 'clearBTN' : 'clearBTN clearDisabled '
-									}
-									onClick={clearVariants}
-								>
-									Clear Varaints
-								</p>
 							</div>
 							<div className={errorState === 'variantName' ? 'error' : 'hideError'}>
 								Add a variant name
 							</div>
 							<div className="addVariantContainer">
 								<div className="inputContainer">
-									<label className={errorState === 'option' ? 'errorLabel' : ''} htmlFor="option">
+									<label
+										className={errorState === 'variantOption' ? 'errorLabel' : ''}
+										htmlFor="option"
+									>
 										Variant Option
 									</label>
 									<input
 										type="text"
-										name="variantOption"
+										name="option"
 										placeholder="example: Large"
-										value={formData.variantOption}
+										value={formData.option}
 										onChange={changeHandler}
 									/>
-									<div className={errorState === 'option' ? 'error' : 'hideError'}>
+									<div className={errorState === 'variantOption' ? 'error' : 'hideError'}>
 										Add a variant name
 									</div>
 								</div>
@@ -131,9 +145,9 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 									</label>
 									<input
 										type="number"
-										name="variantPrice"
+										name="price"
 										placeholder="Example: 1.99"
-										value={formData.variantPrice}
+										value={formData.price}
 										onChange={changeHandler}
 									/>
 									<div className={errorState === 'variantPrice' ? 'error' : 'hideError'}>
@@ -151,8 +165,8 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 					''
 				)}
 			</div>
-			{productData.variants.length >= 1 ? (
-				productData.variants.map((cv) => {
+			{productData.variantDetails.length >= 1 ? (
+				productData.variantDetails.map((cv) => {
 					return <VaraintChild data={cv} removeVariant={removeVariant} key={Math.random() * Math.random()} />;
 				})
 			) : (
@@ -164,17 +178,19 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 
 export default AddVariants;
 
+//Child component
 const VaraintChild = (props) => {
 	return (
 		<div className="cardContainer">
 			<p>
-				{props.data.variantName}: {props.data.variantOption} | ${props.data.variantPrice}
+				{props.data.option} | ${props.data.price}
 			</p>
 			<img
 				className="trashcan"
 				src={trashIcon}
+				alt="A trash can icon, when clicked delete a variant"
 				onClick={() => {
-					props.removeVariant(props.data.variantOption);
+					props.removeVariant(props.data.option);
 				}}
 			/>
 		</div>

@@ -20,16 +20,19 @@ export const getCurrentUser = () => (dispatch) => {
         .get(
           `https://shopping-cart-be.herokuapp.com
 /api/store/${res.data._id}/products`
-        )
-        .then((res) => {
-          console.log(res.data);
-          const inventory = res.data;
-          dispatch({ type: types.GET_INVENTORY, payload: inventory });
-        });
-    })
-    .catch((error) => {
-      setErrors(error.response.data);
-    });
+				)
+				.then((res) => {
+					const getAllCategories = res.data.map((cv) => {
+						return cv.category;
+					});
+					const allUniqueCategories = [ ...new Set(getAllCategories) ];
+					const inventory = { ...res.data, allUniqueCategories };
+					dispatch({ type: types.GET_INVENTORY, payload: inventory });
+				});
+		})
+		.catch((error) => {
+			setErrors(error.response.data);
+		});
 };
 
 export const getCart = (cartId) => (dispatch) => {
