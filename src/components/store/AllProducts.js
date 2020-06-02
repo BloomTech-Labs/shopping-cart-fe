@@ -10,12 +10,14 @@ const AllProducts = ({
   filteredProducts,
   inventory,
 }) => {
+  console.log(inventory);
   return (
     <div className='ProductAreaContainer'>
       {categorySearch.length === 0
         ? inventory.map((item) => {
             return (
               <ProductCard
+                id={item._id}
                 image={item.images}
                 productName={item.productName}
                 price={item.price}
@@ -25,6 +27,7 @@ const AllProducts = ({
         : filteredProducts.map((item) => {
             return (
               <ProductCard
+                id={item._id}
                 image={item.images}
                 productName={item.productName}
                 price={item.price}
