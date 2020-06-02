@@ -58,7 +58,6 @@ function App() {
           path='/cart/:id'
           component={localStorage.getItem('token') ? Confirmation : StripeMain}
         />
-        <PublicRoute path='/category' component={CategoryPicker} />
         <PublicRoute path='/cart' component={CartView} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
         <PrivateRoute path='/createstore' component={CreateStoreForm} />
