@@ -3,17 +3,17 @@ import React, { useEffect } from 'react';
 import ProductCard from '../categories/ProductCard';
 
 const AllProducts = ({
-  inventory,
   searchFilter,
   searchString,
   categorySearch,
   testProducts,
   filteredProducts,
+  inventory,
 }) => {
   return (
     <div className='ProductAreaContainer'>
       {categorySearch.length === 0
-        ? testProducts.map((item) => {
+        ? inventory.map((item) => {
             return (
               <ProductCard
                 image={item.images}
