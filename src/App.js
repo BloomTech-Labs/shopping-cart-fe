@@ -25,11 +25,13 @@ import Confirmation from './components/orderConfirmation';
 import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
+import Update from './components/Update';
 import CreateProductView from './components/Products/createProductView';
-import CategoryPicker from './components/categories/CategoryPicker';
+
 function App() {
   window.addEventListener('load', () => {
     function handleNetworkChange(event) {
+      //What is this for?
       if (navigator.onLine) {
         document.getElementById('offline-notification').style.display = 'none';
       } else {
@@ -48,6 +50,7 @@ function App() {
         <PublicRoute path='/brandview' component={BrandView} />
         <PublicRoute path='/colorpicker' component={ColorPicker} />
         {/* Onboarding reformatted Above */}
+        <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
         <PrivateRoute path='/inventory' component={Main} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
