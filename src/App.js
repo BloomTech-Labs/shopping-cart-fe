@@ -26,6 +26,7 @@ import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import Update from './components/Update';
+import CreateProductView from './components/Products/createProductView';
 
 function App() {
   window.addEventListener('load', () => {
