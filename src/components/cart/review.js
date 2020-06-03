@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon, List, message, Modal } from 'antd';
@@ -16,6 +16,13 @@ const ReviewMain = (props) => {
 	const dispatch = useDispatch();
 	const storeDetails = useSelector((state) => state.user.user);
 	const sign = useCurrency(storeDetails.currency);
+
+	useEffect(
+		() => {
+			console.log('🔥 cartContnets', cartContents);
+		},
+		[ cartContents ]
+	);
 
 	const increment = (id) => {
 		dispatch(creators.increment(id));

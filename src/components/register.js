@@ -92,7 +92,7 @@ const RegistrationForm = (props) => {
 				<div className="desktop-logo">
 					<h2 className="register-text">Register new account</h2>
 					<div className="desktop-logo-large">
-						<img src={image} alt="Register Image" width="300" height="300" />
+						<img src="" alt="Register Image" width="300" height="300" />
 					</div>
 				</div>
 				<Logo />

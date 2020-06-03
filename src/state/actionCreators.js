@@ -13,28 +13,30 @@ export const getCurrentUser = () => (dispatch) => {
   AxiosAuth()
     .get(getUserUrl)
     .then((res) => {
+      console.log('first res', res);
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
       AxiosAuth()
         .get(
           `https://shopping-cart-be.herokuapp.com
 /api/store/${res.data._id}/products`
-        )
-        .then((res) => {
-          const inventory = res.data;
-          dispatch({ type: types.GET_INVENTORY, payload: inventory });
-        });
-    })
-    .catch((error) => {
-      setErrors(error.response.data);
-    });
+				)
+				.then((res) => {
+					const getAllCategories = res.data.map((cv) => {
+						return cv.category;
+					});
+					const allUniqueCategories = [ ...new Set(getAllCategories) ];
+					const inventory = { ...res.data, allUniqueCategories };
+					dispatch({ type: types.GET_INVENTORY, payload: inventory });
+				});
+		})
+		.catch((error) => {
+			setErrors(error.response.data);
+		});
 };
 
 export const getCart = (cartId) => (dispatch) => {
   axios
-    .get(
-      `https://shopping-cart-be.herokuapp.com
-/api/store/cart/${cartId}`
-    )
+    .get(`https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}`)
     .then((res) => {
       const savedCart = res.data;
       dispatch({ type: types.SAVE_CART, payload: savedCart });
@@ -82,6 +84,13 @@ export const addToCart = (item) => {
   return {
     type: types.ADD_TO_CART,
     payload: item,
+  };
+};
+
+export const updateCartQuantity = (id) => {
+  return {
+    type: types.UPDATE_CART_QUANTITY,
+    payload: id,
   };
 };
 
@@ -162,7 +171,7 @@ export const getProducts = (sellerId, signal) => (dispatch) => {
       dispatch({ type: types.GET_INVENTORY, payload: inventory });
     })
     .catch((error) => {
-      setErrors(error.response.data);
+      console.log(error);
     });
 };
 
@@ -173,6 +182,7 @@ export const getStore = (sellerId, signal) => (dispatch) => {
 /api/store/${sellerId}`
     )
     .then((res) => {
+      console.log(res.data);
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
     })
     .catch((error) => {
@@ -204,6 +214,19 @@ export const getSalesHistory = () => (dispatch) => {
     })
     .catch((err) => {
       setLoading(false);
+      console.log(err);
+    });
+};
+
+export const getOrders = () => {
+  AxiosAuth()
+    .get('https://shopping-cart-be.herokuapp.com/api/store/orders')
+    .then((res) => {
+      return (dispatch) => {
+        dispatch({ type: types.GET_ORDERS, payload: res.data });
+      };
+    })
+    .catch((err) => {
       console.log(err);
     });
 };

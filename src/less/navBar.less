@@ -1,0 +1,51 @@
+.nav-bar {
+	background: white;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+	-webkit-box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
+	-moz-box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
+	box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
+
+	.link-container {
+		width: 100%;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+
+		.pure-retail-logo {
+			width: 35%;
+			border-radius: 30%;
+		}
+
+		.nav-links {
+			width: 60%;
+		}
+
+		.btn-container {
+			display: flex;
+			flex-flow: row nowrap;
+
+			.nav-primary {
+				background-color: #1890ff;
+				color: white;
+				border: none;
+			}
+
+			.nav-primary:hover {
+				border: white solid 0.5px;
+			}
+
+			.nav-secondary {
+				color: #1890ff;
+			}
+		}
+
+		.nav-store-logo {
+			width: 5%;
+			border-radius: 50%;
+		}
+	}
+}

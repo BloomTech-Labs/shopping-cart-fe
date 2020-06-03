@@ -90,7 +90,7 @@ const Login = (props) => {
 				<div className="desktop-logo">
 					<h2 className="register-text">Login to your account</h2>
 					<div className="desktop-logo-large">
-						<img src={image} alt="Login Image" width="300" height="300" />
+						<img src="" alt="Login Image" width="300" height="300" />
 					</div>
 				</div>
 				<Logo />
