@@ -6,6 +6,7 @@ import StoreNav from './StoreNav';
 
 function StoreView(props) {
 	const sellerId = props.match.params.id.split('-').pop();
+	localStorage.setItem("storeId", sellerId)
 	const store = useSelector((state) => state.user);
 
 	const dispatch = useDispatch();
