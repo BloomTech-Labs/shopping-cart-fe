@@ -1,44 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Form, Input, Icon, Button, message, Upload, Spin } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import AxiosAuth from "../Auth/axiosWithAuth";
-import * as creators from "../../state/actionCreators";
-import history from "../../history";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Form, Input, Icon, Button, message, Upload, Spin } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import AxiosAuth from '../Auth/axiosWithAuth';
+import * as creators from '../../state/actionCreators';
+import history from '../../history';
 
 function getBase64(img, callback) {
   const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
+  reader.addEventListener('load', () => callback(reader.result));
   reader.readAsDataURL(img);
 }
 
 function beforeUpload(file) {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
+    message.error('You can only upload JPG/PNG file!');
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error('Image must smaller than 2MB!');
   }
   return isJpgOrPng && isLt2M;
 }
-const createStoreUrl = "https://shopping-cart-be.herokuapp.com/api/store";
+const createStoreUrl =
+  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store';
 
 const AddLogo = (props) => {
   const dispatch = useDispatch();
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
   const formState = useSelector((state) => state.form);
   const userState = useSelector((state) => state.user);
 
   const handleChange = (info) => {
-    if (info.file.status === "uploading") {
+    if (info.file.status === 'uploading') {
       setLoading(true);
       return;
     }
-    if (info.file.status === "done") {
+    if (info.file.status === 'done') {
       // Get this url from response in real world.
       getBase64(
         info.file.originFileObj,
@@ -50,19 +51,19 @@ const AddLogo = (props) => {
 
   const dummyRequest = ({ file, onSuccess }) => {
     const image = new FormData();
-    image.append("upload_preset", "pure-retail");
-    image.append("file", file);
+    image.append('upload_preset', 'pure-retail');
+    image.append('file', file);
     const config = {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     };
     axios
-      .post("https://api.cloudinary.com/v1_1/pureretail/upload", image, config)
+      .post('https://api.cloudinary.com/v1_1/pureretail/upload', image, config)
       .then((res) => {
         const secureUrl = res.data.secure_url;
         setImageUrl(secureUrl);
       });
     setTimeout(() => {
-      onSuccess("ok");
+      onSuccess('ok');
     }, 0);
   };
 
@@ -86,10 +87,10 @@ const AddLogo = (props) => {
           .post(createStoreUrl, payload)
           .then((res) => {
             dispatch(creators.setStore(res.data.saved));
-            message.success("store created");
+            message.success('store created');
             dispatch(creators.setLoading(false));
             dispatch(creators.clearErrors());
-            history.push("/dashboard");
+            history.push('/dashboard');
           })
           .catch((error) => {
             dispatch(creators.setLoading(false));
@@ -97,14 +98,14 @@ const AddLogo = (props) => {
             message.error(Object.values(error.response.data)[0]);
           });
       } else {
-        message.error("Enter Required Fields");
+        message.error('Enter Required Fields');
       }
     });
   };
 
   const uploadButton = (
     <div id='upload-button'>
-      <Icon type={loading ? "loading" : "plus"} />
+      <Icon type={loading ? 'loading' : 'plus'} />
       <div className='ant-upload-text'>Upload</div>
     </div>
   );
@@ -152,13 +153,12 @@ const AddLogo = (props) => {
             className='avatar-uploader'
             showUploadList={false}
             beforeUpload={beforeUpload}
-            onChange={handleChange}
-          >
+            onChange={handleChange}>
             {imageUrl ? (
               <img
                 src={imageUrl}
                 alt='avatar'
-                style={{ width: "100%", height: "100%" }}
+                style={{ width: '100%', height: '100%' }}
               />
             ) : (
               uploadButton
@@ -180,27 +180,27 @@ const AddLogo = (props) => {
             </h2>
           </div>
           <Form.Item>
-            {getFieldDecorator("store", {
+            {getFieldDecorator('store', {
               rules: [
                 {
-                  message: "Enter your store name",
+                  message: 'Enter your store name',
                 },
                 {
                   required: true,
-                  message: "Enter your store name",
+                  message: 'Enter your store name',
                 },
               ],
             })(<Input placeholder="My store's name is..." />)}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("address", {
+            {getFieldDecorator('address', {
               rules: [
                 {
-                  message: "Enter your store address",
+                  message: 'Enter your store address',
                 },
                 {
                   required: true,
-                  message: "Enter your store address",
+                  message: 'Enter your store address',
                 },
               ],
             })(<Input placeholder="My store's address is..." />)}
@@ -218,6 +218,6 @@ const AddLogo = (props) => {
   return addLogoForm;
 };
 
-const AddLogoForm = Form.create({ name: "register" })(AddLogo);
+const AddLogoForm = Form.create({ name: 'register' })(AddLogo);
 
 export default AddLogoForm;

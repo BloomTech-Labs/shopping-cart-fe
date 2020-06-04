@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Form,
   Input,
@@ -9,13 +9,13 @@ import {
   Popconfirm,
   DatePicker,
   Radio,
-} from "antd";
-import moment from "moment";
-import * as creators from "../state/actionCreators";
-import AxiosAuth from "./Auth/axiosWithAuth";
-import useCurrency from "./hooks/useCurrency";
-import history from "../history";
-import axios from "axios";
+} from 'antd';
+import moment from 'moment';
+import * as creators from '../state/actionCreators';
+import AxiosAuth from './Auth/axiosWithAuth';
+import useCurrency from './hooks/useCurrency';
+import history from '../history';
+import axios from 'axios';
 
 const Confirmation = (props) => {
   const cartId = props.match.params.id;
@@ -51,7 +51,7 @@ const Confirmation = (props) => {
       if (!err) {
         AxiosAuth()
           .put(
-            `https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}/approve`,
+            `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/cart/${cartId}/approve`,
             payload
           )
           .then((res) => {
@@ -61,14 +61,14 @@ const Confirmation = (props) => {
             console.log(err);
           });
       } else {
-        message.error("Enter Required Fields");
+        message.error('Enter Required Fields');
       }
     });
   };
 
   const disabledDate = (current) =>
     // Can not select days before today
-    current && current < moment().endOf("day").subtract(1, "day");
+    current && current < moment().endOf('day').subtract(1, 'day');
 
   const confirmPayment = (e) => {
     e.preventDefault();
@@ -78,19 +78,19 @@ const Confirmation = (props) => {
     };
     axios
       .put(
-        "https://shopping-cart-be.herokuapp.com/api/payment/complete",
+        'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/payment/complete',
         payload
       )
       .then((res) => {
         dispatch(creators.getCart(cartId));
       })
       .catch((err) => {
-        message.error("An Error Occurred", err);
+        message.error('An Error Occurred', err);
       });
   };
 
   const routeToDash = () => {
-    history.push("/dashboard");
+    history.push('/dashboard');
   };
 
   const { getFieldDecorator } = props.form;
@@ -191,8 +191,7 @@ const Confirmation = (props) => {
                     <div className='controls'>
                       <div
                         onClick={() => subtract(item._id)}
-                        className='clicks'
-                      >
+                        className='clicks'>
                         -
                       </div>
                       <div className='clicks count'>{item.quantity}</div>
@@ -215,8 +214,7 @@ const Confirmation = (props) => {
                       onConfirm={() => remove(item._id)}
                       // onCancel={cancel}
                       okText='Yes'
-                      cancelText='No'
-                    >
+                      cancelText='No'>
                       <div className='cancel'>X</div>
                     </Popconfirm>
                   ) : null}
@@ -226,7 +224,7 @@ const Confirmation = (props) => {
           </div>
           <div className='summary left'>
             <div className='units'>
-              <span style={{ color: "#FF6663" }}>Total:</span>{" "}
+              <span style={{ color: '#FF6663' }}>Total:</span>{' '}
               <span>
                 {sign}
                 {editedCart.contents
@@ -241,17 +239,16 @@ const Confirmation = (props) => {
       </div>
       <div className='lower'>
         <Form
-          onSubmit={!cartContents.finalLock ? handleSubmit : confirmPayment}
-        >
+          onSubmit={!cartContents.finalLock ? handleSubmit : confirmPayment}>
           <Form.Item label='Agreed price'>
-            {getFieldDecorator("agreedPrice", {
+            {getFieldDecorator('agreedPrice', {
               initialValue: cartContents.agreedPrice
                 ? cartContents.agreedPrice.toFixed(2)
                 : undefined,
               rules: [
                 {
                   required: true,
-                  message: "Enter agreed price",
+                  message: 'Enter agreed price',
                 },
               ],
             })(
@@ -264,12 +261,12 @@ const Confirmation = (props) => {
             )}
           </Form.Item>
           <Form.Item label='Payment preference'>
-            {getFieldDecorator("paymentPreference", {
+            {getFieldDecorator('paymentPreference', {
               initialValue: cartContents.paymentPreference,
               rules: [
                 {
                   required: true,
-                  message: "Select Payment Preference",
+                  message: 'Select Payment Preference',
                 },
               ],
             })(
@@ -281,11 +278,11 @@ const Confirmation = (props) => {
             )}
           </Form.Item>
           <Form.Item label='Delivery preference'>
-            {getFieldDecorator("delivery", {
+            {getFieldDecorator('delivery', {
               rules: [
                 {
                   required: true,
-                  message: "Enter Delivery preference",
+                  message: 'Enter Delivery preference',
                 },
               ],
             })(
@@ -296,13 +293,13 @@ const Confirmation = (props) => {
             )}
           </Form.Item>
           <Form.Item label='Collection/Delivery Date'>
-            {getFieldDecorator("checkoutDate", {
+            {getFieldDecorator('checkoutDate', {
               initialValue: moment(cartContents.checkoutDate),
-              type: "object",
+              type: 'object',
               rules: [
                 {
                   required: true,
-                  message: "Enter Collection Date",
+                  message: 'Enter Collection Date',
                 },
               ],
             })(
@@ -323,16 +320,14 @@ const Confirmation = (props) => {
                 title='Are you sure you want to confirm?'
                 onConfirm={confirmPayment}
                 okText='Yes'
-                cancelText='No'
-              >
+                cancelText='No'>
                 <Button type='primary'>Confirm Payment</Button>
               </Popconfirm>
             ) : null}
             {cartContents.checkedOut && cartContents.finalLock ? (
               <div
                 onClick={routeToDash}
-                style={{ backgroundColor: "#FF6663", color: "white" }}
-              >
+                style={{ backgroundColor: '#FF6663', color: 'white' }}>
                 Transaction Complete! Go to Dashboard.
               </div>
             ) : null}
@@ -343,6 +338,6 @@ const Confirmation = (props) => {
   );
 };
 
-const ConfirmationPage = Form.create({ name: "confirm" })(Confirmation);
+const ConfirmationPage = Form.create({ name: 'confirm' })(Confirmation);
 
 export default ConfirmationPage;

@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { Form, Input, Icon, Button, message, Spin, Modal } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import Logo from "../elements/logo";
-import history from "../../history";
-import * as creators from "../../state/actionCreators";
-import image from "../../images/security.png";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Form, Input, Icon, Button, message, Spin, Modal } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import Logo from '../elements/logo';
+import history from '../../history';
+import * as creators from '../../state/actionCreators';
+import image from '../../images/security.png';
 
 const SetNewPassword = (props) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.user);
 
   const [confirmDirty, setConfirmDirty] = useState(false);
-  const token = window.location.href.split("=")[1];
-  const URL = `https://shopping-cart-be.herokuapp.com/api/auth/reset/${token}`;
+  const token = window.location.href.split('=')[1];
+  const URL = `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/auth/reset/${token}`;
   const handleSubmit = (e) => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
@@ -29,11 +29,11 @@ const SetNewPassword = (props) => {
             dispatch(creators.setLoading(false));
             dispatch(creators.clearErrors());
             Modal.info({
-              title: "Success",
-              content: "Your password has been reset successfully.",
+              title: 'Success',
+              content: 'Your password has been reset successfully.',
               centered: true,
               onOk() {
-                history.push("/");
+                history.push('/');
               },
             });
           })
@@ -43,7 +43,7 @@ const SetNewPassword = (props) => {
             message.error(Object.values(error.response.data)[0]);
           });
       } else {
-        message.error("Password validation failed.");
+        message.error('Password validation failed.');
       }
     });
   };
@@ -53,8 +53,8 @@ const SetNewPassword = (props) => {
   };
   const compareToFirstPassword = (rule, value, callback) => {
     const { form } = props;
-    if (value && value !== form.getFieldValue("password")) {
-      callback("The two passwords that you entered do not match!");
+    if (value && value !== form.getFieldValue('password')) {
+      callback('The two passwords that you entered do not match!');
     } else {
       callback();
     }
@@ -62,7 +62,7 @@ const SetNewPassword = (props) => {
   const validateToNextPassword = (rule, value, callback) => {
     const { form } = props;
     if (value && confirmDirty) {
-      form.validateFields(["confirm"], { force: true });
+      form.validateFields(['confirm'], { force: true });
     }
     callback();
   };
@@ -108,11 +108,11 @@ const SetNewPassword = (props) => {
               <h2>Set new password</h2>
             </div>
             <Form.Item hasFeedback>
-              {getFieldDecorator("password", {
+              {getFieldDecorator('password', {
                 rules: [
                   {
                     required: true,
-                    message: "Please input your new password!",
+                    message: 'Please input your new password!',
                   },
                   {
                     validator: validateToNextPassword,
@@ -122,17 +122,17 @@ const SetNewPassword = (props) => {
                 <Input.Password
                   placeholder='New Password'
                   prefix={
-                    <Icon type='lock' style={{ color: "rgba(0,0,0,.70)" }} />
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
             </Form.Item>
             <Form.Item hasFeedback>
-              {getFieldDecorator("confirm", {
+              {getFieldDecorator('confirm', {
                 rules: [
                   {
                     required: true,
-                    message: "Please confirm your new password!",
+                    message: 'Please confirm your new password!',
                   },
                   {
                     validator: compareToFirstPassword,
@@ -143,7 +143,7 @@ const SetNewPassword = (props) => {
                   onBlur={handleConfirmBlur}
                   placeholder='Confirm New Password'
                   prefix={
-                    <Icon type='lock' style={{ color: "rgba(0,0,0,.70)" }} />
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
@@ -167,7 +167,7 @@ const SetNewPassword = (props) => {
   return setNewPasswordForm;
 };
 
-const SetNewPasswordForm = Form.create({ name: "setNewPassword" })(
+const SetNewPasswordForm = Form.create({ name: 'setNewPassword' })(
   SetNewPassword
 );
 

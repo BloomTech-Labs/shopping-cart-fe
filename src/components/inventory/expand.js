@@ -1,10 +1,10 @@
-import React from "react";
-import { Card, Carousel, Modal, message, Button } from "antd";
-import AxiosAuth from "../Auth/axiosWithAuth";
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import * as creators from "../../state/actionCreators";
-import history from "../../history";
+import React from 'react';
+import { Card, Carousel, Modal, message, Button } from 'antd';
+import AxiosAuth from '../Auth/axiosWithAuth';
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import * as creators from '../../state/actionCreators';
+import history from '../../history';
 
 const { confirm } = Modal;
 const { Meta } = Card;
@@ -13,18 +13,18 @@ const Expanded = ({ inventory, currency }) => {
   const dispatch = useDispatch();
   function showDeleteConfirm(id) {
     confirm({
-      title: "Are you sure you want to delete this item?",
-      okText: "Yes",
-      okType: "danger",
-      cancelText: "No",
+      title: 'Are you sure you want to delete this item?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
       onOk() {
         AxiosAuth()
           .delete(
-            `https://shopping-cart-be.herokuapp.com/api/store/products/${id}`
+            `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products/${id}`
           )
           .then((res) => {
             dispatch(creators.getCurrentUser());
-            message.success("Item Deleted");
+            message.success('Item Deleted');
             history.go(0);
           })
           .catch((error) => {
@@ -43,14 +43,13 @@ const Expanded = ({ inventory, currency }) => {
           hoverable
           cover={
             item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined
-          }
-        >
+          }>
           <Meta
             title={
               <div className='list title'>
                 <div>
-                  <h3 style={{ color: "black" }}>{item.name}</h3>
-                  <p style={{ fontWeight: "normal" }}>{item.description}</p>
+                  <h3 style={{ color: 'black' }}>{item.name}</h3>
+                  <p style={{ fontWeight: 'normal' }}>{item.description}</p>
                 </div>
                 <NavLink to={`/updateitem/${item._id}`}>
                   <div>

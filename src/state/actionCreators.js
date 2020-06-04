@@ -2,7 +2,8 @@ import * as types from './actionTypes';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
 import axios from 'axios';
 
-const getUserUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
+const getUserUrl =
+  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/';
 
 export const updateForm = (details) => ({
   type: types.UPDATE_FORM,
@@ -17,7 +18,7 @@ export const getCurrentUser = () => (dispatch) => {
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
       AxiosAuth()
         .get(
-          `https://shopping-cart-be.herokuapp.com
+          `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com
 /api/store/${res.data._id}/products`
         )
         .then((res) => {
@@ -36,7 +37,9 @@ export const getCurrentUser = () => (dispatch) => {
 
 export const getCart = (cartId) => (dispatch) => {
   axios
-    .get(`https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}`)
+    .get(
+      `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/cart/${cartId}`
+    )
     .then((res) => {
       const savedCart = res.data;
       dispatch({ type: types.SAVE_CART, payload: savedCart });
@@ -135,7 +138,7 @@ export const clearUser = () => {
 
 export const deleteStore = () => (dispatch) => {
   AxiosAuth()
-    .delete('https://shopping-cart-be.herokuapp.com/api/store')
+    .delete('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store')
     .then((res) => {
       const message = res.data;
       setLoading(true);
@@ -150,7 +153,9 @@ export const deleteStore = () => (dispatch) => {
 export const deleteAccount = () => (dispatch) => {
   setLoading(true);
   AxiosAuth()
-    .delete('https://shopping-cart-be.herokuapp.com/api/auth/account')
+    .delete(
+      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/auth/account'
+    )
     .then((res) => {
       logout();
       dispatch({ type: types.DELETE_ACCOUNT });
@@ -163,7 +168,7 @@ export const deleteAccount = () => (dispatch) => {
 export const getProducts = (sellerId, signal) => (dispatch) => {
   axios
     .get(
-      `https://shopping-cart-be.herokuapp.com
+      `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com
 /api/store/${sellerId}/products`
     )
     .then((res) => {
@@ -178,7 +183,7 @@ export const getProducts = (sellerId, signal) => (dispatch) => {
 export const getStore = (sellerId, signal) => (dispatch) => {
   axios
     .get(
-      `https://shopping-cart-be.herokuapp.com
+      `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com
 /api/store/${sellerId}`
     )
     .then((res) => {
@@ -207,7 +212,7 @@ export const saveCart = (cart) => {
 export const getSalesHistory = () => (dispatch) => {
   setLoading(true);
   AxiosAuth()
-    .get('https://shopping-cart-be.herokuapp.com/api/store/sales')
+    .get('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/sales')
     .then((res) => {
       setLoading(false);
       dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });
@@ -220,7 +225,9 @@ export const getSalesHistory = () => (dispatch) => {
 
 export const getOrders = () => {
   AxiosAuth()
-    .get('https://shopping-cart-be.herokuapp.com/api/store/orders')
+    .get(
+      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/orders'
+    )
     .then((res) => {
       return (dispatch) => {
         dispatch({ type: types.GET_ORDERS, payload: res.data });
@@ -238,7 +245,10 @@ export const postOnboard = (values) => (dispatch) => {
   console.log(values);
   // posting to backend from 'Welcome Screen' - 'create new store'
   AxiosAuth()
-    .post('https://shopping-cart-be.herokuapp.com/api/store', values)
+    .post(
+      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store',
+      values
+    )
     .then((res) => {
       console.log('did this post?', res);
     })
@@ -249,8 +259,12 @@ export const postOnboard = (values) => (dispatch) => {
 // put all seller data to backend
 export const profileUpdate = (values) => (dispatch) => {
   dispatch({ type: types.UPDATE_PROFILE, payload: values });
+  console.log('values', values);
   AxiosAuth()
-    .put('https://shopping-cart-be.herokuapp.com/api/store/', values)
+    .put(
+      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
+      values
+    )
     .then((res) => {
       console.log(res);
     })
@@ -263,7 +277,7 @@ export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
   // logo put here
   AxiosAuth()
-    .put('https://shopping-cart-be.herokuapp.com/api/store/', logo)
+    .put('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store', logo)
     .then((res) => {
       console.log(res);
     })
@@ -275,13 +289,17 @@ export const logoUpload = (logo) => (dispatch) => {
 export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
   // color put here
+  console.log('color', color);
   AxiosAuth()
-    .put('https://shopping-cart-be.herokuapp.com/api/store/', color)
+    .put(
+      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
+      color
+    )
     .then((res) => {
       console.log(res);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(({ message, stack, code, error }) => {
+      console.log(message, stack, code, error);
     });
 };
 
@@ -289,7 +307,10 @@ export const deleteSellerInfo = (values) => (dispatch) => {
   dispatch({ type: types.DELETE_SELLER_INFO });
   // store delete here
   AxiosAuth()
-    .delete('https://shopping-cart-be.herokuapp.com/api/store/', values)
+    .delete(
+      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
+      values
+    )
     .then((res) => {
       console.log(res);
     })

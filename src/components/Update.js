@@ -19,16 +19,16 @@ const Update = (props) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmLogout, setConfirmLogout] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get('https://shopping-cart-be.herokuapp.com/api/store/')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  // useEffect(() => {
+  //   axios
+  //     .get('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/')
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
   const uploadImage = (e) => {
     const files = e.target.files;
     setLoading(true);
