@@ -19,6 +19,7 @@ const ColorPicker = (props) => {
         style={{
           backgroundColor: color,
           height: '50px',
+          width: '100%',
           transition: 'ease all 500ms',
         }}></div>
     </div>

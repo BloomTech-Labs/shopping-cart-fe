@@ -68,7 +68,7 @@ const Navbar = () => {
           </Col>
           <Col className='gutter-row' span={4}>
             <div style={style}>
-              <NavLink to='Profile' activeClassName='activeLink'>
+              <NavLink to='update' activeClassName='activeLink'>
                 <p>Profile</p>
               </NavLink>
               

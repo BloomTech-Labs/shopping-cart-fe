@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -19,6 +19,16 @@ const Update = (props) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmLogout, setConfirmLogout] = useState(false);
 
+  useEffect(() => {
+    axios
+      .get('https://shopping-cart-be.herokuapp.com/api/store/')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   const uploadImage = (e) => {
     const files = e.target.files;
     setLoading(true);

@@ -19,19 +19,19 @@ export const getCurrentUser = () => (dispatch) => {
         .get(
           `https://shopping-cart-be.herokuapp.com
 /api/store/${res.data._id}/products`
-				)
-				.then((res) => {
-					const getAllCategories = res.data.map((cv) => {
-						return cv.category;
-					});
-					const allUniqueCategories = [ ...new Set(getAllCategories) ];
-					const inventory = { ...res.data, allUniqueCategories };
-					dispatch({ type: types.GET_INVENTORY, payload: inventory });
-				});
-		})
-		.catch((error) => {
-			setErrors(error.response.data);
-		});
+        )
+        .then((res) => {
+          const getAllCategories = res.data.map((cv) => {
+            return cv.category;
+          });
+          const allUniqueCategories = [...new Set(getAllCategories)];
+          const inventory = { ...res.data, allUniqueCategories };
+          dispatch({ type: types.GET_INVENTORY, payload: inventory });
+        });
+    })
+    .catch((error) => {
+      setErrors(error.response.data);
+    });
 };
 
 export const getCart = (cartId) => (dispatch) => {
@@ -236,11 +236,11 @@ export const getOrders = () => {
 export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
   console.log(values);
-  // // posting to backend
+  // posting to backend from 'Welcome Screen' - 'create new store'
   AxiosAuth()
-    .post('http://localhost:4000/api/store', values)
+    .post('https://shopping-cart-be.herokuapp.com/api/store', values)
     .then((res) => {
-      console.log(res);
+      console.log('did this post?', res);
     })
     .catch((err) => {
       console.log(err);
@@ -250,7 +250,7 @@ export const postOnboard = (values) => (dispatch) => {
 export const profileUpdate = (values) => (dispatch) => {
   dispatch({ type: types.UPDATE_PROFILE, payload: values });
   AxiosAuth()
-    .put('http://localhost:4000/api/store', values)
+    .put('https://shopping-cart-be.herokuapp.com/api/store/', values)
     .then((res) => {
       console.log(res);
     })
@@ -263,7 +263,7 @@ export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
   // logo put here
   AxiosAuth()
-    .put('http://localhost:4000/api/store', logo)
+    .put('https://shopping-cart-be.herokuapp.com/api/store/', logo)
     .then((res) => {
       console.log(res);
     })
@@ -276,8 +276,7 @@ export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
   // color put here
   AxiosAuth()
-    // needs URL update
-    .put('http://localhost:4000/api/store', color)
+    .put('https://shopping-cart-be.herokuapp.com/api/store/', color)
     .then((res) => {
       console.log(res);
     })
@@ -290,7 +289,7 @@ export const deleteSellerInfo = (values) => (dispatch) => {
   dispatch({ type: types.DELETE_SELLER_INFO });
   // store delete here
   AxiosAuth()
-    .delete('http://localhost:4000/api/store', values)
+    .delete('https://shopping-cart-be.herokuapp.com/api/store/', values)
     .then((res) => {
       console.log(res);
     })

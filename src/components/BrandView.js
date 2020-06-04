@@ -15,6 +15,7 @@ const BrandView = (props) => {
       <div className='brandForms'>
         <LogoUpdate />
         <ColorPicker />
+        
       </div>
       <button
         className='addBranding'
