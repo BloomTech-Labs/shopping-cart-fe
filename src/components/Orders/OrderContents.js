@@ -1,28 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axiosWithAuth from '../Auth/axiosWithAuth';
 import OrderContentsCards from './OrderContentsCards';
 
 const OrderContents = (props) => {
-	const LocalsellerId = localStorage.getItem('sellerId');
-
-	const [ order, setOrder ] = useState();
-
-	// TODO: The Order ID used in the axios call will be removed by grabbing the id from the URL
-	// const GetOrderId = props.match.params.id
-
-	useEffect(
-		() => {
-			axiosWithAuth()
-				.get(`https://shopping-cart-be.herokuapp.com/api/store/order/5ed832fb98c53c0004ff84b5`)
-				.then((res) => {
-					setOrder(res.data.orderItem);
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		},
-		[ setOrder ]
-	);
+	const { order, setOrder } = props;
 
 	function RemoveItem(arg) {
 		const removeItem = order.filter((state) => {

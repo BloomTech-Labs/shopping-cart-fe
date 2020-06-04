@@ -19,7 +19,7 @@ const OrderContentsCards = ({ order, RemoveItem }) => {
 			{order ? (
 				order.map((cv) => {
 					return (
-						<div className="OrderContents">
+						<div key={Math.random()} className="OrderContents">
 							<div className="orderItemInfo">
 								<h3> {cv.quantity} </h3>
 								<img src={timesIcon} />
