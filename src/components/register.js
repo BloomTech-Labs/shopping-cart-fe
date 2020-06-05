@@ -27,7 +27,7 @@ const RegistrationForm = (props) => {
             message.success('Signed Up');
             localStorage.setItem('token', res.data.token);
             props.dispatch(clearErrors());
-            history.push('/createstore');
+            history.push('/welcome');
           })
           .catch((error) => {
             props.dispatch(setErrors(error.response.data));

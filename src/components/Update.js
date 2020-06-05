@@ -317,6 +317,7 @@ const ProfileUpdater = withFormik({
 
   handleSubmit: (values, formikBag) => {
     formikBag.props.profileUpdate(values);
+    history.push('/dashboard');
   },
 })(Update);
 
