@@ -9,8 +9,6 @@ import cart_icon from "../../images/cart-icon.svg";
 import axiosWithAuth from "../Auth/axiosWithAuth";
 
 const StoreNav = props => {
-  console.log(props, "STORE NAV PROPS");
-  console.log(props.store.storeUrl);
 
   const [color, setColor] = useState();
   const [logo, setLogo] = useState();
@@ -19,7 +17,6 @@ const StoreNav = props => {
   const cartContents = useSelector(state => state.cart);
   const storeDetails = useSelector(state => state.user.user);
   const sellerId = localStorage.getItem("storeId");
-  console.log(sellerId);
   const findRef = window.location.href;
 
   useEffect(() => {

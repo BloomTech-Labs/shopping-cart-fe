@@ -24,8 +24,6 @@ function StoreView(props) {
 	const searchString = useSelector((state) => state.search);
 	const localStoreId = localStorage.getItem('sellerId');
 
-	console.log('localStorage', localStoreId);
-
 	// SearchObj is what parases the string (no idea how it works)
 	function searchObj(obj, string) {
 		const regExpFlags = 'gi';
@@ -39,7 +37,6 @@ function StoreView(props) {
 
 	return (
 		<div>
-			{console.log(props)}
 			<div>
 				<StoreNav match={props.match} storeDetails={storeDetails} store={store} />
 				<AllProducts searchString={searchString} searchFilter={searchFilter} inventory={inventory} />

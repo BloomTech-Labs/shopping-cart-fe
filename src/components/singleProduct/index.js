@@ -6,7 +6,6 @@ import SingleProductView from './buyerSingleProductView';
 function Single(props) {
 	const productId = props.match.params.id;
 	const store = useSelector((state) => state.user);
-	console.log('store', store);
 
 	return (
 		<div>
