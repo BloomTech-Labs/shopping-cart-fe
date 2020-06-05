@@ -209,13 +209,11 @@ export const getSalesHistory = () => (dispatch) => {
     });
 };
 
-export const getOrders = () => {
+export const getOrders = (storeId) => (dispatch) => {
   AxiosAuth()
-    .get("https://whispering-dawn-20611.herokuapp.com/api/store/orders")
+    .get(`https://shopping-cart-be.herokuapp.com/api/store/${storeId}/order`)
     .then((res) => {
-      return (dispatch) => {
-        dispatch({ type: types.GET_ORDERS, payload: res.data });
-      };
+      dispatch({ type: types.GET_ORDERS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
