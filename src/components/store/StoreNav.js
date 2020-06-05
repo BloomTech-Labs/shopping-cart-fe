@@ -6,12 +6,14 @@ import NoLogo from "../../images/PureRetail_Logo.png";
 import history from "../../history";
 import search_icon from "../../images/search-icon.svg";
 import cart_icon from "../../images/cart-icon.svg";
-import axios from "axios";
 import axiosWithAuth from "../Auth/axiosWithAuth";
 
 const StoreNav = props => {
   console.log(props, "STORE NAV PROPS");
   console.log(props.store.storeUrl);
+
+  const [color, setColor] = useState();
+  const [logo, setLogo] = useState();
 
   const dispatch = useDispatch();
   const cartContents = useSelector(state => state.cart);
@@ -21,16 +23,13 @@ const StoreNav = props => {
   const findRef = window.location.href;
 
   useEffect(() => {
-    const Url =
-      `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/${sellerId}`;
+    const Url = `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/${sellerId}`;
     axiosWithAuth()
       .get(Url)
       .then(res => {
-        console.log(res.data, "👻");
-        const color = res.data.color; // use inline styling
-        const image = res.data.logo;
+		setColor(res.data.color);
+		setLogo(res.data.logo)
       })
-
       .catch(error => console.log(error));
 
     dispatch(creators.getStore(sellerId));
@@ -44,16 +43,17 @@ const StoreNav = props => {
   const change = e => {
     dispatch(creators.setString(e.target.value));
   };
+
   return (
     <div className="navMasterContainer">
-      {console.log(props)}
+		{/* {data.color} */}
       <div
         onClick={() => {
           history.goBack();
         }}
       >
-        {storeDetails.imageUrl ? (
-          <img className="storeLogo" src={storeDetails.imageUrl} />
+        {logo ? (
+          <img className="storeLogo" src={logo} />
         ) : (
           <img className="storeLogo" src={NoLogo} />
         )}
@@ -70,8 +70,8 @@ const StoreNav = props => {
 
       <div className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
-        <div className="badge">
-          <div className="badgeNumber">{totalQuantity(cartContents)}</div>
+        <div className="badge" style={{background: `${color}`}} >
+          <div className="badgeNumber" >{totalQuantity(cartContents)}</div>
         </div>
         <NavLink to="/cart">
           <img src={cart_icon} />
