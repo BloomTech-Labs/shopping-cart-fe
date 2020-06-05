@@ -27,8 +27,8 @@ const StoreNav = props => {
     axiosWithAuth()
       .get(Url)
       .then(res => {
-		setColor(res.data.color);
-		setLogo(res.data.logo)
+        setColor(res.data.color);
+        setLogo(res.data.logo);
       })
       .catch(error => console.log(error));
 
@@ -46,17 +46,17 @@ const StoreNav = props => {
 
   return (
     <div className="navMasterContainer">
-		{/* {data.color} */}
       <div
         onClick={() => {
           history.goBack();
         }}
       >
-        {logo ? (
+        <img className="storeLogo" src={logo} />
+        {/* {logo ? (
           <img className="storeLogo" src={logo} />
         ) : (
           <img className="storeLogo" src={NoLogo} />
-        )}
+        )} */}
       </div>
 
       <div className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
@@ -70,8 +70,8 @@ const StoreNav = props => {
 
       <div className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
-        <div className="badge" style={{background: `${color}`}} >
-          <div className="badgeNumber" >{totalQuantity(cartContents)}</div>
+        <div className="badge" style={{ background: `${color}` }}>
+          <div className="badgeNumber">{totalQuantity(cartContents)}</div>
         </div>
         <NavLink to="/cart">
           <img src={cart_icon} />
