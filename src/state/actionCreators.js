@@ -244,17 +244,19 @@ export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
   // posting to backend from 'Welcome Screen' - 'create new store'
 
-  AxiosAuth()
-    .post(
-      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store',
-      values
-    )
-    .then((res) => {
-      console.log('did this post?', res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // Getting rid of the post request for now due to backend issues
+  
+  // AxiosAuth()
+  //   .post(
+  //     'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store',
+  //     values
+  //   )
+  //   .then((res) => {
+  //     console.log('did this post?', res);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 };
 // put all seller data to backend
 export const profileUpdate = (userInfo) => (dispatch) => {
