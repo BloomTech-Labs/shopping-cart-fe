@@ -32,11 +32,12 @@ const StoreNav = props => {
     dispatch(creators.getStore(sellerId));
   }, [sellerId, dispatch]);
 
-  const totalQuantity = arr => {
+  const totalQuantity = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0);
   };
+  
   const change = e => {
     dispatch(creators.setString(e.target.value));
   };
@@ -56,26 +57,25 @@ const StoreNav = props => {
         )} */}
       </div>
 
-      <div className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
+      <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
         <img className="searchIcon" src={search_icon} />
         <input
           className="searchBar"
           placeholder="Search..."
-          onChange={change}
+          onChange={props.change}
         />
-      </div>
+      </form>
 
       <div className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
         <div className="badge" style={{ background: `${color}` }}>
           <div className="badgeNumber">{totalQuantity(cartContents)}</div>
         </div>
-        <NavLink to="/cart">
+        <NavLink to='/cart'>
           <img src={cart_icon} />
         </NavLink>
       </div>
     </div>
-  );
-};
+)};
 
 export default StoreNav;

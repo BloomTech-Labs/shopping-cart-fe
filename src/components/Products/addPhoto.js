@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import AxiosAuth from '../Auth/axiosWithAuth';
 import trashIcon from '../../images/trash_icon.svg';
-
+//Destructured props are coming from createProductView.js
 const AddPhoto = ({ productData, setProductData, errorState }) => {
 	const [ imageCount, setImageCount ] = useState(0);
-
 	const [ loading, setLoading ] = useState(false);
 
 	//Adding A photo
@@ -28,25 +26,24 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 		const files = e.target.files;
 		setLoading(true);
 		const data = new FormData();
+		//data.append is needed to add the files & upload pressets to the image so Coludinary will take it
 		data.append('file', files[0]);
 		data.append('upload_preset', 'ShoppingCart-Products');
 
 		axios.post('https://api.cloudinary.com/v1_1/dnsl4nbz4/image/upload', data).then((res) => {
-			setProductData({ ...productData, ['photos']: [ ...productData.photos, res.data.secure_url ] });
+			setProductData({ ...productData, ['images']: [ ...productData.images, res.data.secure_url ] });
 		});
 
 		setImageCount(imageCount + 1);
 		setLoading(false);
 	};
 
-	//Removing A photo
-
 	function removePhoto(arg) {
-		const newState = productData.photos.filter((cv) => {
+		const newState = productData.images.filter((cv) => {
 			return cv !== arg;
 		});
 		setImageCount(imageCount - 1);
-		return setProductData({ ...productData, ['photos']: newState });
+		return setProductData({ ...productData, ['images']: newState });
 	}
 
 	return (
@@ -65,13 +62,18 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 			{loading ? (
 				'Loading...'
 			) : (
-				productData.photos.map((cv) => {
+				productData.images.map((cv) => {
 					return (
-						<div className="singleProductImage">
-							<img className="productImage" src={cv} key={Math.random() * Math.random()} />
+						<div className="singleProductImage" key={Math.random()}>
+							<img
+								className="productImage"
+								src={cv}
+								alt="Whatever photo has been uploaded will show here"
+							/>
 							<img
 								className="trashIcon"
 								src={trashIcon}
+								alt="A trash can icon, when clicked deletes a photo"
 								onClick={() => {
 									removePhoto(cv);
 								}}
@@ -80,7 +82,7 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 					);
 				})
 			)}
-			<div className={errorState === 'photos' ? 'error' : 'hideError'}>You need to add a photo!</div>
+			<div className={errorState === 'images' ? 'error' : 'hideError'}>You need to add a photo!</div>
 		</div>
 	);
 };

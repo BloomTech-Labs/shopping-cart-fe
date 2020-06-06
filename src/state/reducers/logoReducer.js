@@ -1,7 +1,5 @@
-// import { UPLOAD_LOGO } from '../actionTypes';
-
 const initialState = {
-  logo: '',
+  logo: 'https://i.gyazo.com/c07509b1684992e37e46b355e942dadf.png',
 };
 
 const logoReducer = (state = initialState, action) => {
