@@ -1,8 +1,11 @@
 import React from 'react';
 import LogoUpdate from './LogoUpdate';
 import ColorPicker from './ColorPicker';
+import history from '../history';
+import { connect } from 'react-redux';
+import { colorUpload, logoUpload } from '../state/actionCreators';
 
-const BrandView = () => {
+const BrandView = (props) => {
   return (
     <div className='brandWrapper'>
       <div className='headerWrapper'>
@@ -13,9 +16,25 @@ const BrandView = () => {
         <LogoUpdate />
         <ColorPicker />
       </div>
-      <button className='addBranding'>Finish</button>
+      <button
+        className='addBranding'
+        onClick={() => {
+          // our put requests here for color / logo
+          colorUpload(props.color);
+          logoUpload(props.logo);
+          history.push('/update');
+        }}>
+        Finish
+      </button>
     </div>
   );
 };
 
-export default BrandView;
+const mapStateToProps = (state) => {
+  return {
+    color: state.color.color,
+    logo: state.logo.logo,
+  };
+};
+
+export default connect(mapStateToProps, { colorUpload, logoUpload })(BrandView);

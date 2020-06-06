@@ -3,13 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as creators from '../../state/actionCreators';
 import AllProducts from './AllProducts';
 import StoreNav from './StoreNav';
+import CategoryPicker from '../categories/CategoryPicker';
 
 function StoreView(props) {
 	const sellerId = props.match.params.id.split('-').pop();
 	localStorage.setItem("storeId", sellerId)
 	const store = useSelector((state) => state.user);
 
-	const dispatch = useDispatch();
+  const uniqueCategories = [...new Set(storeCategories)];
+  let filteredProducts = inventory.filter((item) => {
+    return item.category.toLowerCase().includes(categorySearch);
+  });
+  const storeDetails = store.user;
+  const searchString = useSelector((state) => state.search);
 
 	useEffect(
 		() => {

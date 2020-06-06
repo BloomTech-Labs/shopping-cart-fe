@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +38,7 @@ const StoreNav = props => {
       return sum + item.quantity;
     }, 0);
   };
+
   const change = e => {
     dispatch(creators.setString(e.target.value));
   };
