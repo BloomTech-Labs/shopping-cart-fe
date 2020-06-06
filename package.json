@@ -16,7 +16,7 @@
 		"formik": "^2.1.4",
 		"less": "^3.10.3",
 		"less-loader": "^5.0.0",
-		"moment": "^2.25.3",
+		"moment": "^2.26.0",
 		"nyc": "^14.1.1",
 		"rc-form": "^2.4.11",
 		"react": "^16.13.1",
@@ -48,8 +48,16 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"devDependencies": {
 		"standard": "^14.3.3"

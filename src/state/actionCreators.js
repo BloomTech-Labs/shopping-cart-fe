@@ -30,7 +30,7 @@ export const getCurrentUser = () => (dispatch) => {
 				});
 		})
 		.catch((error) => {
-			setErrors(error.response.data);
+			console.log(error);
 		});
 };
 

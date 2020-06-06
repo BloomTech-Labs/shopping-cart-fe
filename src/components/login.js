@@ -51,8 +51,8 @@ const Login = (props) => {
 					})
 					.catch((error) => {
 						props.dispatch(setLoading(false));
-						props.dispatch(setErrors(error.response.data));
-						message.error(Object.values(error.response.data)[0]);
+						// props.dispatch(setErrors(error.response.data));
+						// message.error(Object.values(error.response.data)[0]);
 					});
 			}
 			else {
