@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,18 +8,14 @@ import history from "../../history";
 import search_icon from "../../images/search-icon.svg";
 import cart_icon from "../../images/cart-icon.svg";
 import axiosWithAuth from "../Auth/axiosWithAuth";
-
 const StoreNav = props => {
-
   const [color, setColor] = useState();
   const [logo, setLogo] = useState();
-
   const dispatch = useDispatch();
   const cartContents = useSelector(state => state.cart);
   const storeDetails = useSelector(state => state.user.user);
   const sellerId = localStorage.getItem("storeId");
   const findRef = window.location.href;
-
   useEffect(() => {
     const Url = `https://shopping-cart-be.herokuapp.com/${sellerId}`;
     axiosWithAuth()
@@ -28,20 +25,16 @@ const StoreNav = props => {
         setLogo(res.data.logo);
       })
       .catch(error => console.log(error));
-
     dispatch(creators.getStore(sellerId));
   }, [sellerId, dispatch]);
-
   const totalQuantity = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0);
   };
-  
   const change = e => {
     dispatch(creators.setString(e.target.value));
   };
-
   return (
     <div className="navMasterContainer">
       <div
@@ -56,7 +49,6 @@ const StoreNav = props => {
           <img className="storeLogo" src={NoLogo} />
         )} */}
       </div>
-
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
         <img className="searchIcon" src={search_icon} />
         <input
@@ -65,7 +57,6 @@ const StoreNav = props => {
           onChange={props.change}
         />
       </form>
-
       <div className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
         <div className="badge" style={{ background: `${color}` }}>
@@ -77,5 +68,4 @@ const StoreNav = props => {
       </div>
     </div>
 )};
-
 export default StoreNav;
