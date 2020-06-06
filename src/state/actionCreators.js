@@ -242,8 +242,8 @@ export const getOrders = () => {
 
 export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
-  console.log(values);
   // posting to backend from 'Welcome Screen' - 'create new store'
+
   AxiosAuth()
     .post(
       'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store',
@@ -257,17 +257,15 @@ export const postOnboard = (values) => (dispatch) => {
     });
 };
 // put all seller data to backend
-export const profileUpdate = (values) => (dispatch) => {
-  dispatch({ type: types.UPDATE_PROFILE, payload: values });
-  console.log('values', values);
+export const profileUpdate = (userInfo) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROFILE, payload: userInfo });
   AxiosAuth()
-    .put(
+    .post(
       'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
-      values
+      userInfo
     )
     .then((res) => {
       console.log(res);
-      
     })
     .catch((err) => {
       console.log(err);
@@ -277,6 +275,7 @@ export const profileUpdate = (values) => (dispatch) => {
 export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
   // logo put here
+
   AxiosAuth()
     .put('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store', logo)
     .then((res) => {
@@ -291,6 +290,7 @@ export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
   // color put here
   console.log('color', color);
+
   AxiosAuth()
     .put(
       'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
@@ -319,3 +319,5 @@ export const deleteSellerInfo = (values) => (dispatch) => {
       console.log(err);
     });
 };
+
+// end onboarding actions
