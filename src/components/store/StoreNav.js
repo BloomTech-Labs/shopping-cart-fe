@@ -20,7 +20,7 @@ const StoreNav = props => {
   const findRef = window.location.href;
 
   useEffect(() => {
-    const Url = `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/${sellerId}`;
+    const Url = `https://shopping-cart-be.herokuapp.com/${sellerId}`;
     axiosWithAuth()
       .get(Url)
       .then(res => {
