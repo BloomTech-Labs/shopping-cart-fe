@@ -259,7 +259,6 @@ export const colorUpload = (color) => (dispatch) => {
 
 export const deleteSellerInfo = (values) => (dispatch) => {
   dispatch({ type: types.DELETE_SELLER_INFO });
-  // store delete here
   AxiosAuth()
     .delete('/api/store/', values)
     .then((res) => {

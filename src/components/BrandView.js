@@ -10,7 +10,6 @@ import {
 } from '../state/actionCreators';
 
 const BrandView = (props) => {
-  console.log('props', props);
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
@@ -28,7 +27,6 @@ const BrandView = (props) => {
       logo: props.logo,
     });
   }, []);
-  console.log('userInfo', userInfo);
   return (
     <div className='brandWrapper'>
       <div className='headerWrapper'>
@@ -42,7 +40,6 @@ const BrandView = (props) => {
       <button
         className='addBranding'
         onClick={() => {
-          // this will be our post
           props.profileUpdate(userInfo);
           history.push('/dashboard');
         }}>
