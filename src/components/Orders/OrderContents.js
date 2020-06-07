@@ -4,6 +4,7 @@ import OrderContentsCards from './OrderContentsCards';
 
 const OrderContents = (props) => {
 	const { order, setOrder } = props;
+	const { orderCanceled } = props;
 
 	function RemoveItem(arg) {
 		const removeItem = order.filter((state) => {
@@ -34,7 +35,7 @@ const OrderContents = (props) => {
 				<h5>Quantity</h5>
 				<h5>Products</h5>
 			</div>
-			<OrderContentsCards order={order} RemoveItem={RemoveItem} />
+			<OrderContentsCards order={order} RemoveItem={RemoveItem} orderCanceled={orderCanceled} />
 		</div>
 	);
 };
