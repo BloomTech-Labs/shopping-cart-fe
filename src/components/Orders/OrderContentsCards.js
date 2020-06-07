@@ -29,8 +29,6 @@ const OrderContentsCards = ({ order, RemoveItem }) => {
 								</div>
 							</div>
 							<div className="orderActions">
-								{/* <div className="editBTN"> Edit </div> */}
-
 								{readyToDelete ? (
 									<div className="deleteFunction">
 										<div

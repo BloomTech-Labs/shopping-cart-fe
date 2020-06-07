@@ -8,6 +8,7 @@ const OrderDetailsView = () => {
 	const LocalsellerId = localStorage.getItem('sellerId');
 	const [ order, setOrder ] = useState();
 	const [ fullOrder, setFullOrder ] = useState(0);
+	const [ orderCanceled, setOrderCanceled ] = useState(false);
 
 	// TODO: The Order ID used in the axios call will be removed by grabbing the id from the URL
 	// const GetOrderId = props.match.params.id
@@ -15,7 +16,7 @@ const OrderDetailsView = () => {
 	useEffect(
 		() => {
 			axiosWithAuth()
-				.get(`https://shopping-cart-be.herokuapp.com/api/store/order/5ed832fb98c53c0004ff84b5`)
+				.get(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`)
 				.then((res) => {
 					console.log('res', res.data);
 					setOrder(res.data.orderItem);
@@ -30,8 +31,8 @@ const OrderDetailsView = () => {
 
 	return (
 		<div className="OrderDetailsMaster">
-			<BuyerInfo fullOrder={fullOrder} />
-			<OrderContents order={order} setOrder={setOrder} />
+			<BuyerInfo fullOrder={fullOrder} setOrderCanceled={setOrderCanceled} />
+			<OrderContents order={order} setOrder={setOrder} orderCanceled={orderCanceled} />
 		</div>
 	);
 };

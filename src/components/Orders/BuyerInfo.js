@@ -2,45 +2,89 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../Auth/axiosWithAuth';
 import moment from 'moment';
 
-const BuyerInfo = ({ fullOrder }) => {
-	const { _id, orderCreated } = fullOrder;
+const BuyerInfo = ({ fullOrder, setOrderCanceled }) => {
+	const { _id, orderCreated, orderStatus, orderCompleted } = fullOrder;
 	//Instead of using the full 10+ long ID shorten it to the last 5 digits
 	const orderNumber = _id ? _id.substr(_id.length - 5) : 0;
-	const [ currentStatus, setCurrentStatus ] = useState('Not Ready');
-	const [ buttonStatus, setButtonStatus ] = useState('Order Prepaired');
+	//Status State
+	const [ currentStatus, setCurrentStatus ] = useState();
+	const [ buttonStatus, setButtonStatus ] = useState();
 	const allStatuses = [ 'Not Ready', 'Prepaired', 'Complete' ];
+	//Date State
 	const createdTimeFormated = moment(orderCreated).format('MMM DD YYYY');
-	const [ completeDate, setCompleteDate ] = useState('-');
+	const [ completedTime, setCompletedTime ] = useState('-');
 
-	function nextStatus(arg) {
-		if (arg === 'Cancel') {
-			return console("Action isn't ready yet");
-		}
+	useEffect(
+		() => {
+			setCurrentStatus(orderStatus);
+			NextButtonStatus(orderStatus);
+			!orderCompleted ? setCompletedTime('-') : setCompletedTime(orderCompleted);
+			orderStatus === 'Canceled' ? setOrderCanceled(true) : setOrderCanceled(false);
+		},
+		[ orderStatus, setCurrentStatus, orderCompleted ]
+	);
+
+	function NextButtonStatus(arg) {
 		const foundStatus = allStatuses.indexOf(arg);
 		const newStatus = foundStatus + 1;
-		setCurrentStatus(allStatuses[newStatus]);
-		// TODO: Once I have the correct endpoint & key they will be added
-		// TODO: Make sure to send up the CompletedDate
+		setButtonStatus(allStatuses[newStatus]);
+	}
+
+	function nextStatus(arg) {
+		const foundStatus = allStatuses.indexOf(arg);
+		const newStatus = foundStatus + 1;
 
 		if (currentStatus === 'Prepaired') {
-			const completedTimeFormated = moment(Date.now()).format('MMM DD YYYY');
-			return setCompleteDate(completedTimeFormated);
+			const payload = {
+				orderStatus: allStatuses[newStatus],
+				orderCompleted: Date.now()
+			};
+
+			return axiosWithAuth()
+				.put(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`, payload)
+				.then((res) => {
+					console.log('res Date', res.data.orderCompleted);
+					setCurrentStatus(res.data.orderStatus);
+					NextButtonStatus(res.data.orderStatus);
+					setCompletedTime(res.data.orderCompleted);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		}
+
+		const payload = {
+			orderStatus: allStatuses[newStatus]
+		};
+
+		axiosWithAuth()
+			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`, payload)
+			.then((res) => {
+				console.log('res 2', res.data.orderCompleted);
+				setCurrentStatus(res.data.orderStatus);
+				NextButtonStatus(res.data.orderStatus);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	function cancelOrder() {
 		setCurrentStatus('Canceled');
-		// TODO: Make a put request canceling the order
-		axiosWithAuth();
-		// 	.put('CorrectURL', {
-		// 	currentStatus: currentStatus
-		// })
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
+		setOrderCanceled(true);
+
+		axiosWithAuth()
+			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`, {
+				orderStatus: 'Canceled'
+			})
+			.then((res) => {
+				console.log('res 2', res.data.orderCompleted);
+				setCurrentStatus(res.data.orderStatus);
+				NextButtonStatus(res.data.orderStatus);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	return (
@@ -49,14 +93,14 @@ const BuyerInfo = ({ fullOrder }) => {
 				<section className="topSection">
 					<div
 						onClick={() => {
-							console.log(completeDate);
+							console.log('hey');
 						}}
 						className="OrderNumber"
 					>
 						<h4>Order:</h4>
 						<h3 className="number"> {orderNumber} </h3>
 					</div>
-					<div className={`orderStatus ${currentStatus}`}>{currentStatus}</div>
+					<div className={`orderStatus ${currentStatus}`}> {currentStatus} </div>
 				</section>
 				<div className="divider" />
 				<section className="bottomSection">
@@ -66,12 +110,12 @@ const BuyerInfo = ({ fullOrder }) => {
 					</div>
 					<div className="startDataContainer">
 						<h4>Order Complete</h4>
-						<h3> {completeDate}</h3>
+						<h3> {completedTime === '-' ? '-' : moment(completedTime).format('MMM DD YYYY')}</h3>
 					</div>
 				</section>
 			</div>
 			<div className="actionContainer">
-				{currentStatus === 'Complete' ? (
+				{currentStatus === 'Complete' || currentStatus === 'Canceled' ? (
 					''
 				) : (
 					<div>
@@ -79,14 +123,13 @@ const BuyerInfo = ({ fullOrder }) => {
 							className={buttonStatus == 'Complete Order' ? 'completeBTN' : 'ReadyBTN'}
 							onClick={() => {
 								nextStatus(currentStatus);
-								setButtonStatus('Complete Order');
 							}}
 						>
-							{buttonStatus}
+							Order {buttonStatus}
 						</button>
 						<button
 							onClick={() => {
-								// cancelOrder();
+								cancelOrder();
 							}}
 							className="cancelBTN"
 						>
