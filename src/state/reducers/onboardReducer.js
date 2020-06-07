@@ -1,4 +1,4 @@
-import { ADD_ONBOARDING } from '../../state/actionTypes';
+import { ADD_ONBOARDING, DELETE_SELLER_INFO } from '../../state/actionTypes';
 const initialState = {
   businessName: '',
   ownerName: '',
@@ -24,6 +24,18 @@ const onboardReducer = (state = initialState, action) => {
         zipcode: action.payload.zipcode,
         hours: action.payload.hours,
         curbHours: action.payload.curbHours,
+      };
+    case DELETE_SELLER_INFO:
+      return {
+        businessName: '',
+        ownerName: '',
+        address: '',
+        secondAddress: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        hours: '',
+        curbHours: '',
       };
     default:
       return state;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import * as creators from "../../state/actionCreators"
 
 function SingleProductView(props) {
+
   //productState is used only for the values that is submitted to the cart
   const [fullProduct, setFullProduct] = useState([])
   const [productState, setProductState] = useState([
@@ -22,6 +23,7 @@ function SingleProductView(props) {
   const dispatch = useDispatch()
 
   const cartContents = useSelector((state) => state.cart)
+
 
   function changeHandler(e) {
     e.preventDefault()

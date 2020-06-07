@@ -1,22 +1,34 @@
 import React, { useEffect } from 'react';
-import ProductCard from './ProductCard';
-
-const AllProducts = ({ inventory, searchFilter, searchString }) => {
-	return (
-		<div className="ProductAreaContainer">
-			{searchString ? (
-				searchFilter.map((cv) => {
-					return <ProductCard inventory={cv} key={cv._id} />;
-				})
-			) : inventory ? (
-				inventory.map((cv) => {
-					return <ProductCard inventory={cv} key={cv._id} />;
-				})
-			) : (
-				''
-			)}
-		</div>
-	);
+import ProductCard from '../categories/ProductCard';
+const AllProducts = ({
+  categorySearch,
+  filteredProducts,
+  inventory,
+}) => {
+  return (
+    <div className='ProductAreaContainer'>
+      {categorySearch.length === 0
+        ? inventory.map((item) => {
+            return (
+              <ProductCard
+                id={item._id}
+                image={item.images}
+                productName={item.productName}
+                price={item.price}
+              />
+            );
+          })
+        : filteredProducts.map((item) => {
+            return (
+              <ProductCard
+                id={item._id}
+                image={item.images}
+                productName={item.productName}
+                price={item.price}
+              />
+            );
+          })}
+    </div>
+  );
 };
-
 export default AllProducts;
