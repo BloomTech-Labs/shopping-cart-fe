@@ -7,11 +7,9 @@ import delete_icon from "../../images/delete-icon.svg"
 import add_icon from "../../images/add-icon.svg"
 import subtract_icon from "../../images/subtract-icon.svg"
 import emptyCartGraphic from "../../images/emptyCartGraphic.svg"
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom"
 const CartTable = ({ cartContents, totalPrice, props }) => {
   const dispatch = useDispatch()
-
-  console.log(cartContents)
 
   const increment = (id) => {
     console.log("isDispatching ++", id)
@@ -27,9 +25,8 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
     console.log("isDispatching item", item)
     dispatch(creators.subtractFromCart(item))
   }
-  const reDirect = () => {
-    props.history.push('/savecart')
-  }
+
+  console.log("cartContents", cartContents)
 
   return (
     <div className="cartMasterContainer">
@@ -63,12 +60,16 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
                       alt="cartImage"
                     />
                     <div className="productInfo">
-                      <h3> {cv.name} </h3>
-                      <p>Product Varaint</p>
+                      <h3> {cv.productName} </h3>
+                      <p>{cv.variantDetails[0].option}</p>
                     </div>
                   </div>
+                  {cv.variantDetails[0].price ? (
+                    <h3>${cv.variantDetails[0].price}</h3>
+                  ) : (
+                    <h3>${cv.price}</h3>
+                  )}
 
-                  <h3>${cv.price}</h3>
                   <img src={times_icon} alt="cartImage" />
                   <div className="quantityContainer">
                     <img
@@ -76,7 +77,6 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
                       alt="cartImage"
                       src={subtract_icon}
                       onClick={() => {
-                        console.log(cv.quantity)
                         decrement(cv.productId)
                       }}
                     />
@@ -88,7 +88,6 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
                       src={add_icon}
                       alt="cartImage"
                       onClick={() => {
-                        console.log(cv.quantity)
                         increment(cv.productId)
                       }}
                     />
@@ -99,10 +98,19 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
                     alt="cartImage"
                     src={equals_icon}
                   />
+                  {cv.variantDetails[0].option ? (
+                    <h3>
+                      $
+                      {Number.parseFloat(
+                        cv.variantDetails[0].price * cv.quantity
+                      ).toFixed(2)}
+                    </h3>
+                  ) : (
+                    <h3>
+                      ${Number.parseFloat(cv.price * cv.quantity).toFixed(2)}
+                    </h3>
+                  )}
 
-                  <h3>
-                    ${Number.parseFloat(cv.price * cv.quantity).toFixed(2)}
-                  </h3>
                   <img
                     className="deleteIcon"
                     src={delete_icon}
@@ -118,10 +126,10 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
           })
         : ""}
       {cartContents.length > 0 ? (
-        <div className = "totalPrice">
-          <h1>Total: ${totalPrice(cartContents)}</h1>
+        <div className="totalPrice">
+          <div className = "total">Total: ${totalPrice(cartContents)}</div>
           <NavLink to="/savecart">
-            <button >Checkout</button>
+            <button>Checkout</button>
           </NavLink>
         </div>
       ) : (

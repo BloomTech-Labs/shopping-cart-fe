@@ -5,17 +5,19 @@ import * as creators from "../../state/actionCreators"
 
 function SingleProductView(props) {
   //productState is used only for the values that is submitted to the cart
+  const [fullProduct, setFullProduct] = useState([])
   const [productState, setProductState] = useState([
     {
-      name: "",
+      productName: "",
       price: null,
       productId: "",
       quantity: 1,
       images: [],
+      variantDetails: [],
     },
   ])
+
   //Full Product is used to populate the interface
-  const [fullProduct, setFullProduct] = useState([])
   const itemId = props.productId
   const dispatch = useDispatch()
 
@@ -28,14 +30,27 @@ function SingleProductView(props) {
       [e.target.name]: parseInt(e.target.value),
     })
   }
-  const addToCart = (arg) => {
-	const productIdexists = cartContents.some(cart => { return cart.productId === arg.productId})
-	if(!productIdexists) {
-		dispatchItem(arg)
-	} 
+
+  const variandChangeHandler = (e) => {
+    const foundVar = fullProduct.variantDetails.filter((value) => {
+      return value.option === e.target.value
+    })
+
+    setProductState({
+      ...productState,
+      variantDetails: foundVar,
+    })
   }
 
-  console.log("cartContents", cartContents)
+  const addToCart = (arg) => {
+    const productIdexists = cartContents.some((cart) => {
+      return cart.variantDetails === arg.variantDetails
+    })
+    if (!productIdexists) {
+      dispatchItem(arg)
+    }
+  }
+
   useEffect(() => {
     axios
       .get(
@@ -44,13 +59,13 @@ function SingleProductView(props) {
       .then((res) => {
         setFullProduct(res.data)
         setProductState({
-          name: res.data.name,
+          productName: res.data.productName,
           price: res.data.price,
           productId: res.data._id,
           quantity: 1,
           images: [res.data.images],
+          variantDetails: [res.data.variantDetails],
         })
-    
       })
       .catch((err) => {
         console.log(err)
@@ -60,7 +75,6 @@ function SingleProductView(props) {
   const dispatchItem = (item) => {
     if (item) {
       dispatch(creators.addToCart(item))
-      console.log("🎩", item)
     }
   }
 
@@ -70,15 +84,23 @@ function SingleProductView(props) {
         <div className="allPhotos">
           {fullProduct.images
             ? fullProduct.images.map((cv) => {
-                return <img src={cv} />
+                return <img src={cv} alt = "cart" />
               })
             : ""}
         </div>
       </div>
       <div className="productInfoContatiner">
-        {/* <button onClick={logger}> Logger</button> */}
-        <h2>{fullProduct.name}</h2>
-        <h1> ${fullProduct.price}</h1>
+        <h2>{productState.productName}</h2>
+        {fullProduct.variantDetails && fullProduct.variantDetails.length > 1 ? (
+          <h1>
+            $
+            {productState.variantDetails &&
+              productState.variantDetails[0].price}
+          </h1>
+        ) : (
+          <h1> ${productState.price}</h1>
+        )}
+
         <div className="divider" />
         <h3 className="description"> Description</h3>
         <p>{fullProduct.description}</p>
@@ -101,22 +123,26 @@ function SingleProductView(props) {
               <option value="10">10</option>
             </select>
           </div>
-          {/* If there are varaitns for the product add input else don't */}
-          {/* Everything in the variants should be data grabbed from the redux store */}
-          <div className="variant">
-            <label htmlFor="">Chosen Name</label>
-            <select name="">
-              <option disabled selected value>
-                select an option
-              </option>
-              <option value="var1">Var 1</option>
-              <option value="var2">Var 2</option>
-            </select>
-          </div>
+
+          {fullProduct.variantDetails &&
+          fullProduct.variantDetails.length > 1 ? (
+            <div className="variant">
+              <label htmlFor="">Chosen Name</label>
+              <select onChange={variandChangeHandler}>
+                <option disabled selected value>
+                  select an option
+                </option>
+                {fullProduct.variantDetails &&
+                  fullProduct.variantDetails.map((v) => (
+                    <option value={v.option}>{v.option}</option>
+                  ))}
+              </select>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-		{
-			
-		}
+
         <button className="addToCart" onClick={() => addToCart(productState)}>
           Add To Cart
         </button>

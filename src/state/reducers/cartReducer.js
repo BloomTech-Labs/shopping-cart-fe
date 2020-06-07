@@ -66,8 +66,9 @@ export function cartReducer(state = initialCart, action) {
 					productId: action.payload.productId,
 					quantity: action.payload.quantity,
 					price: action.payload.price,
-					name: action.payload.name,
-					images: action.payload.images
+					productName: action.payload.productName,
+					images: action.payload.images,
+					variantDetails: action.payload.variantDetails
 				}
 			];
 
