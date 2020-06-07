@@ -51,7 +51,7 @@ const Confirmation = (props) => {
       if (!err) {
         AxiosAuth()
           .put(
-            `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/cart/${cartId}/approve`,
+            `https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}/approve`,
             payload
           )
           .then((res) => {
@@ -78,7 +78,7 @@ const Confirmation = (props) => {
     };
     axios
       .put(
-        'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/payment/complete',
+        'https://shopping-cart-be.herokuapp.com/api/payment/complete',
         payload
       )
       .then((res) => {

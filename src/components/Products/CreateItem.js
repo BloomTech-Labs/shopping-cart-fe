@@ -12,8 +12,7 @@ import {
 } from '../../state/actionCreators';
 import useCurrency from '../hooks/useCurrency';
 
-const productURL =
-  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products';
+const productURL = 'https://shopping-cart-be.herokuapp.com/api/store/products';
 
 function CreateItem({ dispatch, form, isLoading }) {
   const [fileList, setFileList] = useState([]);

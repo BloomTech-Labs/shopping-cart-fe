@@ -32,7 +32,7 @@ function SingleProductView(props) {
   useEffect(() => {
     axios
       .get(
-        `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products/${itemId}`
+        `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`
       )
       .then((res) => {
         setFullProduct(res.data);

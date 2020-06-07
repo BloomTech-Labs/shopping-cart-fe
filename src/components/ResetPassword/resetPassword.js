@@ -7,8 +7,7 @@ import Logo from '../elements/logo';
 import * as creators from '../../state/actionCreators';
 import image from '../../images/security.png';
 
-const URL =
-  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/auth/recover';
+const URL = 'https://shopping-cart-be.herokuapp.com/api/auth/recover';
 
 const ResetPassword = (props) => {
   const dispatch = useDispatch();

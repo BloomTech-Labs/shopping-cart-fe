@@ -38,15 +38,12 @@ const Stripe = (props) => {
 
   useEffect(() => {
     axios
-      .post(
-        'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/payment/charge',
-        {
-          amount: cartContents.agreedPrice
-            ? cartContents.agreedPrice.toFixed(2)
-            : 0,
-          storeId: cartContents.storeId,
-        }
-      )
+      .post('https://shopping-cart-be.herokuapp.com/api/payment/charge', {
+        amount: cartContents.agreedPrice
+          ? cartContents.agreedPrice.toFixed(2)
+          : 0,
+        storeId: cartContents.storeId,
+      })
       .then((res) => {
         setClientId(res.data.paymentIntent.client_secret);
         setStripeId(res.data.stripeId);

@@ -20,7 +20,7 @@ const Expanded = ({ inventory, currency }) => {
       onOk() {
         AxiosAuth()
           .delete(
-            `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products/${id}`
+            `https://shopping-cart-be.herokuapp.com/api/store/products/${id}`
           )
           .then((res) => {
             dispatch(creators.getCurrentUser());

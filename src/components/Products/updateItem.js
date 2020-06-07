@@ -25,7 +25,7 @@ function UpdateItem(props) {
   useEffect(() => {
     AxiosAuth()
       .get(
-        `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products/${itemId}`
+        `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`
       )
       .then((res) => {
         console.log('This is res', res.data);
@@ -74,7 +74,7 @@ function UpdateItem(props) {
 
     AxiosAuth()
       .post(
-        'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products',
+        'https://shopping-cart-be.herokuapp.com/api/store/products',
         productData
       )
       .then((res) => {

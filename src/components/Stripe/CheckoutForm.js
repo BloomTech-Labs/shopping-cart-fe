@@ -29,7 +29,7 @@ const CheckoutForm = (props) => {
         if (res.paymentIntent) {
           axios
             .put(
-              'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/payment/complete',
+              'https://shopping-cart-be.herokuapp.com/api/payment/complete',
               payload
             )
             .then((res) => {

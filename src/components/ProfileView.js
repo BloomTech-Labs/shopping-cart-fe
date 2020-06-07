@@ -17,7 +17,7 @@ const ProfileView = () => {
 
   useEffect(() => {
     AxiosAuth()
-      .get('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/')
+      .get('https://shopping-cart-be.herokuapp.com/api/store/')
       .then((res) => {
         console.log('res.data', res.data);
         setLogo(res.data.logo);
@@ -86,7 +86,7 @@ const ProfileView = () => {
               <p className='profileInfo'>{city}</p>
               {/* needs to pull in data :( */}
               <h3 className='labels'>Zip Code</h3>
-              <p className='profileInfo'>44444</p>
+              <p className='profileInfo'>{zipcode}</p>
             </div>
           </div>
           {/* Div to hold bottom */}

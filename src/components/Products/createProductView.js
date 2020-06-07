@@ -48,7 +48,7 @@ const CreateProductView = () => {
 
     AxiosAuth()
       .post(
-        'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/products',
+        'https://shopping-cart-be.herokuapp.com/api/store/products',
         productData
       )
       .then((res) => {

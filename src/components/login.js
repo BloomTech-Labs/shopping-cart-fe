@@ -9,10 +9,8 @@ import history from '../history';
 import { connect } from 'react-redux';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
 
-const loginURL =
-  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/auth/login';
-const storeURL =
-  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store';
+const loginURL = 'https://shopping-cart-be.herokuapp.com/api/auth/login';
+const storeURL = 'https://shopping-cart-be.herokuapp.com/api/store';
 
 const Login = (props) => {
   const handleSubmit = (e) => {

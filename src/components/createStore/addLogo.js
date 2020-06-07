@@ -23,8 +23,7 @@ function beforeUpload(file) {
   }
   return isJpgOrPng && isLt2M;
 }
-const createStoreUrl =
-  'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store';
+const createStoreUrl = 'https://shopping-cart-be.herokuapp.com/api/store';
 
 const AddLogo = (props) => {
   const dispatch = useDispatch();

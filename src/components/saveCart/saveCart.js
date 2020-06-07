@@ -55,7 +55,7 @@ const SaveCart = (props) => {
         };
         axios
           .post(
-            `https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/${sellerId}/cart/submit`,
+            `https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/cart/submit`,
             payload
           )
           .then((res) => {
