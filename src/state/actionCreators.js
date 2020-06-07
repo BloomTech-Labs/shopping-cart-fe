@@ -267,43 +267,43 @@ export const profileUpdate = (userInfo) => (dispatch) => {
       userInfo
     )
     .then((res) => {
-      console.log(res);
+      console.log('this has posted', res);
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
 
 export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
   // logo put here
 
-  AxiosAuth()
-    .put('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store', logo)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // AxiosAuth()
+  //   .put('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store', logo)
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 };
 
 export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
   // color put here
-  console.log('color', color);
 
-  AxiosAuth()
-    .put(
-      'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
-      color
-    )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch(({ message, stack, code, error }) => {
-      console.log(message, stack, code, error);
-    });
+  // AxiosAuth()
+  //   .put(
+  //     'https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/',
+  //     color
+  //   )
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  //   .catch(({ message, stack, code, error }) => {
+  //     console.log(message, stack, code, error);
+  //   });
 };
 
 export const deleteSellerInfo = (values) => (dispatch) => {
@@ -321,5 +321,6 @@ export const deleteSellerInfo = (values) => (dispatch) => {
       console.log(err);
     });
 };
+
 
 // end onboarding actions

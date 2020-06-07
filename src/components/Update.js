@@ -19,16 +19,6 @@ const Update = (props) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmLogout, setConfirmLogout] = useState(false);
 
-  // useEffect(() => {
-  //   axios
-  //     .get('https://pure-retail-bg-routes-t3ulmxmy.herokuapp.com/api/store/')
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
   const uploadImage = (e) => {
     const files = e.target.files;
     setLoading(true);
@@ -87,7 +77,7 @@ const Update = (props) => {
         <Form className='profileForm'>
           <div className='formTop'>
             <div className='formTopLeft'>
-              <label htmlFor='business name'>Business Name*</label>
+            <label htmlFor='business name'>Business Name*</label>
               <br />
               <Field
                 name='businessName'

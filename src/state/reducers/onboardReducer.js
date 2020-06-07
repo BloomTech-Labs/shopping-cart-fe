@@ -3,7 +3,8 @@ import {
   DELETE_SELLER_INFO,
   POST_ALL_SELLER_INFO,
   UPLOAD_COLOR,
-  UPLOAD_LOGO
+  UPLOAD_LOGO,
+  UPDATE_PROFILE
 
 } from '../../state/actionTypes';
 const initialState = {
@@ -72,6 +73,10 @@ const onboardReducer = (state = initialState, action) => {
         ...state,
         logo: action.payload,
       };
+      case UPDATE_PROFILE:
+        return {
+          ...state
+        }
     default:
       return state;
   }
