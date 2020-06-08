@@ -43,11 +43,20 @@ function SingleProductView(props) {
   }
 
   const addToCart = (arg) => {
-    const productIdexists = cartContents.some((cart) => {
-      return cart.variantDetails === arg.variantDetails
-    })
-    if (!productIdexists) {
-      dispatchItem(arg)
+    if(arg.variantDetails.length > 2 ){
+      const productIdexists = cartContents.some((cart) => {
+        return cart.productId === arg.productId
+      })
+      if (!productIdexists) {
+        dispatchItem(arg)
+      }
+    } else {
+      const productIdexists = cartContents.some((cart) => {
+        return cart.variantDetails[0]._id === arg.variantDetails[0]._id
+      })
+      if (!productIdexists) {
+        dispatchItem(arg)
+      }
     }
   }
 
@@ -77,6 +86,7 @@ function SingleProductView(props) {
       dispatch(creators.addToCart(item))
     }
   }
+  console.log("ProductState", productState)
 
   return (
     <div className="singleProductContainer">
