@@ -25,8 +25,9 @@ import Confirmation from './components/orderConfirmation';
 import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
+import CreateProductView from "./components/Products/createProductView"
+import OrderProductCard from './components/Orders/Orders'
 import Update from './components/Update';
-import CreateProductView from './components/Products/createProductView';
 import ProfileView from './components/ProfileView';
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
+        <PublicRoute path = '/ordercard' component = {OrderProductCard} />
       </Switch>
       <div
         id='offline-notification'
