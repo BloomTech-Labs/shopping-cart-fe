@@ -17,7 +17,7 @@ import StoreView from './components/store/StoreView';
 import StripeMain from './components/Stripe';
 import CartView from './components/cart/CartView';
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
-import Single from './components/singleProduct/index';
+import Single from './components/singleProduct/index'; // buyerSingleProductView
 import Support from './components/support';
 import SaveCartMain from './components/saveCart';
 import Account from './components/SellerAccount/SellerAccount';

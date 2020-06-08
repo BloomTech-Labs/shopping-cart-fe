@@ -4,7 +4,6 @@ import * as creators from '../../state/actionCreators';
 import AllProducts from './AllProducts';
 import StoreNav from './StoreNav';
 import CategoryPicker from '../categories/CategoryPicker';
-
 function StoreView(props) {
   const sellerId = props.match.params.id.split('-').pop();
   const dispatch = useDispatch();
@@ -24,18 +23,16 @@ function StoreView(props) {
   const storeCategories = inventory.map((item) => {
     return item.category;
   });
-
   const uniqueCategories = [...new Set(storeCategories)];
   let filteredProducts = inventory.filter((item) => {
     return item.category.toLowerCase().includes(categorySearch);
   });
   const storeDetails = store.user;
   const searchString = useSelector((state) => state.search);
-
   return (
     <div>
       <div>
-        <StoreNav change={change} storeDetails={storeDetails} store={store} />
+        <StoreNav match={props.match} change={change} storeDetails={storeDetails} store={store} />
         <CategoryPicker
           style={{
             margin: '100px',
@@ -59,5 +56,4 @@ function StoreView(props) {
     </div>
   );
 }
-
 export default StoreView;

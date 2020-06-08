@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import ProductCard from '../categories/ProductCard';
-
 const AllProducts = ({
   categorySearch,
   filteredProducts,
@@ -32,5 +31,4 @@ const AllProducts = ({
     </div>
   );
 };
-
 export default AllProducts;
