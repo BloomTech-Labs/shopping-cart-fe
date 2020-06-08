@@ -6,10 +6,19 @@
   justify-content: center;
   align-items: space-around;
   max-width: 1200px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
   .labels {
     font-size: 1.5rem;
     font-weight: bold;
     border-bottom: 1px solid black;
+    @media (max-width: 1000px) {
+      margin: 10px 0;
+    }
   }
   .mainLabel {
     text-align: center;
@@ -33,13 +42,25 @@
     text-align: center;
     width: 40%;
     .profileViewLogo {
-      height: 30%;
+      height: 70px;
+      @media (max-width: 800px) {
+        height: 50px;
+      }
+    }
+    .profileViewColor {
+      height: '100px';
+      width: '200px';
     }
   }
   .profileView {
     width: 58%;
     flex-direction: column;
     display: flex;
+    @media (max-width: 900px) {
+      width: 90%;
+      margin-top: 20px;
+      font-size: 70%;
+    }
   }
 
   .profileLeftRight {
@@ -53,6 +74,10 @@
       width: 49%;
     }
   }
-  .profileViewHours {
+}
+
+.selectBrandColor {
+  @media (max-width: 800px) {
+    margin-top: 20px;
   }
 }
