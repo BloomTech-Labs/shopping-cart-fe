@@ -12,12 +12,10 @@ const OrderDetailsView = () => {
 	useEffect(
 		() => {
 			axiosWithAuth()
-				.get(`https://shopping-cart-be.herokuapp.com/api/store/order/5ed832fb98c53c0004ff84b5`)
+				.get(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd796eafc3ad0004142db7`)
 				.then((res) => {
-					console.log('res', res.data._id);
+					console.log('res', res.data);
 					setOrder(res.data.orderItem);
-					const orderId = res.data._id;
-					const orderNumber = orderId.substr(orderId.length - 5);
 				})
 				.catch((error) => {
 					console.log(error);
