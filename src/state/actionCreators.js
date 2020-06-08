@@ -1,19 +1,19 @@
-import * as types from "./actionTypes";
-import AxiosAuth from "../components/Auth/axiosWithAuth";
-import axios from "axios";
-import history from "../history";
+import * as types from './actionTypes';
+import AxiosAuth from '../components/Auth/axiosWithAuth';
+import axios from 'axios';
 
-const getUserUrl = "https://shopping-cart-be.herokuapp.com/api/store/";
+const getUserUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
 
 export const updateForm = (details) => ({
   type: types.UPDATE_FORM,
   payload: details,
-});
+})
 
 export const getCurrentUser = () => (dispatch) => {
   AxiosAuth()
     .get(getUserUrl)
     .then((res) => {
+      console.log('first res', res);
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
       AxiosAuth()
         .get(
@@ -21,7 +21,11 @@ export const getCurrentUser = () => (dispatch) => {
 /api/store/${res.data._id}/products`
         )
         .then((res) => {
-          const inventory = res.data;
+          const getAllCategories = res.data.map((cv) => {
+            return cv.category;
+          });
+          const allUniqueCategories = [...new Set(getAllCategories)];
+          const inventory = { ...res.data, allUniqueCategories };
           dispatch({ type: types.GET_INVENTORY, payload: inventory });
         });
     })
@@ -32,10 +36,7 @@ export const getCurrentUser = () => (dispatch) => {
 
 export const getCart = (cartId) => (dispatch) => {
   axios
-    .get(
-      `https://shopping-cart-be.herokuapp.com
-/api/store/cart/${cartId}`
-    )
+    .get(`https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}`)
     .then((res) => {
       const savedCart = res.data;
       dispatch({ type: types.SAVE_CART, payload: savedCart });
@@ -86,6 +87,13 @@ export const addToCart = (item) => {
   };
 };
 
+export const updateCartQuantity = (id) => {
+  return {
+    type: types.UPDATE_CART_QUANTITY,
+    payload: id,
+  };
+};
+
 export const subtractFromCart = (item) => {
   return {
     type: types.REMOVE_ITEM_FROM_CART,
@@ -127,7 +135,7 @@ export const clearUser = () => {
 
 export const deleteStore = () => (dispatch) => {
   AxiosAuth()
-    .delete("https://shopping-cart-be.herokuapp.com/api/store")
+    .delete('https://shopping-cart-be.herokuapp.com/api/store')
     .then((res) => {
       const message = res.data;
       setLoading(true);
@@ -142,7 +150,7 @@ export const deleteStore = () => (dispatch) => {
 export const deleteAccount = () => (dispatch) => {
   setLoading(true);
   AxiosAuth()
-    .delete("https://shopping-cart-be.herokuapp.com/api/auth/account")
+    .delete('https://shopping-cart-be.herokuapp.com/api/auth/account')
     .then((res) => {
       logout();
       dispatch({ type: types.DELETE_ACCOUNT });
@@ -155,32 +163,83 @@ export const deleteAccount = () => (dispatch) => {
 export const getProducts = (sellerId, signal) => (dispatch) => {
   axios
     .get(
-      `https://shopping-cart-be.herokuapp.com
-/api/store/${sellerId}/products`
+      `https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/products`
     )
     .then((res) => {
-      const inventory = res.data;
-      dispatch({ type: types.GET_INVENTORY, payload: inventory });
+      const inventory = res.data
+      dispatch({ type: types.GET_INVENTORY, payload: inventory })
     })
     .catch((error) => {
-      setErrors(error.response.data);
-    });
-};
+      setErrors(error.response.data)
+    })
+}
+
+export const getOneProduct = (productId) => (dispatch) => {
+  axios
+    .get(`http://localhost:4000/api/store/products/${productId}`)
+    .then((res) => {
+      console.log("RES", res)
+      dispatch({ type: types.GET_ONE_PRODUCT, payload: res.data })
+    })
+    .catch((error) => {
+      setErrors(error.response)
+    })
+}
 
 export const getStore = (sellerId, signal) => (dispatch) => {
   axios
-    .get(
-      `https://shopping-cart-be.herokuapp.com
-/api/store/${sellerId}`
-    )
+    .get(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}`)
     .then((res) => {
-      dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
+      dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
+     
     })
     .catch((error) => {
-      setErrors(error.response.data);
-    });
-};
+      setErrors(error.response.data)
+    })
+}
+//MINE
+export const getOrders = (storeId) => (dispatch) => {
 
+	axios
+		.get(
+			`https://shopping-cart-be.herokuapp.com
+/api/store/${storeId}/products`
+		)
+		.then((res) => {
+			const inventory = res.data;
+			dispatch({ type: types.GET_INVENTORY, payload: inventory });
+		})
+		.catch((error) => {
+			setErrors(error.response.data);
+		});
+  }
+
+export const getOneOrder = (orderId) => (dispatch) => {
+  axios
+    .get(`http://localhost:4000/api/store/order/${orderId}`)
+    .then((res) => {
+      dispatch({ type: types.GET_ONE_ORDER, payload: res.data })
+    })
+    .catch((error) => {
+      setErrors(error.response)
+    })
+}
+
+export const updateOrder = (details) => (dispatch) => {
+  axios.put(`http://localhost:4000/api/store/order/5ebb470f0d20bf0b10ded8f5`)
+}
+export const deleteOrder = (orderId) => (dispatch) => {
+  axios
+    .delete(`http://localhost:4000/api/store/order/${orderId}`, orderId)
+    .then((res) => {
+      dispatch({ type: types.DELETE_ORDER })
+      console.log(res)
+    })
+    .catch((err) => {
+      setErrors(err.response.data)
+    })
+}
+//DONE
 export const setStoreUrl = () => {
   return {
     type: types.SET_STORE_URL,
@@ -192,50 +251,90 @@ export const saveCart = (cart) => {
   return {
     type: types.SAVE_CART,
     payload: cart,
-  };
-};
+
+  }
+}
 
 export const getSalesHistory = () => (dispatch) => {
-  setLoading(true);
+  setLoading(true)
   AxiosAuth()
     .get("https://shopping-cart-be.herokuapp.com/api/store/sales")
     .then((res) => {
-      setLoading(false);
-      dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });
+      setLoading(false)
+      dispatch({ type: types.GET_SALES_HISTORY, payload: res.data })
     })
     .catch((err) => {
-      setLoading(false);
-      console.log(err);
-    });
-};
+      setLoading(false)
+      console.log(err)
+    })
+}
+// DELETE order
+export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
+  dispatch({ type: types.DELETE_ORDER_PRODUCT })
+  axios
+    .delete(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`)
+    .then((res) => {
+      console.log("res:", res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 
 export const getOrders = (storeId) => (dispatch) => {
   AxiosAuth()
     .get(`https://shopping-cart-be.herokuapp.com/api/store/${storeId}/order`)
     .then((res) => {
-      dispatch({ type: types.GET_ORDERS, payload: res.data });
+      dispatch({ type: types.GET_ORDERS, payload: res.data });}).catch((err)=> {
+        console.log(err);
+      })}
+
+
+// PUT order
+export const updateOrderProduct = (order_id, orderItem_id, payload) => (
+  dispatch
+) => {
+  dispatch({ type: types.UPDATE_ORDER_PRODUCT })
+  axios
+    .put(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`, payload)
+    .then((res) => {
+      dispatch({ type: types.UPDATE_ORDER_PRODUCT, payload })
+      console.log(res)
     })
     .catch((err) => {
-      console.log(err);
-    });
-};
+      console.log(err)
+      alert("Profile update failed, please try again!")
+    })
+    setLoading(true);
+    AxiosAuth()
+		.get('https://shopping-cart-be.herokuapp.com/api/store/sales')
+		.then((res) => {
+      setLoading(false);
+			dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });
+		})
+		.catch((err) => {
+      setLoading(false);
+			console.log(err);
+		});
+  };
+
 
 // onboarding actions
 
 export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
-  history.push("/brandview");
-  // // posting to backend
-  // axios.post('', )
-  // .then((res)=>{
-  //   // this action still needs to be created
-  //   dispatch({ type: types.POST_ONBOARDING_SUCCESS, payload: res.data })
-  // })
-  // .catch((err)=> {
-  //   // action still needs to be created
-  //   dispatch({type: types.POST_ONBOARDING_FAILURE})
-  //   console.log(err)
-  // })
+};
+
+export const profileUpdate = (userInfo) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROFILE, payload: userInfo });
+  AxiosAuth()
+    .post('/api/store/', userInfo)
+    .then((res) => {
+      console.log('this has posted', res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const logoUpload = (logo) => (dispatch) => {
@@ -244,4 +343,16 @@ export const logoUpload = (logo) => (dispatch) => {
 
 export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
+};
+
+export const deleteSellerInfo = (values) => (dispatch) => {
+  dispatch({ type: types.DELETE_SELLER_INFO });
+  AxiosAuth()
+    .delete('/api/store/', values)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };

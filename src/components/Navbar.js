@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import * as creators from "../state/actionCreators";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col } from "antd";
-import { Button } from "antd";
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import * as creators from '../state/actionCreators';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col } from 'antd';
+import { Button } from 'antd';
 
-import "antd/dist/antd.css";
-import NoLogo from "../images/PureRetail_Logo.png";
+import 'antd/dist/antd.css';
+import NoLogo from '../images/PureRetail_Logo.png';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -15,25 +15,23 @@ const Navbar = () => {
   }, [dispatch]);
   const user = useSelector((state) => state.user.user);
   const url = `${window.location.origin.toString()}/store/${
-    user && user.storeName && user.storeName.toLowerCase().split(" ").join("-")
+    user && user.storeName && user.storeName.toLowerCase().split(' ').join('-')
   }-${user && user._id}`;
   const storeLogo = user.imageUrl ? user.imageUrl : NoLogo;
 
-  const style = { color: "#0092ff", padding: "8px 0" };
+  const style = { color: '#0092ff', padding: '8px 0' };
 
   return (
     <div className='nav-bar'>
       <Row
         justify='space-around'
         gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
-        className='link-container'
-      >
+        className='link-container'>
         <Row
           justify='space-between'
           align='middle'
           gutter={[8, 8]}
-          className='nav-links'
-        >
+          className='nav-links'>
           <Col className='gutter-row' span={4}>
             <img
               src={NoLogo}
@@ -47,7 +45,6 @@ const Navbar = () => {
               <NavLink to='dashboard' activeClassName='activeLink'>
                 <p>Home</p>
               </NavLink>
-              {/* <a href='#'>Home</a> */}
             </div>
           </Col>
           <Col className='gutter-row' span={4}>
@@ -55,7 +52,6 @@ const Navbar = () => {
               <NavLink to='inventory' activeClassName='activeLink'>
                 <p>Store</p>
               </NavLink>
-              {/* <a href='#'>Store</a> */}
             </div>
           </Col>
           <Col className='gutter-row' span={4}>
@@ -63,15 +59,13 @@ const Navbar = () => {
               <NavLink to='account' activeClassName='activeLink'>
                 <p>Account</p>
               </NavLink>
-              {/* <a href='#'>Account</a> */}
             </div>
           </Col>
           <Col className='gutter-row' span={4}>
             <div style={style}>
-              <NavLink to='Profile' activeClassName='activeLink'>
+              <NavLink to='profileview' activeClassName='activeLink'>
                 <p>Profile</p>
               </NavLink>
-              {/* <a href='#'>Profile</a> */}
             </div>
           </Col>
         </Row>
@@ -79,8 +73,7 @@ const Navbar = () => {
           justify='space-around'
           align='middle'
           gutter={[8, 8]}
-          className='btn-container'
-        >
+          className='btn-container'>
           <Col>
             <NavLink className='navlink' to='createItem'>
               <Button className='nav-primary'>Create Product</Button>
@@ -94,10 +87,6 @@ const Navbar = () => {
         </Row>
         <img src={storeLogo} alt='Store Logo' className='nav-store-logo' />
       </Row>
-      {/* <Divider
-        orientation='left'
-        style={{ color: "#333", fontWeight: "normal" }}
-      ></Divider> */}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { List, Input, Tabs, Button } from "antd";
 import { NavLink } from "react-router-dom";
-// import '../../less/index.less'
 import * as creators from "../../state/actionCreators";
 import Expanded from "./expand";
 import useCurrency from "../hooks/useCurrency";

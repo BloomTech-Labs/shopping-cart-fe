@@ -20,11 +20,12 @@ const LogoUpdate = (props) => {
       .then((res) => {
         setCloudUrl(res.data.secure_url);
         props.logoUpload(res.data.secure_url);
+        props.setUserInfo({ ...props.userInfo, logo: res.data.secure_url });
       });
     setLoading(false);
   };
   return (
-    <div className='addLogo'>
+    <div>
       <h3>Add your logo!</h3>
       {loading ? (
         <p>Loading...</p>
