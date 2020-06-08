@@ -7,7 +7,7 @@ const getUserUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
 export const updateForm = (details) => ({
   type: types.UPDATE_FORM,
   payload: details,
-});
+})
 
 export const getCurrentUser = () => (dispatch) => {
   AxiosAuth()
@@ -251,22 +251,64 @@ export const saveCart = (cart) => {
   return {
     type: types.SAVE_CART,
     payload: cart,
-  };
-};
+
+  }
+}
 
 export const getSalesHistory = () => (dispatch) => {
-  setLoading(true);
+  setLoading(true)
   AxiosAuth()
-    .get('/api/store/sales')
+    .get("https://shopping-cart-be.herokuapp.com/api/store/sales")
     .then((res) => {
-      setLoading(false);
-      dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });
+      setLoading(false)
+      dispatch({ type: types.GET_SALES_HISTORY, payload: res.data })
     })
     .catch((err) => {
+      setLoading(false)
+      console.log(err)
+    })
+}
+// DELETE order
+export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
+  dispatch({ type: types.DELETE_ORDER_PRODUCT })
+  axios
+    .delete(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`)
+    .then((res) => {
+      console.log("res:", res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+// PUT order
+export const updateOrderProduct = (order_id, orderItem_id, payload) => (
+  dispatch
+) => {
+  dispatch({ type: types.UPDATE_ORDER_PRODUCT })
+  axios
+    .put(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`, payload)
+    .then((res) => {
+      dispatch({ type: types.UPDATE_ORDER_PRODUCT, payload })
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+      alert("Profile update failed, please try again!")
+    })
+    setLoading(true);
+    AxiosAuth()
+		.get('https://shopping-cart-be.herokuapp.com/api/store/sales')
+		.then((res) => {
       setLoading(false);
-      console.log(err);
-    });
-};
+			dispatch({ type: types.GET_SALES_HISTORY, payload: res.data });
+		})
+		.catch((err) => {
+      setLoading(false);
+			console.log(err);
+		});
+  }
+
 
 // onboarding actions
 
