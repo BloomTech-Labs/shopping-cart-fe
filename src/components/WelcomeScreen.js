@@ -3,6 +3,7 @@ import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { postOnboard } from '../state/actionCreators';
+import history from '../history';
 
 const WelcomeScreen = (props) => {
   return (
@@ -193,6 +194,7 @@ const WelcomeScreenForm = withFormik({
 
   handleSubmit: (values, formikBag) => {
     formikBag.props.postOnboard(values);
+    history.push('/brandview');
   },
 })(WelcomeScreen);
 
@@ -202,10 +204,13 @@ const mapStateToProps = (state) => {
     ownerName: state.onboard.ownerName,
     address: state.onboard.address,
     secondAddress: state.onboard.secondAddress,
+    city: state.onboard.city,
     state: state.onboard.state,
     zipcode: state.onboard.zipcode,
     hours: state.onboard.hours,
     curbHours: state.onboard.curbHours,
+    color: state.onboard.color,
+    logo: state.onboard.logo,
   };
 };
 

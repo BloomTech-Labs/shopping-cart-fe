@@ -6,9 +6,10 @@ import history from '../../history';
 
 import CartTable from './CartTable';
 import NoLogo from '../../images/PureRetail_Logo.png';
+import ReviewMain from '../cart/review';
 
 const CartView = (props) => {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	const cartContents = useSelector((state) => state.cart);
 	const sellerId = useSelector((state) => state.user.user._id);
@@ -40,13 +41,13 @@ const CartView = (props) => {
 				</div>
 				<div className="logoContainer">
 					{storeDetails.imageUrl ? (
-						<img className="storeLogo" src={storeDetails.imageUrl} />
+						<img className="storeLogo" src={storeDetails.imageUrl} alt ="re"/>
 					) : (
-						<img className="storeLogo" src={NoLogo} />
+						<img className="storeLogo" src={NoLogo}  alt ="re"/>
 					)}
 				</div>
 			</div>
-			<CartTable cartContents={cartContents} />
+			<CartTable cartContents={cartContents}  totalPrice ={totalPrice}/>
 		</div>
 	);
 };

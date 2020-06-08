@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../Auth/axiosWithAuth";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../Auth/axiosWithAuth';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Form,
   Input,
@@ -12,31 +12,31 @@ import {
   Upload,
   Icon,
   Spin,
-} from "antd";
-import Logo from "../elements/logo";
+} from 'antd';
+import Logo from '../elements/logo';
 import {
   logout,
   setLoading,
   setStore as updateStore,
   deleteAccount,
   getCurrentUser,
-} from "../../state/actionCreators";
-import history from "../../history";
-import axios from "axios";
-import logo from "../../images/PureRetail_Logo.png";
+} from '../../state/actionCreators';
+import history from '../../history';
+import axios from 'axios';
+import logo from '../../images/PureRetail_Logo.png';
 
-const storeUrl = "https://shopping-cart-be.herokuapp.com/api/store/";
-const updatePhoneUrl = "https://shopping-cart-be.herokuapp.com/api/auth/phone";
+const storeUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
+const updatePhoneUrl = 'https://shopping-cart-be.herokuapp.com/api/auth/phone';
 
 const { Option } = Select;
 
 const EditProfile = ({ dispatch, isLoading, form }) => {
   const [store, setStore] = useState({
-    ownerName: "",
-    currency: "",
-    storeName: "",
-    imageUrl: "",
-    address: "",
+    ownerName: '',
+    currency: '',
+    storeName: '',
+    imageUrl: '',
+    address: '',
   });
 
   useEffect(() => {
@@ -71,21 +71,21 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
   const handleLogout = () => {
     // delete token from local storage and redirect to login
     dispatch(logout());
-    history.push("/");
+    history.push('/');
   };
 
   const handleDeleteAccount = () => {
     const { confirm } = Modal;
     confirm({
-      title: "Are you sure you want to delete your account?",
-      okText: "Yes",
-      okType: "danger",
-      cancelText: "No",
+      title: 'Are you sure you want to delete your account?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
       onOk() {
         dispatch(setLoading(true));
         dispatch(deleteAccount());
         dispatch(logout());
-        history.push("/register");
+        history.push('/register');
       },
       onCancel() {},
     });
@@ -97,7 +97,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     setErrors({});
     form.validateFieldsAndScroll({ force: true }, async (err, values) => {
       if (err) {
-        message.error("Enter Required Fields");
+        message.error('Enter Required Fields');
       }
 
       const payload = {
@@ -116,8 +116,8 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
         const response = await axiosWithAuth().put(storeUrl, payload);
         if (response) {
           dispatch(updateStore(response.data));
-          message.success("Your store has been updated");
-          history.push("/dashboard");
+          message.success('Your store has been updated');
+          history.push('/dashboard');
         }
       } catch (errors) {
         dispatch(setLoading(false));
@@ -129,13 +129,13 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
 
   const dummyRequest = ({ file, onSuccess }) => {
     const image = new FormData();
-    image.append("upload_preset", "pure-retail");
-    image.append("file", file);
+    image.append('upload_preset', 'pure-retail');
+    image.append('file', file);
     const config = {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     };
     axios
-      .post("https://api.cloudinary.com/v1_1/pureretail/upload", image, config)
+      .post('https://api.cloudinary.com/v1_1/pureretail/upload', image, config)
       .then((res) => {
         const secureUrl = res.data.secure_url;
         setStore({ ...store, imageUrl: secureUrl });
@@ -168,14 +168,14 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
   };
 
   const createStore = (
-    <div className='cover' style={{ height: "auto" }}>
+    <div className='cover' style={{ height: 'auto' }}>
       <Logo />
       <p className='text'>You currently haven't created a store yet</p>
       <p className='text'>
-        Click{" "}
+        Click{' '}
         <Link className='link' to='/createstore'>
           here
-        </Link>{" "}
+        </Link>{' '}
         to create one
       </p>
       <Button onClick={handleLogout} type='primary' htmlType='button'>
@@ -188,8 +188,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     <Spin spinning={isLoading}>
       <div
         className='cover'
-        style={{ height: "auto", flexDirection: "column" }}
-      >
+        style={{ height: 'auto', flexDirection: 'column' }}>
         <div id='add-logo-image'>
           <Upload
             name='avatar'
@@ -197,44 +196,43 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
             className='avatar-uploader'
             showUploadList={false}
             action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-            customRequest={dummyRequest}
-          >
+            customRequest={dummyRequest}>
             <img
               src={store.imageUrl ? store.imageUrl : logo}
               alt='avatar'
               style={{
-                width: "100%",
-                height: "100%",
-                position: "relative",
-                opacity: "0.5",
+                width: '100%',
+                height: '100%',
+                position: 'relative',
+                opacity: '0.5',
               }}
             />
             <Icon
               type='camera'
               style={{
-                position: "relative",
-                bottom: "28px",
-                left: "28px",
-                fontSize: "23px",
+                position: 'relative',
+                bottom: '28px',
+                left: '28px',
+                fontSize: '23px',
               }}
             />
           </Upload>
         </div>
         <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <div id='header' style={{ margin: "2rem" }}>
+          <div id='header' style={{ margin: '2rem' }}>
             Edit your profile
           </div>
 
           <Form.Item>
-            {getFieldDecorator("phone", {
+            {getFieldDecorator('phone', {
               initialValue: store && store.phone && store.phone.toString(),
               rules: [
                 {
-                  message: "Enter valid Whatsapp number",
+                  message: 'Enter valid Whatsapp number',
                 },
                 {
                   required: true,
-                  message: "Enter valid Whatsapp number",
+                  message: 'Enter valid Whatsapp number',
                 },
               ],
             })(
@@ -246,15 +244,15 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("ownerName", {
+            {getFieldDecorator('ownerName', {
               initialValue: store.ownerName,
               rules: [
                 {
-                  message: "Enter your name",
+                  message: 'Enter your name',
                 },
                 {
                   required: true,
-                  message: "Enter your name",
+                  message: 'Enter your name',
                 },
               ],
             })(
@@ -267,12 +265,12 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           </Form.Item>
 
           <Form.Item hasFeedback>
-            {getFieldDecorator("currency", {
+            {getFieldDecorator('currency', {
               initialValue: store.currency,
               rules: [
                 {
                   required: true,
-                  message: "Select preferred currency",
+                  message: 'Select preferred currency',
                 },
               ],
             })(
@@ -286,15 +284,15 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           </Form.Item>
 
           <Form.Item>
-            {getFieldDecorator("storeName", {
+            {getFieldDecorator('storeName', {
               initialValue: store.storeName,
               rules: [
                 {
-                  message: "Store name is required",
+                  message: 'Store name is required',
                 },
                 {
                   required: true,
-                  message: "Store name is required",
+                  message: 'Store name is required',
                 },
               ],
             })(
@@ -306,15 +304,15 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("address", {
+            {getFieldDecorator('address', {
               initialValue: store.address,
               rules: [
                 {
-                  message: "Store address is required",
+                  message: 'Store address is required',
                 },
                 {
                   required: true,
-                  message: "Store address is required",
+                  message: 'Store address is required',
                 },
               ],
             })(
@@ -344,8 +342,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
               id='delete-btn'
               type='link'
               htmlType='button'
-              style={{ marginBottom: "25px" }}
-            >
+              style={{ marginBottom: '25px' }}>
               Delete account
             </Button>
           </Form.Item>
@@ -354,7 +351,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
     </Spin>
   );
 
-  return errors.message === "There is no store with that id"
+  return errors.message === 'There is no store with that id'
     ? createStore
     : editProfile;
 };

@@ -1,0 +1,47 @@
+// Card
+.cardWrapper {
+  height: 220px;
+  width: 200px;
+  border-radius: 10px;
+  margin: .5rem auto;
+  background: white;
+
+  // image
+  .cardImage {
+    border-radius: 10px 10px 0px 0px;
+    height: 75%;
+    width: 100%;
+    object-fit: cover;
+  }
+  // info
+  .textbox {
+    padding: 0.5rem;
+  }
+}
+
+// Container
+.cardContainer {
+  background: #e5e5e5;
+  flex-wrap: wrap;
+}
+
+// Select Options
+
+.optionWrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  :hover {
+    background: #e5e5e5;
+  }
+  .categoryButton {
+    font-size: 1.2rem;
+    padding: 0.2rem 0.4rem;
+    color: #222222;
+    border: none;
+    border-radius: 5px;
+  }
+}

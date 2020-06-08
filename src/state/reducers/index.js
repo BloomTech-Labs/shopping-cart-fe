@@ -8,6 +8,10 @@ import { savedCartReducer } from './savedCartReducer';
 import dashboardReducer from './dashboardReducer';
 import { orderReducer } from './orderReducer';
 import { productReducer } from './productReducer';
+import { getOrdersReducer } from './getOrdersReducer';
+import onboardReducer from './onboardReducer';
+import logoReducer from './logoReducer';
+import colorReducer from './colorReducer';
 
 const rootReducer = combineReducers({
 	form: formReducer,
@@ -18,7 +22,11 @@ const rootReducer = combineReducers({
 	savedCart: savedCartReducer,
 	dashboard: dashboardReducer,
 	order: orderReducer,
-	product: productReducer
+	product: productReducer,
+	orders: getOrdersReducer,
+	onboard: onboardReducer,
+	logo: logoReducer,
+	color: colorReducer
 });
 
 export default rootReducer;
