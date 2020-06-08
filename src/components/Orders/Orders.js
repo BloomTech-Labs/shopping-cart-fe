@@ -5,6 +5,7 @@ import useCurrency from "../hooks/useCurrency";
 import MonthlySales from "../totoalSales/monthlySales";
 import LifetimeSales from "../totoalSales/lifetimeSales";
 import * as actionCreators from "../../state/actionCreators";
+import Moment from "react-moment";
 import { Table, Tag, Button } from "antd";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
@@ -46,7 +47,12 @@ const Orders = (props) => {
         className='order-display'
         dataSource={!allOrders ? newData : allOrders}
       >
-        <Column title='Order #' dataIndex='_id' key='_id' />
+        <Column
+          title='Order #'
+          dataIndex='_id'
+          key='_id'
+          render={(order_number) => <span>{order_number.substr(1, 7)}</span>}
+        />
         <Column
           title='Customer Name'
           dataIndex='customerName'
@@ -60,10 +66,10 @@ const Orders = (props) => {
         />
         <Column
           title='Status'
-          dataIndex='status'
-          key='status'
+          dataIndex='orderStatus'
+          key='orderStatus'
           render={(status) =>
-            status === false ? (
+            status === "Not Ready" ? (
               <span style={{ background: "yellow", color: "black" }}>
                 Not Ready
               </span>
@@ -74,16 +80,19 @@ const Orders = (props) => {
             )
           }
         />
-        <Column title='Date' dataIndex='orderCreated' key='orderCreated' />
         <Column
-          title='Update'
+          title='Date'
+          dataIndex='orderCreated'
+          key='orderCreated'
+          render={(date) => <Moment>{date}</Moment>}
+        />
+        <Column
+          title='Actions'
           dataIndex='_id'
           key='_id'
-          render={(id) => (
-            <NavLink to={`/updateorder/${id}`}>
-              <span>
-                View     
-              </span>
+          render={(order_id) => (
+            <NavLink to={`/order/${order_id}`}>
+              <span>Order Details</span>
             </NavLink>
           )}
         />
