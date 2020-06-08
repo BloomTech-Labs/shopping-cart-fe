@@ -17,7 +17,7 @@ import StoreView from './components/store/StoreView';
 import StripeMain from './components/Stripe';
 import CartView from './components/cart/CartView';
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
-import Single from './components/singleProduct/index';
+import Single from './components/singleProduct/index'; // buyerSingleProductView
 import Support from './components/support';
 import SaveCartMain from './components/saveCart';
 import Account from './components/SellerAccount/SellerAccount';
@@ -27,18 +27,21 @@ import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
 import OrderProductCard from './components/Orders/Orders'
+import Update from './components/Update';
+import ProfileView from './components/ProfileView';
 
 function App() {
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     function handleNetworkChange(event) {
+      //What is this for?
       if (navigator.onLine) {
-        document.getElementById("offline-notification").style.display = "none";
+        document.getElementById('offline-notification').style.display = 'none';
       } else {
-        document.getElementById("offline-notification").style.display = "flex";
+        document.getElementById('offline-notification').style.display = 'flex';
       }
     }
-    window.addEventListener("online", handleNetworkChange);
-    window.addEventListener("offline", handleNetworkChange);
+    window.addEventListener('online', handleNetworkChange);
+    window.addEventListener('offline', handleNetworkChange);
   });
   return (
     <>
@@ -49,14 +52,17 @@ function App() {
         <PublicRoute path='/brandview' component={BrandView} />
         <PublicRoute path='/colorpicker' component={ColorPicker} />
         {/* Onboarding reformatted Above */}
+        <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
         <PrivateRoute path='/inventory' component={Main} />
+        {/* Profile View */}
+        <PrivateRoute path='/profileview' component={ProfileView} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
         <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
         <PublicRoute path='/store/:id' component={StoreView} />
         <PublicRoute
           path='/cart/:id'
-          component={localStorage.getItem("token") ? Confirmation : StripeMain}
+          component={localStorage.getItem('token') ? Confirmation : StripeMain}
         />
         <PublicRoute path='/cart' component={CartView} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
@@ -75,19 +81,18 @@ function App() {
       <div
         id='offline-notification'
         style={{
-          position: "fixed",
-          bottom: "0px",
-          width: "100vw",
-          height: "4vh",
-          textAlign: "center",
-          backgroundColor: "#ff6663",
-          justifyContent: "space-around",
-          alignItems: "center",
-          color: "white",
-          fontSize: "medium",
-          display: "none",
-        }}
-      >
+          position: 'fixed',
+          bottom: '0px',
+          width: '100vw',
+          height: '4vh',
+          textAlign: 'center',
+          backgroundColor: '#ff6663',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          color: 'white',
+          fontSize: 'medium',
+          display: 'none',
+        }}>
         Offline Mode
       </div>
     </>

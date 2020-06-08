@@ -13,12 +13,14 @@ const ColorPicker = (props) => {
         onChangeComplete={(color) => {
           setColor(color.hex);
           props.colorUpload(color.hex);
+          props.setUserInfo({ ...props.userInfo, color: color.hex });
         }}
       />
       <div
         style={{
           backgroundColor: color,
           height: '50px',
+          width: '100%',
           transition: 'ease all 500ms',
         }}></div>
     </div>
