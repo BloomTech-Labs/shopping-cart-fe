@@ -6,7 +6,7 @@ import MonthlySales from "../totoalSales/monthlySales";
 import LifetimeSales from "../totoalSales/lifetimeSales";
 import * as actionCreators from "../../state/actionCreators";
 import Moment from "react-moment";
-import { Table} from "antd";
+import { Table } from "antd";
 import "antd/dist/antd.css";
 
 const Orders = (props) => {
@@ -21,7 +21,7 @@ const Orders = (props) => {
   useEffect(() => {
     dispatch(actionCreators.getSalesHistory());
     dispatch(actionCreators.setLoading(false));
-    dispatch(actionCreators.getOrders(storeId));
+    dispatch(actionCreators.getStoreOrders(storeId));
   }, [dispatch, storeId]);
   const dashboard = useSelector((state) => state.dashboard);
   const isLoading = useSelector((state) => state.user.isLoading);
