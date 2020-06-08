@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -77,7 +77,7 @@ const Update = (props) => {
         <Form className='profileForm'>
           <div className='formTop'>
             <div className='formTopLeft'>
-              <label htmlFor='business name'>Business Name*</label>
+            <label htmlFor='business name'>Business Name*</label>
               <br />
               <Field
                 name='businessName'
@@ -307,6 +307,7 @@ const ProfileUpdater = withFormik({
 
   handleSubmit: (values, formikBag) => {
     formikBag.props.profileUpdate(values);
+    history.push('/dashboard');
   },
 })(Update);
 

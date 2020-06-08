@@ -209,6 +209,8 @@ const mapStateToProps = (state) => {
     zipcode: state.onboard.zipcode,
     hours: state.onboard.hours,
     curbHours: state.onboard.curbHours,
+    color: state.onboard.color,
+    logo: state.onboard.logo,
   };
 };
 

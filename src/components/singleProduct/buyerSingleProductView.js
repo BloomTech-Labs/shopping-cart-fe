@@ -20,32 +20,34 @@ function SingleProductView(props) {
 	const itemId = props.productId;
 	const dispatch = useDispatch();
 
-	function changeHandler(e) {
-		e.preventDefault();
-		setProductState({ ...productState, [e.target.name]: parseInt(e.target.value) });
-	}
+  function changeHandler(e) {
+    e.preventDefault();
+    setProductState({
+      ...productState,
+      [e.target.name]: parseInt(e.target.value),
+    });
+  }
 
-	useEffect(
-		() => {
-			axios
-				.get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
-				.then((res) => {
-					setFullProduct(res.data);
-					setProductState({
-						name: res.data.name,
-						price: res.data.price,
-						productId: res.data._id,
-						quantity: 1,
-						images: [ res.data.images ]
-					});
-					console.log(productState);
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		},
-		[ itemId, dispatch ]
-	);
+  useEffect(() => {
+    axios
+      .get(
+        `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`
+      )
+      .then((res) => {
+        setFullProduct(res.data);
+        setProductState({
+          name: res.data.name,
+          price: res.data.price,
+          productId: res.data._id,
+          quantity: 1,
+          images: [res.data.images],
+        });
+        console.log(productState);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [itemId, dispatch]);
 
 	const dispatchItem = (item) => {
 		dispatch(creators.addToCart(item));

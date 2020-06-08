@@ -1,13 +1,13 @@
-import React from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { Form, Input, Icon, Button, message, Spin } from "antd";
-import Logo from "../elements/logo";
-import * as creators from "../../state/actionCreators";
-import image from "../../images/security.png";
+import React from 'react';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Form, Input, Icon, Button, message, Spin } from 'antd';
+import Logo from '../elements/logo';
+import * as creators from '../../state/actionCreators';
+import image from '../../images/security.png';
 
-const URL = "https://shopping-cart-be.herokuapp.com/api/auth/recover";
+const URL = 'https://shopping-cart-be.herokuapp.com/api/auth/recover';
 
 const ResetPassword = (props) => {
   const dispatch = useDispatch();
@@ -25,10 +25,10 @@ const ResetPassword = (props) => {
         axios
           .post(URL, payload)
           .then((res) => {
-            message.success("Your password reset is on its way!");
+            message.success('Your password reset is on its way!');
             dispatch(creators.setLoading(false));
             dispatch(creators.clearErrors());
-            props.history.push("/");
+            props.history.push('/');
           })
           .catch((error) => {
             dispatch(creators.setLoading(false));
@@ -36,7 +36,7 @@ const ResetPassword = (props) => {
             message.error(Object.values(error.response.data)[0]);
           });
       } else {
-        message.error("Please enter a valid phone number to proceed.");
+        message.error('Please enter a valid phone number to proceed.');
       }
     });
   };
@@ -86,21 +86,21 @@ const ResetPassword = (props) => {
               </p>
             </div>
             <Form.Item>
-              {getFieldDecorator("number", {
+              {getFieldDecorator('number', {
                 rules: [
                   {
-                    message: "Enter a valid phone number",
+                    message: 'Enter a valid phone number',
                   },
                   {
                     required: true,
-                    message: "Enter a valid phone number",
+                    message: 'Enter a valid phone number',
                   },
                 ],
               })(
                 <Input
                   placeholder='Phone number'
                   prefix={
-                    <Icon type='phone' style={{ color: "rgba(0,0,0,.70)" }} />
+                    <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
                 />
               )}
@@ -124,6 +124,6 @@ const ResetPassword = (props) => {
 
   return resetPasswordForm;
 };
-const ResetPasswordForm = Form.create({ name: "resetPassword" })(ResetPassword);
+const ResetPasswordForm = Form.create({ name: 'resetPassword' })(ResetPassword);
 
 export default ResetPasswordForm;

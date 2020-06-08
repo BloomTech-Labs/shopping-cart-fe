@@ -27,6 +27,7 @@ import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import Update from './components/Update';
 import CreateProductView from './components/Products/createProductView';
+import ProfileView from './components/ProfileView';
 
 function App() {
   window.addEventListener('load', () => {
@@ -53,6 +54,8 @@ function App() {
         <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
         <PrivateRoute path='/inventory' component={Main} />
+        {/* Profile View */}
+        <PrivateRoute path='/profileview' component={ProfileView} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
         <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
         <PublicRoute path='/store/:id' component={StoreView} />
