@@ -25,7 +25,7 @@ export const getCurrentUser = () => (dispatch) => {
             return cv.category;
           });
           const allUniqueCategories = [...new Set(getAllCategories)];
-          const inventory = { ...res.data, allUniqueCategories };
+          const inventory = [ ...res.data, allUniqueCategories] ;
           dispatch({ type: types.GET_INVENTORY, payload: inventory });
         });
     })
@@ -168,6 +168,7 @@ export const getProducts = (sellerId, signal) => (dispatch) => {
     .then((res) => {
       const inventory = res.data
       dispatch({ type: types.GET_INVENTORY, payload: inventory })
+  
     })
     .catch((error) => {
       setErrors(error.response.data)
