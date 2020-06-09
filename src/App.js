@@ -72,6 +72,7 @@ function App() {
         <PrivateRoute path='/createitem' component={CreateProductView} />
         <PrivateRoute path='/dashboard' component={Home} />
         <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
+        <PrivateRoute path='/order/:id' component={UpdateItem} />
         <PublicRoute path='/product/:id' component={Single} />
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
