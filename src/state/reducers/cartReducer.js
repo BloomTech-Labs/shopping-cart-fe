@@ -4,7 +4,12 @@ const initialCart = [];
 
 const remItem = (state, action) => {
 	const open = state.filter(function(obj) {
-		return obj.productId !== action.payload.productId;
+		if(obj.variantDetails.length > 2) {
+			return obj.productId !== action.payload.productId;
+		}
+		else {
+			return obj.variantDetails[0]._id !== action.payload.variantDetails[0]._id;
+		}
 	});
 	return open;
 };
@@ -66,8 +71,9 @@ export function cartReducer(state = initialCart, action) {
 					productId: action.payload.productId,
 					quantity: action.payload.quantity,
 					price: action.payload.price,
-					name: action.payload.name,
-					images: action.payload.images
+					productName: action.payload.productName,
+					images: action.payload.images,
+					variantDetails: action.payload.variantDetails
 				}
 			];
 

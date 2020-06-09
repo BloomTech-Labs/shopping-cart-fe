@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Card, Button } from "antd";
-import axios from "axios";
-import withAuth from "../Auth/axiosWithAuth";
-import Navbar from "../Navbar";
+import React, { useState, useEffect } from 'react';
+import { Card, Button } from 'antd';
+import axios from 'axios';
+import withAuth from '../Auth/axiosWithAuth';
+import Navbar from '../Navbar';
 
-const storeURL = "https://shopping-cart-be.herokuapp.com/api/store";
-const stripeURL = "https://shopping-cart-be.herokuapp.com/api/auth/stripe";
+const storeURL = 'https://shopping-cart-be.herokuapp.com/api/store';
+const stripeURL = 'https://shopping-cart-be.herokuapp.com/api/auth/stripe';
 
 function Account() {
-  const [stripeId, setStripeId] = useState("");
-  const [storeId, setStoreId] = useState("");
+  const [stripeId, setStripeId] = useState('');
+  const [storeId, setStoreId] = useState('');
   useEffect(() => {
     withAuth()
       .get(storeURL)
@@ -42,10 +42,9 @@ function Account() {
         <Card
           className='Card'
           title='Your Stripe ID'
-          style={{ fontWeight: "900" }}
-        >
+          style={{ fontWeight: '900' }}>
           <p id='stripeID'>
-            {stripeId || "Your stripe account is not connected"}
+            {stripeId || 'Your stripe account is not connected'}
           </p>
         </Card>
         {stripeId ? (
