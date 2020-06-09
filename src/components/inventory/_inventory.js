@@ -96,8 +96,8 @@ const Items = ({ inventory, currency }) => {
                     <div className='item-description'>{item.description}</div>
                   </div>
                   <img
-                    src={item.images[0]}
-                    alt='product image'
+                    src={item.images}
+                    alt='productimage'
                     className='product-image'
                   />
                 </div>
