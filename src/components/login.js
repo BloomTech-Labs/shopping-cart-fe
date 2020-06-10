@@ -85,13 +85,18 @@ const Login = (props) => {
     <Spin spinning={props.isLoading}>
       <div className='cover'>
         <div className='desktop-logo'>
-          <h2 className='register-text'>Login to your account</h2>
           <div className='desktop-logo-large'>
-            <img src='' alt='Login Image' width='300' height='300' />
+            <img
+              src='https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+              alt='Login Image'
+              height='400'
+            />
           </div>
         </div>
         <Logo />
         <div className='desktop-form'>
+          <img src='pureRetail-2020-logo.svg' alt='Kiwi standing on oval' />
+          <h4>Login to your Store!</h4>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <div id='header' data-testid='log-in'>
               <h2>Login</h2>
@@ -136,6 +141,9 @@ const Login = (props) => {
               )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
+              <p>
+                <Link to='/resetpassword'>Forgot password?</Link>
+              </p>
               <Button type='primary' htmlType='submit'>
                 Login
               </Button>
@@ -144,9 +152,6 @@ const Login = (props) => {
           <div id='or_login'>
             <p>
               or <Link to='/register'>register</Link> instead
-            </p>
-            <p>
-              <Link to='/resetpassword'>Forgot password?</Link>
             </p>
           </div>
         </div>
