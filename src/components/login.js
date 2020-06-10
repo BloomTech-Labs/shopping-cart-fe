@@ -36,12 +36,12 @@ const Login = (props) => {
                 if (res.data._id) {
                   history.push('/dashboard');
                 } else {
-                  history.push('/createstore');
+                  history.push('/welcome');
                 }
               })
               .catch((error) => {
                 if (error.response.data.message === 'No store found') {
-                  history.push('/createstore');
+                  history.push('/welcome');
                 } else {
                   message.error(Object.values(error.response.data)[0]);
                 }

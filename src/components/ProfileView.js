@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
+import Navbar from '../components/Navbar';
 const ProfileView = () => {
   const [logo, setLogo] = useState();
   const [address, setAddress] = useState();
@@ -37,9 +38,10 @@ const ProfileView = () => {
   }, []);
   return (
     <div>
-      <h1>Profile</h1>
+      <Navbar />
       <div
         style={{
+          marginTop: '90px',
           border: '2px solid',
           borderColor: color,
         }}

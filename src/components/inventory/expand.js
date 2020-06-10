@@ -42,13 +42,13 @@ const Expanded = ({ inventory, currency }) => {
           key={item.name}
           hoverable
           cover={
-            item.images[0] ? <img alt='item' src={item.images[0]} /> : undefined
+            item.images ? <img alt='item' src={item.images} /> : undefined
           }>
           <Meta
             title={
               <div className='list title'>
                 <div>
-                  <h3 style={{ color: 'black' }}>{item.name}</h3>
+                  <h3 style={{ color: 'black' }}>{item.productName}</h3>
                   <p style={{ fontWeight: 'normal' }}>{item.description}</p>
                 </div>
                 <NavLink to={`/updateitem/${item._id}`}>
