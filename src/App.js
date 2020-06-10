@@ -28,6 +28,7 @@ import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
 import Update from './components/Update';
 import ProfileView from './components/ProfileView';
+import OrderDetailsView from "./components/Orders/OrderDetailsView"
 
 function App() {
   window.addEventListener('load', () => {
@@ -71,12 +72,12 @@ function App() {
         <PrivateRoute path='/createitem' component={CreateProductView} />
         <PrivateRoute path='/dashboard' component={Home} />
         <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
-        <PrivateRoute path='/order/:id' component={UpdateItem} />
+        <PrivateRoute path='/order/:id' component={OrderDetailsView} />
         <PublicRoute path='/product/:id' component={Single} />
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        <PrivateRoute path='/testingGrounds' component={OrderDetailsView} />
+        
       </Switch>
       <div
         id='offline-notification'
