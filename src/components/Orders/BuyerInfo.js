@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../Auth/axiosWithAuth';
 import moment from 'moment';
 
-const BuyerInfo = ({ fullOrder, setOrderCanceled }) => {
+const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 	const { _id, orderCreated, orderStatus, orderCompleted } = fullOrder;
 	//Instead of using the full 10+ long ID shorten it to the last 5 digits
 	const orderNumber = _id ? _id.substr(_id.length - 5) : 0;
@@ -41,7 +41,7 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled }) => {
 			};
 
 			return axiosWithAuth()
-				.put(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`, payload)
+				.put(`https://shopping-cart-be.herokuapp.com/api/store/order/${orderId}`, payload)
 				.then((res) => {
 					console.log('res Date', res.data.orderCompleted);
 					setCurrentStatus(res.data.orderStatus);
@@ -58,7 +58,7 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled }) => {
 		};
 
 		axiosWithAuth()
-			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`, payload)
+			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/${orderId}`, payload)
 			.then((res) => {
 				console.log('res 2', res.data.orderCompleted);
 				setCurrentStatus(res.data.orderStatus);
@@ -74,7 +74,7 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled }) => {
 		setOrderCanceled(true);
 
 		axiosWithAuth()
-			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/5edd5c80afc3ad0004142da4`, {
+			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/${orderId}`, {
 				orderStatus: 'Canceled'
 			})
 			.then((res) => {

@@ -3,7 +3,7 @@ import axiosWithAuth from '../Auth/axiosWithAuth';
 import OrderContentsCards from './OrderContentsCards';
 
 const OrderContents = (props) => {
-	const { order, setOrder } = props;
+	const { order, setOrder, orderId } = props;
 	const { orderCanceled } = props;
 
 	function RemoveItem(arg) {
@@ -12,9 +12,8 @@ const OrderContents = (props) => {
 		});
 
 		console.log('removeItem', removeItem);
-		// TODO: Change the first number to use var above called "GetOrderId"
 		axiosWithAuth()
-			.delete(`https://shopping-cart-be.herokuapp.com/api/store/5ed832fb98c53c0004ff84b5/${removeItem[0]._id}`)
+			.delete(`https://shopping-cart-be.herokuapp.com/api/store/${orderId}/${removeItem[0]._id}`)
 			.then((res) => {
 				console.log(res);
 			})
