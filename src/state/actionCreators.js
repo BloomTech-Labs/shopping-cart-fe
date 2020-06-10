@@ -1,14 +1,11 @@
 import * as types from "./actionTypes";
 import AxiosAuth from "../components/Auth/axiosWithAuth";
 import axios from "axios";
-
 const getUserUrl = "https://shopping-cart-be.herokuapp.com/api/store/";
-
 export const updateForm = (details) => ({
   type: types.UPDATE_FORM,
   payload: details,
 });
-
 export const getCurrentUser = () => (dispatch) => {
   AxiosAuth()
     .get(getUserUrl)
@@ -25,7 +22,7 @@ export const getCurrentUser = () => (dispatch) => {
             return cv.category;
           });
           const allUniqueCategories = [...new Set(getAllCategories)];
-          const inventory = [ ...res.data, allUniqueCategories] ;
+          const inventory = { ...res.data, allUniqueCategories };
           dispatch({ type: types.GET_INVENTORY, payload: inventory });
         });
     })
@@ -33,7 +30,6 @@ export const getCurrentUser = () => (dispatch) => {
       setErrors(error.response.data);
     });
 };
-
 export const getCart = (cartId) => (dispatch) => {
   axios
     .get(`https://shopping-cart-be.herokuapp.com/api/store/cart/${cartId}`)
@@ -45,94 +41,80 @@ export const getCart = (cartId) => (dispatch) => {
       console.log(error);
     });
 };
-
 export function increment(id) {
   return {
     type: types.INCREMENT,
     payload: id,
   };
 }
-
 export function decrement(id) {
   return {
     type: types.DECREMENT,
     payload: id,
   };
 }
-
 export const logout = () => {
   return {
     type: types.LOGOUT_USER,
   };
 };
-
 export const setStore = (store) => {
   return {
     type: types.SET_STORE,
     payload: store,
   };
 };
-
 export const setString = (str) => {
   return {
     type: types.SEARCHSTRING,
     payload: str,
   };
 };
-
 export const addToCart = (item) => {
   return {
     type: types.ADD_TO_CART,
     payload: item,
   };
 };
-
 export const updateCartQuantity = (id) => {
   return {
     type: types.UPDATE_CART_QUANTITY,
     payload: id,
   };
 };
-
 export const subtractFromCart = (item) => {
   return {
     type: types.REMOVE_ITEM_FROM_CART,
     payload: item,
   };
 };
-
 export const clearStore = () => {
   return {
     type: types.CLEAR_STORE,
   };
 };
-
 export const setLoading = (isLoading) => {
   return {
     type: types.LOADING,
     payload: isLoading,
   };
 };
-
 export const setErrors = (errors) => {
   return {
     type: types.SET_ERRORS,
     payload: errors,
   };
 };
-
 export const clearErrors = () => {
   return {
     type: types.CLEAR_ERRORS,
   };
 };
-
 export const clearUser = () => {
   return {
     type: types.CLEAR_USER,
   };
 };
-
 export const deleteStore = () => (dispatch) => {
   AxiosAuth()
     .delete("https://shopping-cart-be.herokuapp.com/api/store")
@@ -146,7 +128,6 @@ export const deleteStore = () => (dispatch) => {
       setErrors(err.response.data);
     });
 };
-
 export const deleteAccount = () => (dispatch) => {
   setLoading(true);
   AxiosAuth()
@@ -159,23 +140,19 @@ export const deleteAccount = () => (dispatch) => {
       setErrors(err.response.data);
     });
 };
-
 export const getProducts = (sellerId, signal) => (dispatch) => {
   axios
     .get(
       `https://shopping-cart-be.herokuapp.com/api/store/${sellerId}/products`
     )
     .then((res) => {
-
       const inventory = res.data;
       dispatch({ type: types.GET_INVENTORY, payload: inventory });
-
     })
     .catch((error) => {
       setErrors(error.response.data);
     });
 };
-
 export const getOneProduct = (productId) => (dispatch) => {
   axios
     .get(`http://localhost:4000/api/store/products/${productId}`)
@@ -187,7 +164,6 @@ export const getOneProduct = (productId) => (dispatch) => {
       setErrors(error.response);
     });
 };
-
 export const getStore = (sellerId, signal) => (dispatch) => {
   axios
     .get(`https://shopping-cart-be.herokuapp.com/api/store/${sellerId}`)
@@ -213,7 +189,6 @@ export const getOrders = (storeId) => (dispatch) => {
       setErrors(error.response.data);
     });
 };
-
 export const getOneOrder = (orderId) => (dispatch) => {
   axios
     .get(`http://localhost:4000/api/store/order/${orderId}`)
@@ -224,7 +199,6 @@ export const getOneOrder = (orderId) => (dispatch) => {
       setErrors(error.response);
     });
 };
-
 export const updateOrder = (details) => (dispatch) => {
   axios.put(`http://localhost:4000/api/store/order/5ebb470f0d20bf0b10ded8f5`);
 };
@@ -246,14 +220,12 @@ export const setStoreUrl = () => {
     payload: window.location.pathname,
   };
 };
-
 export const saveCart = (cart) => {
   return {
     type: types.SAVE_CART,
     payload: cart,
   };
 };
-
 export const getSalesHistory = () => (dispatch) => {
   setLoading(true);
   AxiosAuth()
@@ -279,7 +251,6 @@ export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
       console.log(err);
     });
 };
-
 export const getStoreOrders = (storeId) => (dispatch) => {
   AxiosAuth()
     .get(`https://shopping-cart-be.herokuapp.com/api/store/${storeId}/order`)
@@ -290,7 +261,6 @@ export const getStoreOrders = (storeId) => (dispatch) => {
       console.log(err);
     });
 };
-
 // PUT order
 export const updateOrderProduct = (order_id, orderItem_id, payload) => (
   dispatch
@@ -318,13 +288,10 @@ export const updateOrderProduct = (order_id, orderItem_id, payload) => (
       console.log(err);
     });
 };
-
 // onboarding actions
-
 export const postOnboard = (values) => (dispatch) => {
   dispatch({ type: types.ADD_ONBOARDING, payload: values });
 };
-
 export const profileUpdate = (userInfo) => (dispatch) => {
   dispatch({ type: types.UPDATE_PROFILE, payload: userInfo });
   AxiosAuth()
@@ -336,15 +303,12 @@ export const profileUpdate = (userInfo) => (dispatch) => {
       console.log(err);
     });
 };
-
 export const logoUpload = (logo) => (dispatch) => {
   dispatch({ type: types.UPLOAD_LOGO, payload: logo });
 };
-
 export const colorUpload = (color) => (dispatch) => {
   dispatch({ type: types.UPLOAD_COLOR, payload: color });
 };
-
 export const deleteSellerInfo = (values) => (dispatch) => {
   dispatch({ type: types.DELETE_SELLER_INFO });
   AxiosAuth()
