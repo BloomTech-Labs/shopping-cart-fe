@@ -106,7 +106,7 @@ const Items = ({ inventory, currency }) => {
                 <div className='list short'>
                   <NavLink to={`/updateitem/${item._id}`}>
                     <div>
-                      <NavLink to='#'>View</NavLink>
+                      <NavLink to={`/product/${item._id}`}>View</NavLink>
                     </div>
                   </NavLink>
                 </div>
