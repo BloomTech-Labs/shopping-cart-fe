@@ -12,9 +12,7 @@ const OrderContents = (props) => {
 		});
 		axiosWithAuth()
 			.delete(`https://shopping-cart-be.herokuapp.com/api/store/${orderId}/${removeItem[0]._id}`)
-			.then((res) => {
-				console.log(res);
-			})
+			.then((res) => {})
 			.catch((error) => {
 				console.log(error);
 			});

@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import timesIcon from '../../images/times-icon.svg';
 import trashIcon from '../../images/trash_icon.svg';
 
-// TODO: Once the end point is set up correctly, need to add the chosen variant
-
 const OrderContentsCards = ({ order, RemoveItem, orderCanceled }) => {
 	const [ readyToDelete, setReadyToDelete ] = useState(false);
 
@@ -25,7 +23,7 @@ const OrderContentsCards = ({ order, RemoveItem, orderCanceled }) => {
 								<img src={timesIcon} />
 								<div className="productContainer">
 									<h3> {cv.product.productName} </h3>
-									<h4> {cv.chosenVariant.option}</h4>
+									<h4> {cv.chosenVariant ? cv.chosenVariant.option : ''}</h4>
 								</div>
 							</div>
 							<div className="orderActions">

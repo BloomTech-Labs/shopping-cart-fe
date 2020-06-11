@@ -43,7 +43,6 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 			return axiosWithAuth()
 				.put(`https://shopping-cart-be.herokuapp.com/api/store/order/${orderId}`, payload)
 				.then((res) => {
-					console.log('res Date', res.data.orderCompleted);
 					setCurrentStatus(res.data.orderStatus);
 					NextButtonStatus(res.data.orderStatus);
 					setCompletedTime(res.data.orderCompleted);
@@ -60,7 +59,6 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 		axiosWithAuth()
 			.put(`https://shopping-cart-be.herokuapp.com/api/store/order/${orderId}`, payload)
 			.then((res) => {
-				console.log('res 2', res.data.orderCompleted);
 				setCurrentStatus(res.data.orderStatus);
 				NextButtonStatus(res.data.orderStatus);
 			})
@@ -78,7 +76,6 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 				orderStatus: 'Canceled'
 			})
 			.then((res) => {
-				console.log('res 2', res.data.orderCompleted);
 				setCurrentStatus(res.data.orderStatus);
 				NextButtonStatus(res.data.orderStatus);
 			})
@@ -91,12 +88,7 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 		<div className="buyerInfoContainer">
 			<div className="buyerInfoCard">
 				<section className="topSection">
-					<div
-						onClick={() => {
-							console.log('hey');
-						}}
-						className="OrderNumber"
-					>
+					<div className="OrderNumber">
 						<h4>Order:</h4>
 						<h3 className="number"> {orderNumber} </h3>
 					</div>
