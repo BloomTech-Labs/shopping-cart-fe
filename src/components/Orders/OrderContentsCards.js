@@ -25,7 +25,7 @@ const OrderContentsCards = ({ order, RemoveItem, orderCanceled }) => {
 								<img src={timesIcon} />
 								<div className="productContainer">
 									<h3> {cv.product.productName} </h3>
-									<h4> Variant Name Goes Here</h4>
+									<h4> {cv.chosenVariant.option}</h4>
 								</div>
 							</div>
 							<div className="orderActions">
@@ -34,7 +34,7 @@ const OrderContentsCards = ({ order, RemoveItem, orderCanceled }) => {
 										<div
 											className="deleteBTN"
 											onClick={() => {
-												RemoveItem(cv.product);
+												RemoveItem(cv._id);
 											}}
 										>
 											Delete Item?

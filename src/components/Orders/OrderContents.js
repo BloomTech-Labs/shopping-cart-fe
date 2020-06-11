@@ -8,10 +8,8 @@ const OrderContents = (props) => {
 
 	function RemoveItem(arg) {
 		const removeItem = order.filter((state) => {
-			return state.product.productName === arg.productName;
+			return state._id === arg;
 		});
-
-		console.log('removeItem', removeItem);
 		axiosWithAuth()
 			.delete(`https://shopping-cart-be.herokuapp.com/api/store/${orderId}/${removeItem[0]._id}`)
 			.then((res) => {
@@ -22,7 +20,7 @@ const OrderContents = (props) => {
 			});
 
 		const newState = order.filter((state) => {
-			return state.product.productName !== removeItem[0].product.productName;
+			return state._id !== removeItem[0]._id;
 		});
 
 		return setOrder(newState);
