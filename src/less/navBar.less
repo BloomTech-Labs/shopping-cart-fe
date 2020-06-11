@@ -1,53 +1,96 @@
 .nav-bar {
-	background: white;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 10;
-	-webkit-box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
-	-moz-box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
-	box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
+  background: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  -webkit-box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
+  -moz-box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
+  box-shadow: 0px 10px 5px -5px rgba(112, 112, 112, 1);
 
-	.link-container {
-		width: 100%;
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-between;
-		align-items: center;
+  .link-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 
-		.pure-retail-logo {
-			width: 35%;
-			border-radius: 30%;
-		}
+    .nav-links {
+      width: 35%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-around;
 
-		.nav-links {
-			width: 60%;
-		}
+      .pure-retail-logo {
+        border-radius: 30%;
+        width: 7%;
+      }
+      p {
+        font-weight: bold;
+        color: #202020;
+        margin: 10%;
+		font-size: 1.5rem;
+		opacity:0.9;
+      }
 
-		.btn-container {
-			display: flex;
-			flex-flow: row nowrap;
+      p:hover {
+		color: #1890ff;
+		transform: scale(1.15);
+		
+      }
+    }
 
-			.nav-primary {
-				background-color: #1890ff;
-				color: white;
-				border: none;
-			}
+    .btn-container {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      align-items: center;
+      width: 45%;
 
-			.nav-primary:hover {
-				border: white solid 0.5px;
-			}
-
-			.nav-secondary {
-				color: #1890ff;
-			}
-		}
-
-		.nav-store-logo {
-			width: 5%;
-			border-radius: 50%;
-		}
-	}
+      .btn-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 45%;
+        .nav-link-button {
+          margin-left: 0.5%;
+          padding: 2%;
+          .nav-primary {
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            border-radius: 4%;
+          }
+          .nav-primary:hover {
+			
+			transform: scale(1.1);
+          }
+        }
+        a {
+          margin-left: 0.5%;
+          padding: 2%;
+          font-size: 1.2rem;
+          height: 50%;
+          flex: 1 auto;
+          .nav-secondary {
+            color: #1890ff;
+            border-radius: 4%;
+		  }
+		  .nav-secondary:hover {
+			  color: white;
+			  transform: scale(1.1);
+		  }
+        }
+      }
+      .nav-store-logo {
+        width: 6%;
+        border-radius: 30%;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+    }
+  }
 }
 
 .hidden {
