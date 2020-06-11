@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import withAuth from './Auth/axiosWithAuth';
 import { Link } from 'react-router-dom';
-import { Form, Input, Icon, Button, message, Spin } from 'antd';
+import { Form, Input, Icon, message, Spin } from 'antd';
 import Logo from './elements/logo';
 import image from '../images/register.png';
 import history from '../history';
@@ -90,17 +90,20 @@ const Login = (props) => {
               src='https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
               alt='Login Image'
               height='400'
+              className='loginPicture'
             />
           </div>
         </div>
         <Logo />
         <div className='desktop-form'>
-          <img src='pureRetail-2020-logo.svg' alt='Kiwi standing on oval' />
-          <h4>Login to your Store!</h4>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
-            <div id='header' data-testid='log-in'>
-              <h2>Login</h2>
-            </div>
+            <img
+              className='pureRetailImage'
+              src='pureRetail-2020-logo.svg'
+              alt='pure retail logo'
+            />
+            <h4 className='loginHeader'>Login to your Store!</h4>
+            <div id='header' data-testid='log-in'></div>
             <Form.Item>
               {getFieldDecorator('number', {
                 rules: [
@@ -141,19 +144,24 @@ const Login = (props) => {
               )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <p>
+              <p className='forgotPassword'>
                 <Link to='/resetpassword'>Forgot password?</Link>
               </p>
-              <Button type='primary' htmlType='submit'>
+              <button
+                className='loginButtons loginButton'
+                type='primary'
+                htmlType='submit'>
                 Login
-              </Button>
+              </button>
+              <div id='or_login'>
+                <button className='loginButtons createStore'>
+                  <Link className='createStoreLink' to='/register'>
+                    Create Store
+                  </Link>
+                </button>
+              </div>
             </Form.Item>
           </Form>
-          <div id='or_login'>
-            <p>
-              or <Link to='/register'>register</Link> instead
-            </p>
-          </div>
         </div>
       </div>
     </Spin>
