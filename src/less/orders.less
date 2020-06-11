@@ -1,0 +1,110 @@
+// 🏁 START  for StoreNav Styling
+.orderContentsContainer {
+	max-width: 800px;
+	background: white;
+
+	.contentsHeaderContainer {
+		background: #f7f7f7;
+		display: flex;
+		width: 100%;
+		padding: 20px 25px;
+
+		h5 {
+			font-size: 14px;
+			color: #636363;
+			margin: 0 60px 0 0;
+			font-weight: 600;
+		}
+	}
+	.orderCardContainer {
+		display: flex;
+		flex-flow: column;
+	}
+}
+
+.ProductCardContainer {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	margin: 0;
+
+	.OrderContents {
+		padding: 20px 25px;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.orderItemInfo {
+			display: flex;
+			align-items: center;
+
+			h3 {
+				font-size: 18px;
+				font-weight: 700;
+				color: black;
+				margin: 0px;
+			}
+
+			h4 {
+				color: #4d4d4d;
+				font-weight: 600;
+				font-size: 14px;
+			}
+
+			img {
+				margin: 0 40px;
+			}
+		}
+
+		.orderActions {
+			display: flex;
+
+			.editBTN {
+				color: #4285f4;
+				font-size: 14px;
+				font-weight: 600;
+				cursor: pointer;
+			}
+
+			.deleteFunction {
+				display: flex;
+				flex-flow: column;
+
+				.deleteBTN {
+					color: #f0134d;
+					font-size: 14px;
+					font-weight: 600;
+					cursor: pointer;
+				}
+
+				.loadBar {
+					background: #f0134d;
+					width: 100%;
+					height: 2px;
+					animation: loading 6s;
+					animation-timing-function: linear;
+				}
+
+				@keyframes loading {
+					0% {
+						width: 0%;
+					}
+					95% {
+						width: 100%;
+						opacity: 100%;
+					}
+
+					100% {
+						opacity: 0%;
+					}
+				}
+			}
+
+			img {
+				cursor: pointer;
+				margin: 0 0 0 30px;
+			}
+		}
+	}
+}

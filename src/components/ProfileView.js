@@ -43,6 +43,7 @@ const ProfileView = () => {
       <h1>Profile</h1>
       <div
         style={{
+          marginTop: '90px',
           border: '2px solid',
           borderColor: color,
         }}
