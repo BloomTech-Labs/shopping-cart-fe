@@ -7,7 +7,7 @@ const ColorPicker = (props) => {
   const [color, setColor] = useState('');
   return (
     <div className='colorPicker'>
-      <h3>Select your brand color!</h3>
+      <h3 className="selectBrandColor">Select your brand color!</h3>
       <TwitterPicker
         color={color}
         onChangeComplete={(color) => {
