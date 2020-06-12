@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import AxiosAuth from '../Auth/axiosWithAuth';
 import history from '../../history';
 import * as creators from '../../state/actionCreators';
@@ -8,122 +7,159 @@ import * as creators from '../../state/actionCreators';
 import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
 import AddVariants from './addVariants';
+import Navbar from '../Navbar';
+import Message from './message';
 
 // TODO: Update the JS file name to UpdateProductView
 // TODO: Edit all files assosated with this one on ApplicationCache.js to be correct as well
 // TODO: Get rid of #DeleteMe.js
 
 function UpdateItem(props) {
-  const dispatch = useDispatch();
-  const itemId = props.match.params.id;
-  const sellerId = localStorage.getItem('sellerId');
+	const dispatch = useDispatch();
+	const itemId = props.match.params.id;
+	const sellerId = localStorage.getItem('sellerId');
+	const [ message, setMessage ] = useState();
 
-  useEffect(() => {
-    dispatch(creators.getProducts(sellerId));
-  }, [sellerId, dispatch]);
+	useEffect(
+		() => {
+			dispatch(creators.getProducts(sellerId));
+			//Ensure the window always loads at the top
+			window.scrollTo(0, 0);
+		},
+		[ sellerId, dispatch ]
+	);
 
-  useEffect(() => {
-    AxiosAuth()
-      .get(
-        `https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`
-      )
-      .then((res) => {
-        console.log('This is res', res.data);
-        setProductData(res.data);
-      });
-  }, []);
+	useEffect(() => {
+		AxiosAuth()
+			.get(`https://shopping-cart-be.herokuapp.com/api/store/products/5ee17319999fff0004f6cd1e`)
+			.then((res) => {
+				console.log('This is res', res.data);
+				setProductData(res.data);
+			});
+	}, []);
 
-  // inventory gets all of the products from the redux store (redux store is calling the db)
-  const inventory = useSelector((state) => state.store);
+	// inventory gets all of the products from the redux store (redux store is calling the db)
+	const inventory = useSelector((state) => state.store);
 
-  //Keeps track of what field is empty
-  const [errorState, setErrorState] = useState();
-  // The object that is posted
-  const [productData, setProductData] = useState({
-    productName: '',
-    price: '',
-    category: '',
-    description: '',
-    images: [],
-    variantName: '',
-    variantDetails: [],
-  });
+	//Keeps track of what field is empty
+	const [ errorState, setErrorState ] = useState();
+	// The object that is posted
+	const [ productData, setProductData ] = useState({
+		productName: '',
+		price: '',
+		category: '',
+		description: '',
+		images: [],
+		variantName: '',
+		variantDetails: []
+	});
 
-  //The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array)
-  const [formData, setFormData] = useState({
-    variantOption: '',
-    variantPrice: '',
-  });
+	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array)
+	const [ formData, setFormData ] = useState({
+		option: '',
+		price: ''
+	});
 
-  function submitHandler() {
-    if (!productData.productName) {
-      return setErrorState('productName');
-    }
+	function submitHandler() {
+		if (!productData.productName) {
+			return setErrorState('productName');
+		}
 
-    if (!productData.price) {
-      return setErrorState('price');
-    }
+		if (!productData.price) {
+			return setErrorState('price');
+		}
 
-    if (!productData.category) {
-      return setErrorState('category');
-    }
+		if (!productData.category) {
+			return setErrorState('category');
+		}
 
-    if (productData.images.length < 1) {
-      return setErrorState('images');
-    }
+		if (productData.images.length < 1) {
+			return setErrorState('images');
+		}
 
-    AxiosAuth()
-      .post(
-        'https://shopping-cart-be.herokuapp.com/api/store/products',
-        productData
-      )
-      .then((res) => {
-        history.push('/dashboard');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  return (
-    <div>
-      <>
-        {/* <Navbar /> */}
-        <div className='createProductView'>
-          <div className='createProductHeader'>
-            <h1>Create Product</h1>
-            <button onClick={submitHandler} className='createProduct'>
-              Save Product
-            </button>
-          </div>
-          <div className='basicDetailsVariantsContainer'>
-            <div className='leftContainer'>
-              <Addphoto
-                productData={productData}
-                setProductData={setProductData}
-                errorState={errorState}
-                setErrorState={setErrorState}
-              />
-            </div>
-            <div className='rightContainer'>
-              <BasicDetails
-                inventory={inventory}
-                productData={productData}
-                setProductData={setProductData}
-                setErrorState={setErrorState}
-                errorState={errorState}
-              />
-              <AddVariants
-                setFormData={setFormData}
-                formData={formData}
-                productData={productData}
-                setProductData={setProductData}
-              />
-            </div>
-          </div>
-        </div>
-      </>
-    </div>
-  );
+		AxiosAuth()
+			.put('https://shopping-cart-be.herokuapp.com/api/store/products/5ee17319999fff0004f6cd1e', productData)
+			.then((res) => {
+				console.log(typeof res.status);
+				if (res.status === 200) {
+					setMessage('You’re Product Was Updated Successfuly!');
+					setTimeout(function() {
+						setMessage();
+					}, 3000);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				if (error.status === 404) {
+					setMessage('Something Went Wrong!');
+				}
+			});
+	}
+
+	function removeProudct() {
+		AxiosAuth()
+			.delete('https://shopping-cart-be.herokuapp.com/api/store/products/5ee17319999fff0004f6cd1e')
+			.then((res) => {
+				console.log(typeof res.status);
+				if (res.status === 200) {
+					setMessage('You’re Product Was Deleted Successfuly!');
+					setTimeout(function() {
+						history.push('/dashboard');
+					}, 3000);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				if (error.status === 404) {
+					setMessage('Something Went Wrong!');
+				}
+			});
+	}
+	return (
+		<div>
+			{/* <Navbar /> */}
+			<Message message={message} />
+			<div className="createProductView">
+				<div className="createProductHeader">
+					<h1>Create Product</h1>
+					<div className="actionContainer">
+						<button onClick={removeProudct} className="removeProduct">
+							Remove Product
+						</button>
+
+						<button onClick={submitHandler} className="createProduct">
+							Save Product
+						</button>
+					</div>
+				</div>
+				<div className="basicDetailsVariantsContainer">
+					<div className="leftContainer">
+						<Addphoto
+							productData={productData}
+							setProductData={setProductData}
+							errorState={errorState}
+							setErrorState={setErrorState}
+						/>
+					</div>
+					<div className="rightContainer">
+						<BasicDetails
+							inventory={inventory}
+							productData={productData}
+							setProductData={setProductData}
+							setErrorState={setErrorState}
+							errorState={errorState}
+						/>
+						<AddVariants
+							setFormData={setFormData}
+							formData={formData}
+							productData={productData}
+							setProductData={setProductData}
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default UpdateItem;
