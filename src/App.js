@@ -26,9 +26,9 @@ import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
-import OrderDetailsView from "./components/Orders/OrderDetailsView"
 import Update from './components/Update';
 import ProfileView from './components/ProfileView';
+import OrderDetailsView from "./components/Orders/OrderDetailsView"
 
 function App() {
   window.addEventListener('load', () => {
@@ -77,7 +77,7 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        <PrivateRoute path='/testingGrounds' component={OrderDetailsView} />
+        
       </Switch>
       <div
         id='offline-notification'
