@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../Auth/axiosWithAuth';
 import OrderContentsCards from './OrderContentsCards';
 
 const OrderContents = (props) => {
 	const { order, setOrder, orderId } = props;
+	const { orderCanceled } = props;
 
 	function RemoveItem(arg) {
 		const removeItem = order.filter((state) => {
@@ -11,9 +12,7 @@ const OrderContents = (props) => {
 		});
 		axiosWithAuth()
 			.delete(`https://shopping-cart-be.herokuapp.com/api/store/${orderId}/${removeItem[0]._id}`)
-			.then((res) => {
-				console.log(res);
-			})
+			.then((res) => {})
 			.catch((error) => {
 				console.log(error);
 			});
@@ -31,7 +30,7 @@ const OrderContents = (props) => {
 				<h5>Quantity</h5>
 				<h5>Products</h5>
 			</div>
-			<OrderContentsCards order={order} RemoveItem={RemoveItem} />
+			<OrderContentsCards order={order} RemoveItem={RemoveItem} orderCanceled={orderCanceled} />
 		</div>
 	);
 };
