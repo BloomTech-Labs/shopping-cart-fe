@@ -99,7 +99,7 @@
   font-size: small;
 }
 #logo {
-  display: flex;
+  display: none;
   justify-content: center;
   img {
     width: 15rem;
@@ -128,11 +128,9 @@
 
     .desktop-logo {
       width: 60%;
+      object-fit: cover;
       .loginPicture {
         border-radius: 10px;
-        @media (max-width: 1300px) {
-          height: 300px;
-        }
       }
 
       .register-text {
@@ -202,6 +200,7 @@
   margin: 0.2rem 0;
   &:hover {
     color: white;
+    filter: brightness(130%);
   }
 }
 
@@ -235,6 +234,7 @@
   background: #234bc5;
   border: none;
   color: white;
+  border-radius: 10px;
 }
 
 .createStoreLink {

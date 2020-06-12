@@ -4,7 +4,6 @@ import withAuth from './Auth/axiosWithAuth';
 import { Link } from 'react-router-dom';
 import { Form, Input, Icon, message, Spin } from 'antd';
 import Logo from './elements/logo';
-import image from '../images/register.png';
 import history from '../history';
 import { connect } from 'react-redux';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
@@ -150,15 +149,15 @@ const Login = (props) => {
               <button
                 className='loginButtons loginButton'
                 type='primary'
-                htmlType='submit'>
+                htmltype='submit'>
                 Login
               </button>
               <div id='or_login'>
-                <button className='loginButtons createStore'>
+                <p className='loginButtons createStore'>
                   <Link className='createStoreLink' to='/register'>
                     Create Store
                   </Link>
-                </button>
+                </p>
               </div>
             </Form.Item>
           </Form>
