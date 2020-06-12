@@ -96,8 +96,8 @@ const Items = ({ inventory, currency }) => {
                     <div className='item-description'>{item.description}</div>
                   </div>
                   <img
-                    src={item.images[0]}
-                    alt='product image'
+                    src={item.images}
+                    alt='productimage'
                     className='product-image'
                   />
                 </div>
@@ -106,7 +106,7 @@ const Items = ({ inventory, currency }) => {
                 <div className='list short'>
                   <NavLink to={`/updateitem/${item._id}`}>
                     <div>
-                      <NavLink to='#'>View</NavLink>
+                      <NavLink to={`/product/${item._id}`}>View</NavLink>
                     </div>
                   </NavLink>
                 </div>
