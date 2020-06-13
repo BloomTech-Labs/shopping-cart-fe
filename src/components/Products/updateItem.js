@@ -117,7 +117,7 @@ function UpdateItem(props) {
 	}
 	return (
 		<div>
-			{/* <Navbar /> */}
+			<Navbar />
 			<Message message={message} />
 			<div className="createProductView">
 				<div className="createProductHeader">
