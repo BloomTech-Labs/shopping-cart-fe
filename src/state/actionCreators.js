@@ -10,7 +10,6 @@ export const getCurrentUser = () => (dispatch) => {
   AxiosAuth()
     .get(getUserUrl)
     .then((res) => {
-      console.log("first res", res)
       dispatch({ type: types.GET_CURRENT_USER, payload: res.data })
       AxiosAuth()
         .get(
@@ -235,7 +234,7 @@ export const getSalesHistory = () => (dispatch) => {
 		})
 		.catch((err) => {
 			setLoading(false);
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
 // DELETE order
@@ -251,19 +250,20 @@ export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
 		});
 };
 export const getStoreOrders = (storeId) => (dispatch) => {
-	AxiosAuth()
+  AxiosAuth()
 		.get(`https://shopping-cart-be.herokuapp.com/api/store/${storeId}/order`)
 		.then((res) => {
+      console.log("Order Data", res)
 			dispatch({ type: types.GET_ORDERS, payload: res.data });
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log("err", err.response.data);
 		});
 };
 // PUT order
 export const updateOrderProduct = (order_id, orderItem_id, payload) => (dispatch) => {
 	dispatch({ type: types.UPDATE_ORDER_PRODUCT });
-	axios
+  axios
 		.put(`http://localhost:4000/api/store/${order_id}/${orderItem_id}`, payload)
 		.then((res) => {
 			dispatch({ type: types.UPDATE_ORDER_PRODUCT, payload });
