@@ -1,189 +1,57 @@
-.inventory {
-  background-color: @grey;
-}
+.inventoryMainContainer {
+	max-width: 1240px;
+	width: 100%;
+	margin: 100px auto;
 
-.top {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding-bottom: 70%;
-  margin-top: 450px;
+	h1 {
+		text-align: left;
+	}
 
-  .search {
-    margin: 1.5rem;
-  }
+	.inventoryCards {
+		background: white;
+		margin: 4px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 14px 25px;
 
-  .content {
-    h2 {
-      font-size: 2rem;
-      color: @blue;
-    }
+		.productContainer {
+			display: flex;
+			align-items: center;
 
-    h3 {
-      text-align: left;
-    }
+			img {
+				width: 70px;
+				height: 70px;
+				background-position: 50% 50%;
+				object-fit: cover;
+				margin-right: 20px;
+				border-radius: 6px;
+			}
 
-    p {
-      font-size: 1.3rem;
-      white-space: pre-line;
-      word-break: break-word;
-    }
+			h2 {
+				font-weight: bold;
+				font-size: 24px;
+				margin: 0;
+			}
+			h4 {
+				font-weight: bold;
+				color: #787878;
+				font-size: 14px;
+			}
+			span {
+				color: #aaaaaa;
+				font-weight: 400;
+			}
+		}
+		a {
+			font-size: 16px;
+			color: #4285f4;
+			transition: all .5s;
+			font-weight: bold;
 
-    #edit {
-      color: @navy;
-    }
-
-    #delete {
-      color: @secondary;
-    }
-
-    .ant-tabs-tab-active {
-      color: @navy;
-    }
-
-    .tabs {
-      color: @navy;
-    }
-
-    .block {
-      background-color: white;
-      box-sizing: border-box;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      margin: 0.5rem;
-      width: 75%;
-    }
-  }
-
-  .ant-list-items {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ant-list-item-meta-content {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-evenly;
-    align-items: center;
-
-    .title-formatter {
-      display: flex;
-      flex-flow: row-reverse;
-      justify-content: space-around;
-      align-items: center;
-      width: 735px;
-
-      img.product-image {
-        width: 20%;
-      }
-    }
-  }
-
-  .list {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: column;
-    color: @black;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: left;
-  }
-
-  .short {
-    width: 75%;
-    margin: 0 auto;
-    text-align: left;
-  }
-
-  .item-description {
-    font-weight: normal;
-    word-break: break-word;
-    margin-right: 0.5rem;
-  }
-}
-
-.nav {
-  display: flex;
-  width: 100%;
-  bottom: 0;
-  height: 9vh;
-  max-height: 6rem;
-  position: fixed;
-  background-color: @grey;
-  justify-content: center;
-
-  #nav_ul {
-    display: flex;
-    width: 90%;
-    height: 100%;
-    justify-content: center;
-    color: @black;
-
-    a.navlink {
-      text-decoration: none;
-      color: @secondary;
-    }
-
-    .activeLink {
-      color: @secondary;
-    }
-
-    #add {
-      color: @secondary;
-      width: 25%;
-      height: 100%;
-      margin-top: -20px;
-      font-size: 5rem;
-      align-self: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .li {
-      width: 18%;
-      height: 90%;
-      margin: 0.5rem;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.3rem;
-      text-align: center;
-
-      .icon {
-        font-size: 2rem;
-        padding-top: 3px;
-      }
-    }
-  }
-}
-
-.ant-card.ant-card-bordered.ant-card-hoverable {
-  width: 100%;
-
-  @media (min-width: @desktop) {
-    width: 45% !important;
-    max-width: 40rem;
-  }
-}
-
-.ant-carousel .slick-dots li.slick-active button {
-  background: #000 !important;
-}
-
-.ant-carousel .slick-dots li button {
-  width: 40px !important;
-  height: 7px !important;
-  background: grey !important;
-}
-
-.ant-carousel .slick-slide img {
-  height: 200px;
-  width: auto;
-  margin: 0 auto;
+			&:hover {
+				filter: brightness(130%);
+			}
+		}
+	}
 }

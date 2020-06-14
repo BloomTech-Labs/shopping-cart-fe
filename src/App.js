@@ -10,7 +10,7 @@ import AddLogoForm from './components/createStore/addLogo';
 import UpdateItem from './components/Products/updateItem';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import PublicRoute from './components/Auth/PublicRoute';
-import Main from './components/inventory';
+import Inventory from "./components/inventory/inventory"
 import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
 import StoreView from './components/store/StoreView';
@@ -54,7 +54,7 @@ function App() {
         {/* Onboarding reformatted Above */}
         <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
-        <PrivateRoute path='/inventory' component={Main} />
+        <PrivateRoute path='/inventory' component={Inventory} />
         {/* Profile View */}
         <PrivateRoute path='/profileview' component={ProfileView} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
