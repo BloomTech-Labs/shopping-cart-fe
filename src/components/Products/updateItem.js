@@ -30,12 +30,10 @@ function UpdateItem(props) {
 	);
 
 	useEffect(() => {
-		AxiosAuth()
-			.get(`https://shopping-cart-be.herokuapp.com/api/store/products/5ee17319999fff0004f6cd1e`)
-			.then((res) => {
-				console.log('This is res', res.data);
-				setProductData(res.data);
-			});
+		AxiosAuth().get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`).then((res) => {
+			console.log('This is res', res.data);
+			setProductData(res.data);
+		});
 	}, []);
 
 	// inventory gets all of the products from the redux store (redux store is calling the db)
@@ -78,7 +76,7 @@ function UpdateItem(props) {
 		}
 
 		AxiosAuth()
-			.put('https://shopping-cart-be.herokuapp.com/api/store/products/5ee17319999fff0004f6cd1e', productData)
+			.put(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`, productData)
 			.then((res) => {
 				console.log(typeof res.status);
 				if (res.status === 200) {
@@ -98,7 +96,7 @@ function UpdateItem(props) {
 
 	function removeProudct() {
 		AxiosAuth()
-			.delete('https://shopping-cart-be.herokuapp.com/api/store/products/5ee17319999fff0004f6cd1e')
+			.delete(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
 			.then((res) => {
 				console.log(typeof res.status);
 				if (res.status === 200) {
