@@ -1,6 +1,9 @@
 import * as types from '../actionTypes';
 
-const initialStoreState = [];
+const initialStoreState = {
+	products: [],
+	allUniqueCategories: []
+};
 
 export function storeReducer(state = initialStoreState, action) {
 	switch (action.type) {
