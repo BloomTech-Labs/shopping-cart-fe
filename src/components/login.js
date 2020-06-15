@@ -12,73 +12,76 @@ const loginURL = 'https://shopping-cart-be.herokuapp.com/api/auth/login';
 const storeURL = 'https://shopping-cart-be.herokuapp.com/api/store';
 
 const Login = (props) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.form.validateFieldsAndScroll((err, values) => {
-      const payload = {
-        phone: values.number.trim(),
-        password: values.password,
-      };
-      if (!err) {
-        props.dispatch(setLoading(true));
-        axios
-          .post(loginURL, payload)
-          .then((res) => {
-            message.success('Login Successful');
-            localStorage.setItem('token', res.data.token);
-            props.dispatch(clearErrors());
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		props.form.validateFieldsAndScroll((err, values) => {
+			const payload = {
+				phone: values.number.trim(),
+				password: values.password
+			};
+			if (!err) {
+				props.dispatch(setLoading(true));
+				axios
+					.post(loginURL, payload)
+					.then((res) => {
+						message.success('Login Successful');
+						localStorage.setItem('token', res.data.token);
+						props.dispatch(clearErrors());
 
-            // check if user has store
-            withAuth()
-              .get(storeURL)
-              .then((res) => {
-                if (res.data._id) {
-                  history.push('/dashboard');
-                } else {
-                  history.push('/welcome');
-                }
-              })
-              .catch((error) => {
-                if (error.response.data.message === 'No store found') {
-                  history.push('/welcome');
-                } else {
-                  message.error(Object.values(error.response.data)[0]);
-                }
-              });
-          })
-          .catch((error) => {
-            props.dispatch(setLoading(false));
-            props.dispatch(setErrors(error.response.data));
-            message.error(Object.values(error.response.data)[0]);
-          });
-      } else {
-        message.error('Enter Required Fields');
-      }
-    });
-  };
-  const { getFieldDecorator } = props.form;
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
+						// check if user has store
+						withAuth()
+							.get(storeURL)
+							.then((res) => {
+								if (res.data._id) {
+									history.push('/dashboard');
+								}
+								else {
+									history.push('/welcome');
+								}
+							})
+							.catch((error) => {
+								if (error.response.data.message === 'No store found') {
+									history.push('/welcome');
+								}
+								else {
+									message.error(Object.values(error.response.data)[0]);
+								}
+							});
+					})
+					.catch((error) => {
+						props.dispatch(setLoading(false));
+						props.dispatch(setErrors(error.response.data));
+						message.error(Object.values(error.response.data)[0]);
+					});
+			}
+			else {
+				message.error('Enter Required Fields');
+			}
+		});
+	};
+	const { getFieldDecorator } = props.form;
+	const formItemLayout = {
+		labelCol: {
+			xs: { span: 24 },
+			sm: { span: 8 }
+		},
+		wrapperCol: {
+			xs: { span: 24 },
+			sm: { span: 16 }
+		}
+	};
+	const tailFormItemLayout = {
+		wrapperCol: {
+			xs: {
+				span: 24,
+				offset: 0
+			},
+			sm: {
+				span: 16,
+				offset: 8
+			}
+		}
+	};
 
   const loginForm = (
     <Spin spinning={props.isLoading}>
@@ -166,13 +169,13 @@ const Login = (props) => {
     </Spin>
   );
 
-  return loginForm;
+	return loginForm;
 };
 const LoginForm = Form.create({ name: 'register' })(Login);
 
 const mapStateToProps = (state) => ({
-  isLoading: state.user.isLoading,
-  errors: state.user.errors,
+	isLoading: state.user.isLoading,
+	errors: state.user.errors
 });
 
 export default connect(mapStateToProps, null)(LoginForm);
