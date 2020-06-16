@@ -40,7 +40,7 @@ const StoreNav = props => {
           history.goBack();
         }}
       >
-        {setTimeout(250) ? (
+        {setTimeout(1) ? (
           <a href={"/store/" + storeId}>
             <img className="storeLogo" src={logo} />
           </a>
