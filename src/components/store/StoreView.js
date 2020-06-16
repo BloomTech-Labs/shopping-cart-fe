@@ -17,16 +17,18 @@ function StoreView(props) {
   }, [sellerId, dispatch, currentCat]);
   const inventory = useSelector((state) => state.store);
   const [categorySearch, setCategorySearch] = useState('');
+  console.log(inventory)
+  console.log(store)
   const change = (e) => {
     setCategorySearch(e.target.value.toLowerCase());
   };
-  const storeCategories = inventory.map((item) => {
-    return item.category;
-  });
-  const uniqueCategories = [...new Set(storeCategories)];
-  let filteredProducts = inventory.filter((item) => {
-    return item.category.toLowerCase().includes(categorySearch);
-  });
+  // const storeCategories = inventory.map((item) => {
+  //   return item.category;
+  // });
+  // const uniqueCategories = [...new Set(storeCategories)];
+  // let filteredProducts = inventory.filter((item) => {
+  //   return item.category.toLowerCase().includes(categorySearch);
+  // });
   const storeDetails = store.user;
   const searchString = useSelector((state) => state.search);
   return (
@@ -41,12 +43,12 @@ function StoreView(props) {
           setCategorySearch={setCategorySearch}
           currentCat={currentCat}
           cat={cat}
-          storeCategories={storeCategories}
+          // storeCategories={storeCategories}
           setCat={setCat}
-          uniqueCategories={uniqueCategories}
+          // uniqueCategories={uniqueCategories}
         />
         <AllProducts
-          filteredProducts={filteredProducts}
+          // filteredProducts={filteredProducts}
           searchString={searchString}
           inventory={inventory}
           categorySearch={categorySearch}

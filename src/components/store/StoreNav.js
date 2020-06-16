@@ -40,7 +40,7 @@ const StoreNav = props => {
           history.goBack();
         }}
       >
-        {setTimeout() ? (
+        {/* {setTimeout() ? (
           <a href={"/store/" + storeId}>
             <img className="storeLogo" src={logo} />
           </a>
@@ -48,7 +48,7 @@ const StoreNav = props => {
           <a href={"/store/" + storeId}>
             <img className="storeLogo" src={NoLogo} />
           </a>
-        )}
+        )} */}
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
         <img className="searchIcon" src={search_icon} />

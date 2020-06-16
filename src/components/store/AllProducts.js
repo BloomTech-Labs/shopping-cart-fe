@@ -7,7 +7,7 @@ const AllProducts = ({
 }) => {
   return (
     <div className='ProductAreaContainer'>
-      {categorySearch.length === 0
+      {/* {categorySearch.length === 0
         ? inventory.map((item) => {
             return (
               <ProductCard
@@ -27,7 +27,7 @@ const AllProducts = ({
                 price={item.price}
               />
             );
-          })}
+          })} */}
     </div>
   );
 };
