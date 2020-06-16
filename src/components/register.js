@@ -174,7 +174,7 @@ const RegistrationForm = (props) => {
             <Form.Item {...tailFormItemLayout}>
               <button
                 type='primary'
-                htmlType='submit'
+                htmltype='submit'
                 className='loginButtons loginButton createStore'>
                 Register
               </button>
