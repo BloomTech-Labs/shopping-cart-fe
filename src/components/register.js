@@ -91,13 +91,15 @@ const RegistrationForm = (props) => {
           <div className='desktop-logo-large'>
             <img
               src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-              alt='Register Image'
+              alt='Registration'
               height='400'
               className='loginPicture'
             />
           </div>
         </div>
+
         <Logo />
+
         <div className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <Form.Item>
@@ -170,7 +172,10 @@ const RegistrationForm = (props) => {
               )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <button type='primary' htmlType='submit' className='loginButtons loginButton createStore'>
+              <button
+                type='primary'
+                htmlType='submit'
+                className='loginButtons loginButton createStore'>
                 Register
               </button>
             </Form.Item>

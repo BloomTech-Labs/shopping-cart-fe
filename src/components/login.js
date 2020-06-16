@@ -87,7 +87,7 @@ const Login = (props) => {
           <div className='desktop-logo-large'>
             <img
               src='https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-              alt='Login Image'
+              alt='Login'
               height='400'
               className='loginPicture'
             />
