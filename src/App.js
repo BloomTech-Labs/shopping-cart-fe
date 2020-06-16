@@ -33,7 +33,7 @@ import OrderDetailsView from "./components/Orders/OrderDetailsView"
 function App() {
   window.addEventListener('load', () => {
     function handleNetworkChange(event) {
-      
+      // delete this comment
       if (navigator.onLine) {
         document.getElementById('offline-notification').style.display = 'none';
       } else {
