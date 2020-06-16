@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  justify-content: space-around;
   align-items: center;
   font-family: 'Lato', sans-serif;
 
@@ -17,7 +16,7 @@
   }
 
   .desktop-form {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -100,7 +99,7 @@
   font-size: small;
 }
 #logo {
-  display: flex;
+  display: none;
   justify-content: center;
   img {
     width: 15rem;
@@ -125,9 +124,14 @@
     width: 100%;
     height: 100vh;
     padding: 0;
+    background: linear-gradient(220.67deg, #09afe1 0%, #0f3079 100%);
 
     .desktop-logo {
       width: 60%;
+      object-fit: cover;
+      .loginPicture {
+        border-radius: 10px;
+      }
 
       .register-text {
         font-size: 24px;
@@ -145,19 +149,24 @@
     .desktop-form {
       width: 40%;
       height: 100%;
-      background: @secondary;
-      padding-top: 150px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       #header {
         display: none;
       }
 
       .form-input {
-        margin: 10px;
+        margin: 0px;
+        @media (max-width: 720px) {
+          width: 45%;
+        }
       }
 
       #or_login {
-        padding: 40px;
+        padding: 0px;
       }
     }
     .desktop-form-reset {
@@ -182,4 +191,52 @@
       }
     }
   }
+}
+
+.loginButtons {
+  width: 100%;
+  height: 50px;
+  padding: 0.2rem;
+  margin: 0.2rem 0;
+  &:hover {
+    color: white;
+    filter: brightness(130%);
+  }
+}
+
+.pureRetailImage {
+  width: 70%;
+}
+
+.loginHeader {
+  margin-top: 1.5rem;
+  width: 67%;
+  text-align: left;
+  font-weight: bold;
+  @media (max-width: 720px) {
+    display: none;
+  }
+}
+
+.forgotPassword {
+  margin: -15px 0px 0 0;
+  width: 67%;
+  text-align: left;
+}
+
+.loginButton {
+  background: #0bb3e4;
+  color: white;
+  border: none;
+}
+
+.createStore {
+  background: #234bc5;
+  border: none;
+  color: white;
+  border-radius: 10px;
+}
+
+.createStoreLink {
+  color: white;
 }
