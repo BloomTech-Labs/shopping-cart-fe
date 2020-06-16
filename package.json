@@ -43,7 +43,7 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
+    "coverage": "npm test -- --coverage --watchAll=true"
   },
   "eslintConfig": {
     "extends": "react-app"
