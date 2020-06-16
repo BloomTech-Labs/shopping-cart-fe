@@ -1,7 +1,15 @@
-// 🏁 START  for StoreNav Styling
+.OrderDetailsMaster {
+	max-width: 1240px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin: 130px auto;
+}
+
+// 🏁 START  for Order Contents Styling
 .orderContentsContainer {
 	max-width: 800px;
-	background: white;
+	width: 100%;
 
 	.contentsHeaderContainer {
 		background: #f7f7f7;
@@ -27,6 +35,7 @@
 	flex-flow: column;
 	justify-content: space-between;
 	margin: 0;
+	background: white;
 
 	.OrderContents {
 		padding: 20px 25px;
@@ -104,6 +113,132 @@
 			img {
 				cursor: pointer;
 				margin: 0 0 0 30px;
+			}
+
+			.hidden {
+				display: none;
+			}
+		}
+	}
+}
+// 🚩 END  for Order Contents Styling
+
+// 🏁 START  for Buyer Info Styling
+.buyerInfoContainer {
+	max-width: 400px;
+	width: 100%;
+
+	.buyerInfoCard {
+		padding: 20px 25px;
+		background: white;
+		border-radius: 6px;
+	}
+
+	.number {
+		text-transform: uppercase;
+	}
+
+	h3 {
+		font-size: 18px;
+		font-weight: 700;
+		color: black;
+		margin: 0px;
+	}
+
+	h4 {
+		color: #4d4d4d;
+		font-weight: 600;
+		font-size: 14px;
+		margin: 0;
+	}
+	.topSection {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.orderNumber {
+			display: flex;
+			flex-flow: column;
+		}
+
+		.orderStatus {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 16px;
+			padding: 5px 10px;
+			border-radius: 4px;
+			font-weight: 600;
+			max-height: 30px;
+		}
+
+		.Not {
+			background: #ffc914;
+			color: #333;
+		}
+
+		.Prepaired {
+			background: #5bc7f8;
+			color: #fff;
+		}
+
+		.Complete {
+			background: #25a558;
+			color: #fff;
+		}
+
+		.Canceled {
+			background: #bbbbbb;
+			color: #333;
+		}
+	}
+
+	.divider {
+		width: 100%;
+		background: #f5f5f5;
+		height: 2px;
+		margin: 20px 0;
+	}
+	.bottomSection {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.actionContainer {
+		width: 100%;
+		margin-top: 30px;
+
+		button {
+			margin-right: 30px;
+		}
+
+		.ReadyBTN {
+			background: #4285f4;
+			border: none;
+			color: white;
+
+			&:hover {
+				filter: brightness(130%);
+			}
+		}
+
+		.completeBTN {
+			background: #25a558;
+			color: white;
+			border: none;
+
+			&:hover {
+				filter: brightness(130%);
+			}
+		}
+
+		.cancelBTN {
+			background: #bbb;
+			color: #333;
+			border: none;
+
+			&:hover {
+				filter: brightness(70%);
 			}
 		}
 	}
