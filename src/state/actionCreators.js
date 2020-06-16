@@ -10,7 +10,6 @@ export const getCurrentUser = () => (dispatch) => {
 	AxiosAuth()
 		.get(getUserUrl)
 		.then((res) => {
-			console.log('first res', res);
 			dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
 			AxiosAuth()
 				.get(
@@ -22,7 +21,8 @@ export const getCurrentUser = () => (dispatch) => {
 						return cv.category;
 					});
 					const allUniqueCategories = [ ...new Set(getAllCategories) ];
-					const inventory = { ...res.data, allUniqueCategories };
+					const products = [ ...res.data ];
+					const inventory = { products: products, allUniqueCategories: allUniqueCategories };
 					dispatch({ type: types.GET_INVENTORY, payload: inventory });
 				});
 		})
