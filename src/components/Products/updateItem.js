@@ -47,7 +47,7 @@ function UpdateItem(props) {
 		variantDetails: []
 	});
 
-	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array)
+	//The state that holds the "addVaraint" component info (onClick creates an obj that is added to the Variants array
 	const [ formData, setFormData ] = useState({
 		option: '',
 		price: ''
