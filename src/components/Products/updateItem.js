@@ -10,10 +10,6 @@ import AddVariants from './addVariants';
 import Navbar from '../Navbar';
 import Message from './message';
 
-// TODO: Update the JS file name to UpdateProductView
-// TODO: Edit all files assosated with this one on ApplicationCache.js to be correct as well
-// TODO: Get rid of #DeleteMe.js
-
 function UpdateItem(props) {
 	const dispatch = useDispatch();
 	const itemId = props.match.params.id;
@@ -31,7 +27,6 @@ function UpdateItem(props) {
 
 	useEffect(() => {
 		AxiosAuth().get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`).then((res) => {
-			console.log('This is res', res.data);
 			setProductData(res.data);
 		});
 	}, []);
@@ -78,7 +73,6 @@ function UpdateItem(props) {
 		AxiosAuth()
 			.put(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`, productData)
 			.then((res) => {
-				console.log(typeof res.status);
 				if (res.status === 200) {
 					setMessage('You’re Product Was Updated Successfuly!');
 					setTimeout(function() {
@@ -98,7 +92,6 @@ function UpdateItem(props) {
 		AxiosAuth()
 			.delete(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
 			.then((res) => {
-				console.log(typeof res.status);
 				if (res.status === 200) {
 					setMessage('You’re Product Was Deleted Successfuly!');
 					setTimeout(function() {

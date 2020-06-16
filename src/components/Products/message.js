@@ -6,7 +6,7 @@ const Message = ({ message }) => {
 	useEffect(
 		() => {
 			if (!message) {
-				return console.log('message');
+				return console.log('');
 			}
 			else {
 				return message.includes('Deleted') ? setMessageType('red') : setMessageType('green');
@@ -14,8 +14,6 @@ const Message = ({ message }) => {
 		},
 		[ message ]
 	);
-
-	message ? console.log(message.length) : console.log('nope');
 
 	return (
 		<div className={message ? '' : 'hidden'}>
