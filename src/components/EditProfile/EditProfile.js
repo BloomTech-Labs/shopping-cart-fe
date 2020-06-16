@@ -178,7 +178,7 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
         </Link>{' '}
         to create one
       </p>
-      <Button onClick={handleLogout} type='primary' htmlType='button'>
+      <Button onClick={handleLogout} type='primary' htmltype='button'>
         Logout
       </Button>
     </div>
@@ -325,13 +325,13 @@ const EditProfile = ({ dispatch, isLoading, form }) => {
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
+            <Button type='primary' htmltype='submit'>
               Update
             </Button>
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
-            <Button onClick={handleLogout} type='primary' htmlType='button'>
+            <Button onClick={handleLogout} type='primary' htmltype='button'>
               Logout
             </Button>
           </Form.Item>
