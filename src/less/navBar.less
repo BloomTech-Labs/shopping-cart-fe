@@ -65,7 +65,7 @@
           }
         }
         a {
-       
+          margin-left: 1rem;
           padding: 2%;
           font-size: 1.5rem;
           .nav-secondary {
@@ -127,6 +127,42 @@
   .nav-bar {
     .link-container {
       flex-direction: column;
+      .nav-links {
+        width: 50rem;
+        .pure-retail-logo {
+          width: 4rem;
+        }
+      }
+      .btn-container {
+        width: 30rem;
+        .btn-list {
+          .nav-link-button{
+            .nav-primary {
+              width: 15rem;
+              font-size: 1.3rem;
+              font-weight: bold;
+            }
+          }
+          .nav-secondary {
+            width: 13rem;
+            font-size: 1.3rem;
+            height: 4rem;
+            margin: 0;
+            padding: 0;
+          }
+        }
+        .nav-store-logo {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .nav-bar {
+    .link-container {
+      flex-direction: column;
       justify-content: flex-start;
       .nav-links {
         flex-direction: column;
@@ -154,7 +190,7 @@
           }
         }
         .nav-store-logo {
-          visibility: hidden;
+          display: none;
         }
       }
     }
