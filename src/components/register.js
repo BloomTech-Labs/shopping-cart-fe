@@ -88,20 +88,24 @@ const RegistrationForm = (props) => {
     <Spin spinning={props.isLoading}>
       <div className='cover'>
         <div className='desktop-logo'>
-          <h2 className='register-text'>Register new account</h2>
           <div className='desktop-logo-large'>
-            <img src='' alt='Register Image' width='300' height='300' />
+            <img
+              src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+              alt='Register Image'
+              height='400'
+              className='loginPicture'
+            />
           </div>
         </div>
         <Logo />
         <div className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
-            <div id='header'>
-              <h2>
-                Register new <br /> account
-              </h2>
-            </div>
             <Form.Item>
+              <img
+                className='pureRetailImage registrationHeader'
+                src='pureRetail-2020-logo.svg'
+                alt='pure retail logo'
+              />
               {getFieldDecorator('number', {
                 rules: [
                   {
@@ -166,9 +170,9 @@ const RegistrationForm = (props) => {
               )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <Button type='primary' htmlType='submit'>
+              <button type='primary' htmlType='submit' className='loginButtons loginButton createStore'>
                 Register
-              </Button>
+              </button>
             </Form.Item>
           </Form>
           <div id='or_login'>
