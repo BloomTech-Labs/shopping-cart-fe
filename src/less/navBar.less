@@ -15,28 +15,27 @@
     align-items: center;
 
     .nav-links {
-      width: 35%;
+      width: 80rem;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-around;
 
       .pure-retail-logo {
-        border-radius: 30%;
-        width: 7%;
+        border-radius: 1rem;
+        width: 5rem;
       }
       p {
         font-weight: bold;
         color: #202020;
         margin: 10%;
-		font-size: 1.5rem;
-		opacity:0.9;
+        font-size: 1.5rem;
+        opacity: 0.9;
       }
 
       p:hover {
-		color: #1890ff;
-		transform: scale(1.15);
-		
+        color: #1890ff;
+        transform: scale(1.15);
       }
     }
 
@@ -45,49 +44,46 @@
       flex-flow: row nowrap;
       justify-content: flex-end;
       align-items: center;
-      width: 45%;
-
+      width: 80rem;
       .btn-list {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        width: 45%;
+        width: 35rem;
         .nav-link-button {
-          margin-left: 0.5%;
-          padding: 2%;
+          margin-left: 1rem;
           .nav-primary {
+            font-size: 1.5rem;
             background-color: #1890ff;
             color: white;
             border: none;
             border-radius: 4%;
           }
           .nav-primary:hover {
-			
-			transform: scale(1.1);
+            transform: scale(1.1);
           }
         }
         a {
-          margin-left: 0.5%;
+       
           padding: 2%;
-          font-size: 1.2rem;
-          height: 50%;
-          flex: 1 auto;
+          font-size: 1.5rem;
           .nav-secondary {
             color: #1890ff;
-            border-radius: 4%;
-		  }
-		  .nav-secondary:hover {
-			  color: white;
-			  transform: scale(1.1);
-		  }
+            border-radius: 0.2rem;
+          }
+          .nav-secondary:hover {
+            color: white;
+            transform: scale(1.1);
+          }
         }
       }
       .nav-store-logo {
-        width: 6%;
-        border-radius: 30%;
+        width: 5rem;
+        border-radius: 1rem;
         margin-left: 10%;
         margin-right: 10%;
+        min-width: 4.2rem;
       }
     }
   }
@@ -95,4 +91,72 @@
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 935px) {
+  .nav-bar {
+    .link-container {
+      .nav-links {
+        .pure-retail-logo {
+          width: 4rem;
+        }
+      }
+      .btn-container {
+        .btn-list {
+          .nav-link-button{
+            .nav-primary {
+              width: 15rem;
+              font-size: 1.3rem;
+              font-weight: bold;
+            }
+          }
+          .nav-secondary {
+            width: 13rem;
+            font-size: 1.3rem;
+            height: 4rem;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .nav-bar {
+    .link-container {
+      flex-direction: column;
+      justify-content: flex-start;
+      .nav-links {
+        flex-direction: column;
+        justify-content: flex-start;
+        .pure-retail-logo {
+          width: 4rem;
+        }
+      }
+      .btn-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        .btn-list {
+          flex-direction: column;
+          justify-content: flex-start;
+          .nav-primary {
+            width: 15rem;
+            font-size: 1.2rem;
+          }
+          .nav-secondary {
+            width: 15rem;
+            font-size: 1.2rem;
+            height: 4rem;
+            margin: 0;
+            padding: 0;
+          }
+        }
+        .nav-store-logo {
+          visibility: hidden;
+        }
+      }
+    }
+  }
 }
