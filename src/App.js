@@ -10,7 +10,7 @@ import AddLogoForm from './components/createStore/addLogo';
 import UpdateItem from './components/Products/updateItem';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import PublicRoute from './components/Auth/PublicRoute';
-import Main from './components/inventory';
+import Inventory from "./components/inventory/inventory"
 import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
 import StoreView from './components/store/StoreView';
@@ -26,9 +26,9 @@ import WelcomeScreenForm from './components/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
-import OrderDetailsView from "./components/Orders/OrderDetailsView"
 import Update from './components/Update';
 import ProfileView from './components/ProfileView';
+import OrderDetailsView from "./components/Orders/OrderDetailsView"
 
 function App() {
   window.addEventListener('load', () => {
@@ -54,7 +54,7 @@ function App() {
         {/* Onboarding reformatted Above */}
         <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
-        <PrivateRoute path='/inventory' component={Main} />
+        <PrivateRoute path='/inventory' component={Inventory} />
         {/* Profile View */}
         <PrivateRoute path='/profileview' component={ProfileView} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
@@ -77,7 +77,7 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        <PrivateRoute path='/testingGrounds' component={OrderDetailsView} />
+        
       </Switch>
       <div
         id='offline-notification'

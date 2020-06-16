@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import OrderContents from './OrderContents';
 import axiosWithAuth from '../Auth/axiosWithAuth';
+//Components
+import OrderContents from './OrderContents';
+import BuyerInfo from './BuyerInfo';
+import Navbar from "../Navbar";
 
 const OrderDetailsView = (props) => {
-	const [ order, setOrder ] = useState();
 	const orderId = props.match.params.id;
+	const [ order, setOrder ] = useState();
+	const [ fullOrder, setFullOrder ] = useState(0);
+	const [ orderCanceled, setOrderCanceled ] = useState(false);
 
 	useEffect(
 		() => {
 			axiosWithAuth()
 				.get(`https://shopping-cart-be.herokuapp.com/api/store/order/${orderId}`)
 				.then((res) => {
+					console.log(res.data);
 					setOrder(res.data.orderItem);
+					setFullOrder(res.data);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -19,10 +26,15 @@ const OrderDetailsView = (props) => {
 		},
 		[ setOrder ]
 	);
+
 	return (
-		<div>
-			<OrderContents orderId={orderId} order={order} setOrder={setOrder} />
+		<>
+		<Navbar/>
+		<div className="OrderDetailsMaster">
+			<BuyerInfo orderId={orderId} fullOrder={fullOrder} setOrderCanceled={setOrderCanceled} />
+			<OrderContents orderId={orderId} order={order} setOrder={setOrder} orderCanceled={orderCanceled} />
 		</div>
+		</>
 	);
 };
 

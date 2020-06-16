@@ -1,6 +1,6 @@
 // import * as types from "../actionTypes"
 
-// const initialOrders = {}
+// const initialOrders = []
 
 // export function productReducer(state = initialOrders, action) {
 //   switch (action.type) {
