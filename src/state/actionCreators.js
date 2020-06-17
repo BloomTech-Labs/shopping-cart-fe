@@ -1,7 +1,9 @@
 import * as types from './actionTypes';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
 import axios from 'axios';
+
 const getUserUrl = 'https://shopping-cart-be.herokuapp.com/api/store/';
+
 export const updateForm = (details) => ({
 	type: types.UPDATE_FORM,
 	payload: details
@@ -10,23 +12,31 @@ export const getCurrentUser = () => (dispatch) => {
 	AxiosAuth()
 		.get(getUserUrl)
 		.then((res) => {
+			console.log("res", res)
 			dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
 			AxiosAuth()
-				.get(
-					`https://shopping-cart-be.herokuapp.com
-/api/store/${res.data._id}/products`
-				)
+				.get(`https://shopping-cart-be.herokuapp.com/api/store/${res.data._id}/products`)
 				.then((res) => {
-					const getAllCategories = res.data.map((cv) => {
-						return cv.category;
+					console.log("RES", res)
+					if(res.data) {
+
+						const getAllCategories = res.data.map((cv) => {
+							return cv.category;
+						});
+						const allUniqueCategories = [ ...new Set(getAllCategories) ];
+						const products = [ ...res.data ];
+						const inventory = { products: products, allUniqueCategories: allUniqueCategories };
+						dispatch({ type: types.GET_INVENTORY, payload: inventory });
+					}
+					})
+					.catch((error) => {
+						console.log(error.response.data)
+						setErrors(error.response.data);
 					});
-					const allUniqueCategories = [ ...new Set(getAllCategories) ];
-					const products = [ ...res.data ];
-					const inventory = { products: products, allUniqueCategories: allUniqueCategories };
-					dispatch({ type: types.GET_INVENTORY, payload: inventory });
-				});
+
 		})
 		.catch((error) => {
+			console.log(error.response.data)
 			setErrors(error.response.data);
 		});
 };
@@ -38,7 +48,7 @@ export const getCart = (cartId) => (dispatch) => {
 			dispatch({ type: types.SAVE_CART, payload: savedCart });
 		})
 		.catch((error) => {
-			console.log(error);
+			console.log(error.response.data);;
 		});
 };
 export function increment(id) {
@@ -159,7 +169,7 @@ export const getOneProduct = (productId) => (dispatch) => {
 			dispatch({ type: types.GET_ONE_PRODUCT, payload: res.data });
 		})
 		.catch((error) => {
-			setErrors(error.response);
+			setErrors(error.response.data);
 		});
 };
 export const getStore = (sellerId, signal) => (dispatch) => {
@@ -194,7 +204,7 @@ export const getOneOrder = (orderId) => (dispatch) => {
 			dispatch({ type: types.GET_ONE_ORDER, payload: res.data });
 		})
 		.catch((error) => {
-			setErrors(error.response);
+			setErrors(error.response.data);
 		});
 };
 export const updateOrder = (details) => (dispatch) => {
@@ -234,7 +244,7 @@ export const getSalesHistory = () => (dispatch) => {
 		})
 		.catch((err) => {
 			setLoading(false);
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
 // DELETE order
@@ -246,7 +256,7 @@ export const deleteOrderProduct = (order_id, orderItem_id) => (dispatch) => {
 			console.log('res:', res);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
 export const getStoreOrders = (storeId) => (dispatch) => {
@@ -256,7 +266,7 @@ export const getStoreOrders = (storeId) => (dispatch) => {
 			dispatch({ type: types.GET_ORDERS, payload: res.data });
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
 // PUT order
@@ -269,7 +279,7 @@ export const updateOrderProduct = (order_id, orderItem_id, payload) => (dispatch
 			console.log(res);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(err.response.data);
 			alert('Profile update failed, please try again!');
 		});
 	setLoading(true);
@@ -281,7 +291,7 @@ export const updateOrderProduct = (order_id, orderItem_id, payload) => (dispatch
 		})
 		.catch((err) => {
 			setLoading(false);
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
 // onboarding actions
@@ -296,7 +306,7 @@ export const profileUpdate = (userInfo) => (dispatch) => {
 			console.log('this has posted', res);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
 export const logoUpload = (logo) => (dispatch) => {
@@ -313,6 +323,6 @@ export const deleteSellerInfo = (values) => (dispatch) => {
 			console.log(res);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(err.response.data);
 		});
 };
