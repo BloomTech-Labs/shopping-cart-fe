@@ -11,7 +11,7 @@ function StoreView(props) {
 	const [ currentCat, setCurrentCat ] = useState();
 	useEffect(
 		() => {
-			dispatch(creators.getProducts(sellerId));
+			dispatch(creators.getCurrentUser());
 			dispatch(creators.getStore(sellerId));
 			dispatch(creators.setStoreUrl(window.location.href));
 		},
