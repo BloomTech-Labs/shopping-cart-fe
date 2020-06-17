@@ -17,8 +17,9 @@ const Navbar = () => {
   const url = `${window.location.origin.toString()}/store/${
     user && user.storeName && user.storeName.toLowerCase().split(" ").join("-")
   }-${user && user._id}`
+  console.log("user", user)
 
-  const storeLogo = user.imageUrl ? user.imageUrl : NoLogo
+  const storeLogo = user.logo
 
   return (
     <div className="nav-bar">
@@ -67,7 +68,7 @@ const Navbar = () => {
               <button className="nav-secondary">View Store</button>
             </a>
             </div>
-            <img src={storeLogo} alt="Store Logo" className="nav-store-logo" />
+            <img src={storeLogo} alt= "" className="nav-store-logo" />
           </div>
       </div>
     </div>
