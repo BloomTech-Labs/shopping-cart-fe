@@ -12,49 +12,48 @@ const WelcomeScreen = (props) => {
       <h2 className='welcomeP'>
         To finish the account creation process fill out the forms below
       </h2>
-      <p className='required'>required fields*</p>
-      <Form>
+      <Form className = "formContainer">
         <main className='infoColumns'>
           <section className='middleWelcomeFields'>
             <label htmlFor='business name' className='labelFont'>
-              Business Name*
+              Business Name
             </label>
-            <Field
+            <Field 
               name='businessName'
               type='text'
               value={props.values.businessName}
-              placeholder='business name'
+              placeholder='Business name'
               className='fieldsChar'
             />
             {props.touched.businessName && props.errors.businessName && (
-              <p className='errorWelcome'>enter, please</p>
+              <p className='errorWelcome'>Business Name is required</p>
             )}
 
             <label htmlFor='owner name' className='labelFont'>
-              Owner Name*
+              Owner Name
             </label>
             <Field
               name='ownerName'
               type='text'
               value={props.values.ownerName}
-              placeholder='your name'
+              placeholder='Owner name'
               className='fieldsChar'
             />
             {props.touched.ownerName && props.errors.ownerName && (
-              <p className='errorWelcome'>enter, please</p>
+              <p className='errorWelcome'>Owner Name is required</p>
             )}
             <label htmlFor='address' className='labelFont'>
-              Address*
+              Address
             </label>
             <Field
               name='address'
               type='text'
               value={props.values.address}
-              placeholder='your address'
+              placeholder='Add address'
               className='fieldsChar'
             />
             {props.touched.address && props.errors.address && (
-              <p className='errorWelcome'>address, please</p>
+              <p className='errorWelcome'>Address is required</p>
             )}
             <label htmlFor='owner name' className='labelFont'>
               Second Address
@@ -64,49 +63,49 @@ const WelcomeScreen = (props) => {
               name='secondAddress'
               type='text'
               value={props.values.secondAddress}
-              placeholder='your secondary address'
+              placeholder='Add second address (if needed)'
               className='fieldsChar'
             />
-            {props.touched.secondAddress && props.errors.secondAddress && (
-              <p className='errorWelcome'>enter if needed</p>
-            )}
+            {/* {props.touched.secondAddress && props.errors.secondAddress && (
+              <p className='errorWelcome'></p>
+            )} */}
             <label htmlFor='city' className='labelFont'>
-              City*
+              City
             </label>
 
             <Field
               name='city'
               type='text'
               value={props.values.city}
-              placeholder='your city'
+              placeholder='Add city'
               className='fieldsChar'
             />
             {props.touched.city && props.errors.city && (
-              <p className='errorWelcome'>City required</p>
+              <p className='errorWelcome'>City is required</p>
             )}
 
             <label htmlFor='state' className='labelFont'>
-              State*
+              State
             </label>
 
             <Field
               name='state'
               type='text'
               value={props.values.state}
-              placeholder='your state'
+              placeholder='Add state '
               className='fieldsChar'
             />
             {props.touched.state && props.errors.state && (
-              <p className='errorWelcome'>enter State</p>
+              <p className='errorWelcome'>State is required</p>
             )}
             <label htmlFor='zip code' className='labelFont'>
-              Zip Code*
+              Zip Code
             </label>
             <Field
               name='zipcode'
-              type='number'
+              type='text'
               maxLength={5}
-              placeholder='your zip code'
+              placeholder='Add zipcode'
               value={props.values.zipcode}
               className='fieldsChar'
             />
@@ -116,17 +115,17 @@ const WelcomeScreen = (props) => {
           </section>
           <section className='curbHoursSection'>
             <label htmlFor='store hours' className='labelFont'>
-              Store Hours*
+              Store Hours
             </label>
             <Field
               name='hours'
               type='text'
               value={props.values.hours}
-              placeholder='your hours of operation'
+              placeholder='Add Hours of Operation'
               className='fieldsChar'
             />
             {props.touched.hours && props.errors.hours && (
-              <p className='errorWelcome'>enter Hours of Operation</p>
+              <p className='errorWelcome'>Enter Hours of Operation</p>
             )}
             <label htmlFor='curbside hours' className='labelFont'>
               Curbside Pickup Hours
@@ -135,11 +134,11 @@ const WelcomeScreen = (props) => {
               name='curbHours'
               type='text'
               value={props.values.curbHours}
-              placeholder='your curbside pickup hours'
+              placeholder='Add curbside hours'
               className='fieldsChar'
             />
             {props.touched.curbHours && props.errors.curbHours && (
-              <p className='errorWelcome'>enter Curbside hours</p>
+              <p className='errorWelcome'>Enter Curbside hours</p>
             )}
           </section>
         </main>
@@ -186,7 +185,7 @@ const WelcomeScreenForm = withFormik({
     zipcode: Yup.string()
       .max(5, '5 digits only!')
       .min(5, 'must be 5 digits')
-      .required('Enter your Zip Code!'),
+      .required('Zipcode is required'),
 
     hours: Yup.string().required('Enter your store hours!'),
     curbHours: Yup.string(),

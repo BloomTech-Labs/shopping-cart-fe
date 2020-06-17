@@ -1,21 +1,34 @@
 .welcomeForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   width: 85%;
   margin: 0 auto;
+
 }
 
 .errorWelcome {
-  color: red;
+  font-size: 1rem;
+  font-weight: 600;
+  
+  color: 		#DC143C;
   @media (max-width: 600px) {
     text-align: center;
     margin: 0 auto;
   }
 }
+.formContainer{
+  background: white;
+  margin: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
 
 .infoColumns {
   display: flex;
   justify-content: space-around;
+  
   @media (max-width: 600px) {
     width: 95%;
     flex-direction: column;
@@ -23,12 +36,13 @@
 }
 
 .middleWelcomeFields {
-  background: white;
+
   padding: 10px 0;
   width: 49%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   @media (max-width: 600px) {
     width: 95%;
   }
@@ -36,17 +50,30 @@
 
 .fieldsChar {
   width: 80%;
-  padding: 0.5rem;
+  padding: 12px 20px;
   margin-bottom: 10px;
+  border-radius: 4px;
+  background-color:white;
+  border:0;
+  box-shadow:0 0 4px rgba(0,0,0,0.3);
+  transition: .3s box-shadow;
+  font-weight: bold;
+  cursor: pointer;
   @media (max-width: 600px) {
     width: 95%;
     flex-direction: row;
     margin: 0 auto;
   }
 }
+.fieldsChar:hover {
+  box-shadow:0 0 6px rgba(0,0,0,0.5);
+}
+.fieldsChar:focus {
+  background-color:whitesmoke;
+  border-color: #000;
+}
 
 .curbHoursSection {
-  background: white;
   padding: 10px 0;
   width: 49%;
   display: flex;
@@ -57,7 +84,9 @@
 }
 
 .labelFont {
-  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: black;
   @media (max-width: 600px) {
     text-align: center;
@@ -65,15 +94,23 @@
 }
 
 .addBranding {
-  display: flex;
   background: #25a558;
+  border:0;
   border-radius: 2px;
   color: white;
   margin: 2rem auto;
+  box-shadow:0 0 4px rgba(0,0,0,0.3);
+  
+}
+
+.addBranding:hover{
+  background: white;
+  color: #25a558;
+  box-shadow:0 0 6px rgba(0,0,0,0.5);
 }
 
 .welcomeHeader {
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   color: black;
   font-weight: bold;
   margin: 1.5rem auto;
@@ -81,5 +118,8 @@
 }
 
 .welcomeP {
+  color: grey;
   margin: 0 auto;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
