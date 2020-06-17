@@ -19,18 +19,17 @@ function StoreView(props) {
 	);
 	const inventory = useSelector((state) => state.store);
 	const store = useSelector((state) => state.user);
-	const categories = inventory.products.length > 1 ? inventory.allUniqueCategories : 0;
+	const categories = inventory.allUniqueCategories;
 	const searchString = useSelector((state) => state.search);
 	const [ categorySearch, setCategorySearch ] = useState('');
 	const change = (e) => {
 		setCategorySearch(e.target.value.toLowerCase());
 	};
 	let filteredProducts =
-		inventory.products.length > 1
-			? inventory.products.filter((item) => {
+		inventory.products &&
+		inventory.products.filter((item) => {
 					return item.category.toLowerCase().includes(categorySearch);
 				})
-			: console.log('');
 	return (
 		<div>
 			<div>

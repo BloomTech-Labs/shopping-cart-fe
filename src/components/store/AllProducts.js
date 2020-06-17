@@ -4,7 +4,7 @@ const AllProducts = ({ categorySearch, filteredProducts, inventory, searchString
 	return (
 		<div className="ProductAreaContainer">
 			{categorySearch.length === 0 ? (
-				inventory.products.map((item) => {
+				inventory.products && inventory.products.map((item) => {
 					return (
 						<ProductCard
 							id={item._id}
