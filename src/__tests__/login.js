@@ -35,7 +35,7 @@ describe('login screen', () => {
   })
   test('renders the register link', () => {
     const { getByText } = renderWithProviders(<Container />)
-    const registerLink = getByText(/register/)
+    const registerLink = getByText(/create store/i)
     expect(registerLink).toBeVisible()
   })
   test('renders the forgot password link', () => {
