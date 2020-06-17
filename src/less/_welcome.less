@@ -1,125 +1,156 @@
 .welcomeForm {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
-
-}
-
-.errorWelcome {
-  font-size: 1rem;
-  font-weight: 600;
-  
-  color: 		#DC143C;
-  @media (max-width: 600px) {
-    text-align: center;
-    margin: 0 auto;
+  img {
+    width: 30rem;
+    margin: 2rem auto;
   }
-}
-.formContainer{
-  background: white;
-  margin: 1rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-}
+  h1 {
+    font-size: 4.5rem;
+    color: black;
+    font-weight: bold;
+    margin: 1.5rem auto;
+    text-align: center;
+  }
 
-.infoColumns {
-  display: flex;
-  justify-content: space-around;
-  
-  @media (max-width: 600px) {
-    width: 95%;
+  h2 {
+    color: grey;
+    margin: 0 auto;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .formContainer {
+    background: white;
+    margin: 1rem;
+    padding: 2rem;
+    display: flex;
     flex-direction: column;
+    align-self: center;
+    width: 70%;
+
+    .sectionContainer {
+      display: flex;
+      flex-direction: column;
+      
+
+      .firstSection {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+   
+        .business {
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+          padding-right: 1rem;
+        }
+        .rest {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .firstHalf {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin-right: 2rem;
+        }
+
+        .secondHalf {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+        @media (max-width: 600px) {
+          width: 95%;
+        }
+      }
+
+      .secondSection {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        
+        @media (max-width: 600px) {
+          width: 95%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        width: 95%;
+        flex-direction: column;
+      }
+    }
   }
-}
 
-.middleWelcomeFields {
+  .field {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 2rem ;
+    margin-right: 2rem;
+    border-radius: 4px;
+    background-color: white;
+    border: 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    transition: 0.3s box-shadow;
+    font-weight: bold;
+    
 
-  padding: 10px 0;
-  width: 49%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  @media (max-width: 600px) {
-    width: 95%;
+    cursor: pointer;
+    @media (max-width: 600px) {
+      width: 95%;
+      flex-direction: row;
+      margin: 0 auto;
+    }
   }
-}
 
-.fieldsChar {
-  width: 80%;
-  padding: 12px 20px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  background-color:white;
-  border:0;
-  box-shadow:0 0 4px rgba(0,0,0,0.3);
-  transition: .3s box-shadow;
-  font-weight: bold;
-  cursor: pointer;
-  @media (max-width: 600px) {
-    width: 95%;
-    flex-direction: row;
-    margin: 0 auto;
+  .field:hover {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   }
-}
-.fieldsChar:hover {
-  box-shadow:0 0 6px rgba(0,0,0,0.5);
-}
-.fieldsChar:focus {
-  background-color:whitesmoke;
-  border-color: #000;
-}
 
-.curbHoursSection {
-  padding: 10px 0;
-  width: 49%;
-  display: flex;
-  flex-direction: column;
-  @media (max-width: 600px) {
-    width: 95%;
+  .field:focus {
+    background-color: whitesmoke;
+    border-color: #000;
   }
-}
 
-.labelFont {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: black;
-  @media (max-width: 600px) {
-    text-align: center;
+  .label {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: black;
+    @media (max-width: 600px) {
+      text-align: center;
+    }
   }
-}
 
-.addBranding {
-  background: #25a558;
-  border:0;
-  border-radius: 2px;
-  color: white;
-  margin: 2rem auto;
-  box-shadow:0 0 4px rgba(0,0,0,0.3);
-  
-}
+  .submitButton {
+    background: #25a558;
+    border: 0;
+    border-radius: 2px;
+    color: white;
+    margin: 2rem auto;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
 
-.addBranding:hover{
-  background: white;
-  color: #25a558;
-  box-shadow:0 0 6px rgba(0,0,0,0.5);
-}
+  .submitButton:hover {
+    background: white;
+    color: #25a558;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  }
 
-.welcomeHeader {
-  font-size: 4.5rem;
-  color: black;
-  font-weight: bold;
-  margin: 1.5rem auto;
-  text-align: center;
-}
-
-.welcomeP {
-  color: grey;
-  margin: 0 auto;
-  font-size: 2.5rem;
-  font-weight: 600;
+  .error {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #dc143c;
+    @media (max-width: 600px) {
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
 }
