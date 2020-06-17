@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import * as creators from "../state/actionCreators"
 import { useSelector, useDispatch } from "react-redux"
-import NoLogo from "../images/PureRetail_Logo.png"
+import NoLogo from "../images/register.png"
 
 
 const Navbar = () => {
