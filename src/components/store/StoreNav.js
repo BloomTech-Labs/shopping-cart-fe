@@ -1,65 +1,67 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import * as creators from "../../state/actionCreators";
-import NoLogo from "../../images/PureRetail_Logo.png";
-import history from "../../history";
-import search_icon from "../../images/search-icon.svg";
-import cart_icon from "../../images/cart-icon.svg";
-import axiosWithAuth from "../Auth/axiosWithAuth";
-const StoreNav = props => {
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import * as creators from '../../state/actionCreators';
+import NoLogo from '../../images/PureRetail_Logo.png';
+import history from '../../history';
+import search_icon from '../../images/search-icon.svg';
+import cart_icon from '../../images/cart-icon.svg';
+import axiosWithAuth from '../Auth/axiosWithAuth';
+const StoreNav = (props) => {
   const [color, setColor] = useState();
   const [logo, setLogo] = useState();
   const dispatch = useDispatch();
-  const cartContents = useSelector(state => state.cart);
-  const storeId = useSelector(state => state.user.user._id);
+  const cartContents = useSelector((state) => state.cart);
+  const storeId = useSelector((state) => state.user.user._id);
   const findRef = window.location.href;
   useEffect(() => {
     const Url = `https://shopping-cart-be.herokuapp.com/api/store/${storeId}`;
     axiosWithAuth()
       .get(Url)
-      .then(res => {
+      .then((res) => {
         setColor(res.data.color);
         setLogo(res.data.logo);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
     dispatch(creators.getStore(storeId));
   }, [storeId, dispatch]);
-  const totalQuantity = arr => {
+  const totalQuantity = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0);
   };
-  const change = e => {
+  const change = (e) => {
     dispatch(creators.setString(e.target.value));
   };
   return (
-    <div className="navMasterContainer">
+    <div className='navMasterContainer'>
       <div
         onClick={() => {
           history.goBack();
-        }}
-      >
-        {(
-          <a href={"/store/" + storeId}>
-            <img className="storeLogo" src={logo} />
+        }}>
+        {
+          <a href={'/store/' + storeId}>
+            <img className='storeLogo' src={logo} />
           </a>
-        ) }
+        }
       </div>
-      <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
-        <img className="searchIcon" src={search_icon} />
+      <form
+        className={
+          findRef.includes('store') ? 'fakeSearchBar formNavBar' : 'hidden'
+        }>
+        <img className='searchIcon' src={search_icon} />
         <input
-          className="searchBar"
-          placeholder="Search..."
+          className='searchBar'
+          placeholder='Search...'
           onChange={props.change}
         />
       </form>
-      <div className="cartAboutContainer">
-        <p className="aboutUs"> About Us</p>
-        <div className="badge" style={{ background: `${color}` }}>
-          <div className="badgeNumber">{totalQuantity(cartContents)}</div>
+      <div className='cartAboutContainer'>
+        <p className='aboutUs'> About Us</p>
+        <div className='badge' style={{ background: `${color}` }}>
+          <div className='badgeNumber'>{totalQuantity(cartContents)}</div>
         </div>
-        <NavLink to="/cart">
+        <NavLink to='/cart'>
           <img src={cart_icon} />
         </NavLink>
       </div>
