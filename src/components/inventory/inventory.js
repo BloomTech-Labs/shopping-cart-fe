@@ -33,7 +33,7 @@ const Inventory = () => {
 									</h4>
 								</div>
 							</div>
-							<NavLink to={`/inventory/${cv._id}`}> Edit </NavLink>
+							<NavLink to={`/updateitem/${cv._id}`}> Edit </NavLink>
 						</div>
 					);
 				})
