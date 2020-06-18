@@ -3,74 +3,61 @@
 }
 
 .createProductView {
-	width: 100%;
-	margin-top: 100px;
+  width: 100%;
+  margin-top: 10rem;
 }
 
 .textContainer h3,
 .PhotoHeaderContainer h3,
 .basicDetailsContainer h3 {
-	font-size: 18px;
-	font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 button,
 .setActive {
-	padding: 12px 22px;
-	background: white;
-	border: solid 2px #4285f4;
-	font-weight: bold;
-	font-size: 14px;
-	color: #4285f4;
-	border-radius: 6px;
-	transition: all 0.5s;
-	cursor: pointer;
+  padding: 1.2rem 2.2rem;
+  background: white;
+  border: solid 0.2rem #4285f4;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #4285f4;
+  border-radius: 0.6rem;
+  transition: all 0.5s;
+  cursor: pointer;
 
-	&:hover {
-		background: #4285f4;
-		color: white;
-	}
+  &:hover {
+    background: #4285f4;
+    color: white;
+  }
 }
 
 .createProductHeader {
-	display: flex;
-	justify-content: space-between;
-	max-width: 1240px;
-	align-items: center;
-	margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1240px;
+  align-items: center;
+  margin: 0 auto;
 
-	.actionContainer {
-		.createProduct {
-			padding: 12px 22px;
-			background: #25a558;
-			border: none;
-			font-weight: bold;
-			font-size: 14px;
-			color: white;
-			border-radius: 6px;
-			transition: all 0.5s;
-			cursor: pointer;
+  .createProduct {
+    padding: 1.2rem 2.2rem;
+    background: #25a558;
+    border: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: white;
+    border-radius: 0.6rem;
+    transition: all 0.5s;
+    cursor: pointer;
+    transform: scale(1);
 
-			&:hover {
-				filter: brightness(130%);
-				color: white;
-			}
-		}
-
-		.removeProduct {
-			background: #ed1b50;
-			color: white;
-			border: none;
-			transition: all 0.5s;
-			cursor: pointer;
-			margin-right: 30px;
-
-			&:hover {
-				filter: brightness(130%);
-				color: white;
-			}
-		}
-	}
+    &:hover {
+      background: #4dcd80;
+      color: white;
+      box-shadow: 0rem 0.5rem 0.5rem rgba(51, 51, 51, 0.09);
+      transform: scale(1.1);
+    }
+  }
 }
 
 .basicDetailsVariantsContainer {
@@ -92,36 +79,36 @@ button,
 
 //Photo Component Sytling
 .photoContainer {
-	background: white;
-	border-radius: 4px;
-	padding: 20px 25px;
-	max-width: 400px;
+  background: white;
+  border-radius: 0.4rem;
+  padding: 2rem 2.5rem;
+  max-width: 400px;
 
-	.PhotoHeaderContainer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 10px;
-	}
+  .PhotoHeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
 
-	.singleProductImage {
-		.productImage {
-			width: 100%;
-			border-radius: 6px;
-			max-width: 500px;
-			max-height: 500px;
-			box-shadow: 0px 10px 5px rgba(51, 51, 51, 0.15);
-		}
+  .singleProductImage {
+    .productImage {
+      width: 100%;
+      border-radius: 0.6rem;
+      max-width: 500px;
+      max-height: 500px;
+      box-shadow: 0rem 1rem 0.5rem rgba(51, 51, 51, 0.15);
+    }
 
-		.trashIcon {
-			margin-top: -50px;
-			cursor: pointer;
-		}
-	}
+    .trashIcon {
+      margin-top: -5rem;
+      cursor: pointer;
+    }
+  }
 
-	h4 {
-		color: #999;
-	}
+  h4 {
+    color: #999;
+  }
 }
 
 #uploadButton {
@@ -133,125 +120,125 @@ button,
 	flex-direction: column;
 }
 .fakeUploadButton {
-	background: white;
-	border: solid 2px #4285f4;
-	font-weight: bold;
-	font-size: 14px;
-	color: #4285f4;
-	border-radius: 6px;
-	transition: all 0.5s;
-	cursor: pointer;
-	&:hover {
-		background: #4285f4;
-		color: white;
-	}
+  background: white;
+  border: solid 0.2rem #4285f4;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #4285f4;
+  border-radius: 0.6rem;
+  transition: all 0.5s;
+  cursor: pointer;
+  &:hover {
+    background: #4285f4;
+    color: white;
+  }
 }
 
 .buttonDisabled {
-	background: lightgray;
-	border: solid 2px darkgrey;
-	color: darkgrey;
-	transition: all 0.5s;
+  background: lightgray;
+  border: solid 0.2rem darkgrey;
+  color: darkgrey;
+  transition: all 0.5s;
 }
 //Photo Component Sytling
 
 .basicDetailsContainer {
-	margin-bottom: 35px;
-	border-radius: 4px;
+  margin-bottom: 3.5rem;
+  border-radius: 0.4rem;
 }
 .createProductContainer {
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
 
-	.HeaderContainer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+  .HeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-		button {
-			max-height: 50px;
-		}
-	}
+    button {
+      max-height: 5rem;
+    }
+  }
 }
 
 .basicDetailsContainer,
 .createProductContainer {
-	background: white;
+  background: white;
 
-	padding: 20px 25px;
-	max-width: 795px;
+  padding: 2rem 2.5rem;
+  max-width: 795px;
 
-	label {
-		margin: 5px 0;
-		font-weight: bold;
-	}
+  label {
+    margin: 0.5rem 0rem;
+    font-weight: bold;
+  }
 
-	.formContainer {
-		display: grid;
-		grid-template-columns: 2fr 1fr 2fr;
-		grid-gap: 20px;
-		margin: 10px 0px;
+  .formContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-gap: 2rem;
+    margin: 1rem 0rem;
 
-		.inputContainer {
-			display: flex;
-			flex-flow: column;
-			justify-content: left;
+    .inputContainer {
+      display: flex;
+      flex-flow: column;
+      justify-content: left;
 
-			.productName,
-			.category {
-				border: solid 2px #aaa;
-				padding: 14px 10px;
-				color: #333;
-				border-radius: 6px;
-				font-size: 14px;
-				transition: all 0.5s;
+      .productName,
+      .category {
+        border: solid 0.2rem #aaa;
+        padding: 1.4rem 1rem;
+        color: #333;
+        border-radius: 6px;
+        font-size: 1.4rem;
+        transition: all 0.5s;
 
-				&:focus {
-					border: solid 2px #4285f4;
-				}
-			}
-		}
-	}
-	textarea {
-		width: 100%;
-		border: solid 2px #aaa;
-		padding: 14px 10px;
-		color: #333;
-		border-radius: 6px;
-		font-size: 14px;
-		transition: all 0.5s;
+        &:focus {
+          border: solid 2px #4285f4;
+        }
+      }
+    }
+  }
+  textarea {
+    width: 100%;
+    border: solid 2px #aaa;
+    padding: 1.4rem 1rem;
+    color: #333;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    transition: all 0.5s;
 
-		&:focus {
-			border: solid 2px #4285f4;
-		}
-	}
+    &:focus {
+      border: solid 2px #4285f4;
+    }
+  }
 }
 
 .dollar {
-	display: inline-block;
-	position: relative;
-	font-weight: bold;
-	color: #aaa;
-	.price {
-		border: solid 2px #aaa;
-		padding: 14px 20px;
-		color: #333;
-		border-radius: 6px;
-		font-size: 14px;
-		transition: all 0.5s;
+  display: inline-block;
+  position: relative;
+  font-weight: bold;
+  color: #aaa;
+  .price {
+    border: solid 2px #aaa;
+    padding: 1.4rem 2rem;
+    color: #333;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    transition: all 0.5s;
 
-		&:focus {
-			border: solid 2px #4285f4;
-		}
-	}
+    &:focus {
+      border: solid 2px #4285f4;
+    }
+  }
 }
 
 .dollar:before {
-	position: absolute;
-	content: '$';
-	left: 7px;
-	top: 13px;
-	font-size: 16px;
+  position: absolute;
+  content: '$';
+  left: 0.7rem;
+  top: 1.3rem;
+  font-size: 1.6rem;
 }
 
 textarea,
@@ -266,131 +253,131 @@ button {
 }
 
 .VariantFormContainer {
-	.variantNameContainer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		.inputContainer {
-			width: 100%;
-			.inputDisabled {
-				background: #f7f7f7;
-				color: #949494;
-			}
-		}
+  .variantNameContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .inputContainer {
+      width: 100%;
+      .inputDisabled {
+        background: #f7f7f7;
+        color: #949494;
+      }
+    }
 
-		.VariantNameContainer {
-			display: flex;
-			align-items: baseline;
+    .VariantNameContainer {
+      display: flex;
+      align-items: baseline;
 
-			.createdVariantName {
-				font-size: 22px;
-				font-weight: 700;
-				margin-right: 10px;
-			}
+      .createdVariantName {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-right: 1rem;
+      }
 
-			.clearBTN {
-				color: #ed1b50;
-				font-weight: bold;
-				font-size: 16px;
-				margin: 0px;
-				opacity: 100%;
-				transition: all 0.2s;
-				cursor: pointer;
-			}
+      .clearBTN {
+        color: #ed1b50;
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin: 0px;
+        opacity: 100%;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
 
-			.clearDisabled {
-				opacity: 0%;
-				transition: all 0.2s;
-			}
-		}
-	}
+      .clearDisabled {
+        opacity: 0%;
+        transition: all 0.2s;
+      }
+    }
+  }
 
-	.addVariantContainer {
-		margin-top: 20px;
-		display: grid;
-		grid-template-columns: 2fr 2fr 1fr;
-		grid-gap: 20px;
+  .addVariantContainer {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-gap: 2rem;
 
-		input {
-			width: 100%;
-		}
-	}
+    input {
+      width: 100%;
+    }
+  }
 
-	.inputContainer {
-		display: flex;
-		flex-flow: column;
-		justify-content: left;
-	}
-	input {
-		border: solid 2px #aaa;
-		padding: 14px 10px;
-		color: #333;
-		border-radius: 6px;
-		font-weight: bold;
-		font-size: 14px;
-		transition: all 0.5s;
+  .inputContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: left;
+  }
+  input {
+    border: solid 2px #aaa;
+    padding: 1.4rem 1rem;
+    color: #333;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.5s;
 
-		&:focus {
-			border: solid 2px #4285f4;
-		}
-	}
+    &:focus {
+      border: solid 2px #4285f4;
+    }
+  }
 }
 
 .addBTNContainer {
-	display: flex;
-	align-items: flex-end;
-	button {
-		padding: 12px 22px;
-		background: white;
-		border: solid 2px #4285f4;
-		height: 53px;
-		font-weight: bold;
-		font-size: 14px;
-		color: #4285f4;
-		border-radius: 6px;
-		transition: all 0.5s;
-		cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  button {
+    padding: 1.2rem 2.2rem;
+    background: white;
+    border: solid 2px #4285f4;
+    height: 5.3rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #4285f4;
+    border-radius: 6px;
+    transition: all 0.5s;
+    cursor: pointer;
 
-		&:hover {
-			background-color: #4285f4;
-			color: white;
-		}
-	}
+    &:hover {
+      background-color: #4285f4;
+      color: white;
+    }
+  }
 }
 
 .cardContainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: #f7f7f7;
-	padding: 16px 25px;
-	border-top: solid 4px white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 1.6rem 2.5rem;
+  border-top: solid 4px white;
 
-	.trashcan {
-		cursor: pointer;
-	}
+  .trashcan {
+    cursor: pointer;
+  }
 
-	p {
-		font-size: 14px;
-		font-weight: bold;
-		color: #333333;
-		margin: 0px;
-	}
+  p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333333;
+    margin: 0rem;
+  }
 }
 
 .errorMessage {
-	color: #ed1b50;
-	background: #fee7ed;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 5px;
-	text-align: center;
+  color: #ed1b50;
+  background: #fee7ed;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  text-align: center;
 }
 
 h1 {
-	font-size: 45px;
-	color: black;
-	text-align: center;
+  font-size: 4.5rem;
+  color: black;
+  text-align: center;
 }
 
 .hideError {
@@ -398,11 +385,11 @@ h1 {
 }
 
 .error {
-	background: #fee7ed;
-	color: #ed1b50;
-	border-radius: 4px;
-	padding: 6px;
-	margin-top: 5px;
+  background: #fee7ed;
+  color: #ed1b50;
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .errorLabel {

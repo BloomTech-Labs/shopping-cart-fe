@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import useCurrency from "../hooks/useCurrency";
-import MonthlySales from "../totoalSales/monthlySales";
 import LifetimeSales from "../totoalSales/lifetimeSales";
 import * as actionCreators from "../../state/actionCreators";
 import Moment from "react-moment";
@@ -12,33 +11,31 @@ import "antd/dist/antd.css";
 const Orders = (props) => {
   const [newData, setNewData] = useState();
   const { currency } = props;
-
   const storeId = useSelector((state) => state.user.user._id);
-  console.log(storeId);
 
   const dispatch = useDispatch();
+
   const sign = useCurrency(currency);
   useEffect(() => {
     dispatch(actionCreators.getSalesHistory());
     dispatch(actionCreators.setLoading(false));
     dispatch(actionCreators.getStoreOrders(storeId));
   }, [dispatch, storeId]);
+
   const dashboard = useSelector((state) => state.dashboard);
   const isLoading = useSelector((state) => state.user.isLoading);
   const allOrders = useSelector((state) => state.orders);
-  console.log(allOrders);
+  console.log("allOrders", allOrders)
+
 
   const { Column, ColumnGroup } = Table;
   return (
     <div className='order-view'>
       <div className='sales-view'>
-        <MonthlySales
-          currency={sign}
-          monthSales={dashboard && dashboard.monthSales}
-        />
         <LifetimeSales
           currency={sign}
           amount={dashboard && dashboard.totalSales}
+          monthSales={dashboard && dashboard.monthSales}
         />
       </div>
 
