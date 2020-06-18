@@ -1,5 +1,5 @@
 .bgCover {
-  background: #efefef;
+	background: #efefef;
 }
 
 .createProductView {
@@ -61,20 +61,20 @@ button,
 }
 
 .basicDetailsVariantsContainer {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1240px;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	max-width: 1240px;
 
-  .leftContainer {
-    width: 100%;
-    max-width: 396px;
-  }
+	.leftContainer {
+		width: 100%;
+		max-width: 396px;
+	}
 
-  .rightContainer {
-    width: 100%;
-    max-width: 795px;
-  }
+	.rightContainer {
+		width: 100%;
+		max-width: 795px;
+	}
 }
 
 //Photo Component Sytling
@@ -112,12 +112,12 @@ button,
 }
 
 #uploadButton {
-  display: none;
+	display: none;
 }
 
 .logoDiv {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 .fakeUploadButton {
   background: white;
@@ -245,11 +245,11 @@ textarea,
 select,
 input,
 button {
-  outline: none;
+	outline: none;
 }
 
 .disabled {
-  display: none;
+	display: none;
 }
 
 .VariantFormContainer {
@@ -381,7 +381,7 @@ h1 {
 }
 
 .hideError {
-  display: none;
+	display: none;
 }
 
 .error {
@@ -393,5 +393,79 @@ h1 {
 }
 
 .errorLabel {
-  color: #ed1b50;
+	color: #ed1b50;
+}
+
+.messageContainerGreen {
+	animation: message 3s;
+	animation-timing-function: ease-in-out;
+	opacity: 0%;
+	background: #eaf6ef;
+	border: solid 1px #25a558;
+	padding: 13px 50px;
+	border-radius: 50px;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	transform: translate(-50%, 0);
+
+	.messageTextGreen {
+		animation: message 2.5s;
+		animation-timing-function: ease-in-out;
+		opacity: 0%;
+		font-size: 16px;
+		font-weight: bold;
+		color: #25a558;
+		margin: 0;
+	}
+}
+
+.messageContainerRed {
+	animation: message 3s;
+	animation-timing-function: ease-in-out;
+	opacity: 0%;
+	background: #fee7ed;
+	border: solid 1px #f0134d;
+	padding: 13px 50px;
+	border-radius: 50px;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	transform: translate(-50%, 0);
+
+	.messageTextRed {
+		animation: message 3s;
+		animation-timing-function: ease-in-out;
+		opacity: 0%;
+		font-size: 16px;
+		font-weight: bold;
+		color: #f0134d;
+		margin: 0;
+	}
+}
+
+@keyframes message {
+	0% {
+		top: 0;
+		opacity: 0%;
+	}
+	20% {
+		top: 150px;
+		opacity: 100%;
+	}
+
+	50% {
+		top: 150px;
+		opacity: 100%;
+	}
+
+	80% {
+		top: 150px;
+		opacity: 100%;
+	}
+
+	100% {
+		top: 0;
+		opacity: 0%;
+	}
 }

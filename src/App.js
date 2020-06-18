@@ -10,7 +10,7 @@ import AddLogoForm from './components/createStore/addLogo';
 import UpdateItem from './components/Products/updateItem';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import PublicRoute from './components/Auth/PublicRoute';
-import Main from './components/inventory';
+import Inventory from "./components/inventory/inventory"
 import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
 import StoreView from './components/store/StoreView';
@@ -33,7 +33,7 @@ import OrderDetailsView from "./components/Orders/OrderDetailsView"
 function App() {
   window.addEventListener('load', () => {
     function handleNetworkChange(event) {
-      //What is this for?
+      // delete this comment
       if (navigator.onLine) {
         document.getElementById('offline-notification').style.display = 'none';
       } else {
@@ -54,7 +54,7 @@ function App() {
         {/* Onboarding reformatted Above */}
         <PublicRoute path='/update' component={Update} />
         <PublicRoute exact path='/' component={LoginForm} />
-        <PrivateRoute path='/inventory' component={Main} />
+        <PrivateRoute path='/inventory' component={Inventory} />
         {/* Profile View */}
         <PrivateRoute path='/profileview' component={ProfileView} />
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
@@ -77,7 +77,6 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        
       </Switch>
       <div
         id='offline-notification'

@@ -1,119 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { List, Input, Tabs, Button } from "antd";
-import { NavLink } from "react-router-dom";
-import * as creators from "../../state/actionCreators";
-import Expanded from "./expand";
-import useCurrency from "../hooks/useCurrency";
-
-const { TabPane } = Tabs;
-const { Search } = Input;
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import * as creators from '../../state/actionCreators';
+import Navbar from "../Navbar"
 
 const Inventory = () => {
-  const [searchString, setSearchString] = useState("");
-  const change = (e) => {
-    setSearchString(e.target.value);
-  };
+	const inventory = useSelector((state) => state.store);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(creators.getCurrentUser());
-  }, [dispatch]);
+	const dispatch = useDispatch();
+	useEffect(
+		() => {
+			dispatch(creators.getCurrentUser());
+		},
+		[ dispatch ]
+	);
 
-  const inventory = useSelector((state) => state.store);
-  const storeDetails = useSelector((state) => state.user);
-
-  function searchObj(obj, string) {
-    const regExpFlags = "gi";
-    const regExp = new RegExp(string, regExpFlags);
-    return JSON.stringify(obj).match(regExp);
-  }
-
-  const searchFilter = inventory.filter(function (obj) {
-    return searchObj(obj, searchString);
-  });
-
-  const sign = useCurrency(storeDetails.user.currency);
-
-  return (
-    <div className='cover inventory'>
-      <div className='top'>
-        <div className='search'>
-          <Search
-            onChange={change}
-            placeholder='search'
-            style={{ width: 200 }}
-          />
-        </div>
-        <div className='content' style={{ paddingTop: "10px" }}>
-          <div>
-            <h2 style={{ color: "darkgrey", paddingBottom: "15px" }}>
-              {storeDetails.user.storeName
-                ? storeDetails.user.storeName
-                : "Your Store"}
-            </h2>
-          </div>
-          <div>
-            <Tabs className='tabs' defaultActiveKey='1'>
-              <TabPane tab='Collapse' key='1'>
-                <Items
-                  inventory={searchString ? searchFilter : inventory}
-                  currency={sign}
-                />
-              </TabPane>
-              <TabPane tab='Expand' key='2'>
-                <Expanded
-                  inventory={searchString ? searchFilter : inventory}
-                  currency={sign}
-                />
-              </TabPane>
-            </Tabs>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Items = ({ inventory, currency }) => {
-  return (
-    <List
-      size='small'
-      itemLayout='horizontal'
-      dataSource={inventory}
-      locale={{
-        emptyText:
-          'Click the "create product" button above to start adding items to your store',
-      }}
-      renderItem={(item) => {
-        return (
-          <List.Item className='block'>
-            <List.Item.Meta
-              title={
-                <div className='list title short'>
-                  <h3>{item.name}</h3>
-                  <div>
-                    {currency}
-                    {item.price}
-                  </div>
-                </div>
-              }
-              description={
-                <div className='list short'>
-                  <div className='item-description'>{item.description}</div>
-                  <NavLink to={`/updateitem/${item._id}`}>
-                    <div>
-                      <Button size='default'>Edit</Button>
-                    </div>
-                  </NavLink>
-                </div>
-              }
-            />
-          </List.Item>
-        );
-      }}
-    />
-  );
+	return (
+    <>
+    <Navbar />
+		<div className="inventoryMainContainer">
+			<h1> Inventory </h1>
+			{inventory.products.length > 1 ? (
+				inventory.products.map((cv) => {
+					return (
+						<div className="inventoryCards" key={cv._id}>
+							<div className="productContainer">
+								<img src={cv.images} />
+								<div className="productInfo">
+									<h2> {cv.productName}</h2>
+									<h4>
+										{cv.category} <span> / </span> {`Varients: ${cv.variantDetails.length}`}
+									</h4>
+								</div>
+							</div>
+							<NavLink to={`/updateitem/${cv._id}`}> Edit </NavLink>
+						</div>
+					);
+				})
+			) : (
+				''
+			)}
+		</div>
+    </>
+	);
 };
 
 export default Inventory;
