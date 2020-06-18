@@ -6,7 +6,7 @@ import Navbar from "../Navbar"
 
 const Inventory = () => {
 	const inventory = useSelector((state) => state.store);
-
+	console.log("inventory", inventory)
 	const dispatch = useDispatch();
 	useEffect(
 		() => {
@@ -20,12 +20,12 @@ const Inventory = () => {
     <Navbar />
 		<div className="inventoryMainContainer">
 			<h1> Inventory </h1>
-			{inventory.products.length > 1 ? (
+			{inventory.products.length > 0 ? (
 				inventory.products.map((cv) => {
 					return (
 						<div className="inventoryCards" key={cv._id}>
 							<div className="productContainer">
-								<img src={cv.images} />
+								<img src={cv.images}  alt = "apple"/>
 								<div className="productInfo">
 									<h2> {cv.productName}</h2>
 									<h4>
