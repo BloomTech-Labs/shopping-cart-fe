@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Input, Button, Radio, DatePicker, Modal } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import useCurrency from '../hooks/useCurrency';
 import moment from 'moment';
-
+import * as actionCreators from "../../state/actionCreators"
 const SaveCart = (props) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(actionCreators.getCurrentUser())
+  }, [dispatch])
+
   const [delivery, setDelivery] = useState(true);
   const cartContents = useSelector((state) => state.cart);
   const sellerId = useSelector((state) => state.user.user._id);
@@ -45,7 +51,7 @@ const SaveCart = (props) => {
         const payload = {
           contents,
           deliveryOrCollection: values.delivery,
-          checkoutDate: values.date._d,
+          checkoutDate: values.date,
           paymentPreference: values.payment,
           address: values.address ? values.address : 'no address',
           total: totalPrice(checkoutCart),
@@ -63,7 +69,7 @@ const SaveCart = (props) => {
             window.location = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${text}`;
           })
           .catch((e) => {
-            console.log(e);
+            console.log(e.response.data);
           });
       },
     });
