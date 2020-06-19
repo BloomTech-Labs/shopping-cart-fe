@@ -10,22 +10,18 @@ describe("store nav bar", () => {
     expect(aboutUs).toBeVisible();
   });
 
-  test('renders store logo', () => {
-    const { getByTestId } = renderWithProviders(<StoreNav />)
-    expect(getByTestId('storeLogo')).toBeVisible()
-  })
+  test("renders store logo", () => {
+    const { getByTestId } = renderWithProviders(<StoreNav />);
+    expect(getByTestId("storeLogo")).toBeVisible();
+  });
 
-  test('renders search-bar logo', () => {
-    const { getByTestId } = renderWithProviders(<StoreNav />)
-    expect(getByTestId('searchIcon')).toBeVisible()
-  })
+  test("renders search-bar logo", () => {
+    const { getByTestId } = renderWithProviders(<StoreNav />);
+    expect(getByTestId("searchIcon")).toBeVisible();
+  });
 
-  test('renders cart icon', ()=> {
-    const { getByAltText } = renderWithProviders(<StoreNav />)
-    expect(getByAltText('Cart icon')).toBeVisible()
-  })
-
+  test("renders cart icon", () => {
+    const { getByAltText } = renderWithProviders(<StoreNav />);
+    expect(getByAltText("Cart icon")).toBeVisible();
+  });
 });
-
-
-
