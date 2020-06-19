@@ -10,7 +10,7 @@ const SaveCart = (props) => {
 
   useEffect(() => {
     dispatch(actionCreators.getCurrentUser())
-  }, [dispatch])
+  }, [dispatch, props])
 
   const [delivery, setDelivery] = useState(true);
   const cartContents = useSelector((state) => state.cart);

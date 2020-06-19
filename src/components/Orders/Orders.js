@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import useCurrency from "../hooks/useCurrency"
 import LifetimeSales from "../totoalSales/lifetimeSales"
 import * as actionCreators from "../../state/actionCreators"
-import Moment from "react-moment"
+import moment from "moment"
 const Orders = ({ currency }) => {
   const dispatch = useDispatch()
 
@@ -17,72 +17,49 @@ const Orders = ({ currency }) => {
   }, [dispatch, storeId])
 
   const dashboard = useSelector((state) => state.dashboard)
-  const allOrders = useSelector((state) => state.orders)
-  console.log("allOrders", allOrders)
+  const orders = useSelector((state) => state.orders)
+  console.log("orders", orders)
   console.log("Dashboard", dashboard)
 
   return (
     <div className="dashboard">
-    <div className="salesView">
+      <div className="salesView">
         <LifetimeSales
-        currency={sign}
+          currency={sign}
           amount={dashboard && dashboard.totalSales}
           monthSales={dashboard && dashboard.monthSales}
         />
       </div>
-      <div className = "headerText">
+      <div className="headerText">
         <h3>Welcome Back Emma Here are your</h3>
         <h1>Current Orders</h1>
       </div>
-      <table className = "orderTable">
+      <table className="orderTable">
         <tr>
           <th>Order #</th>
-          <th>Customer Name</th>
+          <th>Product Name</th>
           <th>Total Items</th>
           <th>Status</th>
           <th>Date</th>
           <th></th>
         </tr>
-        <tr>
-          <td>1212</td>
-          <td>Andy</td>
-          <td>2</td>
-          <td>Ready</td>
-          <td>12/11/2020</td>
-          <button>View Order</button>
-        </tr>
-        <tr>
-          <td>1212</td>
-          <td>Andy</td>
-          <td>2</td>
-          <td className = "statusRow">Ready</td>
-          <td>12/11/2020</td>
-          <button>View Order</button>
-        </tr>
-        <tr>
-          <td>1212</td>
-          <td>Andy</td>
-          <td>2</td>
-          <td>Ready</td>
-          <td>12/11/2020</td>
-          <button>View Order</button>
-        </tr>
-        <tr>
-          <td>1212</td>
-          <td>Andy</td>
-          <td>2</td>
-          <td>Ready</td>
-          <td>12/11/2020</td>
-          <button>View Order</button>
-        </tr>
-        <tr>
-          <td>1212</td>
-          <td>Andy</td>
-          <td>2</td>
-          <td>Ready</td>
-          <td>12/11/2020</td>
-          <button>View Order</button>
-        </tr>
+        {orders &&
+          orders.map((item) =>
+            item.orderItem.map((product) => (
+              <tr>
+                <td>
+                  {product.product._id
+                    ? product.product._id.substr(product.product._id.length - 5)
+                    : 0}
+                </td>
+                <td>{product.product.productName}</td>
+                <td>{product.quantity}</td>
+                <td>Ready</td>
+                <td>{moment(item.orderCreated).format("MM-DD-YYYY")}</td>
+                <button>View Order</button>
+              </tr>
+            ))
+          )}
       </table>
     </div>
   )
