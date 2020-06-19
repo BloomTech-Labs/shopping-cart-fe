@@ -4,7 +4,7 @@ import renderWithProviders from '../utlities/renderWithProviders';
 import Login from '../components/login';
 import { getByTestId, getByAltText } from '@testing-library/react';
 
-// These tests ensure all elements are rendering on login / registration screens
+// These tests ensure all elements are rendering on login
 
 describe('login screen and registration screens', () => {
   test('renders the title on login', () => {
@@ -48,6 +48,5 @@ describe('login screen and registration screens', () => {
     const { getByTestId } = renderWithProviders(<Login />);
     expect(getByTestId('loginFormWrapper')).toBeVisible();
   });
-  // 'Create Store Screen' testing starts here
   
 });
