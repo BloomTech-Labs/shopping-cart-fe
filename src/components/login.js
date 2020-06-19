@@ -3,7 +3,7 @@ import axios from 'axios';
 import withAuth from './Auth/axiosWithAuth';
 import { Link } from 'react-router-dom';
 import { Form, Input, Icon, message, Spin } from 'antd';
-import Logo from './elements/logo';
+
 import history from '../history';
 import { connect } from 'react-redux';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
@@ -87,13 +87,13 @@ const Login = (props) => {
           <div className='desktop-logo-large'>
             <img
               src='https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-              alt='Login Image'
+              alt='Login'
               height='400'
               className='loginPicture'
             />
           </div>
         </div>
-        <Logo />
+
         <div className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <img
