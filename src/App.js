@@ -33,7 +33,7 @@ import OrderDetailsView from "./components/Orders/OrderDetailsView"
 function App() {
   window.addEventListener('load', () => {
     function handleNetworkChange(event) {
-      //What is this for?
+      // delete this comment
       if (navigator.onLine) {
         document.getElementById('offline-notification').style.display = 'none';
       } else {
@@ -77,7 +77,6 @@ function App() {
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
-        
       </Switch>
       <div
         id='offline-notification'

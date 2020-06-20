@@ -14,13 +14,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0px 0 20px;
+  padding: 2rem 0rem 0rem 2rem;
 }
 
 .dashboardLogo {
-  width: 70px;
+  width: 7rem;
   height: auto;
-  padding-right: 20px;
+  padding-right: 2rem;
 }
 
 .dashboardLogo img {
@@ -40,7 +40,7 @@
 }
 
 .storeUrl {
-  padding: 10px 20px 0 20px;
+  padding: 1rem 2rem 0 2rem;
 }
 
 #storeUrl {
@@ -59,16 +59,16 @@
 
 .iconFlex {
   text-align: center;
-  padding-top: 10px;
+  padding-top: 1rem;
 }
 
 .iconFlex p {
-  padding-top: 3px;
+  padding-top: 0.3rem;
 }
 
 .content {
   text-align: center;
-  padding-top: 18px;
+  padding-top: 1.8rem;
   height: 100vh;
 }
 
@@ -77,17 +77,17 @@
   height: 25vh;
   background: linear-gradient(#2334cc, #6323cc);
   margin: 0 auto;
-  margin-top: 10px;
-  border-radius: 15px;
+  margin-top: 1rem;
+  border-radius: 1.5rem;
 }
 
 .Cards2 {
   width: 80vw;
   height: 25vh;
   margin: 0 auto;
-  margin-top: 10px;
-  border-radius: 15px;
-  background: linear-gradient(rgb(189, 44, 104), rgb(255, 88, 191));
+  margin-top: 1rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(rgb(189, 44, 104), rgb(59, 59, 59));
 }
 
 #cards {
@@ -101,21 +101,21 @@
   background: #edf7ff;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.05);
   border-radius: 10px 10px 10px 0px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .PaneFlex {
-  margin-left: 10px;
-  padding-top: 15px;
-  margin-right: 10px;
+  margin-left: 1rem;
+  padding-top: 1.5rem;
+  margin-right: 1.5rem;
   display: flex;
   justify-content: space-between;
 }
 
 .pull-left {
   position: relative;
-  left: -20px;
+  left: -2rem;
 }
 
 .sales-history {
@@ -125,20 +125,20 @@
   align-items: flex-start;
   text-align: start;
   height: inherit;
-  padding: 10px;
+  padding: 1rem;
 
   .product-description {
     width: 60%;
-    height: 100px;
+    height: 10rem;
     display: flex;
     flex-direction: column;
-    line-height: 16px;
+    line-height: 1.6rem;
   }
 }
 
 .date-price {
   text-align: right;
-  flex-basis: 100px;
+  flex-basis: 10rem;
 }
 
 .StoreTitle,
@@ -149,11 +149,11 @@
 }
 
 .StoreTitle p {
-  font-size: 12px;
+  font-size: 1.2rem;
 }
 
 .StoreTitle h2 {
-  font-size: 15px;
+  font-size: 1.5rem;
 }
 
 .StorePrice {
@@ -161,10 +161,47 @@
 }
 
 .StorePrice h2 {
-  font-size: 15px;
+  font-size: 1.5rem;
   color: #44b400;
 }
 
+@media screen and (max-width: 775px) {
+  .lifetimeSale {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.lifetimeSale {
+  display: flex;
+  justify-content: space-around;
+  
+
+  .sales {
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: white;
+    width: 25rem;
+    height: 6rem;
+
+    .salesDiv {
+      width: 70%;
+      margin-left: -0.5rem;
+    }
+    h2{
+      margin-bottom: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-top: -0.5rem;
+    }
+    h3 {
+      font-size: 1rem;
+      color: grey;
+      font-weight: bold;
+    }
+  }
+}
 .earnings {
   font-size: 6rem;
   font-weight: bold;
