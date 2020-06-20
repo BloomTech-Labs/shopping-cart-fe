@@ -22,7 +22,7 @@ import Support from './components/support';
 import SaveCartMain from './components/saveCart';
 import Account from './components/SellerAccount/SellerAccount';
 import Confirmation from './components/orderConfirmation';
-import WelcomeScreenForm from './components/WelcomeScreen';
+import WelcomeScreenForm from './components/WelcomeScreen/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
