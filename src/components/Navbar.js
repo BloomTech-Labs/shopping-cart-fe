@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
         <div className="btn-container">
          <div className = "btn-list">
-            <NavLink className = "nav-link-button" to="createItem">
+            <NavLink className = "nav-link-button" to="/createItem">
               <button className="nav-primary">Create Product</button>
             </NavLink>
             <a href={url}>

@@ -1,5 +1,5 @@
 .bgCover {
-	background: #efefef;
+  background: #efefef;
 }
 
 .createProductView {
@@ -38,6 +38,25 @@ button,
   max-width: 1240px;
   align-items: center;
   margin: 0 auto;
+  .removeProduct {
+    padding: 1.2rem 2.2rem;
+    background: white;
+    border: 2px solid #4285f4;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #4285f4;
+    border-radius: 0.6rem;
+    transition: all 0.5s;
+    cursor: pointer;
+    transform: scale(1);
+
+    &:hover {
+      background: #4285f4;
+      color: white;
+      box-shadow: 0rem 0.5rem 0.5rem rgba(51, 51, 51, 0.09);
+      transform: scale(1.1);
+    }
+  }
 
   .createProduct {
     padding: 1.2rem 2.2rem;
@@ -50,6 +69,7 @@ button,
     transition: all 0.5s;
     cursor: pointer;
     transform: scale(1);
+    margin-left: 1rem;
 
     &:hover {
       background: #4dcd80;
@@ -61,20 +81,20 @@ button,
 }
 
 .basicDetailsVariantsContainer {
-	display: flex;
-	justify-content: space-between;
-	margin: 0 auto;
-	max-width: 1240px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1240px;
 
-	.leftContainer {
-		width: 100%;
-		max-width: 396px;
-	}
+  .leftContainer {
+    width: 100%;
+    max-width: 396px;
+  }
 
-	.rightContainer {
-		width: 100%;
-		max-width: 795px;
-	}
+  .rightContainer {
+    width: 100%;
+    max-width: 795px;
+  }
 }
 
 //Photo Component Sytling
@@ -112,20 +132,21 @@ button,
 }
 
 #uploadButton {
-	display: none;
+  display: none;
 }
 
 .logoDiv {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .fakeUploadButton {
   background: white;
-  border: solid 0.2rem #4285f4;
+  border: solid 2px #4285f4;
   font-weight: bold;
   font-size: 1.4rem;
   color: #4285f4;
   border-radius: 0.6rem;
+  padding: 1rem;
   transition: all 0.5s;
   cursor: pointer;
   &:hover {
@@ -192,11 +213,18 @@ button,
         border-radius: 6px;
         font-size: 1.4rem;
         transition: all 0.5s;
+        font-weight: bold;
 
         &:focus {
           border: solid 2px #4285f4;
         }
       }
+    }
+  }
+  .description {
+    textarea {
+
+      font-weight: 550;
     }
   }
   textarea {
@@ -226,6 +254,7 @@ button,
     border-radius: 6px;
     font-size: 1.4rem;
     transition: all 0.5s;
+    font-weight: bold;
 
     &:focus {
       border: solid 2px #4285f4;
@@ -245,11 +274,11 @@ textarea,
 select,
 input,
 button {
-	outline: none;
+  outline: none;
 }
 
 .disabled {
-	display: none;
+  display: none;
 }
 
 .VariantFormContainer {
@@ -355,6 +384,11 @@ button {
 
   .trashcan {
     cursor: pointer;
+    box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.3);
+    transition: 0.3s box-shadow;
+    &:hover {
+      transform: scale(1.15);
+    }
   }
 
   p {
@@ -381,7 +415,7 @@ h1 {
 }
 
 .hideError {
-	display: none;
+  display: none;
 }
 
 .error {
@@ -393,79 +427,79 @@ h1 {
 }
 
 .errorLabel {
-	color: #ed1b50;
+  color: #ed1b50;
 }
 
 .messageContainerGreen {
-	animation: message 3s;
-	animation-timing-function: ease-in-out;
-	opacity: 0%;
-	background: #eaf6ef;
-	border: solid 1px #25a558;
-	padding: 13px 50px;
-	border-radius: 50px;
-	position: absolute;
-	top: 50px;
-	left: 50%;
-	transform: translate(-50%, 0);
+  animation: message 3s;
+  animation-timing-function: ease-in-out;
+  opacity: 0%;
+  background: #eaf6ef;
+  border: solid 1px #25a558;
+  padding: 13px 50px;
+  border-radius: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
 
-	.messageTextGreen {
-		animation: message 2.5s;
-		animation-timing-function: ease-in-out;
-		opacity: 0%;
-		font-size: 16px;
-		font-weight: bold;
-		color: #25a558;
-		margin: 0;
-	}
+  .messageTextGreen {
+    animation: message 2.5s;
+    animation-timing-function: ease-in-out;
+    opacity: 0%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #25a558;
+    margin: 0;
+  }
 }
 
 .messageContainerRed {
-	animation: message 3s;
-	animation-timing-function: ease-in-out;
-	opacity: 0%;
-	background: #fee7ed;
-	border: solid 1px #f0134d;
-	padding: 13px 50px;
-	border-radius: 50px;
-	position: absolute;
-	top: 50px;
-	left: 50%;
-	transform: translate(-50%, 0);
+  animation: message 3s;
+  animation-timing-function: ease-in-out;
+  opacity: 0%;
+  background: #fee7ed;
+  border: solid 1px #f0134d;
+  padding: 13px 50px;
+  border-radius: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
 
-	.messageTextRed {
-		animation: message 3s;
-		animation-timing-function: ease-in-out;
-		opacity: 0%;
-		font-size: 16px;
-		font-weight: bold;
-		color: #f0134d;
-		margin: 0;
-	}
+  .messageTextRed {
+    animation: message 3s;
+    animation-timing-function: ease-in-out;
+    opacity: 0%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f0134d;
+    margin: 0;
+  }
 }
 
 @keyframes message {
-	0% {
-		top: 0;
-		opacity: 0%;
-	}
-	20% {
-		top: 150px;
-		opacity: 100%;
-	}
+  0% {
+    top: 0;
+    opacity: 0%;
+  }
+  20% {
+    top: 150px;
+    opacity: 100%;
+  }
 
-	50% {
-		top: 150px;
-		opacity: 100%;
-	}
+  50% {
+    top: 150px;
+    opacity: 100%;
+  }
 
-	80% {
-		top: 150px;
-		opacity: 100%;
-	}
+  80% {
+    top: 150px;
+    opacity: 100%;
+  }
 
-	100% {
-		top: 0;
-		opacity: 0%;
-	}
+  100% {
+    top: 0;
+    opacity: 0%;
+  }
 }
