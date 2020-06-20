@@ -11,8 +11,8 @@ const ProductCard = (props) => {
           alt={props.description}
         />
         <div className='textbox'>
-          <h4>{props.productName}</h4>
-          <h3>${props.price}</h3>
+          <p>{props.productName}</p>
+          <p>${props.price}</p>
         </div>
       </div>
     </NavLink>
