@@ -4,19 +4,26 @@
   align-items: center;
 
   .sales-view {
-    margin-top: 50px;
+    margin-top: 5rem;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-evenly;
 
     div {
-      margin: 20px;
+      margin: 2rem;
     }
   }
 
   .order-display {
-    margin: 45px;
+    margin: 4.5rem;
     width: 85%;
+  }
+}
+
+
+@media screen and (max-width: 775px){
+ .order-view .sales-view div {
+    margin: 1rem
   }
 }
