@@ -142,10 +142,10 @@ const WelcomeScreen = (props) => {
             )}
           </section>
         </main>
-      </Form>
       <button className="submitButton" type="submit">
         Add Information
       </button>
+      </Form>
     </div>
   )
 }
