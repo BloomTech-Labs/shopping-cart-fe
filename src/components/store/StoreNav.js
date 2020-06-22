@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,11 +12,10 @@ const StoreNav = props => {
   const [logo, setLogo] = useState();
   const dispatch = useDispatch();
   const cartContents = useSelector(state => state.cart);
-  const storeDetails = useSelector(state => state.user.user);
-  const sellerId = localStorage.getItem("storeId");
+  const storeId = useSelector(state => state.user.user._id);
   const findRef = window.location.href;
   useEffect(() => {
-    const Url = `https://shopping-cart-be.herokuapp.com/${sellerId}`;
+    const Url = `https://shopping-cart-be.herokuapp.com/api/store/${storeId}`;
     axiosWithAuth()
       .get(Url)
       .then(res => {
@@ -25,9 +23,9 @@ const StoreNav = props => {
         setLogo(res.data.logo);
       })
       .catch(error => console.log(error));
-    dispatch(creators.getStore(sellerId));
-  }, [sellerId, dispatch]);
-  const totalQuantity = (arr) => {
+    dispatch(creators.getStore(storeId));
+  }, [storeId, dispatch]);
+  const totalQuantity = arr => {
     return arr.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0);
@@ -42,12 +40,11 @@ const StoreNav = props => {
           history.goBack();
         }}
       >
-        <img className="storeLogo" src={logo} />
-        {/* {logo ? (
-          <img className="storeLogo" src={logo} />
-        ) : (
-          <img className="storeLogo" src={NoLogo} />
-        )} */}
+        {(
+          <a href={"/store/" + storeId}>
+            <img className="storeLogo" src={logo} />
+          </a>
+        ) }
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
         <img className="searchIcon" src={search_icon} />
@@ -62,10 +59,11 @@ const StoreNav = props => {
         <div className="badge" style={{ background: `${color}` }}>
           <div className="badgeNumber">{totalQuantity(cartContents)}</div>
         </div>
-        <NavLink to='/cart'>
+        <NavLink to="/cart">
           <img src={cart_icon} />
         </NavLink>
       </div>
     </div>
-)};
+  );
+};
 export default StoreNav;
