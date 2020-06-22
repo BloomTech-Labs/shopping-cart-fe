@@ -205,7 +205,7 @@ const AddLogo = (props) => {
             })(<Input placeholder="My store's address is..." />)}
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>
+            <Button type='primary' htmltype='submit'>
               Done
             </Button>
           </Form.Item>
