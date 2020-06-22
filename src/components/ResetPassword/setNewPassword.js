@@ -149,7 +149,7 @@ const SetNewPassword = (props) => {
               )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <Button type='primary' htmlType='submit'>
+              <Button type='primary' htmltype='submit'>
                 Reset
               </Button>
             </Form.Item>

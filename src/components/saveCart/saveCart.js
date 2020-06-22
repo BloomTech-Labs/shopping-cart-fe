@@ -180,7 +180,7 @@ const SaveCart = (props) => {
               )}
             </Form.Item>
             <Form.Item className='primary' {...tailFormItemLayout}>
-              <Button type='primary' htmlType='submit'>
+              <Button type='primary' htmltype='submit'>
                 Submit
               </Button>
             </Form.Item>
