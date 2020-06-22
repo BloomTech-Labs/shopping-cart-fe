@@ -86,8 +86,8 @@ const RegistrationForm = (props) => {
 
   const registerForm = (
     <Spin spinning={props.isLoading}>
-      <div className='cover'>
-        <div className='desktop-logo'>
+      <div className='cover' data-testid='imageBackground'>
+        <div className='desktop-logo' data-testid='desktopLogoDiv'>
           <div className='desktop-logo-large'>
             <img
               src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
@@ -100,7 +100,7 @@ const RegistrationForm = (props) => {
 
         <Logo />
 
-        <div className='desktop-form'>
+        <div className='desktop-form' data-testid='registrationFormDiv'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <Form.Item>
               <img
@@ -180,7 +180,7 @@ const RegistrationForm = (props) => {
               </button>
             </Form.Item>
           </Form>
-          <div id='or_login'>
+          <div id='or_login' data-test-id="loginLinkWrapper">
             <p>
               or <Link to='/'>login</Link> instead
             </p>
