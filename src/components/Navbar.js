@@ -32,28 +32,28 @@ const Navbar = () => {
           />
           <div>
             <div>
-              <NavLink to="dashboard" activeClassName="activeLink">
+              <NavLink to="/dashboard" activeClassName="activeLink">
                 <p>Home</p>
               </NavLink>
             </div>
           </div>
           <div>
             <div>
-              <NavLink to="inventory" activeClassName="activeLink">
+              <NavLink to="/inventory" activeClassName="activeLink">
                 <p>Store</p>
               </NavLink>
             </div>
           </div>
           <div>
             <div>
-              <NavLink to="account" activeClassName="activeLink">
+              <NavLink to="/account" activeClassName="activeLink">
                 <p>Account</p>
               </NavLink>
             </div>
           </div>
           <div>
             <div>
-              <NavLink to="profileview" activeClassName="activeLink">
+              <NavLink to="/profileview" activeClassName="activeLink">
                 <p>Profile</p>
               </NavLink>
             </div>
@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
         <div className="btn-container">
          <div className = "btn-list">
-            <NavLink className = "nav-link-button" to="createItem">
+            <NavLink className = "nav-link-button" to="/createItem">
               <button className="nav-primary">Create Product</button>
             </NavLink>
             <a href={url}>

@@ -21,7 +21,7 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 			!orderCompleted ? setCompletedTime('-') : setCompletedTime(orderCompleted);
 			orderStatus === 'Canceled' ? setOrderCanceled(true) : setOrderCanceled(false);
 		},
-		[ orderStatus, setCurrentStatus, orderCompleted ]
+		[ orderStatus, setCurrentStatus, orderCompleted, setOrderCanceled ]
 	);
 
 	function NextButtonStatus(arg) {
