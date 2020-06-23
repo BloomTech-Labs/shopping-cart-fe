@@ -54,7 +54,7 @@ const StoreNav = props => {
           onChange={props.change}
         />
       </form>
-      <div className="cartAboutContainer">
+      <div data-testid="cartAboutContainer" className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
         <div className="badge" style={{ background: `${color}` }}>
           <div className="badgeNumber">{totalQuantity(cartContents)}</div>

@@ -4,7 +4,7 @@ import renderWithProviders from "../utlities/renderWithProviders";
 import StoreNav from "../components/store/StoreNav";
 
 describe("store nav bar", () => {
-  test("renders the nav bar", () => {
+  test("renders About Us in the Nav Bar", () => {
     const { getByText } = renderWithProviders(<StoreNav />);
     const aboutUs = getByText(/About Us/i);
     expect(aboutUs).toBeVisible();
@@ -35,5 +35,10 @@ describe("store nav bar", () => {
     const searchBarInput = getByPlaceholderText(/search/i);
     expect(searchBarInput).toBeVisible();
     expect(searchBarInput).toBeEnabled();
+  });
+
+  test("renders div that contains About Us, Badge Number, Cart Icon ", () => {
+    const { getByTestId } = renderWithProviders(<StoreNav />);
+    expect(getByTestId("cartAboutContainer")).toBeVisible();
   });
 });
