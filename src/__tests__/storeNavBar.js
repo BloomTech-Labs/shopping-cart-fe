@@ -24,4 +24,11 @@ describe("store nav bar", () => {
     const { getByAltText } = renderWithProviders(<StoreNav />);
     expect(getByAltText("Cart icon")).toBeVisible();
   });
+
+  test("renders div that wraps Store Logo img", () => {
+    const { getByTestId } = renderWithProviders(<StoreNav />);
+    expect(getByTestId("navMasterContainer")).toBeVisible();
+  });
+
+  
 });

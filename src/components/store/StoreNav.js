@@ -34,7 +34,7 @@ const StoreNav = props => {
     dispatch(creators.setString(e.target.value));
   };
   return (
-    <div className="navMasterContainer">
+    <div data-testid="navMasterContainer" className="navMasterContainer">
       <div
         onClick={() => {
           history.goBack();
