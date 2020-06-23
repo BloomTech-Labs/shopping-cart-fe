@@ -4,25 +4,25 @@
 
 .createProductView {
   width: 100%;
-  margin-top: 100px;
+  margin-top: 10rem;
 }
 
 .textContainer h3,
 .PhotoHeaderContainer h3,
 .basicDetailsContainer h3 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
 }
 
 button,
 .setActive {
-  padding: 12px 22px;
+  padding: 1.2rem 2.2rem;
   background: white;
-  border: solid 2px #4285f4;
+  border: solid 0.2rem #4285f4;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 1.4rem;
   color: #4285f4;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   transition: all 0.5s;
   cursor: pointer;
 
@@ -38,23 +38,43 @@ button,
   max-width: 1240px;
   align-items: center;
   margin: 0 auto;
-
-  .createProduct {
-    padding: 12px 22px;
-    background: #25a558;
-    border: none;
+  .removeProduct {
+    padding: 1.2rem 2.2rem;
+    background: white;
+    border: 2px solid #4285f4;
     font-weight: bold;
-    font-size: 14px;
-    color: white;
-    border-radius: 6px;
+    font-size: 1.4rem;
+    color: #4285f4;
+    border-radius: 0.6rem;
     transition: all 0.5s;
     cursor: pointer;
     transform: scale(1);
 
     &:hover {
+      background: #4285f4;
+      color: white;
+      box-shadow: 0rem 0.5rem 0.5rem rgba(51, 51, 51, 0.09);
+      transform: scale(1.1);
+    }
+  }
+
+  .createProduct {
+    padding: 1.2rem 2.2rem;
+    background: #25a558;
+    border: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: white;
+    border-radius: 0.6rem;
+    transition: all 0.5s;
+    cursor: pointer;
+    transform: scale(1);
+    margin-left: 1rem;
+
+    &:hover {
       background: #4dcd80;
       color: white;
-      box-shadow: 0px 5px 5px rgba(51, 51, 51, 0.09);
+      box-shadow: 0rem 0.5rem 0.5rem rgba(51, 51, 51, 0.09);
       transform: scale(1.1);
     }
   }
@@ -80,28 +100,28 @@ button,
 //Photo Component Sytling
 .photoContainer {
   background: white;
-  border-radius: 4px;
-  padding: 20px 25px;
+  border-radius: 0.4rem;
+  padding: 2rem 2.5rem;
   max-width: 400px;
 
   .PhotoHeaderContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 
   .singleProductImage {
     .productImage {
       width: 100%;
-      border-radius: 6px;
+      border-radius: 0.6rem;
       max-width: 500px;
       max-height: 500px;
-      box-shadow: 0px 10px 5px rgba(51, 51, 51, 0.15);
+      box-shadow: 0rem 1rem 0.5rem rgba(51, 51, 51, 0.15);
     }
 
     .trashIcon {
-      margin-top: -50px;
+      margin-top: -5rem;
       cursor: pointer;
     }
   }
@@ -123,9 +143,10 @@ button,
   background: white;
   border: solid 2px #4285f4;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 1.4rem;
   color: #4285f4;
-  border-radius: 6px;
+  border-radius: 0.6rem;
+  padding: 1rem;
   transition: all 0.5s;
   cursor: pointer;
   &:hover {
@@ -136,19 +157,19 @@ button,
 
 .buttonDisabled {
   background: lightgray;
-  border: solid 2px darkgrey;
+  border: solid 0.2rem darkgrey;
   color: darkgrey;
   transition: all 0.5s;
 }
 //Photo Component Sytling
 
 .basicDetailsContainer {
-  margin-bottom: 35px;
-  border-radius: 4px;
+  margin-bottom: 3.5rem;
+  border-radius: 0.4rem;
 }
 .createProductContainer {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
 
   .HeaderContainer {
     display: flex;
@@ -156,7 +177,7 @@ button,
     align-items: center;
 
     button {
-      max-height: 50px;
+      max-height: 5rem;
     }
   }
 }
@@ -165,19 +186,19 @@ button,
 .createProductContainer {
   background: white;
 
-  padding: 20px 25px;
+  padding: 2rem 2.5rem;
   max-width: 795px;
 
   label {
-    margin: 5px 0;
+    margin: 0.5rem 0rem;
     font-weight: bold;
   }
 
   .formContainer {
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
-    grid-gap: 20px;
-    margin: 10px 0px;
+    grid-gap: 2rem;
+    margin: 1rem 0rem;
 
     .inputContainer {
       display: flex;
@@ -186,12 +207,13 @@ button,
 
       .productName,
       .category {
-        border: solid 2px #aaa;
-        padding: 14px 10px;
+        border: solid 0.2rem #aaa;
+        padding: 1.4rem 1rem;
         color: #333;
         border-radius: 6px;
-        font-size: 14px;
+        font-size: 1.4rem;
         transition: all 0.5s;
+        font-weight: bold;
 
         &:focus {
           border: solid 2px #4285f4;
@@ -199,13 +221,19 @@ button,
       }
     }
   }
+  .description {
+    textarea {
+
+      font-weight: 550;
+    }
+  }
   textarea {
     width: 100%;
     border: solid 2px #aaa;
-    padding: 14px 10px;
+    padding: 1.4rem 1rem;
     color: #333;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 1.4rem;
     transition: all 0.5s;
 
     &:focus {
@@ -221,11 +249,12 @@ button,
   color: #aaa;
   .price {
     border: solid 2px #aaa;
-    padding: 14px 20px;
+    padding: 1.4rem 2rem;
     color: #333;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 1.4rem;
     transition: all 0.5s;
+    font-weight: bold;
 
     &:focus {
       border: solid 2px #4285f4;
@@ -236,9 +265,9 @@ button,
 .dollar:before {
   position: absolute;
   content: '$';
-  left: 7px;
-  top: 13px;
-  font-size: 16px;
+  left: 0.7rem;
+  top: 1.3rem;
+  font-size: 1.6rem;
 }
 
 textarea,
@@ -270,15 +299,15 @@ button {
       align-items: baseline;
 
       .createdVariantName {
-        font-size: 22px;
+        font-size: 2.2rem;
         font-weight: 700;
-        margin-right: 10px;
+        margin-right: 1rem;
       }
 
       .clearBTN {
         color: #ed1b50;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 1.6rem;
         margin: 0px;
         opacity: 100%;
         transition: all 0.2s;
@@ -293,10 +322,10 @@ button {
   }
 
   .addVariantContainer {
-    margin-top: 20px;
+    margin-top: 2rem;
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 2rem;
 
     input {
       width: 100%;
@@ -310,11 +339,11 @@ button {
   }
   input {
     border: solid 2px #aaa;
-    padding: 14px 10px;
+    padding: 1.4rem 1rem;
     color: #333;
     border-radius: 6px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1.4rem;
     transition: all 0.5s;
 
     &:focus {
@@ -327,12 +356,12 @@ button {
   display: flex;
   align-items: flex-end;
   button {
-    padding: 12px 22px;
+    padding: 1.2rem 2.2rem;
     background: white;
     border: solid 2px #4285f4;
-    height: 53px;
+    height: 5.3rem;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #4285f4;
     border-radius: 6px;
     transition: all 0.5s;
@@ -350,32 +379,37 @@ button {
   justify-content: space-between;
   align-items: center;
   background: #f7f7f7;
-  padding: 16px 25px;
+  padding: 1.6rem 2.5rem;
   border-top: solid 4px white;
 
   .trashcan {
     cursor: pointer;
+    box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.3);
+    transition: 0.3s box-shadow;
+    &:hover {
+      transform: scale(1.15);
+    }
   }
 
   p {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #333333;
-    margin: 0px;
+    margin: 0rem;
   }
 }
 
 .errorMessage {
   color: #ed1b50;
   background: #fee7ed;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: bold;
-  padding: 5px;
+  padding: 0.5rem;
   text-align: center;
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 4.5rem;
   color: black;
   text-align: center;
 }
@@ -387,11 +421,85 @@ h1 {
 .error {
   background: #fee7ed;
   color: #ed1b50;
-  border-radius: 4px;
-  padding: 6px;
-  margin-top: 5px;
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .errorLabel {
   color: #ed1b50;
+}
+
+.messageContainerGreen {
+  animation: message 3s;
+  animation-timing-function: ease-in-out;
+  opacity: 0%;
+  background: #eaf6ef;
+  border: solid 1px #25a558;
+  padding: 13px 50px;
+  border-radius: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  .messageTextGreen {
+    animation: message 2.5s;
+    animation-timing-function: ease-in-out;
+    opacity: 0%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #25a558;
+    margin: 0;
+  }
+}
+
+.messageContainerRed {
+  animation: message 3s;
+  animation-timing-function: ease-in-out;
+  opacity: 0%;
+  background: #fee7ed;
+  border: solid 1px #f0134d;
+  padding: 13px 50px;
+  border-radius: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  .messageTextRed {
+    animation: message 3s;
+    animation-timing-function: ease-in-out;
+    opacity: 0%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f0134d;
+    margin: 0;
+  }
+}
+
+@keyframes message {
+  0% {
+    top: 0;
+    opacity: 0%;
+  }
+  20% {
+    top: 150px;
+    opacity: 100%;
+  }
+
+  50% {
+    top: 150px;
+    opacity: 100%;
+  }
+
+  80% {
+    top: 150px;
+    opacity: 100%;
+  }
+
+  100% {
+    top: 0;
+    opacity: 0%;
+  }
 }

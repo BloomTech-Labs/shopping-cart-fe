@@ -33,7 +33,7 @@ const OrderSuccessPage = props => {
         Arrangements are being made for you to receive your product
       </p>
 
-      <Button id='delete-btn' type='link' htmlType='button'>
+      <Button id='delete-btn' type='link' htmltype='button'>
         <Link onClick={() => localStorage.clear()} to={storeUrl}>
           Back to {storeDetails && storeDetails.storeName}
         </Link>

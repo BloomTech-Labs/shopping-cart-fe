@@ -17,6 +17,13 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 		setProductData({ ...productData, [e.target.name]: e.target.value });
 	}
 
+	//if any variants exsist set the varaint dropdown to true
+	setTimeout(function() {
+		if (productData.variantDetails.length > 0) {
+			return setActive(true);
+		}
+	}, 50);
+
 	function submitHandler(e) {
 		e.preventDefault();
 		if (!productData.variantName) {
@@ -99,7 +106,7 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 												}
 												onClick={clearVariants}
 											>
-												Clear Varaints
+												Clear Variants
 											</p>
 										</div>
 									) : (

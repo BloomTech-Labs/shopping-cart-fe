@@ -68,12 +68,12 @@ const AddPhoto = ({ productData, setProductData, errorState }) => {
 							<img
 								className="productImage"
 								src={cv}
-								alt="Whatever photo has been uploaded will show here"
+								alt=""
 							/>
 							<img
 								className="trashIcon"
 								src={trashIcon}
-								alt="A trash can icon, when clicked deletes a photo"
+								alt=""
 								onClick={() => {
 									removePhoto(cv);
 								}}

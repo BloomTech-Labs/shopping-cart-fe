@@ -311,7 +311,7 @@ const Confirmation = (props) => {
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             {!cartContents.finalLock ? (
-              <Button type='primary' htmlType='submit'>
+              <Button type='primary' htmltype='submit'>
                 Approve cart
               </Button>
             ) : null}
