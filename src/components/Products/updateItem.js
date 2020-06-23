@@ -112,7 +112,7 @@ function UpdateItem(props) {
 			<Message message={message} />
 			<div className="createProductView">
 				<div className="createProductHeader">
-					<h1>Create Product</h1>
+					<h1>Edit Product</h1>
 					<div className="actionContainer">
 						<button onClick={removeProudct} className="removeProduct">
 							Remove Product

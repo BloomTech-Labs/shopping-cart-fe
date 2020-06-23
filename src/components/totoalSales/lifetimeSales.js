@@ -3,13 +3,13 @@ import dollar from "../../images/sales.svg"
 
 const LifetimeSales = ({ currency, amount, monthSales }) => {
   return (
-    <div>
+    <div className = "salesContainer">
       {amount > 0 ? (
-        <div className="lifetimeSale">
+        <div className="salesSection">
           <div className="sales">
             <img
               src={dollar}
-              style={{ width: "8rem", height: "4rem" }}
+              style={{ width: "10rem", height: "5rem" }}
               alt="dollar"
             />
             <div className="salesDiv">
@@ -23,7 +23,7 @@ const LifetimeSales = ({ currency, amount, monthSales }) => {
           <div className="sales">
             <img
               src={dollar}
-              style={{ width: "8rem", height: "4rem" }}
+              style={{ width: "10rem", height: "5rem"  }}
               alt="dollar"
             />
             <div className="salesDiv">
@@ -37,7 +37,7 @@ const LifetimeSales = ({ currency, amount, monthSales }) => {
           <div className="sales">
             <img
               src={dollar}
-              style={{ width: "8rem", height: "4rem" }}
+              style={{  width: "10rem", height: "5rem"  }}
               alt="dollar"
             />
             <div className="salesDiv">
@@ -50,11 +50,11 @@ const LifetimeSales = ({ currency, amount, monthSales }) => {
           </div>
         </div>
       ) : (
-        <div className="lifetimeSale">
+        <div className="salesSection">
           <div className="sales">
             <img
               src={dollar}
-              style={{ width: "8rem", height: "4rem" }}
+              style={{ width: "10rem", height: "5rem"  }}
               alt="dollar"
             />
             <div className="salesDiv">
@@ -65,7 +65,7 @@ const LifetimeSales = ({ currency, amount, monthSales }) => {
           <div className="sales">
             <img
               src={dollar}
-              style={{ width: "8rem", height: "4rem" }}
+              style={{  width: "10rem", height: "5rem"  }}
               alt="dollar"
             />
             <div className="salesDiv">
@@ -76,7 +76,7 @@ const LifetimeSales = ({ currency, amount, monthSales }) => {
           <div className="sales">
             <img
               src={dollar}
-              style={{ width: "8rem", height: "4rem" }}
+              style={{  width: "10rem", height: "5rem"  }}
               alt="dollar"
             />
             <div className="salesDiv">

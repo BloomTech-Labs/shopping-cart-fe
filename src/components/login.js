@@ -3,7 +3,7 @@ import axios from 'axios';
 import withAuth from './Auth/axiosWithAuth';
 import { Link } from 'react-router-dom';
 import { Form, Input, Icon, message, Spin } from 'antd';
-import Logo from './elements/logo';
+
 import history from '../history';
 import { connect } from 'react-redux';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
@@ -93,7 +93,7 @@ const Login = (props) => {
             />
           </div>
         </div>
-        <Logo />
+
         <div className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <img

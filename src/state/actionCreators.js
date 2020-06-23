@@ -242,7 +242,7 @@ export const getSalesHistory = () => dispatch => {
     })
     .catch(err => {
       setLoading(false);
-      console.log(err);
+      console.log(err.response.data);
     });
 };
 // DELETE order
@@ -254,7 +254,7 @@ export const deleteOrderProduct = (order_id, orderItem_id) => dispatch => {
       console.log("res:", res);
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.response.data);
     });
 };
 export const getStoreOrders = storeId => dispatch => {
@@ -264,7 +264,7 @@ export const getStoreOrders = storeId => dispatch => {
       dispatch({ type: types.GET_ORDERS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.response.data);
     });
 };
 // PUT order
@@ -281,7 +281,7 @@ export const updateOrderProduct = (
       console.log(res);
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.response.data);
       alert("Profile update failed, please try again!");
     });
   setLoading(true);
@@ -293,7 +293,7 @@ export const updateOrderProduct = (
     })
     .catch(err => {
       setLoading(false);
-      console.log(err);
+      console.log(err.response.data);
     });
 };
 // onboarding actions
@@ -308,7 +308,7 @@ export const profileUpdate = userInfo => dispatch => {
       console.log("this has posted", res);
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.response.data);
     });
 };
 export const logoUpload = logo => dispatch => {
@@ -325,6 +325,6 @@ export const deleteSellerInfo = values => dispatch => {
       console.log(res);
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.response.data);
     });
 };
