@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react"
 import AxiosAuth from "../components/Auth/axiosWithAuth"
 import Navbar from "./Navbar"
+import Axios from "axios"
 
 const ProfileView = (props) => {
   const [store, setStore] = useState()
+  const [input, setInput] = useState({
+    businessName: "",
+  })
 
   useEffect(() => {
     AxiosAuth()
@@ -15,8 +19,22 @@ const ProfileView = (props) => {
         console.log(err)
       })
   }, [props])
-  console.log("store", store)
+  // console.log("store", store)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    AxiosAuth()
+      .put(`https://shopping-cart-be.herokuapp.com/api/store/`, input)
+      .then((res) => console.log("RESS", res.data))
+      .catch((err) => console.log(err.response.data))
+  }
 
+  const handleChange = (e) => {
+    setInput({
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  console.log(input)
   return (
     <div>
       {store && (
@@ -28,37 +46,32 @@ const ProfileView = (props) => {
             <img src={store.logo} alt="logo" />
             <h3>Brand Color</h3>
           </section>
-          <div>
-            <h3>Basic Details</h3>
-            <div>
-              <div>
-                <h3>Business Name</h3>
-                <p>{store.businessName}</p>
-                <h3>Owner Name</h3>
-                <p>{store.ownerName}</p>
-                <h3>Building / Unit / Suite</h3>
-                <p>{store.secondAddress}</p>
-                <h3>State</h3>
-                <p>{store.state}</p>
-              </div>
-              <div>
-                <h3>Phone Number</h3>
-                <p>{store.phone}</p>
-                <h3>Address</h3>
-                <p>{store.address}</p>
-                <h3>City</h3>
-                <p>{store.city}</p>
-                <h3>Zip Code</h3>
-                <p>{store.zipcode}</p>
-              </div>
-            </div>
-            <div>
-              <h3>Hours</h3>
-              <p>{store.hours}</p>
-              <h3>Curbside Hours</h3>
-              <p>{store.curbHours}</p>
-            </div>
-          </div>
+          <section>
+            <form className="profileForm" onSubmit={handleSubmit}>
+              <label>Business Name</label>
+              <input
+                value={input.businessName}
+                name='businessName'
+                onChange={handleChange}
+                placeholder={store.businessName}
+              />
+              <label>Owner Name</label>
+              <input value={store.ownerName} />
+              <label>Address</label>
+              <input value={store.address} />
+              <label>City</label>
+              <input value={store.city} />
+              <label>State</label>
+              <input value={store.state} />
+              <label>Zipcode</label>
+              <input value={store.zipcode} />
+              <label>Working Hours</label>
+              <input value={store.hours} />
+              <label>Curbside Pick up Hours</label>
+              <input value={store.curbHours} />
+              <button>Update Profile</button>
+            </form>
+          </section>
         </div>
       )}
     </div>
