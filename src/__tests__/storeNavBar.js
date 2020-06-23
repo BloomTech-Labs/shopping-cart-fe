@@ -30,5 +30,10 @@ describe("store nav bar", () => {
     expect(getByTestId("navMasterContainer")).toBeVisible();
   });
 
-  
+  test("renders Search Bar input", () => {
+    const { getByPlaceholderText } = renderWithProviders(<StoreNav />);
+    const searchBarInput = getByPlaceholderText(/search/i);
+    expect(searchBarInput).toBeVisible();
+    expect(searchBarInput).toBeEnabled();
+  });
 });
