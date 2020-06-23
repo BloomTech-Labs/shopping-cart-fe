@@ -180,7 +180,7 @@ const RegistrationForm = (props) => {
               </button>
             </Form.Item>
           </Form>
-          <div id='or_login' data-test-id="loginLinkWrapper">
+          <div id='or_login' data-testid='loginLinkWrapper'>
             <p>
               or <Link to='/'>login</Link> instead
             </p>
