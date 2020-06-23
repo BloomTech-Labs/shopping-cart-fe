@@ -56,8 +56,8 @@ const StoreNav = props => {
       </form>
       <div data-testid="cartAboutContainer" className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
-        <div className="badge" style={{ background: `${color}` }}>
-          <div className="badgeNumber">{totalQuantity(cartContents)}</div>
+        <div data-testid="badge" className="badge" style={{ background: `${color}` }}>
+          <div data-testid="badgeNumber" className="badgeNumber">{totalQuantity(cartContents)}</div>
         </div>
         <NavLink to="/cart">
           <img alt='Cart icon' src={cart_icon} />

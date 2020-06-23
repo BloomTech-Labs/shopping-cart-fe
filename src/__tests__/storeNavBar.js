@@ -41,4 +41,14 @@ describe("store nav bar", () => {
     const { getByTestId } = renderWithProviders(<StoreNav />);
     expect(getByTestId("cartAboutContainer")).toBeVisible();
   });
+
+  test("renders div that contains Badge with Brand Color", () => {
+    const { getByTestId } = renderWithProviders(<StoreNav />);
+    expect(getByTestId("badge")).toBeVisible();
+  });
+
+  test('renders div that holds number of items in Cart', () => {
+    const { getByTestId } = renderWithProviders(<StoreNav />)
+    expect(getByTestId('badgeNumber')).toBeVisible()
+  })
 });
