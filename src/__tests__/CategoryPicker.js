@@ -6,7 +6,7 @@ import CategoryPicker from "../components/categories/CategoryPicker";
 describe("Category Picker in Store-NavBar", () => {
   test("renders the All button", () => {
     const { getByTestId } = renderWithProviders(<CategoryPicker />);
-    const allButton = getByTestId("optionWrapper");
+    const allButton = getByTestId("categoryButton");
     expect(allButton).toBeVisible();
     expect(allButton).toBeEnabled();
   });
