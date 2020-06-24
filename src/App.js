@@ -27,7 +27,7 @@ import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from "./components/Products/createProductView"
 import Update from './components/Update';
-import ProfileView from './components/ProfileView';
+import ProfileView from './components/Profile View/ProfileView'
 import OrderDetailsView from "./components/Orders/OrderDetailsView"
 
 function App() {

@@ -1,91 +1,111 @@
-.profileViewWrapper {
-  background: white;
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: space-around;
-  max-width: 1200px;
-  
-  p{
-    font-size: 1.5rem;
-  }
-  @media (max-width: 900px) {
-    flex-direction: column;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-  }
-  .labels {
-    font-size: 1.5rem;
+.profileViewContainer {
+  h1 {
+    top: 10rem;
+    position: relative;
     font-weight: bold;
-    border-bottom: 1px solid black;
-    @media (max-width: 1000px) {
-      margin: 1rem 0;
-    }
   }
-  .mainLabel {
-    text-align: center;
-    font-size: 2.2rem;
-    border: none;
-  }
+}
 
-  .logoColorlabels {
-    border: none;
-  }
+.profileViewWrapper {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  top: 10rem;
+  position: relative;
+  align-items: center;
 
-  .profileInfo {
-    padding: 2px 0px;
-  }
-
-  .logoColor {
+  .firstWrapper {
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
-    width: 40%;
-    .profileViewLogo {
-      height: 70px;
-      @media (max-width: 800px) {
-        height: 50px;
+    background: white;
+    width: 50%;
+    padding: 2rem;
+
+    .logoContainer {
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      h3 {
+        align-self: flex-start;
+        margin-left: 4rem;
+        font-weight: bold;
+        font-size: 2rem;
+      }
+      img {
+        border: solid;
+        width: 80%;
+      }
+      input {
+        color: black;
+        width: 70%;
+        background-color: white;
+        font-weight: bold;
+        padding: 2rem;
+        text-align: center;
+      }
+      button {
+        border-radius: 2px;
       }
     }
-    .profileViewColor {
-      height: '100px';
-      width: '200px';
+
+    .colorContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      padding: 2rem;
+      h3{
+        align-self: flex-start;
+        margin-left: 4rem;
+        font-weight: bold;
+        font-size: 2rem;
+      }
+      .colorPicker {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      button {
+        border-radius: 2px;
+        margin-top: 1rem;
+      }
     }
   }
-  .profileView {
-    width: 58%;
-    flex-direction: column;
-    display: flex;
-    @media (max-width: 900px) {
-      width: 90%;
-      margin-top: 2rem;
-      font-size: 70%;
+  .formContainer {
+    background: white;
+    width: 100%;
+    margin-left: 10rem;
+    height: 62rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5rem;
+      width: 100%;
+      label {
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+  
+      input {
+        width: 100%;
+        border-radius: 4px;
+        background-color: white;
+        border: 0;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+        transition: 0.3s box-shadow;
+        font-weight: bold;
+      }
+      button {
+        border-radius: 2px;
+        margin-top: 2rem;
+        width: 50%;
+        align-self: center;
+      }
     }
   }
-
-  .profileLeftRight {
-    display: flex;
-    justify-content: space-between;
-    .profileViewLeft {
-      width: 49%;
-    }
-
-    .profileViewRight {
-      width: 49%;
-    }
   }
-}
-
-.selectBrandColor {
-  @media (max-width: 800px) {
-    margin-top: 2rem;
-  }
-}
-
-.profileForm {
-  font-size: 2rem;
-}
