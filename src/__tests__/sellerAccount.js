@@ -15,6 +15,6 @@ describe("View of the seller account, it displays stripe connection", () => {
   test("renders the component with 'Your Stripe ID' title", () => {
     const { getByText } = renderWithProviders(<Seller />);
     const element = getByText("Your Stripe ID");
-    expect(element).toBeVisible();
+    expect(element).toBeVisible(); 
   });
 });
