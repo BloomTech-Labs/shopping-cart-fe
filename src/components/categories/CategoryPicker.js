@@ -10,7 +10,7 @@ const CategoryPicker = ({ categories, setCategorySearch }) => {
 				margin: '100px'
 			}}
 		>
-			<div className="optionWrapper">
+			<div data-testid='optionWrapper' className="optionWrapper">
 				<button
 					className="categoryButton"
 					onClick={() => {

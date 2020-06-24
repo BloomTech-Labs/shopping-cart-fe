@@ -13,6 +13,8 @@ describe("Category Picker in Store-NavBar", () => {
   });
 
   test("renders optionWrapper, main div, for CategoryPicker", () => {
-    const 
-  }
+    const { getByTestId } = renderWithProviders(<CategoryPicker />)
+    expect(getByTestId('optionWrapper')).toBeVisible()
+  })
+  
 });
