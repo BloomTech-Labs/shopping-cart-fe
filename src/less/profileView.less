@@ -43,14 +43,18 @@
       }
       input {
         color: black;
-        width: 70%;
+        width: 90%;
         background-color: white;
         font-weight: bold;
         padding: 2rem;
-        text-align: center;
       }
       button {
         border-radius: 2px;
+        &:hover {
+    
+          transition: 0.3s box-shadow;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 1);
+        }
       }
     }
 
@@ -69,28 +73,52 @@
       .colorPicker {
         width: 100%;
         margin-bottom: 1rem;
+        &:hover {
+           transform: scale(1.01);
+        }
       }
       button {
         border-radius: 2px;
         margin-top: 1rem;
+        &:hover {
+        
+          transition: 0.3s box-shadow;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 1);
+        }
       }
     }
   }
+  
   .formContainer {
     background: white;
     width: 100%;
-    margin-left: 10rem;
+    margin-left: 6rem;
     height: 62rem;
+    padding: 1rem;
+    h3 {
+      padding: 1rem;
+      font-weight: bold;
+      margin:0;
+    }
     form {
       display: flex;
       flex-direction: column;
       font-size: 1.5rem;
       width: 100%;
+      main {
+        display: flex;
+        .firstSection {
+        padding: 1rem;
+          width: 100%;
+        }
+        .secondSection {
+          padding: 1rem;
+        }
+      }
       label {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         font-weight: bold;
       }
-  
       input {
         width: 100%;
         border-radius: 4px;
@@ -99,12 +127,27 @@
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
         transition: 0.3s box-shadow;
         font-weight: bold;
+        padding: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        &:hover {
+          transition: 0.3s box-shadow;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+        }
       }
+
       button {
         border-radius: 2px;
         margin-top: 2rem;
         width: 50%;
         align-self: center;
+        &:hover {
+          transition: 0.3s box-shadow;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 1);
+        }
+      }
+      .thirdSection {
+        padding: 1rem;
       }
     }
   }
