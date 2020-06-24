@@ -63,10 +63,10 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 	}
 
 	return (
-		<div className="masterContainer">
-			<div className="createProductContainer">
-				<div className="HeaderContainer">
-					<div className="textContainer">
+		<div className="masterContainer" data-testid="addVariantsMainWrapper">
+			<div className="createProductContainer" data-testid="createProductContainer">
+				<div className="HeaderContainer" data-testid="createProductHeaderWrapper">
+					<div className="textContainer" data-testid="createProductTextContainer">
 						<h3>Variants:</h3>
 						<p>
 							Product options a customer can choose from.{' '}
@@ -76,6 +76,7 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 						</p>
 					</div>
 					<button
+					data-testid="createVariantsButton"
 						onClick={() => {
 							setActive(true);
 						}}
@@ -86,7 +87,8 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 				</div>
 
 				{active ? (
-					<div className="VariantFormContainer">
+					// left off here with testing
+					<div className="VariantFormContainer" >
 						<form onSubmit={submitHandler}>
 							<div className="variantNameContainer">
 								<div className="inputContainer">
