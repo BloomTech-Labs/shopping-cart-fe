@@ -1,154 +1,171 @@
-import React from "react"
-import { withFormik, Form, Field, ErrorMessage } from "formik"
-import * as Yup from "yup"
-import { connect } from "react-redux"
-import { postOnboard } from "../../state/actionCreators"
-import history from "../../history"
-import logo from '../../images/register.png'
+import React from 'react';
+import { withFormik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import { postOnboard } from '../../state/actionCreators';
+import history from '../../history';
+import logo from '../../images/register.png';
 
 const WelcomeScreen = (props) => {
   return (
-    <div className="welcomeForm">
-      <img src = {logo} alt = ""/>
-      <h1>Welcome</h1>
-      <h2>To finish the account creation process fill out the forms below</h2>
-      <Form className="formContainer">
-        <main className="sectionContainer">
-          <section className="firstSection">
-            <section className="business">
-              <label htmlFor="businessName" className="label">
+    <div className='welcomeForm' data-testid='welcomeFormWrapper'>
+      <img src={logo} alt='logo' />
+      <h1 data-testid='welcomeHeader'>Welcome</h1>
+      <h2 data-testid='secondaryWelcomeHeader'>
+        To finish the account creation process fill out the forms below
+      </h2>
+      <Form className='formContainer' data-testid='welcomeForm'>
+        <main className='sectionContainer' data-testid='welcomeMainSection'>
+          <section className='firstSection' data-testid='welcomeFirstSection'>
+            <section className='business' data-testid='welcomeSecondSection'>
+              <label
+                htmlFor='businessName'
+                className='label'
+                data-testid='businessName'>
                 Business Name
               </label>
               <Field
-                name="businessName"
-                type="text"
+                name='businessName'
+                type='text'
                 value={props.values.businessName}
-                placeholder="Business name"
-                className="field"
+                placeholder='Business name'
+                className='field'
               />
               {props.touched.businessName && props.errors.businessName && (
-                <p className="error">Business Name is required</p>
+                <p className='error'>Business Name is required</p>
               )}
             </section>
-            <section className="rest">
-              <section className="firstHalf">
-                <label htmlFor="ownerName" className="label">
+            <section className='rest'>
+              <section className='firstHalf'>
+                <label
+                  htmlFor='ownerName'
+                  className='label'
+                  data-testid='ownerName'>
                   Owner Name
                 </label>
                 <Field
-                  name="ownerName"
-                  type="text"
+                  name='ownerName'
+                  type='text'
                   value={props.values.ownerName}
-                  placeholder="Owner name"
-                  className="field"
+                  placeholder='Owner name'
+                  className='field'
                 />
                 {props.touched.ownerName && props.errors.ownerName && (
-                  <p className="error">Owner Name is required</p>
+                  <p className='error'>Owner Name is required</p>
                 )}
-                <label htmlFor="address" className="label">
+                <label
+                  htmlFor='address'
+                  className='label'
+                  data-testid='address'>
                   Address
                 </label>
                 <Field
-                  name="address"
-                  type="text"
+                  name='address'
+                  type='text'
                   value={props.values.address}
-                  placeholder="Add address"
-                  className="field"
+                  placeholder='Add address'
+                  className='field'
                 />
                 {props.touched.address && props.errors.address && (
-                  <p className="error">Address is required</p>
+                  <p className='error'>Address is required</p>
                 )}
-                <label htmlFor="secondAddress" className="label">
+                <label
+                  htmlFor='secondAddress'
+                  className='label'
+                  data-testid='secondAddress'>
                   Second Address
                 </label>
                 <Field
-                  name="secondAddress"
-                  type="text"
+                  name='secondAddress'
+                  type='text'
                   value={props.values.secondAddress}
-                  placeholder="Add second address (if needed)"
-                  className="field"
+                  placeholder='Add second address (if needed)'
+                  className='field'
                 />
               </section>
-              <section className="secondHalf">
-                <label htmlFor="city" className="label">
+              <section className='secondHalf'>
+                <label htmlFor='city' className='label' data-testid='city'>
                   City
                 </label>
                 <Field
-                  name="city"
-                  type="text"
+                  name='city'
+                  type='text'
                   value={props.values.city}
-                  placeholder="Add city"
-                  className="field"
+                  placeholder='Add city'
+                  className='field'
                 />
                 {props.touched.city && props.errors.city && (
-                  <p className="error">City is required</p>
+                  <p className='error'>City is required</p>
                 )}
-                <label htmlFor="state" className="label">
+                <label htmlFor='state' className='label' data-testid='state'>
                   State
                 </label>
                 <Field
-                  name="state"
-                  type="text"
+                  name='state'
+                  type='text'
                   value={props.values.state}
-                  placeholder="Add state "
-                  className="field"
+                  placeholder='Add state '
+                  className='field'
                 />
                 {props.touched.state && props.errors.state && (
-                  <p className="error">State is required</p>
+                  <p className='error'>State is required</p>
                 )}
-                <label htmlFor="zipcode" className="label">
+                <label htmlFor='zipcode' className='label' data-testid='zip'>
                   Zip Code
                 </label>
                 <Field
-                  name="zipcode"
-                  type="text"
+                  name='zipcode'
+                  type='text'
                   maxLength={5}
-                  placeholder="Add zipcode"
+                  placeholder='Add zipcode'
                   value={props.values.zipcode}
-                  className="field"
+                  className='field'
                 />
-                <ErrorMessage name="zipcode">
-                  {(msg) => <div className="error">{msg}</div>}
+                <ErrorMessage name='zipcode'>
+                  {(msg) => <div className='error'>{msg}</div>}
                 </ErrorMessage>
               </section>
             </section>
           </section>
-          <section className="secondSection">
-            <label htmlFor="hours" className="label">
+          <section className='secondSection'>
+            <label htmlFor='hours' className='label' data-testid='storeHours'>
               Store Hours
             </label>
             <Field
-              name="hours"
-              type="text"
+              name='hours'
+              type='text'
               value={props.values.hours}
-              placeholder="Add Hours of Operation"
-              className="field"
+              placeholder='Add Hours of Operation'
+              className='field'
             />
             {props.touched.hours && props.errors.hours && (
-              <p className="error">Enter Hours of Operation</p>
+              <p className='error'>Enter Hours of Operation</p>
             )}
-            <label htmlFor="curbHours" className="label">
+            <label htmlFor='curbHours' className='label' data-testid='curbside'>
               Curbside Pickup Hours
             </label>
             <Field
-              name="curbHours"
-              type="text"
+              name='curbHours'
+              type='text'
               value={props.values.curbHours}
-              placeholder="Add curbside hours"
-              className="field"
+              placeholder='Add curbside hours'
+              className='field'
             />
             {props.touched.curbHours && props.errors.curbHours && (
-              <p className="error">Enter Curbside hours</p>
+              <p className='error'>Enter Curbside hours</p>
             )}
           </section>
         </main>
-      <button className="submitButton" type="submit">
-        Add Information
-      </button>
+        <button
+          className='submitButton'
+          type='submit'
+          data-testid='welcomeAddInfoButton'>
+          Add Information
+        </button>
       </Form>
     </div>
-  )
-}
+  );
+};
 
 const WelcomeScreenForm = withFormik({
   mapPropsToValues({
@@ -163,39 +180,39 @@ const WelcomeScreenForm = withFormik({
     curbHours,
   }) {
     return {
-      businessName: businessName || "",
-      ownerName: ownerName || "",
-      address: address || "",
-      secondAddress: secondAddress || "",
-      city: city || "",
-      state: state || "",
-      zipcode: zipcode || "",
-      hours: hours || "",
-      curbHours: curbHours || "",
-    }
+      businessName: businessName || '',
+      ownerName: ownerName || '',
+      address: address || '',
+      secondAddress: secondAddress || '',
+      city: city || '',
+      state: state || '',
+      zipcode: zipcode || '',
+      hours: hours || '',
+      curbHours: curbHours || '',
+    };
   },
 
   validationSchema: Yup.object().shape({
-    businessName: Yup.string().required("Enter your business name!"),
-    ownerName: Yup.string().required("Enter your name!"),
-    address: Yup.string().required("Enter your address!"),
+    businessName: Yup.string().required('Enter your business name!'),
+    ownerName: Yup.string().required('Enter your name!'),
+    address: Yup.string().required('Enter your address!'),
     secondAddress: Yup.string(),
-    city: Yup.string().required("Enter your city!"),
-    state: Yup.string().required("Enter your state!"),
+    city: Yup.string().required('Enter your city!'),
+    state: Yup.string().required('Enter your state!'),
     zipcode: Yup.string()
-      .max(5, "5 digits only!")
-      .min(5, "must be 5 digits")
-      .required("Zipcode is required"),
+      .max(5, '5 digits only!')
+      .min(5, 'must be 5 digits')
+      .required('Zipcode is required'),
 
-    hours: Yup.string().required("Enter your store hours!"),
+    hours: Yup.string().required('Enter your store hours!'),
     curbHours: Yup.string(),
   }),
 
   handleSubmit: (values, formikBag) => {
-    formikBag.props.postOnboard(values)
-    history.push("/brandview")
+    formikBag.props.postOnboard(values);
+    history.push('/brandview');
   },
-})(WelcomeScreen)
+})(WelcomeScreen);
 
 const mapStateToProps = (state) => {
   return {
@@ -210,7 +227,7 @@ const mapStateToProps = (state) => {
     curbHours: state.onboard.curbHours,
     color: state.onboard.color,
     logo: state.onboard.logo,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { postOnboard })(WelcomeScreenForm)
+export default connect(mapStateToProps, { postOnboard })(WelcomeScreenForm);
