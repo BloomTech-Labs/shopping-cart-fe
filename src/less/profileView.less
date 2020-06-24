@@ -1,8 +1,29 @@
 .profileViewContainer {
+  position: relative;
   h1 {
     top: 10rem;
     position: relative;
     font-weight: bold;
+    @media(max-width: 540px) {
+      margin-top: 10rem
+    }
+  }
+  @media (max-width: 600px) {
+    top: 10rem;
+   
+  }
+  @media (max-width: 900px) {
+    .profileViewWrapper {
+      flex-direction: column;
+      button {
+        font-size: 1.2rem;
+      }
+      .formContainer {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        margin-left: 0;
+      }
+    }
   }
 }
 
@@ -51,9 +72,11 @@
       button {
         border-radius: 2px;
         &:hover {
-    
           transition: 0.3s box-shadow;
           box-shadow: 0 0 6px rgba(0, 0, 0, 1);
+        }
+        @media (max-width: 900px) {
+          font-size: 1.2rem;
         }
       }
     }
@@ -64,7 +87,7 @@
       align-items: center;
       font-size: 1.5rem;
       padding: 2rem;
-      h3{
+      h3 {
         align-self: flex-start;
         margin-left: 4rem;
         font-weight: bold;
@@ -74,31 +97,37 @@
         width: 100%;
         margin-bottom: 1rem;
         &:hover {
-           transform: scale(1.01);
+          transform: scale(1.01);
+        }
+        @media (max-width: 700px) {
+          background-color: blue;
+          width: 100px;
         }
       }
       button {
         border-radius: 2px;
         margin-top: 1rem;
         &:hover {
-        
           transition: 0.3s box-shadow;
           box-shadow: 0 0 6px rgba(0, 0, 0, 1);
         }
       }
     }
   }
-  
+
   .formContainer {
     background: white;
     width: 100%;
     margin-left: 6rem;
     height: 62rem;
     padding: 1rem;
+    @media (max-width: 900px) {
+      width: 70%;
+    }
     h3 {
       padding: 1rem;
       font-weight: bold;
-      margin:0;
+      margin: 0;
     }
     form {
       display: flex;
@@ -108,11 +137,12 @@
       main {
         display: flex;
         .firstSection {
-        padding: 1rem;
+          padding: 1rem;
           width: 100%;
         }
         .secondSection {
           padding: 1rem;
+          width: 100%;
         }
       }
       label {
@@ -151,4 +181,4 @@
       }
     }
   }
-  }
+}
