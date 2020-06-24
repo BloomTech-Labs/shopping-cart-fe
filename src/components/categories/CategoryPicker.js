@@ -23,6 +23,7 @@ const CategoryPicker = ({ categories, setCategorySearch }) => {
 					categories.map((item) => {
 						return (
 							<button
+								data-testid="categoryButton"
 								className="categoryButton"
 								onClick={() => {
 									setCategorySearch(item.toLowerCase());
