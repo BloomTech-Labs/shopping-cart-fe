@@ -19,7 +19,7 @@ const ProfileView = (props) => {
       })
   }, [props])
 
-  console.log("store", store)
+
   return (
     <div className = "profileViewContainer">
       <Navbar />
