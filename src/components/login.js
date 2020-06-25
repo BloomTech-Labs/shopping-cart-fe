@@ -82,7 +82,7 @@ const Login = (props) => {
 
   const loginForm = (
     <Spin spinning={props.isLoading}>
-      <div data-testid="imageBackground" className='cover'>
+      <div data-testid='imageBackground' className='cover'>
         <div className='desktop-logo'>
           <div className='desktop-logo-large'>
             <img
@@ -93,8 +93,7 @@ const Login = (props) => {
             />
           </div>
         </div>
-        <Logo />
-        <div data-testid="loginFormWrapper" className='desktop-form'>
+        <div data-testid='loginFormWrapper' className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <img
               data-testid='loginLogo'
