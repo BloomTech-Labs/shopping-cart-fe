@@ -31,17 +31,17 @@ import ProfileView from './components/Profile View/ProfileView'
 import OrderDetailsView from "./components/Orders/OrderDetailsView"
 
 function App() {
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     function handleNetworkChange(event) {
       // delete this comment
       if (navigator.onLine) {
-        document.getElementById('offline-notification').style.display = 'none';
+        document.getElementById("offline-notification").style.display = "none";
       } else {
-        document.getElementById('offline-notification').style.display = 'flex';
+        document.getElementById("offline-notification").style.display = "flex";
       }
     }
-    window.addEventListener('online', handleNetworkChange);
-    window.addEventListener('offline', handleNetworkChange);
+    window.addEventListener("online", handleNetworkChange);
+    window.addEventListener("offline", handleNetworkChange);
   });
   return (
     <>
@@ -62,7 +62,7 @@ function App() {
         <PublicRoute path='/store/:id' component={StoreView} />
         <PublicRoute
           path='/cart/:id'
-          component={localStorage.getItem('token') ? Confirmation : StripeMain}
+          component={localStorage.getItem("token") ? Confirmation : StripeMain}
         />
         <PublicRoute path='/cart' component={CartView} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
@@ -81,18 +81,19 @@ function App() {
       <div
         id='offline-notification'
         style={{
-          position: 'fixed',
-          bottom: '0px',
-          width: '100vw',
-          height: '4vh',
-          textAlign: 'center',
-          backgroundColor: '#ff6663',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          color: 'white',
-          fontSize: 'medium',
-          display: 'none',
-        }}>
+          position: "fixed",
+          bottom: "0px",
+          width: "100vw",
+          height: "4vh",
+          textAlign: "center",
+          backgroundColor: "#ff6663",
+          justifyContent: "space-around",
+          alignItems: "center",
+          color: "white",
+          fontSize: "medium",
+          display: "none",
+        }}
+      >
         Offline Mode
       </div>
     </>

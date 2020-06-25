@@ -19,7 +19,7 @@ const Inventory = () => {
     <>
     <Navbar />
 		<div className="inventoryMainContainer">
-			<h1> Inventory </h1>
+			<h1 data-testId="inventoryHeader"> Inventory </h1>
 			{inventory.products.length > 0 ? (
 				inventory.products.map((cv) => {
 					return (
