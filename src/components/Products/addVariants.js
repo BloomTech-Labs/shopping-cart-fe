@@ -104,7 +104,7 @@ const AddVariants = ({
         </div>
 
         {active ? (
-          <div className='VariantFormContainer' data-testid="variantFormWrapper">
+          <div className='VariantFormContainer'>
             <form onSubmit={submitHandler}>
               <div className='variantNameContainer'>
                 <div className='inputContainer'>

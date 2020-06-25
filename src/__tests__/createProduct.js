@@ -125,7 +125,6 @@ describe('Create Product screen', () => {
     expect(Wrapper).toBeVisible();
   });
   // beginning of addVariants testing
-
   test('renders add variants container', () => {
     const { getByTestId } = renderWithProviders(<CreateProduct />);
     const Wrapper = getByTestId('addVariantsMainWrapper');
@@ -170,10 +169,29 @@ describe('Create Product screen', () => {
     expect(Button).toBeVisible();
     expect(Button).toBeEnabled();
   });
-
-  test('variant form container exists', () => {
+  // beginning of 'addPhoto' testing
+  test('renders add photo wrapper', () => {
     const { getByTestId } = renderWithProviders(<CreateProduct />);
-    const Wrapper = getByTestId('variantFormWrapper');
-    expect(Wrapper).toBeDisabled();
+    const Wrapper = getByTestId('addPhotoWrapper');
+    expect(Wrapper).toBeVisible();
+  });
+
+  test('renders add photo header wrapper', () => {
+    const { getByTestId } = renderWithProviders(<CreateProduct />);
+    const Header = getByTestId('photoHeaderWrapper');
+    expect(Header).toBeVisible();
+  });
+
+  test('renders Basic Details options', () => {
+    const { getByText } = renderWithProviders(<CreateProduct />);
+    const Header = getByText(/Photos/i);
+    expect(Header).toBeVisible();
+  });
+
+  test('renders create variants button', () => {
+    const { getByText } = renderWithProviders(<CreateProduct />);
+    const Button = getByText(/Add Photo/i);
+    expect(Button).toBeVisible();
+    expect(Button).toBeEnabled();
   });
 });
