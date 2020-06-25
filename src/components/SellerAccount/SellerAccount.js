@@ -38,7 +38,7 @@ function Account() {
     <div className='seller-account'>
       <Navbar />
       <div className='main'>
-        <h2>Account</h2>
+        <h2 data-testid="main">Account</h2>
         <Card
           className='Card'
           title='Your Stripe ID'
