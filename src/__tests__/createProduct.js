@@ -1,9 +1,8 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import renderWithProviders from '../utlities/renderWithProviders';
-
 import CreateProduct from '../components/Products/createProductView';
-import { getByTestId } from '@testing-library/react';
+import AddVariants from '../components/Products/addVariants';
 
 describe('Create Product screen', () => {
   // beginning of 'createProductView' testing
@@ -171,5 +170,10 @@ describe('Create Product screen', () => {
     expect(Button).toBeVisible();
     expect(Button).toBeEnabled();
   });
-  // left off line 90 on addVariants.js - still need addPhoto/message/updateItem done as well
+
+  test('variant form container exists', () => {
+    const { getByTestId } = renderWithProviders(<CreateProduct />);
+    const Wrapper = getByTestId('variantFormWrapper');
+    expect(Wrapper).toBeDisabled();
+  });
 });
