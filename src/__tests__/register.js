@@ -11,6 +11,11 @@ describe('register screen', () => {
     expect(logo).toBeVisible();
   });
 
+  test('renders the title', () => {
+    const { getAllByText } = renderWithProviders(<Container />);
+    const title = getAllByText(/register new account/i);
+    expect(title[0]).toBeVisible();
+  });
   test('renders the phone number input', () => {
     const { getByPlaceholderText } = renderWithProviders(<Container />);
     const phoneNumberField = getByPlaceholderText(/2348000001231/i);
