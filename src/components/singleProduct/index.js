@@ -1,4 +1,4 @@
-import React, { useStatem, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import StoreNav from '../store/StoreNav';
 import SingleProductView from './buyerSingleProductView';
