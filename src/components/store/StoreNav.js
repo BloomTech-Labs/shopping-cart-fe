@@ -10,6 +10,7 @@ import axiosWithAuth from "../Auth/axiosWithAuth";
 const StoreNav = props => {
   const [color, setColor] = useState();
   const [logo, setLogo] = useState();
+  const [storeName, setStoreName] = useState()
   const dispatch = useDispatch();
   const cartContents = useSelector(state => state.cart);
   const storeId = useSelector(state => state.user.user._id);
@@ -21,6 +22,7 @@ const StoreNav = props => {
       .then(res => {
         setColor(res.data.color);
         setLogo(res.data.logo);
+        setStoreName(res.data.businessName)
       })
       .catch(error => console.log(error));
     dispatch(creators.getStore(storeId));
@@ -30,9 +32,7 @@ const StoreNav = props => {
       return sum + item.quantity;
     }, 0);
   };
-  const change = e => {
-    dispatch(creators.setString(e.target.value));
-  };
+ 
   return (
     <div data-testid="navMasterContainer" className="navMasterContainer">
       <div
@@ -42,12 +42,13 @@ const StoreNav = props => {
       >
         {(
           <a href={"/store/" + storeId}>
-            <img data-testid="storeLogo" className="storeLogo" src={logo} />
+            <img data-testid="storeLogo" className="storeLogo" src={logo} alt=""/>
+             <h2>{storeName}</h2>
           </a>
         ) }
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
-        <img data-testid="searchIcon" className="searchIcon" src={search_icon} />
+        <img data-testid="searchIcon" className="searchIcon" src={search_icon} alt=""/>
         <input
           className="searchBar"
           placeholder="Search..."
