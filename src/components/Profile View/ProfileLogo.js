@@ -11,7 +11,7 @@ const ProfileLogo = ({ store }) => {
     e.preventDefault()
     AxiosAuth()
       .put(`https://shopping-cart-be.herokuapp.com/api/store/`, logo)
-      .then((res) => console.log("ProfileLogoSubmit", res.data))
+      .then((res) => console.log("ProfileLogoSubmit", res.data, window.location.reload()))
       .catch((err) => console.log(err.message))
   }
 
