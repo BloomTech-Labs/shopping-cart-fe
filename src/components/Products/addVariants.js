@@ -106,7 +106,7 @@ const AddVariants = ({ formData, setFormData, productData, setProductData }) => 
 												}
 												onClick={clearVariants}
 											>
-												Clear Varaints
+												Clear Variants
 											</p>
 										</div>
 									) : (
