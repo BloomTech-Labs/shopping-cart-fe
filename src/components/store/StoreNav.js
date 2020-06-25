@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import * as creators from "../../state/actionCreators";
-import NoLogo from "../../images/PureRetail_Logo.png";
+import { useSelector } from "react-redux";
 import history from "../../history";
 import search_icon from "../../images/search-icon.svg";
 import cart_icon from "../../images/cart-icon.svg";
-import axiosWithAuth from "../Auth/axiosWithAuth";
-const StoreNav = props => {
-  const [color, setColor] = useState();
-  const [logo, setLogo] = useState();
-  const [storeName, setStoreName] = useState()
-  const dispatch = useDispatch();
+
+const StoreNav = (props) => {
   const cartContents = useSelector(state => state.cart);
-  const storeId = useSelector(state => state.user.user._id);
+  const store = useSelector(state => state.user.user);
   const findRef = window.location.href;
-  useEffect(() => {
-    const Url = `https://shopping-cart-be.herokuapp.com/api/store/${storeId}`;
-    axiosWithAuth()
-      .get(Url)
-      .then(res => {
-        setColor(res.data.color);
-        setLogo(res.data.logo);
-        setStoreName(res.data.businessName)
-      })
-      .catch(error => console.log(error));
-    dispatch(creators.getStore(storeId));
-  }, [storeId, dispatch]);
   const totalQuantity = arr => {
     return arr.reduce((sum, item) => {
       return sum + item.quantity;
@@ -41,9 +23,9 @@ const StoreNav = props => {
         }}
       >
         {(
-          <a href={"/store/" + storeId}>
-            <img data-testid="storeLogo" className="storeLogo" src={logo} alt=""/>
-             <h2>{storeName}</h2>
+          <a href={"/store/" + store._id  }>
+            <img data-testid="storeLogo" className="storeLogo" src={store.logo} alt=""/>
+             <h2>{store.businessName}</h2>
           </a>
         ) }
       </div>
@@ -57,7 +39,7 @@ const StoreNav = props => {
       </form>
       <div data-testid="cartAboutContainer" className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
-        <div data-testid="badge" className="badge" style={{ background: `${color}` }}>
+        <div data-testid="badge" className="badge" style={{ background: `${store.color}` }}>
           <div data-testid="badgeNumber" className="badgeNumber">{totalQuantity(cartContents)}</div>
         </div>
         <NavLink to="/cart">

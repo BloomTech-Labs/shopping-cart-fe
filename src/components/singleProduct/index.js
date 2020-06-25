@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useStatem, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import StoreNav from '../store/StoreNav';
 import SingleProductView from './buyerSingleProductView';
-
+import * as creators from "../../state/actionCreators";
 function Single(props) {
+	const dispatch = useDispatch();
 	const productId = props.match.params.id;
 	const store = useSelector((state) => state.user);
-
+	useEffect(() => {
+		dispatch(creators.getCurrentUser());
+	}, [dispatch])
 	return (
 		<div>
-			<StoreNav store={store} />
+			<StoreNav store={store.user} />
 			<SingleProductView productId={productId} />
 		</div>
 	);
