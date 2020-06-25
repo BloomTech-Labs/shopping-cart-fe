@@ -10,6 +10,7 @@ describe('register screen', () => {
     const logo = getByAltText(/pureretail logo/i);
     expect(logo).toBeVisible();
   });
+
   test('renders the title', () => {
     const { getAllByText } = renderWithProviders(<Container />);
     const title = getAllByText(/register new account/i);
@@ -43,5 +44,26 @@ describe('register screen', () => {
     const { getByText } = renderWithProviders(<Container />);
     const loginLink = getByText('login');
     expect(loginLink).toBeVisible();
+  });
+
+  test('renders main registration image', () => {
+    const { getByAltText } = renderWithProviders(<Container />);
+    expect(getByAltText(/Registration/i)).toBeVisible();
+  });
+  test('renders colorful image background', () => {
+    const { getByTestId } = renderWithProviders(<Container />);
+    expect(getByTestId('imageBackground')).toBeVisible();
+  });
+  test('renders div that contains logo and main picture', () => {
+    const { getByTestId } = renderWithProviders(<Container />);
+    expect(getByTestId('desktopLogoDiv')).toBeVisible();
+  });
+  test('renders div that wraps the registration form', () => {
+    const { getByTestId } = renderWithProviders(<Container />);
+    expect(getByTestId('registrationFormDiv')).toBeVisible();
+  });
+  test('renders div that wraps login link', () => {
+    const { getByTestId } = renderWithProviders(<Container />);
+    expect(getByTestId('loginLinkWrapper')).toBeVisible();
   });
 });
