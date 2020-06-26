@@ -106,7 +106,7 @@ const ResetPassword = (props) => {
               )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <Button type='primary' htmlType='submit'>
+              <Button type='primary' htmltype='submit'>
                 Get link
               </Button>
             </Form.Item>

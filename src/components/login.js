@@ -3,7 +3,7 @@ import axios from 'axios';
 import withAuth from './Auth/axiosWithAuth';
 import { Link } from 'react-router-dom';
 import { Form, Input, Icon, message, Spin } from 'antd';
-import Logo from './elements/logo';
+
 import history from '../history';
 import { connect } from 'react-redux';
 import { setLoading, setErrors, clearErrors } from '../state/actionCreators';
@@ -82,21 +82,21 @@ const Login = (props) => {
 
   const loginForm = (
     <Spin spinning={props.isLoading}>
-      <div className='cover'>
+      <div data-testid='imageBackground' className='cover'>
         <div className='desktop-logo'>
           <div className='desktop-logo-large'>
             <img
               src='https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-              alt='Login Image'
+              alt='Login'
               height='400'
               className='loginPicture'
             />
           </div>
         </div>
-        <Logo />
-        <div className='desktop-form'>
+        <div data-testid='loginFormWrapper' className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <img
+              data-testid='loginLogo'
               className='pureRetailImage'
               src='pureRetail-2020-logo.svg'
               alt='pure retail logo'
@@ -118,6 +118,7 @@ const Login = (props) => {
                 <Input
                   className='form-input'
                   placeholder='Phone number'
+                  data-testid='phoneNumberInput'
                   prefix={
                     <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
@@ -134,6 +135,7 @@ const Login = (props) => {
                 ],
               })(
                 <Input.Password
+                  data-testid='loginPasswordInput'
                   className='form-input'
                   placeholder='Password'
                   prefix={
@@ -147,12 +149,13 @@ const Login = (props) => {
                 <Link to='/resetpassword'>Forgot password?</Link>
               </p>
               <button
+                data-testid='loginButton'
                 className='loginButtons loginButton'
                 type='primary'
                 htmltype='submit'>
                 Login
               </button>
-              <div id='or_login'>
+              <div data-testid='createStoreButton' id='or_login'>
                 <Link className='createStoreLink' to='/register'>
                   <p className='loginButtons createStore'>Create Store</p>
                 </Link>
