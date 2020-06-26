@@ -10,19 +10,20 @@ const CategoryPicker = ({ categories, setCategorySearch }) => {
 				margin: '100px'
 			}}
 		>
-			<div className="optionWrapper">
-				<button
-					className="categoryButton"
+		<div data-testid='optionWrapper' className="optionWrapper">
+			<button
+				className="categoryButton"
 					onClick={() => {
 						setCategorySearch('');
-					}}
-				>
+				}}
+			>
 					All
 				</button>
 				{categories &&
 					categories.map((item) => {
 						return (
 							<button
+								data-testid="categoryButton"
 								className="categoryButton"
 								onClick={() => {
 									setCategorySearch(item.toLowerCase());
