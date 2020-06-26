@@ -69,7 +69,6 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
                   ) : (
                     <h3>${cv.price}</h3>
                   )}
-
                   <img src={times_icon} alt="cartImage" />
                   <div className="quantityContainer">
                     <img

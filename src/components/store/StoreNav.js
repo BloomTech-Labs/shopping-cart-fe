@@ -27,13 +27,13 @@ const StoreNav = (props) => {
             <img data-testid="storeLogo" className="storeLogo" src={store.logo} alt=""/>
              <h2>{store.businessName}</h2>
           </a>
-        ) }
+        )}
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
         <img data-testid="searchIcon" className="searchIcon" src={search_icon} alt=""/>
         <input
-          className="searchBar"
-          placeholder="Search..."
+          className='searchBar'
+          placeholder='Search...'
           onChange={props.change}
         />
       </form>
