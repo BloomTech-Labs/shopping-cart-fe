@@ -47,11 +47,11 @@ const Orders = ({ currency }) => {
             item.orderItem.map((product) => (
               <tr>
                 <td>
-                  {product.product._id
-                    ? product.product._id.substr(product.product._id.length - 5)
+                  {item._id
+                    ? item._id.substr(item._id.length - 5)
                     : 0}
                 </td>
-                <td>{product.product.productName}</td>
+                {/* <td>{product.product.productName}</td> */}
                 <td>{product.quantity}</td>
                 <td>Ready</td>
                 <td>{moment(item.orderCreated).format("MM-DD-YYYY")}</td>

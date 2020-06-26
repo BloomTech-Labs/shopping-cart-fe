@@ -32,8 +32,8 @@ const StoreNav = (props) => {
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
         <img data-testid="searchIcon" className="searchIcon" src={search_icon} alt=""/>
         <input
-          className='searchBar'
-          placeholder='Search...'
+          className="searchBar"
+          placeholder="Search..."
           onChange={props.change}
         />
       </form>
@@ -43,7 +43,7 @@ const StoreNav = (props) => {
           <div data-testid="badgeNumber" className="badgeNumber">{totalQuantity(cartContents)}</div>
         </div>
         <NavLink to="/cart">
-          <img alt='Cart icon' src={cart_icon} />
+          <img alt="Cart icon" src={cart_icon} />
         </NavLink>
       </div>
     </div>
