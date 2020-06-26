@@ -18,8 +18,7 @@ const Orders = ({ currency }) => {
 
   const dashboard = useSelector((state) => state.dashboard)
   const orders = useSelector((state) => state.orders)
-  console.log("orders", orders)
-  console.log("Dashboard", dashboard)
+ 
 
   return (
     <div className="dashboard">
@@ -56,7 +55,9 @@ const Orders = ({ currency }) => {
                 <td>{product.quantity}</td>
                 <td>Ready</td>
                 <td>{moment(item.orderCreated).format("MM-DD-YYYY")}</td>
-                <button>View Order</button>
+                <NavLink to={`/order/${item._id}`}>
+                  <button>View Order</button>
+                </NavLink>
               </tr>
             ))
           )}

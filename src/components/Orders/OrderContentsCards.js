@@ -41,6 +41,7 @@ const OrderContentsCards = ({ order, RemoveItem, orderCanceled }) => {
 									</div>
 								) : (
 									<img
+										alt= ''
 										className={orderCanceled ? 'hidden' : ''}
 										src={trashIcon}
 										onClick={() => {
