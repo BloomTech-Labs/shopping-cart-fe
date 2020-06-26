@@ -62,5 +62,13 @@
   },
   "devDependencies": {
     "standard": "^14.3.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
+    ]
   }
 }

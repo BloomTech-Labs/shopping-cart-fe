@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import * as creators from '../../state/actionCreators';
-import NoLogo from '../../images/PureRetail_Logo.png';
-import history from '../../history';
-import search_icon from '../../images/search-icon.svg';
-import cart_icon from '../../images/cart-icon.svg';
-import axiosWithAuth from '../Auth/axiosWithAuth';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as creators from "../../state/actionCreators";
+import NoLogo from "../../images/PureRetail_Logo.png";
+import history from "../../history";
+import search_icon from "../../images/search-icon.svg";
+import cart_icon from "../../images/cart-icon.svg";
+import axiosWithAuth from "../Auth/axiosWithAuth";
 const StoreNav = (props) => {
   const [color, setColor] = useState();
   const [logo, setLogo] = useState();
@@ -40,27 +40,37 @@ const StoreNav = (props) => {
           history.goBack();
         }}
       >
-        {(
+        {
           <a href={"/store/" + storeId}>
             <img data-testid="storeLogo" className="storeLogo" src={logo} />
           </a>
         }
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
-        <img data-testid="searchIcon" className="searchIcon" src={search_icon} />
+        <img
+          data-testid="searchIcon"
+          className="searchIcon"
+          src={search_icon}
+        />
         <input
-          className='searchBar'
-          placeholder='Search...'
+          className="searchBar"
+          placeholder="Search..."
           onChange={props.change}
         />
       </form>
       <div data-testid="cartAboutContainer" className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
-        <div data-testid="badge" className="badge" style={{ background: `${color}` }}>
-          <div data-testid="badgeNumber" className="badgeNumber">{totalQuantity(cartContents)}</div>
+        <div
+          data-testid="badge"
+          className="badge"
+          style={{ background: `${color}` }}
+        >
+          <div data-testid="badgeNumber" className="badgeNumber">
+            {totalQuantity(cartContents)}
+          </div>
         </div>
         <NavLink to="/cart">
-          <img alt='Cart icon' src={cart_icon} />
+          <img alt="Cart icon" src={cart_icon} />
         </NavLink>
       </div>
     </div>
