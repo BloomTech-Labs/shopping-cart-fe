@@ -25,11 +25,7 @@ const LogoUpdate = (props) => {
     setLoading(false);
   };
   return (
-<<<<<<< HEAD
-    <div className="logoDiv" data-testid='logoupdatewrapper'>
-=======
     <div className='logoDiv' data-testid='logoupdatewrapper'>
->>>>>>> 68bd34ae6db3a764e7d711e3f3722923a6de5b17
       <h3>Add your logo!</h3>
       {loading ? (
         <p>Loading...</p>
