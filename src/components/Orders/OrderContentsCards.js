@@ -20,9 +20,13 @@ const OrderContentsCards = ({ order, RemoveItem, orderCanceled }) => {
 						<div key={Math.random()} className="OrderContents">
 							<div className="orderItemInfo">
 								<h3> {cv.quantity} </h3>
-								<img src={timesIcon} />
+								<img src={timesIcon} alt= '' />
 								<div className="productContainer">
+								{cv.product ? (
 									<h3> {cv.product.productName} </h3>
+									) : (
+									<h3>"Product is deleted"</h3>
+								)}
 									<h4> {cv.chosenVariant ? cv.chosenVariant.option : ''}</h4>
 								</div>
 							</div>

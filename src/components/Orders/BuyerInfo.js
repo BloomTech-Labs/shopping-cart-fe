@@ -112,7 +112,7 @@ const BuyerInfo = ({ fullOrder, setOrderCanceled, orderId }) => {
 				) : (
 					<div>
 						<button
-							className={buttonStatus == 'Complete Order' ? 'completeBTN' : 'ReadyBTN'}
+							className={buttonStatus === 'Complete Order' ? 'completeBTN' : 'ReadyBTN'}
 							onClick={() => {
 								nextStatus(currentStatus);
 							}}
