@@ -9,6 +9,7 @@ const ColorPicker = (props) => {
     <div className='colorPicker' data-testid='colorpickerbox'>
       <h3 className='selectBrandColor'>Select your brand color!</h3>
       <TwitterPicker
+      data-testid='colorpicker'
         color={color}
         onChangeComplete={(color) => {
           setColor(color.hex);
