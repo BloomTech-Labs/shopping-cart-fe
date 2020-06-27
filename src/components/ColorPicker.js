@@ -6,7 +6,11 @@ import { colorUpload } from '../state/actionCreators';
 const ColorPicker = (props) => {
   const [color, setColor] = useState('');
   return (
+<<<<<<< HEAD
     <div className='colorPicker' data-testid='colorpickerwrapper'>
+=======
+    <div className='colorPicker' data-testid='colorpickerbox'>
+>>>>>>> 68bd34ae6db3a764e7d711e3f3722923a6de5b17
       <h3 className='selectBrandColor'>Select your brand color!</h3>
       <TwitterPicker
       data-testid='colorpicker'
@@ -18,7 +22,11 @@ const ColorPicker = (props) => {
         }}
       />
       <div
+<<<<<<< HEAD
       data-testid="colorpickerbox"
+=======
+        data-testid='colorpickerwrapper'
+>>>>>>> 68bd34ae6db3a764e7d711e3f3722923a6de5b17
         style={{
           backgroundColor: color,
           height: '50px',

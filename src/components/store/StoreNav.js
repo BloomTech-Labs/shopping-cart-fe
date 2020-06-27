@@ -7,60 +7,70 @@ import history from "../../history";
 import search_icon from "../../images/search-icon.svg";
 import cart_icon from "../../images/cart-icon.svg";
 import axiosWithAuth from "../Auth/axiosWithAuth";
-const StoreNav = props => {
+const StoreNav = (props) => {
   const [color, setColor] = useState();
   const [logo, setLogo] = useState();
   const dispatch = useDispatch();
-  const cartContents = useSelector(state => state.cart);
-  const storeId = useSelector(state => state.user.user._id);
+  const cartContents = useSelector((state) => state.cart);
+  const storeId = useSelector((state) => state.user.user._id);
   const findRef = window.location.href;
   useEffect(() => {
     const Url = `https://shopping-cart-be.herokuapp.com/api/store/${storeId}`;
     axiosWithAuth()
       .get(Url)
-      .then(res => {
+      .then((res) => {
         setColor(res.data.color);
         setLogo(res.data.logo);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
     dispatch(creators.getStore(storeId));
   }, [storeId, dispatch]);
-  const totalQuantity = arr => {
+  const totalQuantity = (arr) => {
     return arr.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0);
   };
-  const change = e => {
+  const change = (e) => {
     dispatch(creators.setString(e.target.value));
   };
   return (
-    <div className="navMasterContainer">
+    <div data-testid="navMasterContainer" className="navMasterContainer">
       <div
         onClick={() => {
           history.goBack();
         }}
       >
-        {(
+        {
           <a href={"/store/" + storeId}>
-            <img className="storeLogo" src={logo} />
+            <img data-testid="storeLogo" className="storeLogo" src={logo} />
           </a>
-        ) }
+        }
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
-        <img className="searchIcon" src={search_icon} />
+        <img
+          data-testid="searchIcon"
+          className="searchIcon"
+          src={search_icon}
+        />
         <input
           className="searchBar"
           placeholder="Search..."
           onChange={props.change}
         />
       </form>
-      <div className="cartAboutContainer">
+      <div data-testid="cartAboutContainer" className="cartAboutContainer">
         <p className="aboutUs"> About Us</p>
-        <div className="badge" style={{ background: `${color}` }}>
-          <div className="badgeNumber">{totalQuantity(cartContents)}</div>
+        <div
+          data-testid="badge"
+          className="badge"
+          style={{ background: `${color}` }}
+        >
+          <div data-testid="badgeNumber" className="badgeNumber">
+            {totalQuantity(cartContents)}
+          </div>
         </div>
         <NavLink to="/cart">
-          <img src={cart_icon} />
+          <img alt="Cart icon" src={cart_icon} />
         </NavLink>
       </div>
     </div>

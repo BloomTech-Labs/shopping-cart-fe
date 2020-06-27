@@ -82,7 +82,7 @@ const Login = (props) => {
 
   const loginForm = (
     <Spin spinning={props.isLoading}>
-      <div className='cover'>
+      <div data-testid='imageBackground' className='cover'>
         <div className='desktop-logo'>
           <div className='desktop-logo-large'>
             <img
@@ -93,10 +93,10 @@ const Login = (props) => {
             />
           </div>
         </div>
-
-        <div className='desktop-form'>
+        <div data-testid='loginFormWrapper' className='desktop-form'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
             <img
+              data-testid='loginLogo'
               className='pureRetailImage'
               src='pureRetail-2020-logo.svg'
               alt='pure retail logo'
@@ -118,6 +118,7 @@ const Login = (props) => {
                 <Input
                   className='form-input'
                   placeholder='Phone number'
+                  data-testid='phoneNumberInput'
                   prefix={
                     <Icon type='phone' style={{ color: 'rgba(0,0,0,.70)' }} />
                   }
@@ -134,6 +135,7 @@ const Login = (props) => {
                 ],
               })(
                 <Input.Password
+                  data-testid='loginPasswordInput'
                   className='form-input'
                   placeholder='Password'
                   prefix={
@@ -147,12 +149,13 @@ const Login = (props) => {
                 <Link to='/resetpassword'>Forgot password?</Link>
               </p>
               <button
+                data-testid='loginButton'
                 className='loginButtons loginButton'
                 type='primary'
                 htmltype='submit'>
                 Login
               </button>
-              <div id='or_login'>
+              <div data-testid='createStoreButton' id='or_login'>
                 <Link className='createStoreLink' to='/register'>
                   <p className='loginButtons createStore'>Create Store</p>
                 </Link>

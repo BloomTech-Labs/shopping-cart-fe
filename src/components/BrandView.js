@@ -28,7 +28,11 @@ const BrandView = (props) => {
     });
   }, []);
   return (
+<<<<<<< HEAD
     <div data-testid='brandwrapper' className='brandwrapper'>
+=======
+    <div className='brandWrapper' data-testid='brandwrapper'>
+>>>>>>> 68bd34ae6db3a764e7d711e3f3722923a6de5b17
       <div className='headerWrapper' data-testid='headerwrapper'>
         <h2 className='welcomeHeader'>Almost Done</h2>
         <h3>Add your logo and most prominent brand color</h3>
