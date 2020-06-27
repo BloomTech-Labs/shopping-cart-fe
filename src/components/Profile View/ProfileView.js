@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react"
 import ProfileForm from "./ProfileForm"
-import ProfileLogo from "./ProfileLogo"
-import ProfileColor from "./ProfileColor"
 import Navbar from "../Navbar"
 import AxiosAuth from "../Auth/axiosWithAuth"
 
-const ProfileView = (props) => {
+const ProfileView = () => {
   const [store, setStore] = useState()
 
   useEffect(() => {
@@ -17,22 +15,13 @@ const ProfileView = (props) => {
       .catch((err) => {
         console.log(err)
       })
-  }, [props])
-
+  }, [setStore])
 
   return (
-    <div className = "profileViewContainer">
+    <div className="profileViewContainer">
       <Navbar />
       <h1>Profile</h1>
-      {store && (
-        <div className="profileViewWrapper">
-          <div className = "firstWrapper">
-            <ProfileLogo store={store} />
-            <ProfileColor store={store} />
-          </div>
-          <ProfileForm store={store} />
-        </div>
-      )}
+      {store && <ProfileForm store={store} />}
     </div>
   )
 }
