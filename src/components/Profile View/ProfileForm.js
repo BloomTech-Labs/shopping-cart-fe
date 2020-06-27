@@ -3,15 +3,15 @@ import AxiosAuth from "../Auth/axiosWithAuth"
 
 const ProfileForm = ({ store }) => {
   const [input, setInput] = useState({
-    businessName: "",
-    ownerName: "",
-    address: "",
-    secondAddress: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    hours: "",
-    curbHours: "",
+    businessName: store.businessName,
+    ownerName: store.ownerName,
+    address: store.address,
+    secondAddress: store.secondAddress  ,
+    city: store.city,
+    state: store.state,
+    zipcode: store.zipcode,
+    hours: store.hours,
+    curbHours: store.curbHours
   })
 
   const handleChange = (e) => {
@@ -39,21 +39,21 @@ const ProfileForm = ({ store }) => {
                 value={input.businessName}
                 name="businessName"
                 onChange={handleChange}
-                placeholder={store.businessName}
+             
               />
               <label>Owner Name</label>
               <input
                 value={input.ownerName}
                 name="ownerName"
                 onChange={handleChange}
-                placeholder={store.ownerName}
+        
               />
               <label>Address</label>
               <input
                 value={input.address}
                 name="address"
                 onChange={handleChange}
-                placeholder={store.address}
+        
               />
             </section>
             <section className="secondSection">
@@ -62,21 +62,21 @@ const ProfileForm = ({ store }) => {
                 value={input.city}
                 name="city"
                 onChange={handleChange}
-                placeholder={store.city}
+   
               />
               <label>State</label>
               <input
                 value={input.state}
                 name="state"
                 onChange={handleChange}
-                placeholder={store.state}
+           
               />
               <label>Zipcode</label>
               <input
                 value={input.zipcode}
                 name="zipcode"
                 onChange={handleChange}
-                placeholder={store.zipcode}
+        
               />
             </section>
           </main>
@@ -86,14 +86,14 @@ const ProfileForm = ({ store }) => {
             value={input.hours}
             name="hours"
             onChange={handleChange}
-            placeholder={store.hours}
+
           />
           <label>Curbside Pick up Hours</label>
           <input
             value={input.curbHours}
             name="curbHours"
             onChange={handleChange}
-            placeholder={store.curbHours}
+
           />
           </section>
           <button>Update Profile</button>
