@@ -89,7 +89,7 @@ function SingleProductView(props) {
   console.log("ProductState", productState)
 
   return (
-    <div className="singleProductContainer">
+    <div className="singleProductContainer" data-testid="singleProductViewWrapper">
       <div className="photoSection">
         <div className="allPhotos">
           {fullProduct.images
