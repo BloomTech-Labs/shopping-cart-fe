@@ -63,15 +63,20 @@ const CreateProductView = () => {
   return (
     <>
       <Navbar />
-      <div className='createProductView'>
-        <div className='createProductHeader'>
-          <h1>Create Product</h1>
-          <button onClick={submitHandler} className='createProduct'>
+      <div className='createProductView' data-testid='createProductWrapper'>
+        <div
+          className='createProductHeader'
+          data-testid='createProductSecondaryWrapper'>
+          <h1 data-testid='mainProductHeader'>Create Product</h1>
+          <button
+            data-testid='saveProductButton'
+            onClick={submitHandler}
+            className='createProduct'>
             Save Product
           </button>
         </div>
-        <div className='basicDetailsVariantsContainer'>
-          <div className='leftContainer'>
+        <div className='basicDetailsVariantsContainer' data-testid="basicDetailsVariantsWrapper">
+          <div className='leftContainer' data-testid="basicDetailsLeftWrapper">
             <Addphoto
               productData={productData}
               setProductData={setProductData}
