@@ -4,11 +4,7 @@ import renderWithProviders from '../utlities/renderWithProviders';
 
 import BrandView from '../components/BrandView';
 
-<<<<<<< HEAD
-describe('login screen', () => {
-=======
 describe('brandview screen', () => {
->>>>>>> 68bd34ae6db3a764e7d711e3f3722923a6de5b17
   test('renders the main wrapper', () => {
     const { getByTestId } = renderWithProviders(<BrandView />);
     const Brandwrapper = getByTestId('brandwrapper');
