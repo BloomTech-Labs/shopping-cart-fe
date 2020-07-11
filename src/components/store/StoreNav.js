@@ -1,36 +1,54 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import history from "../../history";
-import search_icon from "../../images/search-icon.svg";
-import cart_icon from "../../images/cart-icon.svg";
+import React, { useState } from "react"
+import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import history from "../../history"
+import search_icon from "../../images/search-icon.svg"
+import cart_icon from "../../images/cart-icon.svg"
+import Modal from "../mapbox/modal"
 
 const StoreNav = (props) => {
-  const cartContents = useSelector(state => state.cart);
-  const store = useSelector(state => state.user.user);
-  const findRef = window.location.href;
-  const totalQuantity = arr => {
+  const [show, setShow] = useState(false)
+  const cartContents = useSelector((state) => state.cart)
+  const store = useSelector((state) => state.user.user)
+  const findRef = window.location.href
+  const totalQuantity = (arr) => {
     return arr.reduce((sum, item) => {
-      return sum + item.quantity;
-    }, 0);
-  };
- 
+      return sum + item.quantity
+    }, 0)
+  }
+  const closeModal = () => {
+    setShow(false)
+  }
+  const openModal = () => {
+    setShow(true)
+  }
+
   return (
     <div data-testid="navMasterContainer" className="navMasterContainer">
       <div
         onClick={() => {
-          history.goBack();
+          history.goBack()
         }}
       >
-        {(
-          <a href={"/store/" + store._id  }>
-            <img data-testid="storeLogo" className="storeLogo" src={store.logo} alt=""/>
-             <h2>{store.businessName}</h2>
+        {
+          <a href={"/store/" + store._id}>
+            <img
+              data-testid="storeLogo"
+              className="storeLogo"
+              src={store.logo}
+              alt=""
+            />
+            <h2>{store.businessName}</h2>
           </a>
-        )}
+        }
       </div>
       <form className={findRef.includes("store") ? "fakeSearchBar" : "hidden"}>
-        <img data-testid="searchIcon" className="searchIcon" src={search_icon} alt=""/>
+        <img
+          data-testid="searchIcon"
+          className="searchIcon"
+          src={search_icon}
+          alt=""
+        />
         <input
           className="searchBar"
           placeholder="Search..."
@@ -38,15 +56,25 @@ const StoreNav = (props) => {
         />
       </form>
       <div data-testid="cartAboutContainer" className="cartAboutContainer">
-        <p className="aboutUs"> About Us</p>
-        <div data-testid="badge" className="badge" style={{ background: `${store.color}` }}>
-          <div data-testid="badgeNumber" className="badgeNumber">{totalQuantity(cartContents)}</div>
+        {show ? <div onClick={closeModal} className="back-drop"></div> : null}
+        <button className="aboutUs" onClick={openModal}>
+          About Us
+        </button>
+        <Modal className="modal" show={show} close={closeModal} user={store} />
+        <div
+          data-testid="badge"
+          className="badge"
+          style={{ background: `${store.color}` }}
+        >
+          <div data-testid="badgeNumber" className="badgeNumber">
+            {totalQuantity(cartContents)}
+          </div>
         </div>
         <NavLink to="/cart">
           <img alt="Cart icon" src={cart_icon} />
         </NavLink>
       </div>
     </div>
-  );
-};
-export default StoreNav;
+  )
+}
+export default StoreNav
