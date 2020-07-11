@@ -18,30 +18,28 @@ import StripeMain from './components/Stripe';
 import CartView from './components/cart/CartView';
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
 import Single from './components/singleProduct/index'; // buyerSingleProductView
-import Support from './components/support';
 import SaveCartMain from './components/saveCart';
 import Account from './components/SellerAccount/SellerAccount';
-import Confirmation from './components/orderConfirmation';
 import WelcomeScreenForm from './components/WelcomeScreen/WelcomeScreen';
 import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
-import CreateProductView from "./components/Products/createProductView"
+import CreateProductView from './components/Products/createProductView';
 import Update from './components/Update';
-import ProfileView from './components/Profile View/ProfileView'
-import OrderDetailsView from "./components/Orders/OrderDetailsView"
+import ProfileView from './components/ProfileView';
+import OrderDetailsView from './components/Orders/OrderDetailsView';
 
 function App() {
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     function handleNetworkChange(event) {
       // delete this comment
       if (navigator.onLine) {
-        document.getElementById("offline-notification").style.display = "none";
+        document.getElementById('offline-notification').style.display = 'none';
       } else {
-        document.getElementById("offline-notification").style.display = "flex";
+        document.getElementById('offline-notification').style.display = 'flex';
       }
     }
-    window.addEventListener("online", handleNetworkChange);
-    window.addEventListener("offline", handleNetworkChange);
+    window.addEventListener('online', handleNetworkChange);
+    window.addEventListener('offline', handleNetworkChange);
   });
   return (
     <>
@@ -60,40 +58,33 @@ function App() {
         <PublicRoute path='/resetpassword' component={ResetPasswordForm} />
         <PublicRoute path='/setnewpassword' component={SetNewPasswordForm} />
         <PublicRoute path='/store/:id' component={StoreView} />
-        <PublicRoute
-          path='/cart/:id'
-          component={localStorage.getItem("token") ? Confirmation : StripeMain}
-        />
         <PublicRoute path='/cart' component={CartView} />
         <PublicRoute path='/savecart' component={SaveCartMain} />
         <PrivateRoute path='/createstore' component={CreateStoreForm} />
         <PrivateRoute path='/addlogo' component={AddLogoForm} />
-        <PrivateRoute path='/profile' component={UpdateProfile} />
         <PrivateRoute path='/createitem' component={CreateProductView} />
         <PrivateRoute path='/dashboard' component={Home} />
         <PrivateRoute path='/updateitem/:id' component={UpdateItem} />
         <PrivateRoute path='/order/:id' component={OrderDetailsView} />
         <PublicRoute path='/product/:id' component={Single} />
         <PublicRoute path='/success' component={OrderSuccessPage} />
-        <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
       </Switch>
       <div
         id='offline-notification'
         style={{
-          position: "fixed",
-          bottom: "0px",
-          width: "100vw",
-          height: "4vh",
-          textAlign: "center",
-          backgroundColor: "#ff6663",
-          justifyContent: "space-around",
-          alignItems: "center",
-          color: "white",
-          fontSize: "medium",
-          display: "none",
-        }}
-      >
+          position: 'fixed',
+          bottom: '0px',
+          width: '100vw',
+          height: '4vh',
+          textAlign: 'center',
+          backgroundColor: '#ff6663',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          color: 'white',
+          fontSize: 'medium',
+          display: 'none',
+        }}>
         Offline Mode
       </div>
     </>
