@@ -17,7 +17,6 @@ import StripeMain from './components/Stripe';
 import CartView from './components/cart/CartView';
 import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
 import Single from './components/singleProduct/index'; // buyerSingleProductView
-import Support from './components/support';
 import SaveCartMain from './components/saveCart';
 import Account from './components/SellerAccount/SellerAccount';
 import WelcomeScreenForm from './components/WelcomeScreen/WelcomeScreen';
@@ -68,7 +67,6 @@ function App() {
         <PrivateRoute path='/order/:id' component={OrderDetailsView} />
         <PublicRoute path='/product/:id' component={Single} />
         <PublicRoute path='/success' component={OrderSuccessPage} />
-        <PublicRoute exact path='/support' component={Support} />
         <PrivateRoute path='/account' component={Account} />
       </Switch>
       <div
