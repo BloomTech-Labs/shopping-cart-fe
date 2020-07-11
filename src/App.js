@@ -1,34 +1,34 @@
-import React from "react";
-import { Switch } from "react-router-dom";
-import "./less/index.less";
-import WrappedRegistrationForm from "./components/register";
-import LoginForm from "./components/login";
-import ResetPasswordForm from "./components/ResetPassword/resetPassword";
-import SetNewPasswordForm from "./components/ResetPassword/setNewPassword";
-import CreateStoreForm from "./components/createStore/firstView";
-import AddLogoForm from "./components/createStore/addLogo";
-import UpdateItem from "./components/Products/updateItem";
-import PrivateRoute from "./components/Auth/PrivateRoute";
-import PublicRoute from "./components/Auth/PublicRoute";
-import Inventory from "./components/inventory/inventory";
-import UpdateProfile from "./components/EditProfile";
-import Home from "./components/DashboardHome";
-import StoreView from "./components/store/StoreView";
-import StripeMain from "./components/Stripe";
-import CartView from "./components/cart/CartView";
-import OrderSuccessPage from "./components/Stripe/OrderSuccessPage";
-import Single from "./components/singleProduct/index"; // buyerSingleProductView
-import Support from "./components/support";
-import SaveCartMain from "./components/saveCart";
-import Account from "./components/SellerAccount/SellerAccount";
-import Confirmation from "./components/orderConfirmation";
-import WelcomeScreenForm from "./components/WelcomeScreen/WelcomeScreen";
-import BrandView from "./components/BrandView";
-import ColorPicker from "./components/ColorPicker";
-import CreateProductView from "./components/Products/createProductView";
-import Update from "./components/Update";
-import ProfileView from "./components/ProfileView";
-import OrderDetailsView from "./components/Orders/OrderDetailsView";
+import React from 'react';
+import { Switch } from 'react-router-dom';
+import './less/index.less';
+import WrappedRegistrationForm from './components/register';
+import LoginForm from './components/login';
+import ResetPasswordForm from './components/ResetPassword/resetPassword';
+import SetNewPasswordForm from './components/ResetPassword/setNewPassword';
+import CreateStoreForm from './components/createStore/firstView';
+import AddLogoForm from './components/createStore/addLogo';
+import UpdateItem from './components/Products/updateItem';
+import PrivateRoute from './components/Auth/PrivateRoute';
+import PublicRoute from './components/Auth/PublicRoute';
+import Inventory from "./components/inventory/inventory"
+import UpdateProfile from './components/EditProfile';
+import Home from './components/DashboardHome';
+import StoreView from './components/store/StoreView';
+import StripeMain from './components/Stripe';
+import CartView from './components/cart/CartView';
+import OrderSuccessPage from './components/Stripe/OrderSuccessPage';
+import Single from './components/singleProduct/index'; // buyerSingleProductView
+import Support from './components/support';
+import SaveCartMain from './components/saveCart';
+import Account from './components/SellerAccount/SellerAccount';
+import Confirmation from './components/orderConfirmation';
+import WelcomeScreenForm from './components/WelcomeScreen/WelcomeScreen';
+import BrandView from './components/BrandView';
+import ColorPicker from './components/ColorPicker';
+import CreateProductView from "./components/Products/createProductView"
+import Update from './components/Update';
+import ProfileView from './components/Profile View/ProfileView'
+import OrderDetailsView from "./components/Orders/OrderDetailsView"
 
 function App() {
   window.addEventListener("load", () => {

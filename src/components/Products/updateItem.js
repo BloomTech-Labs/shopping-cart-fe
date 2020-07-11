@@ -29,7 +29,7 @@ function UpdateItem(props) {
 		AxiosAuth().get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`).then((res) => {
 			setProductData(res.data);
 		});
-	}, []);
+	}, [itemId]);
 
 	// inventory gets all of the products from the redux store (redux store is calling the db)
 	const inventory = useSelector((state) => state.store);
@@ -88,7 +88,7 @@ function UpdateItem(props) {
 			});
 	}
 
-	function removeProudct() {
+	function removeProduct() {
 		AxiosAuth()
 			.delete(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`)
 			.then((res) => {
@@ -114,7 +114,7 @@ function UpdateItem(props) {
 				<div className="createProductHeader">
 					<h1>Edit Product</h1>
 					<div className="actionContainer">
-						<button onClick={removeProudct} className="removeProduct">
+						<button onClick={removeProduct} className="removeProduct">
 							Remove Product
 						</button>
 
