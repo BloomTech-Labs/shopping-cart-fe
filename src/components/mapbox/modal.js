@@ -8,7 +8,7 @@ import ReactMapGL, {
 import Geocode from "react-geocode"
 import location from "../../images/location.svg"
 
-const googleApiToken = "AIzaSyCnnh2wSM9K5n2m8BCgXOMWeIcUcdf8SMg"
+const googleApiToken = "AIzaSyCGitfTdb5_Ws7YW5bw96WUk0MjlDknV7E"
 const mapboxApiToken =
   "pk.eyJ1IjoiYXJpdWthMTEiLCJhIjoiY2tjYjU4djRmMHE4azM0cWtsOWY0OXR4MSJ9.nXeE9BwATwbesLeJJxJTAw"
 
