@@ -61,7 +61,8 @@
     ]
   },
   "devDependencies": {
-    "standard": "^14.3.3"
+    "standard": "^14.3.3",
+    "supertest": "^4.0.2"
   },
   "jest": {
     "collectCoverageFrom": [
