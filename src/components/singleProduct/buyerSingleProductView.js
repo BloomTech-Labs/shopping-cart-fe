@@ -135,7 +135,7 @@ function SingleProductView(props) {
           </div>
 
           {fullProduct.variantDetails &&
-          fullProduct.variantDetails.length > 1 ? (
+          fullProduct.variantDetails.length > 0 ? (
             <div className="variant">
               <label htmlFor="">Chosen Name</label>
               <select onChange={variandChangeHandler}>

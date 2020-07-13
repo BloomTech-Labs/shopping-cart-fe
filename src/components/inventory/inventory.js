@@ -29,7 +29,7 @@ const Inventory = () => {
 								<div className="productInfo">
 									<h2> {cv.productName}</h2>
 									<h4>
-										{cv.category} <span> / </span> {`Varients: ${cv.variantDetails.length}`}
+										{cv.category} <span> / </span> {`Variants: ${cv.variantDetails.length}`}
 									</h4>
 								</div>
 							</div>

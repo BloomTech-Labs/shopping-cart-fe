@@ -10,12 +10,12 @@ export const getCurrentUser = () => (dispatch) => {
     AxiosAuth()
         .get(getUserUrl)
         .then((res) => {
-            console.log("res", res)
+         
             dispatch({ type: types.GET_CURRENT_USER, payload: res.data });
             AxiosAuth()
                 .get(`https://shopping-cart-be.herokuapp.com/api/store/${res.data._id}/products`)
                 .then((res) => {
-                    console.log("RES", res)
+                 
                     if(res.data) {
                         const getAllCategories = res.data.map((cv) => {
                             return cv.category;

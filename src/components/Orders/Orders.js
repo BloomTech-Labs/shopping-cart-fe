@@ -18,8 +18,7 @@ const Orders = ({ currency }) => {
 
   const dashboard = useSelector((state) => state.dashboard)
   const orders = useSelector((state) => state.orders)
-  console.log("orders", orders)
-  console.log("Dashboard", dashboard)
+
 
   return (
     <div className="dashboard">
@@ -44,22 +43,25 @@ const Orders = ({ currency }) => {
           <th></th>
         </tr>
         {orders &&
-          orders.map((item) =>
-            item.orderItem.map((product) => (
-              <tr>
-                <td>
-                  {product.product._id
-                    ? product.product._id.substr(product.product._id.length - 5)
-                    : 0}
-                </td>
-                <td>{product.product.productName}</td>
-                <td>{product.quantity}</td>
-                <td>Ready</td>
-                <td>{moment(item.orderCreated).format("MM-DD-YYYY")}</td>
+          orders.map((item) => (
+            <tr>
+              <td>{item._id ? item._id.substr(item._id.length - 5) : 0}</td>
+              <td>{item.orderItem && item.orderItem.map(product => 
+                product.product ? product.product.productName : ''
+              )}</td>
+              <td>
+                {item.orderItem.reduce((total, amount) => {
+                  return total + amount.quantity
+                }, 0)}
+              </td>
+              <div className ={`${item.orderStatus}`}>{item.orderStatus && item.orderStatus}</div>
+              <td>{moment(item.orderCreated).format("MM-DD-YYYY")}</td>
+              <NavLink to={`/order/${item._id}`}>
                 <button>View Order</button>
-              </tr>
-            ))
-          )}
+              </NavLink>
+            </tr>
+          ))}
+          
       </table>
     </div>
   )
