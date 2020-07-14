@@ -11,7 +11,9 @@ const mapboxApiToken =
   "pk.eyJ1IjoiYXJpdWthMTEiLCJhIjoiY2tjYjU4djRmMHE4azM0cWtsOWY0OXR4MSJ9.nXeE9BwATwbesLeJJxJTAw"
 
 const Modal = ({ show, user, place }) => {
-  const local = JSON.parse(localStorage.getItem("response"))
+  const [local, setLocal] = useState(
+    JSON.parse(localStorage.getItem("response")) || [50, 50]
+  )
   const [selected, setSelected] = useState(false)
 
   const [viewPort, setViewPort] = useState({
