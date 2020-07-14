@@ -19,9 +19,9 @@ const Modal = ({ show, user, place }) => {
     longitude: local.lng,
     width: "30vw",
     height: "20vh",
-    zoom: 5,
+    zoom: 12,
   })
-  console.log(place)
+
   return (
     <div
       className="modal-wrapper"
