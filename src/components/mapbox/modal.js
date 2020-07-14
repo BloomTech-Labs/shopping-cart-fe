@@ -33,11 +33,12 @@ const Modal = ({ show, user, place }) => {
       {place && (
         <div className="modal-header">
           <h3>
-            {user.businessName} | {user.address}, {user.city} {user.state},{" "}
-            {user.zipcode}
+            {user.businessName} | {user.address}, {user.city}{" "}
+            {user.state}, {user.zipcode}
           </h3>
-          <p>Hours: {user.hours}</p>
-          <p>Hours: 9:00am- 8:00pm || Monday-Friday</p>
+          <p>Phone Number: {user.phone}</p>
+          <p>Working Hours: {user.hours}</p>
+          <p>Curb Hours: {user.curbHours}</p>
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${place.geometry.location.lat},${place.geometry.location.lng}&query_place_id=${place.place_id}`}
           >
