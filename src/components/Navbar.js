@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom"
 import * as creators from "../state/actionCreators"
 import { useSelector, useDispatch } from "react-redux"
 import NoLogo from "../images/register.png"
-
+import Geocode from "react-geocode"
+const googleApiToken = "AIzaSyC0K-idf45E3-_5IAjc0PXB-5Ug6S4e9ag"
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,17 @@ const Navbar = () => {
   }, [dispatch])
 
   const user = useSelector((state) => state.user.user)
+
+  useEffect(() => {
+    Geocode.setApiKey(googleApiToken)
+    Geocode.fromAddress(user.address + user.city)
+      .then((response) => {
+        window.localStorage.setItem("response", JSON.stringify(response.results[0].geometry.location))
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }, [user.address, user.city])
 
   const url = `${window.location.origin.toString()}/store/${
     user && user.storeName && user.storeName.toLowerCase().split(" ").join("-")
