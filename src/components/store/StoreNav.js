@@ -19,7 +19,7 @@ const StoreNav = (props) => {
     Geocode.setApiKey(googleApiToken)
     Geocode.fromAddress(store.address + store.city)
       .then((response) => {
-        setPlace(response.results[0].geometry.location)
+        setPlace(response.results[0])
       })
       .catch((err) => {
         console.log(err.message)

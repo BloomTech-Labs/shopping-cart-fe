@@ -21,7 +21,7 @@ const Modal = ({ show, user, place }) => {
     height: "20vh",
     zoom: 5,
   })
-
+  console.log(place)
   return (
     <div
       className="modal-wrapper"
@@ -39,7 +39,7 @@ const Modal = ({ show, user, place }) => {
           <p>Hours: {user.hours}</p>
           <p>Hours: 9:00am- 8:00pm || Monday-Friday</p>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${place.geometry.location.lat},${place.geometry.location.lng}&query_place_id=${place.place_id}`}
           >
             Get Direction
           </a>
@@ -59,8 +59,8 @@ const Modal = ({ show, user, place }) => {
               }}
             >
               <Marker
-                latitude={place.lat}
-                longitude={place.lng}
+                latitude={place.geometry.location.lat}
+                longitude={place.geometry.location.lng}
                 offsetLeft={-20}
                 className="marker"
               >
@@ -75,8 +75,8 @@ const Modal = ({ show, user, place }) => {
               </Marker>
               {selected && (
                 <Popup
-                  latitude={place.lat}
-                  longitude={place.lng}
+                  latitude={place.geometry.location.lat}
+                  longitude={place.geometry.location.lng}
                   onClose={() => {
                     setSelected(false)
                   }}

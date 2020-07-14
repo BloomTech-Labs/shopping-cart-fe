@@ -1,10 +1,9 @@
-
 .dashboard {
   display: flex;
   flex-flow: column;
   align-items: center;
 
-  @media screen and (max-width: 775px){
+  @media screen and (max-width: 775px) {
     .dashboard {
       .orderTable {
         font-size: 1.2rem;
@@ -20,15 +19,13 @@
     }
   }
 
-
   .headerText {
     h3 {
       font-weight: bold;
       font-size: 2.2rem;
-      color : grey;
-
+      color: grey;
     }
-    h1{
+    h1 {
       font-weight: bold;
       font-size: 4.8rem;
     }
@@ -43,20 +40,20 @@
       box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.3);
       transition: 0.3s box-shadow;
 
-      th{
-        background: #F7F7F7;
+      th {
+        background: #f7f7f7;
         padding: 1.5rem;
         font-size: 1.4rem;
       }
       td {
         padding: 2rem;
-        color:black;
+        color: black;
       }
       button {
         background: white;
         color: #1890ff;
         border: none;
-        margin : 0;
+        margin: 0;
         padding: 0;
         font-size: 1.2rem;
       }
@@ -113,7 +110,7 @@
   }
   .salesContainer {
     width: 95%;
-    max-width:135rem;
+    max-width: 135rem;
 
     .salesSection {
       display: flex;
@@ -127,11 +124,11 @@
         width: 100%;
 
         .salesDiv {
-          width:100%;
+          width: 100%;
           padding: 0;
           margin: 0;
         }
-        h2{
+        h2 {
           margin-bottom: 0;
           font-weight: bold;
           font-size: 2rem;
@@ -145,5 +142,8 @@
       }
     }
   }
+}
 
+.no-orders {
+  font-weight: bold;
 }
