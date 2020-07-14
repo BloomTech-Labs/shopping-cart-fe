@@ -11,7 +11,6 @@ import UpdateItem from './components/Products/updateItem';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import PublicRoute from './components/Auth/PublicRoute';
 import Inventory from "./components/inventory/inventory"
-import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
 import StoreView from './components/store/StoreView';
 import StripeMain from './components/Stripe';
