@@ -11,7 +11,7 @@ const ProductCard = (props) => {
           alt={props.description}
         />
         <div className='textbox'>
-          <p>{props.productName}</p>
+          <h3>{props.productName}</h3>
           <p>${props.price}</p>
         </div>
       </div>

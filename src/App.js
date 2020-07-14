@@ -11,6 +11,7 @@ import UpdateItem from './components/Products/updateItem';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import PublicRoute from './components/Auth/PublicRoute';
 import Inventory from "./components/inventory/inventory"
+// import UpdateProfile from './components/EditProfile';
 import Home from './components/DashboardHome';
 import StoreView from './components/store/StoreView';
 import StripeMain from './components/Stripe';
@@ -24,7 +25,7 @@ import BrandView from './components/BrandView';
 import ColorPicker from './components/ColorPicker';
 import CreateProductView from './components/Products/createProductView';
 import Update from './components/Update';
-import ProfileView from './components/ProfileView';
+import ProfileView from './components/Profile View/ProfileView';
 import OrderDetailsView from './components/Orders/OrderDetailsView';
 
 function App() {

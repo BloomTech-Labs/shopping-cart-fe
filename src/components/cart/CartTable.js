@@ -25,9 +25,13 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
     console.log("isDispatching item", item)
     dispatch(creators.subtractFromCart(item))
   }
-
-  console.log("cartContents", cartContents)
-
+  const arr = cartContents.map(cart => cart.variantDetails.reduce((sum, item) => {
+      return sum + item.price
+  },0))
+  const numbers = cartContents.reduce((sum, item) => {
+    return sum + item.quantity
+  }, 0)
+  
   return (
     <div className="cartMasterContainer">
       {cartContents.length > 0 ? (
@@ -69,7 +73,6 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
                   ) : (
                     <h3>${cv.price}</h3>
                   )}
-
                   <img src={times_icon} alt="cartImage" />
                   <div className="quantityContainer">
                     <img
@@ -127,7 +130,9 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
         : ""}
       {cartContents.length > 0 ? (
         <div className="totalPrice">
-          <div className = "total">Total: ${totalPrice(cartContents)}</div>
+          <div className = "total">Total: ${arr.reduce((sum, item) => {
+            return sum + item * numbers
+          }, 0).toFixed(2)}</div>
           <NavLink to="/savecart">
             <button>Checkout</button>
           </NavLink>
