@@ -1,64 +1,82 @@
-.brandWrapper {
-	color: black;
-	font-weight: bold;
-	margin: 0 auto;
-	text-align: center;
-	background: #e5e5e5;
-}
+.brandwrapper {
+  color: black;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  background: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 
-.addLogo {
-	width: 48%;
-	margin: 0 auto;
-	@media (max-width: 600px) {
-		margin-bottom: 6rem;
-		width: 90%;
+  .headerWrapper {
+	margin-top: 10rem;
+	h2 {
+		text-align: center;
+		font-weight: bold;
 	}
+	h3 {
+		text-align: center;
+	}
+  }
+
+  .brandForms {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    background: white;
+    @media (max-width: 700px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0.2rem auto;
+    }
+  }
+
+  .addBranding {
+	font-size: 2rem;
+	color: #4285f4;
+	&:hover {
+		color: white;
+	}
+  }
 }
 
-.required {
-	text-align: center;
-	padding: 1rem;
-	font-size: 1.1rem;
+.logoDiv {
+	h3 {
+		font-weight: bold;
+	}
+	.logoPic {
+		height: 10rem;
+		padding: 1rem;
+		margin: 1rem;
+	  }
 }
-
 .addColor {
-	width: 48%;
-	justify-content: center;
-	align-items: center;
-}
-
-.brandForms {
-	width: 95%;
-	display: flex;
-	justify-content: space-around;
-	margin: 1.5rem auto;
-	padding: 1.5rem;
-	background: white;
-	@media (max-width: 700px) {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 0.2rem auto;
-	}
+  width: 48%;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
 }
 
 .colorPicker {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.logoPic {
-	height: 10rem;
-	padding: 1rem;
-	margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h3 {
+	font-weight: bold;
+  }
 }
 
 .brandColor {
-	height: 10rem;
-	transition: 'ease all 500ms';
+  height: 10rem;
+  transition: "ease all 500ms";
 }
 
 #uploadButton {
-	display: none;
+  display: none;
+  font-size: 2rem;
 }
