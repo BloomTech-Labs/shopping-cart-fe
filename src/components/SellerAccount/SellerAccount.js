@@ -1,61 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button } from 'antd';
 import axios from 'axios';
-import withAuth from '../Auth/axiosWithAuth';
+import axiosWithAuth from '../Auth/axiosWithAuth';
+import stripeLogo from '../../images/stripeLogo.svg';
 import Navbar from '../Navbar';
 
-const storeURL = 'https://shopping-cart-be.herokuapp.com/api/store';
-const stripeURL = 'https://shopping-cart-be.herokuapp.com/api/auth/stripe';
-
 function Account() {
-  const [stripeId, setStripeId] = useState('');
-  const [storeId, setStoreId] = useState('');
-  useEffect(() => {
-    withAuth()
-      .get(storeURL)
-      .then((res) => {
-        setStoreId(res.data._id);
-        setStripeId(res.data.stripeId);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+	const [ stripeAccount, setStripeAccount ] = useState(null);
 
-  const connectStripe = (e) => {
-    e.preventDefault();
-    axios
-      .post(stripeURL, { storeId })
-      .then((res) => {
-        window.location.href = stripeURL;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+	// Request to the database asking for stripe info - If none *Sign Up path* Else *Disconnection Path*
+	useEffect(() => {
+		axiosWithAuth()
+			.get('/api/auth/getseller')
+			.then((res) => {
+				console.log('get Seller Res', res.data);
+				res.data.access_token ? setStripeAccount(res.data) : console.log('get Seller Res', res.data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
-  return (
-    <div className='seller-account'>
-      <Navbar />
-      <div className='main'>
-        <h2 data-testid="main">Account</h2>
-        <Card
-          className='Card'
-          title='Your Stripe ID'
-          style={{ fontWeight: '900' }}>
-          <p id='stripeID'>
-            {stripeId || 'Your stripe account is not connected'}
-          </p>
-        </Card>
-        {stripeId ? (
-          <Button onClick={connectStripe}>Change Stripe Id</Button>
-        ) : (
-          <Button onClick={connectStripe}>Connect to Stripe</Button>
-        )}
-      </div>
-      {/* <Nav /> */}
-    </div>
-  );
+	function startStripe() {
+		window.location.href = 'https://pure-retail-ft-stripe-3tynhitt.herokuapp.com/api/auth/stripe/authorize';
+	}
+
+	function disconnectStripe() {
+		const payload = {
+			access_token: '',
+			refresh_token: '',
+			register_date: '',
+			stripe_publishable_key: '',
+			stripe_user_id: ''
+		};
+		axiosWithAuth()
+			.put('/api/auth/getseller', payload)
+			.then((res) => {
+				setStripeAccount(null);
+			})
+			.catch((err) => console.log(err));
+	}
+
+	return (
+		<div>
+			<Navbar />
+			<div className="accountContainer">
+				<h1> Account</h1>
+				{stripeAccount ? (
+					<div className="accountInfocontainer">
+						<div className="stripeId">
+							<h3>Stripe ID: {stripeAccount.stripe_user_id.toUpperCase()} </h3>
+						</div>
+						<div className="connectionStatus">
+							<h3 className="goodStatus"> Stripe Account Connected!</h3>
+						</div>
+					</div>
+				) : (
+					<div className="accountInfocontainer">
+						<div className="stripeId">
+							<h3>Stripe ID: </h3>
+						</div>
+						<div className="connectionStatus">
+							<h3 className="badStatus"> Your Stripe account is not connected </h3>
+						</div>
+					</div>
+				)}
+
+				{stripeAccount ? (
+					<button onClick={() => {}} className="stripeButton disconnect">
+						<img src={stripeLogo} />
+						<h3> Disconnect Stripe </h3>
+					</button>
+				) : (
+					<button
+						onClick={() => {
+							startStripe();
+						}}
+						className="stripeButton"
+					>
+						<img src={stripeLogo} />
+						<h3> Connect To Stripe </h3>
+					</button>
+				)}
+			</div>
+		</div>
+	);
 }
 
 export default Account;
