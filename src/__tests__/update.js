@@ -50,7 +50,7 @@ describe('Update Profile Screen screen', () => {
     const Name = getByTestId('updateProfileBusName');
     expect(Name).toBeVisible();
   });
-  test('renders the owner name', () => {
+  test('renders the owners name', () => {
     const { getByTestId } = renderWithProviders(<Update />);
     const Name = getByTestId('updateProfileOwnerName');
     expect(Name).toBeVisible();
