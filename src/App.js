@@ -27,6 +27,7 @@ import CreateProductView from './components/Products/createProductView';
 import Update from './components/Update';
 import ProfileView from './components/Profile View/ProfileView';
 import OrderDetailsView from './components/Orders/OrderDetailsView';
+import StripeConfirmAccount from './components/Stripe/StripeConfirmAccount';
 
 function App() {
   window.addEventListener('load', () => {
@@ -69,6 +70,7 @@ function App() {
         <PublicRoute path='/product/:id' component={Single} />
         <PublicRoute path='/success' component={OrderSuccessPage} />
         <PrivateRoute path='/account' component={Account} />
+        <PrivateRoute path="/api/auth/stripe/token" component={StripeConfirmAccount} />
       </Switch>
       <div
         id='offline-notification'
