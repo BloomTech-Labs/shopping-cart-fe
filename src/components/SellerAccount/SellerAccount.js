@@ -19,7 +19,7 @@ function Account() {
 	}, []);
 
 	function startStripe() {
-		window.location.href = 'https://pure-retail-ft-stripe-3tynhitt.herokuapp.com/api/auth/stripe/authorize';
+		window.location.href = 'https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/auth/stripe/authorize';
 	}
 
 	function disconnectStripe() {
