@@ -39,7 +39,7 @@ const SaveCart = (props) => {
     props.form.validateFieldsAndScroll({ force: true }, (err, values) => {
       if (!err) {
         info(values);
-      }
+      } 
     });
   };
   const info = (values) => {
@@ -180,9 +180,9 @@ const SaveCart = (props) => {
               )}
             </Form.Item>
             <Form.Item className='primary' {...tailFormItemLayout}>
-              <Button type='primary' htmltype='submit'>
+              <button htmltype = 'submit'>
                 Submit
-              </Button>
+              </button>
             </Form.Item>
           </Form>
         </div>

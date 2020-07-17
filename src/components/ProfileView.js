@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AxiosAuth from '../components/Auth/axiosWithAuth';
-import Navbar from './Navbar'
+import Navbar from './Navbar';
 const ProfileView = () => {
   const [logo, setLogo] = useState();
   const [address, setAddress] = useState();
@@ -37,22 +37,28 @@ const ProfileView = () => {
       });
   }, []);
   return (
-    
-    <div>
-      <Navbar/>
-      <h1>Profile</h1>
+    <div data-testid='profileViewWrapper'>
+      <Navbar />
+      <h1 data-testid='profileViewHeader'>Profile</h1>
       <div
+        data-testid='profileViewColorWrapper'
         style={{
           marginTop: '90px',
           border: '2px solid',
           borderColor: color,
         }}
         className='profileViewWrapper'>
-        <section className='logoColor'>
+        <section className='logoColor' data-testid='profileViewSection'>
           <h3 className='labels logoColorlabels'>Logo</h3>
-          <img className='profileViewLogo' src={logo} alt='logo' />
+          <img
+            data-testid='profileViewLogo'
+            className='profileViewLogo'
+            src={logo}
+            alt='logo'
+          />
           <h3 className='labels logoColorlabels'>Brand Color</h3>
           <div
+          data-testid='profileViewColorDiv'
             className='profileViewColor'
             style={{
               height: '100px',
@@ -61,39 +67,39 @@ const ProfileView = () => {
             }}></div>
         </section>
 
-        <div className='profileView'>
+        <div className='profileView' data-testid='profileViewSecondaryWrapper'>
           <h3 className='labels mainLabel'>Basic Details</h3>
 
-          <div className='profileLeftRight'>
-            <div className='profileViewLeft'>
+          <div className='profileLeftRight' data-testid='profileViewLeftRight' >
+            <div className='profileViewLeft' data-testid='profileViewLeft'>
               <h3 className='labels'>Business Name</h3>
-              <p className='profileInfo'>{businessName}</p>
+              <p className='profileInfo' data-testid='profileBusinessName' >{businessName}</p>
               <h3 className='labels'>Owner Name</h3>
-              <p className='profileInfo'>{ownerName}</p>
+              <p className='profileInfo' data-testid='profileOwner'>{ownerName}</p>
               <h3 className='labels'>Building / Unit / Suite</h3>
-              <p className='profileInfo'>{secondAddress}</p>
+              <p className='profileInfo' data-testid='profileSecondaryAddress'>{secondAddress}</p>
               <h3 className='labels'>State</h3>
-              <p className='profileInfo'>{state}</p>
+              <p className='profileInfo' data-testid='profileState'>{state}</p>
             </div>
 
             <div className='profileViewRight'>
-              <h3 className='labels'>Phone Number</h3>
-              <p className='profileInfo'>{phone}</p>
+              <h3 className='labels' >Phone Number</h3>
+              <p className='profileInfo' data-testid='profilePhoneNumber'>{phone}</p>
               <h3 className='labels'>Address</h3>
-              <p className='profileInfo'>{address}</p>
+              <p className='profileInfo' data-testid='profileAddress'>{address}</p>
               <h3 className='labels'>City</h3>
-              <p className='profileInfo'>{city}</p>
+              <p className='profileInfo' data-testid='profileCity'>{city}</p>
 
               <h3 className='labels'>Zip Code</h3>
-              <p className='profileInfo'>{zipcode}</p>
+              <p className='profileInfo' data-testid='profileZipCode'>{zipcode}</p>
             </div>
           </div>
 
           <div className='profileViewHours'>
             <h3 className='labels'>Hours</h3>
-            <p className='profileInfo'>{hours}</p>
+            <p className='profileInfo' data-testid='profileBusinessHours' >{hours}</p>
             <h3 className='labels'>Curbside Hours</h3>
-            <p className='profileInfo'>{curbHours}</p>
+            <p className='profileInfo' data-testid='profileCurbHours'>{curbHours}</p>
           </div>
         </div>
       </div>
