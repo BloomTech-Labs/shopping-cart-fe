@@ -27,6 +27,7 @@ import CreateProductView from './components/Products/createProductView';
 import Update from './components/Update';
 import ProfileView from './components/Profile View/ProfileView';
 import OrderDetailsView from './components/Orders/OrderDetailsView';
+import StripeConfirmAccount from './components/Stripe/StripeConfirmAccount';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -46,7 +47,7 @@ function App() {
 	});
 
 	const stripePromise = loadStripe('pk_test_VHc4fOD3byWy85jOWOYLijhH00OmL57YuX', {
-		stripeAccount: '{{CONNECTED_STRIPE_ACCOUNT_ID}}'
+		stripeAccount: 'acct_1H6LilIrVDEEa5AF'
 	});
 	return (
 		<div>
@@ -68,7 +69,7 @@ function App() {
 					<PublicRoute path="/store/:id" component={StoreView} />
 
 					<PublicRoute path="/cart" component={CartView} />
-
+					<PrivateRoute path="/api/auth/stripe/token" component={StripeConfirmAccount} />
 					<PublicRoute path="/savecart" component={SaveCartMain} />
 					<PrivateRoute path="/createstore" component={CreateStoreForm} />
 					<PrivateRoute path="/addlogo" component={AddLogoForm} />

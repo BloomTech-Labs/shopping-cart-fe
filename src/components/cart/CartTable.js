@@ -14,7 +14,10 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const getStoreID = localStorage.getItem('storeUrl').split('store-');
+	const [ whisper, setWhisper ] = useState(null);
+
+	const getStoreID = localStorage.getItem('storeUrl').split('-');
+	console.log(getStoreID);
 
 	// TODO: Make a call to the "Create-Payment-Intent" (https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent) -> Submit: Price, clientID (Stripe Account)
 	// Returns: the Stripe Secret used to complete the payment
@@ -32,16 +35,12 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 
 	//Payload for the submitHandler Post Request
 	const paymentPayload = {
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': 'http://localhost:3000'
-		},
-		amount: totalPrice(cartContents),
+		price: totalPrice(cartContents),
 		clientID: ''
 	};
 
 	const submitHandler = async (event) => {
-		console.log('hello');
+		console.log('payment Payload', paymentPayload);
 		event.preventDefault();
 
 		// ensure stripe & elements are loaded
@@ -56,12 +55,19 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 				'https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent',
 				paymentPayload
 			)
-			.then((res) => {
-				console.log(res);
+			.then(async (res) => {
+				setWhisper(res.data.clientSecret);
+				console.log(res.data.clientSecret);
+				const result = await stripe.confirmCardPayment(res.data.clientSecret, {
+					payment_method: {
+						card: elements.getElement(CardElement),
+						billing_details: {
+							name: 'Jenny Rosen'
+						}
+					}
+				});
 			})
 			.catch((error) => console.log(error));
-
-		console.log('hello 3');
 
 		//Leveage secret to complete transaction with Stripe
 
@@ -183,6 +189,7 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 					<div className="checkoutCard">
 						<div className="checkoutElements">
 							<form onSubmit={submitHandler}>
+								<input name="name" value={''} onChange={''} />
 								<CardElement />
 								<button type="submit"> Submit Payment: ${totalPrice(cartContents)} </button>
 							</form>
