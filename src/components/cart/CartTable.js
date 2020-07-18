@@ -7,16 +7,66 @@ import delete_icon from '../../images/delete-icon.svg';
 import add_icon from '../../images/add-icon.svg';
 import subtract_icon from '../../images/subtract-icon.svg';
 import emptyCartGraphic from '../../images/emptyCartGraphic.svg';
-import StripeCheckout from 'react-stripe-checkout';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
 const CartTable = ({ cartContents, totalPrice, props }) => {
 	const dispatch = useDispatch();
-	// Grabs store URL and parases it for store ID - This is used to make a call to get the PK
-	const storeURL = localStorage.getItem('storeUrl').split('-');
-	const storeURLlength = storeURL.length;
+	const stripe = useStripe();
+	const elements = useElements();
 
-	//State for hold PK returned on axios call
-	const [ pk, setPK ] = useState(null);
+	const getStoreID = localStorage.getItem('storeUrl').split('store-');
+
+	// TODO: Make a call to the "Create-Payment-Intent" (https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent) -> Submit: Price, clientID (Stripe Account)
+	// Returns: the Stripe Secret used to complete the payment
+
+	//Need business onwers stripe ID
+	useEffect(() => {
+		axios
+			.get(`https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/auth/pk/${getStoreID[1]}`)
+			.then((res) => {
+				console.log('super res', res);
+				paymentPayload.clientID = res.data;
+			})
+			.catch((error) => console.log(error));
+	}, []);
+
+	//Payload for the submitHandler Post Request
+	const paymentPayload = {
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': 'http://localhost:3000'
+		},
+		amount: totalPrice(cartContents),
+		clientID: ''
+	};
+
+	const submitHandler = async (event) => {
+		console.log('hello');
+		event.preventDefault();
+
+		// ensure stripe & elements are loaded
+		if (!stripe || !elements) {
+			return;
+		}
+		console.log('hello 2');
+		//Make a payment-intent POST request
+
+		axios
+			.post(
+				'https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent',
+				paymentPayload
+			)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((error) => console.log(error));
+
+		console.log('hello 3');
+
+		//Leveage secret to complete transaction with Stripe
+
+		//On sucsessfull transacation make a POST request to the order
+	};
 
 	const increment = (id) => {
 		console.log('isDispatching ++', id);
@@ -41,40 +91,6 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 		return sum + item.quantity;
 	}, 0);
 
-	// Backend call to get the PK
-	useEffect(() => {
-		axios
-			.get(`https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/auth/pk/${storeURL[storeURLlength - 1]}`)
-			.then((res) => {
-				setPK(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
-
-	//Funciton is used to send token to stripe / our DB
-	const sendPayment = (token) => {
-		const body = {
-			token,
-			cartContents
-		};
-		const headers = {
-			'Content-Type': 'application/json'
-		};
-
-		return axios
-			.post(
-				'https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent',
-				body,
-				headers
-			)
-			.then((res) => console.log('pay Res', res, 'body', body))
-			.catch((err) => console.log(err));
-	};
-
-	setTimeout(() => {
-		console.log('pk', pk);
-	}, 3000);
-
 	return (
 		<div className="cartMasterContainer">
 			{cartContents.length > 0 ? (
@@ -98,7 +114,7 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 			{cartContents ? (
 				cartContents.map((cv) => {
 					return (
-						<div>
+						<div className="">
 							<div className="cartProductCard">
 								<div className="productSection">
 									<img className="cartImage" src={cv.images[0]} alt="cartImage" />
@@ -164,15 +180,14 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 			{cartContents.length > 0 ? (
 				<div className="totalPrice">
 					<div className="total">Total: {totalPrice(cartContents)}</div>
-
-					<StripeCheckout
-						stripeKey="pk_test_51H5Hs7D4XHWIGJYmz30OkOF6H860QR7bVCToSt8BU3GyfhX6QuloD64xKfAo5rzBtyHwvmQehXtxIFHPA9VyiKz800bXP4mSiO"
-						name="Pure Retail ✌️"
-						token={sendPayment}
-						amount={totalPrice(cartContents) * 100}
-					>
-						<button className="checkoutBTN"> Checkout </button>
-					</StripeCheckout>
+					<div className="checkoutCard">
+						<div className="checkoutElements">
+							<form onSubmit={submitHandler}>
+								<CardElement />
+								<button type="submit"> Submit Payment: ${totalPrice(cartContents)} </button>
+							</form>
+						</div>
+					</div>
 				</div>
 			) : (
 				''
