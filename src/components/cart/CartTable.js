@@ -10,7 +10,6 @@ import subtract_icon from '../../images/subtract-icon.svg';
 import emptyCartGraphic from '../../images/emptyCartGraphic.svg';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import history from '../../history';
-import axios from 'axios';
 import { motion } from 'framer-motion';
 import Message from '../Products/message';
 const CartTable = ({ cartContents, totalPrice, store }) => {
