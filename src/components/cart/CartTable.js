@@ -11,6 +11,7 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import history from '../../history';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import Message from '../Products/message';
 const CartTable = ({ cartContents, totalPrice, store }) => {
 	// Hooks for Redux & Stripe
 	const dispatch = useDispatch();
@@ -65,6 +66,24 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 			.catch((error) => console.log(error));
 	}, []);
 
+	const orderPayload = {
+		orderItem: [
+			{
+				product: cartContents.length > 0 ? cartContents[0].productId : '',
+				quantity: cartContents.length > 0 ? cartContents[0].quantity : '',
+				chosenVariant: {
+					price: cartContents.length > 0 ? cartContents[0].price : ''
+				}
+			}
+		]
+	};
+
+	setTimeout(() => {
+		console.log('cartContents', cartContents);
+	}, 1000);
+
+	const [ message, setMessage ] = useState();
+
 	// On submit -> Takes the payload object and POSTs it to the server.
 	// If sent properly the server will return a secret. This is used below to varify the transaction
 	const submitHandler = async (event) => {
@@ -79,8 +98,21 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 		//Make a payment-intent POST request
 		axios
 			.post('https://shopping-cart-be.herokuapp.com/api/stripe/payment/create-payment-intent', paymentPayload)
-			.then(async (res) => {
-				const result = await stripe.confirmCardPayment(res.data.clientSecret, {
+			.then((res) => {
+				console.log('orderPayload', orderPayload);
+				axios
+					.post(`https://shopping-cart-be.herokuapp.com/api/store/${getStoreID[1]}/order`, orderPayload)
+					.then((res) => {
+						setMessage('Payment Confirmed!');
+						console.log(orderPayload);
+						console.log(res.data);
+						setTimeout(() => {
+							history.push(`/success/${res.data._id}`);
+						}, 2000);
+					})
+					.catch((error) => console.log(error));
+
+				stripe.confirmCardPayment(res.data.clientSecret, {
 					payment_method: {
 						card: elements.getElement(CardElement),
 						billing_details: {
@@ -90,18 +122,6 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 					}
 				});
 				//Creates order for our database
-				axios
-					.post(
-						`https://shopping-cart-be.herokuapp.com/api/store/${paymentPayload.clientID}/order`,
-						cartContents
-					)
-					.then((res) => {
-						console.log(res.data);
-						setTimeout(() => {
-							history.push(`/success/${res.data.orderId}`);
-						}, 2000);
-					})
-					.catch((error) => console.log(error));
 			})
 			.catch((error) => console.log(error));
 	};
@@ -298,6 +318,7 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 								</button>
 							</form>
 						</div>
+						<Message message={message} />
 					</motion.div>
 				</div>
 			) : (
