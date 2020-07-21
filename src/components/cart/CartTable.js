@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import axios from 'axios';
 import * as creators from '../../state/actionCreators';
 import { useDispatch } from 'react-redux';
 import times_icon from '../../images/times-icon.svg';
@@ -131,10 +132,12 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 	};
 
 	const decrement = (id) => {
+		console.log('isDispatching --', id);
 		dispatch(creators.decrement(id));
 	};
 
 	const removeItem = (item) => {
+		console.log('isDispatching item', item);
 		dispatch(creators.subtractFromCart(item));
 	};
 	const arr = cartContents.map((cart) =>
@@ -193,7 +196,7 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 			{cartContents ? (
 				cartContents.map((cv) => {
 					return (
-						<div className="">
+						<div>
 							<div className="cartProductCard">
 								<div className="productSection">
 									<img className="cartImage" src={cv.images[0]} alt="cartImage" />
