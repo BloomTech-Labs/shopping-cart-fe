@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as creators from '../../state/actionCreators';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import times_icon from '../../images/times-icon.svg';
 import equals_icon from '../../images/equals-icon.svg';
 import delete_icon from '../../images/delete-icon.svg';
@@ -8,37 +8,65 @@ import add_icon from '../../images/add-icon.svg';
 import subtract_icon from '../../images/subtract-icon.svg';
 import emptyCartGraphic from '../../images/emptyCartGraphic.svg';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import history from '../../history';
 import axios from 'axios';
-const CartTable = ({ cartContents, totalPrice, props }) => {
+import { motion } from 'framer-motion';
+const CartTable = ({ cartContents, totalPrice, store }) => {
+	// Hooks for Redux & Stripe
 	const dispatch = useDispatch();
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const [ whisper, setWhisper ] = useState(null);
-
+	// Getting the Store ID to get their Stripe Client ID
 	const getStoreID = localStorage.getItem('storeUrl').split('-');
-	console.log(getStoreID);
 
-	// TODO: Make a call to the "Create-Payment-Intent" (https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent) -> Submit: Price, clientID (Stripe Account)
-	// Returns: the Stripe Secret used to complete the payment
+	// State for holding the Name & Phone
+	const [ userInfo, setUserInfo ] = useState({
+		fullName: '',
+		phoneNumber: ''
+	});
 
-	//Need business onwers stripe ID
+	//State for holding the Store Info (Grabbed from redux through props)
+	const [ storeInfo, setStoreInfo ] = useState({
+		storeColor: '',
+		storeLogo: ''
+	});
+
+	useEffect(
+		() => {
+			setStoreInfo({ ...storeInfo, storeLogo: store.logo, storeColor: store.color });
+		},
+		[ store ]
+	);
+
+	//Payload that will be sent to stripe (Stores Owners Client ID)
+	const [ paymentPayload, setPaymentPayload ] = useState({
+		price: totalPrice(cartContents),
+		clientID: ''
+	});
+
+	//State to toggle the checkout
+	const [ toggleCheckout, setToggleCheckout ] = useState(false);
+
+	// Framer Motion Variants (Used for animating the Checkout Card)
+	const variants = {
+		hidden: { opacity: 0, bottom: -500 },
+		visible: { opacity: 1, bottom: 0 }
+	};
+
+	//Making a request to get the store ID
 	useEffect(() => {
 		axios
-			.get(`https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/auth/pk/${getStoreID[1]}`)
+			.get(`https://shopping-cart-be.herokuapp.com/api/auth/pk/${getStoreID[1]}`)
 			.then((res) => {
 				console.log('super res', res);
-				paymentPayload.clientID = res.data;
+				setPaymentPayload({ ...paymentPayload, clientID: res.data });
 			})
 			.catch((error) => console.log(error));
 	}, []);
 
-	//Payload for the submitHandler Post Request
-	const paymentPayload = {
-		price: totalPrice(cartContents),
-		clientID: ''
-	};
-
+	// On submit -> Takes the payload object and POSTs it to the server.
+	// If sent properly the server will return a secret. This is used below to varify the transaction
 	const submitHandler = async (event) => {
 		console.log('payment Payload', paymentPayload);
 		event.preventDefault();
@@ -47,45 +75,46 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 		if (!stripe || !elements) {
 			return;
 		}
-		console.log('hello 2');
-		//Make a payment-intent POST request
 
+		//Make a payment-intent POST request
 		axios
-			.post(
-				'https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/stripe/payment/create-payment-intent',
-				paymentPayload
-			)
+			.post('https://shopping-cart-be.herokuapp.com/api/stripe/payment/create-payment-intent', paymentPayload)
 			.then(async (res) => {
-				setWhisper(res.data.clientSecret);
-				console.log(res.data.clientSecret);
 				const result = await stripe.confirmCardPayment(res.data.clientSecret, {
 					payment_method: {
 						card: elements.getElement(CardElement),
 						billing_details: {
-							name: 'Jenny Rosen'
+							name: userInfo.fullName,
+							phone: userInfo.phoneNumber
 						}
 					}
 				});
+				//Creates order for our database
+				axios
+					.post(
+						`https://shopping-cart-be.herokuapp.com/api/store/${paymentPayload.clientID}/order`,
+						cartContents
+					)
+					.then((res) => {
+						console.log(res.data);
+						setTimeout(() => {
+							history.push(`/success/${res.data.orderId}`);
+						}, 2000);
+					})
+					.catch((error) => console.log(error));
 			})
 			.catch((error) => console.log(error));
-
-		//Leveage secret to complete transaction with Stripe
-
-		//On sucsessfull transacation make a POST request to the order
 	};
 
 	const increment = (id) => {
-		console.log('isDispatching ++', id);
 		dispatch(creators.increment(id));
 	};
 
 	const decrement = (id) => {
-		console.log('isDispatching --', id);
 		dispatch(creators.decrement(id));
 	};
 
 	const removeItem = (item) => {
-		console.log('isDispatching item', item);
 		dispatch(creators.subtractFromCart(item));
 	};
 	const arr = cartContents.map((cart) =>
@@ -96,6 +125,30 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 	const numbers = cartContents.reduce((sum, item) => {
 		return sum + item.quantity;
 	}, 0);
+
+	function changeHandler(e) {
+		e.preventDefault();
+		setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+	}
+
+	//Style for the Stripe Elements
+	const CARD_ELEMENT_OPTIONS = {
+		style: {
+			base: {
+				color: '#32325d',
+				fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+				fontSmoothing: 'antialiased',
+				fontSize: '16px',
+				'::placeholder': {
+					color: '#aab7c4'
+				}
+			},
+			invalid: {
+				color: '#fa755a',
+				iconColor: '#fa755a'
+			}
+		}
+	};
 
 	return (
 		<div className="cartMasterContainer">
@@ -137,6 +190,7 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 								<img src={times_icon} alt="cartImage" />
 								<div className="quantityContainer">
 									<img
+										style={{ background: `${storeInfo.storeColor}` }}
 										className="quantityBTN"
 										alt="cartImage"
 										src={subtract_icon}
@@ -149,6 +203,7 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 									</div>
 									<img
 										className="quantityBTN"
+										style={{ background: `${storeInfo.storeColor}` }}
 										src={add_icon}
 										alt="cartImage"
 										onClick={() => {
@@ -185,16 +240,65 @@ const CartTable = ({ cartContents, totalPrice, props }) => {
 			)}
 			{cartContents.length > 0 ? (
 				<div className="totalPrice">
-					<div className="total">Total: {totalPrice(cartContents)}</div>
-					<div className="checkoutCard">
+					<div className="total">Total: ${totalPrice(cartContents)}</div>
+					<button
+						style={{ background: `${storeInfo.storeColor}` }}
+						onClick={() => {
+							setToggleCheckout(!toggleCheckout);
+						}}
+					>
+						Checkout
+					</button>
+					<motion.div
+						initial={'hidden'}
+						animate={toggleCheckout ? 'visible' : 'hidden'}
+						variants={variants}
+						className="checkoutCard"
+					>
+						<img className="checkoutLogo" src={storeInfo.storeLogo} />
+						<h2> Store Checkout </h2>
+						<h3>
+							All transactions are secured through Stripe! Once payment is confirmed you will be directed
+							to a confirmation screen
+						</h3>
 						<div className="checkoutElements">
 							<form onSubmit={submitHandler}>
-								<input name="name" value={''} onChange={''} />
-								<CardElement />
-								<button type="submit"> Submit Payment: ${totalPrice(cartContents)} </button>
+								<div className="inputContainer">
+									<input
+										name="fullName"
+										type="text"
+										placeholder="Enter Full Name"
+										value={userInfo.fullName}
+										onChange={changeHandler}
+									/>
+									<input
+										name="phoneNumber"
+										type="number"
+										min="9"
+										placeholder="Enter Phone Number"
+										value={userInfo.phoneNumber}
+										onChange={changeHandler}
+									/>
+								</div>
+								<div className="elementContainer">
+									<CardElement options={CARD_ELEMENT_OPTIONS} />
+								</div>
+								<button
+									style={
+										!userInfo.fullName || !userInfo.phoneNumber ? (
+											{ background: `#d1d1d1` }
+										) : (
+											{ background: `${storeInfo.storeColor}` }
+										)
+									}
+									disabled={!userInfo.fullName || !userInfo.phoneNumber}
+									type="submit"
+								>
+									Submit Payment: ${totalPrice(cartContents)}{' '}
+								</button>
 							</form>
 						</div>
-					</div>
+					</motion.div>
 				</div>
 			) : (
 				''

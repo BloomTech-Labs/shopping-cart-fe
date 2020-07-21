@@ -28,6 +28,7 @@ import Update from './components/Update';
 import ProfileView from './components/Profile View/ProfileView';
 import OrderDetailsView from './components/Orders/OrderDetailsView';
 import StripeConfirmAccount from './components/Stripe/StripeConfirmAccount';
+import CheckoutSuccessView from './components/cart/checkoutSuccessView';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -46,6 +47,7 @@ function App() {
 		window.addEventListener('offline', handleNetworkChange);
 	});
 
+	//TODO: Create a useEffect to get the Stripe Account for store owner dynamicly
 	const stripePromise = loadStripe('pk_test_VHc4fOD3byWy85jOWOYLijhH00OmL57YuX', {
 		stripeAccount: 'acct_1H6LilIrVDEEa5AF'
 	});
@@ -78,7 +80,8 @@ function App() {
 					<PrivateRoute path="/updateitem/:id" component={UpdateItem} />
 					<PrivateRoute path="/order/:id" component={OrderDetailsView} />
 					<PublicRoute path="/product/:id" component={Single} />
-					<PublicRoute path="/success" component={OrderSuccessPage} />
+
+					<PublicRoute path="/success/:id" component={CheckoutSuccessView} />
 					<PrivateRoute path="/account" component={Account} />
 				</Elements>
 			</Switch>
