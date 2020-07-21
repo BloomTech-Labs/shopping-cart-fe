@@ -63,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.21.0",
     "standard": "^14.3.3"
   },
   "jest": {
