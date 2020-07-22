@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import history from '../../history';
 
 const CheckoutSuccessView = (props) => {
 	const orderNumber = window.location.href.split('/');
-	console.log(orderNumber);
+	const storeURL = localStorage.getItem('storeUrl');
+	console.log(storeURL);
 	return (
 		<div>
 			<div className="cardContainer">
@@ -17,7 +19,14 @@ const CheckoutSuccessView = (props) => {
 						<span>Number Sent To:</span> 123 - 345 - 6789
 					</h3>
 				</div>
-				<button> Back To Store</button>
+
+				<button
+					onClick={() => {
+						history.push(storeURL);
+					}}
+				>
+					Back To Store
+				</button>
 			</div>
 		</div>
 	);
