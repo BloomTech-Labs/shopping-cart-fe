@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import axios from 'axios';
 import * as creators from '../../state/actionCreators';
 import { useDispatch } from 'react-redux';
 import times_icon from '../../images/times-icon.svg';
@@ -10,6 +9,7 @@ import subtract_icon from '../../images/subtract-icon.svg';
 import emptyCartGraphic from '../../images/emptyCartGraphic.svg';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import history from '../../history';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Message from '../Products/message';
 const CartTable = ({ cartContents, totalPrice, store }) => {
@@ -35,7 +35,11 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 
 	useEffect(
 		() => {
-			setStoreInfo({ ...storeInfo, storeLogo: store.logo, storeColor: store.color });
+			setStoreInfo({
+				...storeInfo,
+				storeLogo: store.logo,
+				storeColor: store.color
+			});
 		},
 		[ store ]
 	);

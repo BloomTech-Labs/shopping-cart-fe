@@ -54,14 +54,27 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"devDependencies": {
 		"standard": "^14.3.3",
 		"supertest": "^4.0.2"
 	},
 	"jest": {
-		"collectCoverageFrom": [ "**/*.js", "!**/node_modules/**", "!**/vendor/**", "!**/__tests__/**" ]
+		"collectCoverageFrom": [
+			"**/*.js",
+			"!**/node_modules/**",
+			"!**/vendor/**",
+			"!**/__tests__/**"
+		]
 	}
 }
