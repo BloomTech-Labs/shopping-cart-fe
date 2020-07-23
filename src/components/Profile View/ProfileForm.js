@@ -62,7 +62,9 @@ const ProfileForm = ({ store }) => {
   }
 
   return (
-    <div className="profileViewWrapper">
+    <div className="profileViewWrapper"
+    data-testid='profileFormMainDiv'
+    >
       <Message message={message} />
       <div className="firstWrapper">
         <div className="logoContainer">

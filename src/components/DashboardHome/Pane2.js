@@ -13,7 +13,7 @@ const Pane2 = ({
   const date = moment(checkoutDate)
 
   return (
-    <div className='Card2'>
+    <div className='Card2' data-testid='panelTwoDiv'>
       <div className='sales-history'>
         <Icon type='check-circle' style={{ color: '#BFD7EA', flexBasis: 1 }} />
         <div className='product-description'>

@@ -1,23 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from 'antd'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
+import { useSelector } from 'react-redux';
 
-const OrderSuccessPage = props => {
-  const storeDetails = useSelector(state => state.user.user)
-  const storeUrl = `/store/${storeDetails &&
+const OrderSuccessPage = (props) => {
+  const storeDetails = useSelector((state) => state.user.user);
+  const storeUrl = `/store/${
+    storeDetails &&
     storeDetails.storeName &&
-    storeDetails.storeName
-      .toLowerCase()
-      .split(' ')
-      .join('-')}-${storeDetails && storeDetails._id}`
+    storeDetails.storeName.toLowerCase().split(' ').join('-')
+  }-${storeDetails && storeDetails._id}`;
 
   return (
-    <div className='cover'>
+    <div className='cover' 
+    data-testid='orderSuccessMainDiv'
+    >
       <div className='store-logo'>
-        {storeDetails && storeDetails.imageUrl === null ? (
-          undefined
-        ) : (
+        {storeDetails && storeDetails.imageUrl === null ? undefined : (
           <img
             alt='logo'
             src={storeDetails && storeDetails.imageUrl}
@@ -39,7 +38,7 @@ const OrderSuccessPage = props => {
         </Link>
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default OrderSuccessPage
+export default OrderSuccessPage;

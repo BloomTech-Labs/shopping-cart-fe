@@ -63,8 +63,8 @@
     ]
   },
   "devDependencies": {
-    "standard": "^14.3.3",
-    "supertest": "^4.0.2"
+    "@testing-library/dom": "^7.21.0",
+    "standard": "^14.3.3"
   },
   "jest": {
     "collectCoverageFrom": [

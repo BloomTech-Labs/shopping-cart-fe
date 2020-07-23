@@ -1,11 +1,10 @@
-import React from 'react'
-import { Icon } from 'antd'
+import React from 'react';
+import { Icon } from 'antd';
 
 const Footer = () => {
   return (
     <div className='Footer'>
-
-      <div className='iconFlex'>
+      <div className='iconFlex' data-testid='mainFooterWrapper'>
         <Icon type='home' className='icons' />
         <p>Home</p>
       </div>
@@ -15,7 +14,13 @@ const Footer = () => {
         <p>Store</p>
       </div>
 
-      <Icon type='plus-circle' theme='filled' style={{ color: '#ff6663' }} className='icons' id='addStore' />
+      <Icon
+        type='plus-circle'
+        theme='filled'
+        style={{ color: '#ff6663' }}
+        className='icons'
+        id='addStore'
+      />
 
       <div className='iconFlex'>
         <Icon type='wallet' className='icons' />
@@ -27,8 +32,7 @@ const Footer = () => {
         <p>Profile</p>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Footer
+export default Footer;

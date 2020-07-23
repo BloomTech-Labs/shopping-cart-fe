@@ -53,7 +53,9 @@ const Stripe = (props) => {
       });
   }, [stripeId, cartContents]);
   return (
-    <div className='payments-cover'>
+    <div className='payments-cover' 
+    data-testid='stripePaymentsWrapper'
+    >
       <div className='checkout'>
         <h4>Check out</h4>
         <div className='order'>

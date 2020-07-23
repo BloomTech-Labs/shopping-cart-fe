@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import axiosWithAuth from '../Auth/axiosWithAuth';
 import stripeLogo from '../../images/stripeLogo.svg';
 import Navbar from '../Navbar';
 
 function Account() {
+	//State for the information obtained by the axios request below
 	const [ stripeAccount, setStripeAccount ] = useState(null);
 
-	// Request to the database asking for stripe info - If none *Sign Up path* Else *Disconnection Path*
+	//Makes a request to the DB to get stripe info
 	useEffect(() => {
 		axiosWithAuth()
 			.get('/api/auth/getseller')
 			.then((res) => {
-				console.log('get Seller Res', res.data);
-				res.data.access_token ? setStripeAccount(res.data) : console.log('get Seller Res', res.data);
+				res.data.access_token ? setStripeAccount(res.data) : console.log('_');
 			})
 			.catch((err) => console.log(err));
 	}, []);
 
+	//Redirect to start the Stripe Experince (Signing Up)
 	function startStripe() {
-		window.location.href = 'https://pure-retail-ft-stripe-4tp9te3a.herokuapp.com/api/auth/stripe/authorize';
+		window.location.href = 'https://shopping-cart-be.herokuapp.com/api/auth/stripe/authorize';
 	}
 
+	//When ran nulls the user's Stripe information on DB
 	function disconnectStripe() {
 		const payload = {
 			access_token: '',
@@ -31,7 +32,7 @@ function Account() {
 			stripe_user_id: ''
 		};
 		axiosWithAuth()
-			.put('/api/auth/getseller', payload)
+			.put('/api/auth/stripeUpdate', payload)
 			.then((res) => {
 				setStripeAccount(null);
 			})
@@ -64,7 +65,12 @@ function Account() {
 				)}
 
 				{stripeAccount ? (
-					<button onClick={() => {}} className="stripeButton disconnect">
+					<button
+						onClick={() => {
+							disconnectStripe();
+						}}
+						className="stripeButton disconnect"
+					>
 						<img src={stripeLogo} />
 						<h3> Disconnect Stripe </h3>
 					</button>

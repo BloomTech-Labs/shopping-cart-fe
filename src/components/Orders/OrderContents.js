@@ -25,7 +25,7 @@ const OrderContents = (props) => {
 	}
 
 	return (
-		<div className="orderContentsContainer">
+		<div className="orderContentsContainer" data-testid="orderContentsWrapper">
 			<div className="contentsHeaderContainer">
 				<h5>Quantity</h5>
 				<h5>Products</h5>

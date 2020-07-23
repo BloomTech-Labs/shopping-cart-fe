@@ -94,7 +94,9 @@ const SetNewPassword = (props) => {
 
   const setNewPasswordForm = (
     <Spin spinning={isLoading}>
-      <div className='cover'>
+      <div className='cover'
+      data-testid='setNewPasswordMainDiv'
+      >
         <div className='desktop-logo'>
           <h2 className='reset-password-text'>Set new password</h2>
           <div className='desktop-logo-large'>
