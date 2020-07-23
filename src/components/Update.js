@@ -34,11 +34,11 @@ const Update = (props) => {
   };
 
   return (
-    <div className='profileWrapper' data-testid='updateComponentWrapper'>
-      <h1 className='profileHeader'>Profile</h1>
-      <div className='imageColorWrapper'>
-        <div className='image-color'>
-          <div className='logoDiv'>
+    <div className='profileWrapper' data-testid='updateProfileWrapper'>
+      <h1 className='profileHeader' data-testid='updateProfileMainHeader' >Profile</h1>
+      <div className='imageColorWrapper' data-testid='updateProfileSecondaryWrapper'>
+        <div className='image-color' data-testid='updateProfileColorWrappers'>
+          <div className='logoDiv' data-testid='updateProfileLogoWrappers'>
             <label className='logoChangeButton' htmlFor='uploadButton'>
               Change logo
             </label>
@@ -51,9 +51,9 @@ const Update = (props) => {
                 src={props.logo.logo}
               />
             )}
-            <input id='uploadButton' type='file' onChange={uploadImage} />
+            <input  data-testid='updateUploadImageButton' id='uploadButton' type='file' onChange={uploadImage} />
           </div>
-          <div className='colorDiv'>
+          <div className='colorDiv' >
             <h3 className='colorHeader'>Brand Color</h3>
 
             <TwitterPicker
@@ -74,10 +74,17 @@ const Update = (props) => {
               }}></div>
           </div>
         </div>
+<<<<<<< HEAD
         <Form className='profileForm'>
           <div className='formTop'>
             <div className='formTopLeft'>
               <label htmlFor='business name'>Business Name*</label>
+=======
+        <Form className='profileForm' >
+          <div className='formTop' data-testid='updateProfileTopDiv'>
+            <div className='formTopLeft' data-testid='updateProfileLeftDiv'>
+            <label htmlFor='business name'data-testid='updateProfileBusName' >Business Name*</label>
+>>>>>>> a8e72ad5b31f73756ef22f43f104dc7e134659b0
               <br />
               <Field
                 name='businessName'
@@ -90,7 +97,7 @@ const Update = (props) => {
                 <p className='formErrorHandling'>enter, please</p>
               )}
               <br />
-              <label htmlFor='owner name'>Owner Name*</label>
+              <label htmlFor='owner name' data-testid='updateProfileOwnerName'>Owner Name*</label>
               <br />
               <Field
                 name='ownerName'
