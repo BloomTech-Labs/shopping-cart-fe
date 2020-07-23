@@ -1,22 +1,22 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe) [![Test Coverage](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe/progress/coverage)
 # Pure Retail: A platform for market traders, craftspeople, and hobbyists.
 
-You can find the deployed project at [Pure Retail](https://develop.pure-retail-usa.com/). 
+You can find the deployed project at [Pure Retail](https://app.pure-retail.com/). 
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/ToeFWlGI/labspt10-shopping-cart)
+[Trello Board](https://trello.com/b/Fd4uaBH3/shopping-cart-eu3)
 
-[Product Canvas](https://www.notion.so/LABSPT10-Shopping-Cart-2c1a52d3eabe429b95f3c6e56beaf174)
+[Product Canvas](https://www.notion.so/EU3-Shopping-Cart-2c1a52d3eabe429b95f3c6e56beaf174)
 
-[UX Design files](https://www.figma.com/file/yEcP1XlcvPGqcAueTDECFS/Pure-Retail?node-id=0%3A1)
+[UX Design files](https://www.figma.com/file/rwEo1sbbyA7OnWRthcDcQS/Pure-Retail-UI-Designs?node-id=981%3A1437)
 
 ## Getting Started
 
 Clone the Repo to your local machine
 
 ```bash
-git clone https://github.com/Lambda-School-Labs/shopping-cart-fe.git
+git clone https://github.com/LABS-EU3/shopping_cart_frontend.git
 
 ```
 
@@ -28,9 +28,9 @@ npm start
 
 ## Contributors
 
-|          [Ethan Hoover](https://github.com/Cireimu) |   [Chirag Thesia](https://github.com/ChiragThesia)   |   [Benjamin Kandaris](https://github.com/bkandaris)      |              [Eric Ferguson](https://github.com/erferguson)                                     |                                 [Ariunbold Oyungerel](https://github.com/Ariuka11)                                  |                                      [Apetsi Ampiah](https://github.com/aapetsi)                                      |                                    [Dimeji Lawal-Are](https://github.com/DimejiAre)                                     |                                     [Justin Irabor](https://github.com/vunderkind)                                      |
+|                                    [Benjamin Ajewole](https://benjaminajewole.com/)                                     |                                 [Alexander Oguejiofor.](https://github.com/kip-guile)                                  |                                      [Apetsi Ampiah](https://github.com/aapetsi)                                      |                                    [Dimeji Lawal-Are](https://github.com/DimejiAre)                                     |                                     [Justin Irabor](https://github.com/vunderkind)                                      |
 | :---------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars1.githubusercontent.com/u/52584049?s=460&u=32034f6181618a895af834529028e235058fba45&v=4" width = "200" />](https://github.com/Rexben001) | [<img src="https://avatars3.githubusercontent.com/u/48699964?s=460&u=514d79ea927c8f5d7ff4dff0ff95d62da910e97c&v=4     " width = "200" />](https://github.com/kip-guile) | [<img src="https://avatars3.githubusercontent.com/u/35830971?s=400&v=4" width = "200" />](https://github.com/aapetsi) | [<img src="https://avatars1.githubusercontent.com/u/26689297?s=400&v=4" width = "200" />](https://github.com/DimejiAre) | [<img src="https://avatars1.githubusercontent.com/u/13500685?s=400&v=4" width = "200" />](https://github.com/vunderkind) |
+| [<img src="https://avatars0.githubusercontent.com/u/30627428?s=400&v=4" width = "200" />](https://github.com/Rexben001) | [<img src="https://avatars1.githubusercontent.com/u/38817414?s=400&v=4" width = "200" />](https://github.com/kip-guile) | [<img src="https://avatars3.githubusercontent.com/u/35830971?s=400&v=4" width = "200" />](https://github.com/aapetsi) | [<img src="https://avatars1.githubusercontent.com/u/26689297?s=400&v=4" width = "200" />](https://github.com/DimejiAre) | [<img src="https://avatars1.githubusercontent.com/u/13500685?s=400&v=4" width = "200" />](https://github.com/vunderkind) |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rexben001)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kip-guile)                 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aapetsi)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DimejiAre)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/vunderkind)                 |
 
 <br>
