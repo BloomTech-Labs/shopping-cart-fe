@@ -74,17 +74,10 @@ const Update = (props) => {
               }}></div>
           </div>
         </div>
-<<<<<<< HEAD
-        <Form className='profileForm'>
-          <div className='formTop'>
-            <div className='formTopLeft'>
-              <label htmlFor='business name'>Business Name*</label>
-=======
         <Form className='profileForm' >
           <div className='formTop' data-testid='updateProfileTopDiv'>
             <div className='formTopLeft' data-testid='updateProfileLeftDiv'>
             <label htmlFor='business name'data-testid='updateProfileBusName' >Business Name*</label>
->>>>>>> a8e72ad5b31f73756ef22f43f104dc7e134659b0
               <br />
               <Field
                 name='businessName'
