@@ -11,7 +11,7 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import history from '../../history';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import Message from '../Products/message';
+import Message from '../elements/message';
 const CartTable = ({ cartContents, totalPrice, store }) => {
 	// Hooks for Redux & Stripe
 	const dispatch = useDispatch();

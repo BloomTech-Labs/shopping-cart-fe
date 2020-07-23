@@ -8,7 +8,7 @@ import Addphoto from './addPhoto';
 import BasicDetails from './basicDetails';
 import AddVariants from './addVariants';
 import Navbar from '../Navbar';
-import Message from './message';
+import Message from '../elements/message';
 
 function UpdateItem(props) {
 	const dispatch = useDispatch();
@@ -25,11 +25,14 @@ function UpdateItem(props) {
 		[ sellerId, dispatch ]
 	);
 
-	useEffect(() => {
-		AxiosAuth().get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`).then((res) => {
-			setProductData(res.data);
-		});
-	}, [itemId]);
+	useEffect(
+		() => {
+			AxiosAuth().get(`https://shopping-cart-be.herokuapp.com/api/store/products/${itemId}`).then((res) => {
+				setProductData(res.data);
+			});
+		},
+		[ itemId ]
+	);
 
 	// inventory gets all of the products from the redux store (redux store is calling the db)
 	const inventory = useSelector((state) => state.store);

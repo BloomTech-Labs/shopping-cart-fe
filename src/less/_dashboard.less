@@ -1,149 +1,149 @@
 .dashboard {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
 
-  @media screen and (max-width: 775px) {
-    .dashboard {
-      .orderTable {
-        font-size: 1.2rem;
-      }
-      .headerText {
-        h3 {
-          font-size: 1.8rem;
-        }
-        h1 {
-          font-size: 2.2rem;
-        }
-      }
-    }
-  }
+	@media screen and (max-width: 775px) {
+		.dashboard {
+			.orderTable {
+				font-size: 1.2rem;
+			}
+			.headerText {
+				h3 {
+					font-size: 1.8rem;
+				}
+				h1 {
+					font-size: 2.2rem;
+				}
+			}
+		}
+	}
 
-  .headerText {
-    h3 {
-      font-weight: bold;
-      font-size: 2.2rem;
-      color: grey;
-    }
-    h1 {
-      font-weight: bold;
-      font-size: 4.8rem;
-    }
-  }
-  .orderTable {
-    width: 80%;
-    font-size: 1.6rem;
-    background: white;
-    font-weight: bold;
-    tr {
-      border: 0;
-      box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.3);
-      transition: 0.3s box-shadow;
+	.headerText {
+		h3 {
+			font-weight: bold;
+			font-size: 2.2rem;
+			color: grey;
+		}
+		h1 {
+			font-weight: bold;
+			font-size: 4.8rem;
+		}
+	}
+	.orderTable {
+		width: 80%;
+		font-size: 1.6rem;
+		background: @white;
+		font-weight: bold;
+		tr {
+			border: 0;
+			box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.3);
+			transition: 0.3s box-shadow;
 
-      th {
-        background: #f7f7f7;
-        padding: 1.5rem;
-        font-size: 1.4rem;
-      }
-      td {
-        padding: 2rem;
-        color: black;
-      }
-      button {
-        background: white;
-        color: #1890ff;
-        border: none;
-        margin: 0;
-        padding: 0;
-        font-size: 1.2rem;
-      }
-      .Complete {
-        background: #25a558;
-        color: white;
-        font-size: 1.4rem;
-        width: 50%;
-        text-align: center;
-      }
-      .Not {
-        background: #ffc914;
-        color: #333;
-        font-size: 1.4rem;
-        width: 50%;
-        text-align: center;
-      }
-      .Prepaired {
-        background: #5bc7f8;
-        color: #fff;
-        font-size: 1.4rem;
-        width: 50%;
-        text-align: center;
-      }
-      .Canceled {
-        background: #bbbbbb;
-        color: #333;
-        font-size: 1.4rem;
-        width: 50%;
-        text-align: center;
-      }
-    }
-  }
+			th {
+				background: #f7f7f7;
+				padding: 1.5rem;
+				font-size: 1.4rem;
+			}
+			td {
+				padding: 2rem;
+				color: black;
+			}
+			button {
+				background: white;
+				color: @brand--lightBlue;
+				border: none;
+				margin: 0;
+				padding: 0;
+				font-size: 1.2rem;
+			}
+			.Complete {
+				background: #25a558;
+				color: white;
+				font-size: 1.4rem;
+				width: 50%;
+				text-align: center;
+			}
+			.Not {
+				background: #ffc914;
+				color: #333;
+				font-size: 1.4rem;
+				width: 50%;
+				text-align: center;
+			}
+			.Prepaired {
+				background: #5bc7f8;
+				color: #fff;
+				font-size: 1.4rem;
+				width: 50%;
+				text-align: center;
+			}
+			.Canceled {
+				background: #bbbbbb;
+				color: #333;
+				font-size: 1.4rem;
+				width: 50%;
+				text-align: center;
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 775px) {
-  .salesSection {
-    flex-direction: column;
-    .sales {
-      width: 70%;
-    }
-  }
+	.salesSection {
+		flex-direction: column;
+		.sales {
+			width: 70%;
+		}
+	}
 }
 
 .salesView {
-  margin-top: 5rem;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  div {
-    margin: 2rem;
-  }
-  .salesContainer {
-    width: 95%;
-    max-width: 135rem;
+	margin-top: 5rem;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+	div {
+		margin: 2rem;
+	}
+	.salesContainer {
+		width: 95%;
+		max-width: 135rem;
 
-    .salesSection {
-      display: flex;
+		.salesSection {
+			display: flex;
 
-      .sales {
-        border-radius: 0.5rem;
-        display: flex;
-        align-items: center;
-        background: white;
-        height: 7rem;
-        width: 100%;
+			.sales {
+				border-radius: 0.5rem;
+				display: flex;
+				align-items: center;
+				background: @white;
+				height: 7rem;
+				width: 100%;
 
-        .salesDiv {
-          width: 100%;
-          padding: 0;
-          margin: 0;
-        }
-        h2 {
-          margin-bottom: 0;
-          font-weight: bold;
-          font-size: 2rem;
-          margin-top: -1rem;
-        }
-        h3 {
-          font-size: 1.5rem;
-          color: grey;
-          font-weight: bold;
-        }
-      }
-    }
-  }
+				.salesDiv {
+					width: 100%;
+					padding: 0;
+					margin: 0;
+				}
+				h2 {
+					margin-bottom: 0;
+					font-weight: bold;
+					font-size: 2rem;
+					margin-top: -1rem;
+				}
+				h3 {
+					font-size: 1.5rem;
+					color: grey;
+					font-weight: bold;
+				}
+			}
+		}
+	}
 }
 
 .no-orders {
-  font-weight: bold;
+	font-weight: bold;
 }

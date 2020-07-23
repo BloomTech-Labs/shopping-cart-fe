@@ -1,48 +1,48 @@
 .brandwrapper {
-  color: black;
-  font-weight: bold;
-  margin: 0 auto;
-  text-align: center;
-  background: #e5e5e5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
+	color: black;
+	font-weight: bold;
+	margin: 0 auto;
+	text-align: center;
+	background: #e5e5e5;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
 
-  .headerWrapper {
-	margin-top: 10rem;
-	h2 {
-		text-align: center;
-		font-weight: bold;
+	.headerWrapper {
+		margin-top: 10rem;
+		h2 {
+			text-align: center;
+			font-weight: bold;
+		}
+		h3 {
+			text-align: center;
+		}
 	}
-	h3 {
-		text-align: center;
-	}
-  }
 
-  .brandForms {
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    margin: 1.5rem auto;
-    padding: 1.5rem;
-    background: white;
-    @media (max-width: 700px) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 0.2rem auto;
-    }
-  }
-
-  .addBranding {
-	font-size: 2rem;
-	color: #4285f4;
-	&:hover {
-		color: white;
+	.brandForms {
+		width: 80%;
+		display: flex;
+		justify-content: space-around;
+		margin: 1.5rem auto;
+		padding: 1.5rem;
+		background: @white;
+		@media (max-width: 700px) {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin: 0.2rem auto;
+		}
 	}
-  }
+
+	.addBranding {
+		font-size: 2rem;
+		color: @brand--lightBlue;
+		&:hover {
+			color: @white;
+		}
+	}
 }
 
 .logoDiv {
@@ -53,30 +53,30 @@
 		height: 10rem;
 		padding: 1rem;
 		margin: 1rem;
-	  }
+	}
 }
 .addColor {
-  width: 48%;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
+	width: 48%;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
 }
 
 .colorPicker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h3 {
-	font-weight: bold;
-  }
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h3 {
+		font-weight: bold;
+	}
 }
 
 .brandColor {
-  height: 10rem;
-  transition: "ease all 500ms";
+	height: 10rem;
+	transition: "ease all 500ms";
 }
 
 #uploadButton {
-  display: none;
-  font-size: 2rem;
+	display: none;
+	font-size: 2rem;
 }
