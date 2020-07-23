@@ -48,7 +48,7 @@ const CheckoutForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} data-testid='checkoutFormWrapper'>
       <CardSection />
       <button>Confirm order</button>
     </form>

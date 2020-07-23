@@ -34,7 +34,7 @@ const Update = (props) => {
   };
 
   return (
-    <div className='profileWrapper'>
+    <div className='profileWrapper' data-testid='updateComponentWrapper'>
       <h1 className='profileHeader'>Profile</h1>
       <div className='imageColorWrapper'>
         <div className='image-color'>
@@ -77,7 +77,7 @@ const Update = (props) => {
         <Form className='profileForm'>
           <div className='formTop'>
             <div className='formTopLeft'>
-            <label htmlFor='business name'>Business Name*</label>
+              <label htmlFor='business name'>Business Name*</label>
               <br />
               <Field
                 name='businessName'
