@@ -45,12 +45,12 @@ const CheckoutForm = (props) => {
 			});
 	};
 
-	return (
-		<form onSubmit={handleSubmit}>
-			<CardSection />
-			<button>Confirm order</button>
-		</form>
-	);
+  return (
+    <form onSubmit={handleSubmit} data-testid='checkoutFormWrapper'>
+      <CardSection />
+      <button>Confirm order</button>
+    </form>
+  );
 };
 
 export default injectStripe(CheckoutForm);

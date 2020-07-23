@@ -4,7 +4,7 @@ import Stripe from './stripe'
 function StripeMain (props) {
   const cartId = props.match.params.id
   return (
-    <div>
+    <div data-testid='stripeMainWrapper'>
       <Stripe cartId={cartId} />
     </div>
   )
