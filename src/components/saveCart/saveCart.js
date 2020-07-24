@@ -109,12 +109,12 @@ const SaveCart = (props) => {
     ],
   };
   return (
-    <div className='savecart-cover'>
-      <div id='inner'>
-        <div className='checkout'>
-          <div className='order'>
+    <div data-testid="saveCartWrapper" className='savecart-cover'>
+      <div data-testid="saveCartInner" id='inner'>
+        <div data-testid="saveCartCheckout" className='checkout'>
+          <div data-testid="saveCartOrder" className='order'>
             <p>Order Summary</p>
-            <div className='summary'>
+            <div data-testid="saveCartSummary" className='summary'>
               {checkoutCart.map((item) => (
                 <div className='units' key={item.productId}>
                   {item.name} ({item.quantity} unit
@@ -125,9 +125,9 @@ const SaveCart = (props) => {
             </div>
           </div>
         </div>
-        <div className='lower'>
+        <div data-testid="saveCartLower" className='lower'>
           <Form {...formItemLayout} onSubmit={handleSubmit}>
-            <div id='header'>
+            <div data-testid="LowerHeader" id='header'>
               <p>
                 Take a second to tell us your collection/delivery and payments
                 preferences.
