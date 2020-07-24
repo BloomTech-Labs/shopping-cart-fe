@@ -1,22 +1,23 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe) [![Test Coverage](https://api.codeclimate.com/v1/badges/e4939629daab9f9af12a/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/shopping-cart-fe/progress/coverage)
+
 # Pure Retail: A platform for market traders, craftspeople, and hobbyists.
 
-You can find the deployed project at [Pure Retail](https://app.pure-retail.com/). 
+You can find the deployed project at [Pure Retail](https://develop.pure-retail-usa.com/).
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/Fd4uaBH3/shopping-cart-eu3)
+[Trello Board](https://trello.com/b/ToeFWlGI/labspt10-shopping-cart)
 
-[Product Canvas](https://www.notion.so/EU3-Shopping-Cart-2c1a52d3eabe429b95f3c6e56beaf174)
+[Product Canvas](https://www.notion.so/LABSPT10-Shopping-Cart-2c1a52d3eabe429b95f3c6e56beaf174)
 
-[UX Design files](https://www.figma.com/file/rwEo1sbbyA7OnWRthcDcQS/Pure-Retail-UI-Designs?node-id=981%3A1437)
+[UX Design files](https://www.figma.com/file/yEcP1XlcvPGqcAueTDECFS/Pure-Retail?node-id=0%3A1)
 
 ## Getting Started
 
 Clone the Repo to your local machine
 
 ```bash
-git clone https://github.com/LABS-EU3/shopping_cart_frontend.git
+git clone https://github.com/Lambda-School-Labs/shopping-cart-fe.git
 
 ```
 
@@ -28,17 +29,17 @@ npm start
 
 ## Contributors
 
-|                                    [Benjamin Ajewole](https://benjaminajewole.com/)                                     |                                 [Alexander Oguejiofor.](https://github.com/kip-guile)                                  |                                      [Apetsi Ampiah](https://github.com/aapetsi)                                      |                                    [Dimeji Lawal-Are](https://github.com/DimejiAre)                                     |                                     [Justin Irabor](https://github.com/vunderkind)                                      |
-| :---------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars0.githubusercontent.com/u/30627428?s=400&v=4" width = "200" />](https://github.com/Rexben001) | [<img src="https://avatars1.githubusercontent.com/u/38817414?s=400&v=4" width = "200" />](https://github.com/kip-guile) | [<img src="https://avatars3.githubusercontent.com/u/35830971?s=400&v=4" width = "200" />](https://github.com/aapetsi) | [<img src="https://avatars1.githubusercontent.com/u/26689297?s=400&v=4" width = "200" />](https://github.com/DimejiAre) | [<img src="https://avatars1.githubusercontent.com/u/13500685?s=400&v=4" width = "200" />](https://github.com/vunderkind) |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rexben001)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kip-guile)                 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aapetsi)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DimejiAre)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/vunderkind)                 |
+|                                                           [Eric Ferguson](https://github.com/erferguson)                                                           |                                                           [Ariunbold Oyungerel](https://github.com/Ariuka11)                                                            |                                      [Ben Kandaris](https://github.com/bkandaris)                                       |                                    [Matthew Vaccaro](https://github.com/MatthewVaccaro)                                     |                                      [Chirag Thesia](https://github.com/ChiragThesia)                                      |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars1.githubusercontent.com/u/52584049?s=460&u=32034f6181618a895af834529028e235058fba45&v=4" width = "200" />](https://github.com/erferguson) | [<img src="https://avatars3.githubusercontent.com/u/48699964?s=460&u=514d79ea927c8f5d7ff4dff0ff95d62da910e97c&v=4     " width = "200" />](https://github.com/Ariuka11) | [<img src="https://avatars0.githubusercontent.com/u/52390565?s=400&u=8e24fb73b6948f658614ce0243f069f8ff2ba757&v=4" width = "200" />](https://github.com/bkandaris) | [<img src="https://avatars2.githubusercontent.com/u/53841280?s=400&u=d6c06a39733194c56c54be7d9cebd4fbf275719c&v=4" width = "200" />](https://github.com/MatthewVaccaro) | [<img src="https://avatars3.githubusercontent.com/u/42698636?s=400&u=d6ea89080dc6454904090a415afe743031909c84&v=4" width = "200" />](https://github.com/ChiragThesia) |
+|                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/erferguson)                                       |                                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Ariuka11)                                          |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bkandaris)                   |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MatthewVaccaro)                  |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChiragThesia)                  |
 
 <br>
 
-|                                                                                                            [Shaun Orpen](https://github.com/shaunorpen)                                                                                                            |                                                           [Tolu Atolagbe](https://github.com/tolls-3)                                                            |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars1.githubusercontent.com/u/2945878?s=400&v=4" width = "200" />](https://github.com/shaunorpen) | [<img src="https://avatars1.githubusercontent.com/u/53542238?s=400&v=4" width = "200" />](https://github.com/tolls-3) |
-|                                                                                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/shaunorpen)                                                                                       |                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tolls-3)                                       |
+|                                      [Ethan Hoover](https://github.com/Cireimu)                                       |                                      [Mike Edwards](https://github.com/mjedwards)                                      |
+| :---------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars0.githubusercontent.com/u/51389138?s=400&u=18a69e46af81bf4cf769af2762631a42ac896852&v=4" width = "200" />](https://github.com/Cireimu) | [<img src="https://avatars1.githubusercontent.com/u/25542428?s=400&u=74aa7f18e07d0773bff95f064e4c88867cd6b4f6&v=4" width = "200" />](https://github.com/mjedwards) |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Cireimu)                 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mjedwards)                  |
 
 ## License
 
