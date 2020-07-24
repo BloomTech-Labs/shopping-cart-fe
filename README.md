@@ -36,10 +36,10 @@ npm start
 
 <br>
 
-|                                      [Shaun Orpen](https://github.com/shaunorpen)                                       |                                      [Tolu Atolagbe](https://github.com/tolls-3)                                      |
+|                                      [Ethan Hoover](https://github.com/Cireimu)                                       |                                      [Tolu Atolagbe](https://github.com/tolls-3)                                      |
 | :---------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars1.githubusercontent.com/u/2945878?s=400&v=4" width = "200" />](https://github.com/shaunorpen) | [<img src="https://avatars1.githubusercontent.com/u/53542238?s=400&v=4" width = "200" />](https://github.com/tolls-3) |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/shaunorpen)                 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tolls-3)                  |
+| [<img src="https://avatars0.githubusercontent.com/u/51389138?s=400&u=18a69e46af81bf4cf769af2762631a42ac896852&v=4" width = "200" />](https://github.com/Cireimu) | [<img src="https://avatars1.githubusercontent.com/u/53542238?s=400&v=4" width = "200" />](https://github.com/tolls-3) |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Cireimu)                 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tolls-3)                  |
 
 ## License
 
