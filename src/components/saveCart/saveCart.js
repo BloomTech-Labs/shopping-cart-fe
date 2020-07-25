@@ -126,14 +126,14 @@ const SaveCart = (props) => {
           </div>
         </div>
         <div data-testid="saveCartLower" className='lower'>
-          <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <Form data-testid="mainForm" {...formItemLayout} onSubmit={handleSubmit}>
             <div data-testid="LowerHeader" id='header'>
               <p>
                 Take a second to tell us your collection/delivery and payments
                 preferences.
               </p>
             </div>
-            <Form.Item label='Delivery option'>
+            <Form.Item data-testid="Form.Item-Delivery.Option" label='Delivery option'>
               {getFieldDecorator('delivery')(
                 <Radio.Group>
                   <Radio onClick={toggleAddyTrue} value='Delivery'>
@@ -155,7 +155,8 @@ const SaveCart = (props) => {
               seller will contact you with the Whatsapp number you provided
               above
             </span>
-            <Form.Item
+            <Form.Item 
+              data-testid="FormItem-Address"
               className={delivery ? 'ant-row ant-form-item' : 'addy'}
               label='Delivery Address'>
               {getFieldDecorator('address', {
@@ -164,22 +165,22 @@ const SaveCart = (props) => {
                 ],
               })(<Input />)}
             </Form.Item>
-            <Form.Item label='Collection/Delivery date'>
+            <Form.Item data-testid="FormItem-Collection" label='Collection/Delivery date'>
               {getFieldDecorator(
                 'date',
                 config
               )(<DatePicker disabledDate={disabledDate} />)}
             </Form.Item>
-            <Form.Item label='Payment preference'>
+            <Form.Item data-testid="FormItem-RadioGroup" label='Payment preference'>
               {getFieldDecorator('payment')(
-                <Radio.Group>
+                <Radio.Group data-testid="RadioGroup">
                   <Radio value='Cash'>Pay with Cash</Radio>
                   <Radio value='Card'>Pay with Card</Radio>
                   <Radio value='USSD'>Pay with USSD</Radio>
                 </Radio.Group>
               )}
             </Form.Item>
-            <Form.Item className='primary' {...tailFormItemLayout}>
+            <Form.Item data-testid="FormItemButton" className='primary' {...tailFormItemLayout}>
               <button htmltype = 'submit'>
                 Submit
               </button>
