@@ -17,7 +17,7 @@ function SaveCartMain (props) {
     lastScrollTop = st <= 0 ? 0 : st
   }, false)
   return (
-    <div>
+    <div data-testid="saveCartWrapper" >
       <CartHeader top={up} displayBack displayTotal badgeCount={cartContents.length} />
       <SaveCart />
     </div>
