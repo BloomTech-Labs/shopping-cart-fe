@@ -19,7 +19,10 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 	const elements = useElements();
 
 	// Getting the Store ID to get their Stripe Client ID
-	const getStoreID = localStorage.getItem('storeUrl').split('-');
+	// Ternary is used for Jest tests
+	const getStoreID = localStorage.getItem('storeUrl')
+		? localStorage.getItem('storeUrl').split('-')
+		: '5f1645a717a4730004f569c3';
 
 	// State for holding the Name & Phone
 	const [ userInfo, setUserInfo ] = useState({
@@ -70,6 +73,7 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 			.catch((error) => console.log(error));
 	}, []);
 
+	//Order payload only works for one item without a variant -- Needs fixing
 	const orderPayload = {
 		orderItem: [
 			{
@@ -181,7 +185,9 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 			{cartContents.length > 0 ? (
 				<div>
 					<div className="tableHeader">
-						<p className="productTitle"> Product</p>
+						<p className="productTitle" data-testid="CartTable">
+							Product
+						</p>
 						<p className="priceTitle"> Price</p>
 						<p className="quantityTitle"> Quantity</p>
 						<p className="totalTitle"> Total</p>
@@ -204,14 +210,14 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 								<div className="productSection">
 									<img className="cartImage" src={cv.images[0]} alt="cartImage" />
 									<div className="productInfo">
-										<h3> {cv.productName} </h3>
+										<h3 data-testid="productName"> {cv.productName} </h3>
 										<p>{cv.variantDetails[0].option}</p>
 									</div>
 								</div>
 								{cv.variantDetails[0].price ? (
-									<h3>${cv.variantDetails[0].price}</h3>
+									<h3 data-testid="price">${cv.variantDetails[0].price}</h3>
 								) : (
-									<h3>${cv.price}</h3>
+									<h3 data-testid="price">${cv.price}</h3>
 								)}
 								<img src={times_icon} alt="cartImage" />
 								<div className="quantityContainer">
@@ -266,7 +272,9 @@ const CartTable = ({ cartContents, totalPrice, store }) => {
 			)}
 			{cartContents.length > 0 ? (
 				<div className="totalPrice">
-					<div className="total">Total: ${totalPrice(cartContents)}</div>
+					<div className="total" data-testid="total">
+						Total: ${totalPrice(cartContents)}
+					</div>
 					<button
 						style={{ background: `${storeInfo.storeColor}` }}
 						onClick={() => {
