@@ -6,7 +6,7 @@ import ProfileView from '../components/ProfileView';
 describe('profileView tests', () => {
   test('renders the title on logo', () => {
     const { getByText } = renderWithProviders(<ProfileView />);
-    const title = getByText(/Logo/i);
+    const title = getByText("Logo");
     expect(title).toBeVisible();
   });
 
@@ -141,5 +141,4 @@ describe('profileView tests', () => {
     const { getByTestId } = renderWithProviders(<ProfileView />);
     expect(getByTestId('profileZipCode')).toBeVisible();
   });
-
 });

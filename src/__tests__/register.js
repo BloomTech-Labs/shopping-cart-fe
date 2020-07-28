@@ -12,9 +12,9 @@ describe('register screen', () => {
   });
 
   test('renders the title', () => {
-    const { getAllByText } = renderWithProviders(<Container />);
-    const title = getAllByText(/register new account/i);
-    expect(title[0]).toBeVisible();
+    const { getByAltText } = renderWithProviders(<Container />);
+    const title = getByAltText(/pure retail logo/i);
+    expect(title).toBeVisible();
   });
   test('renders the phone number input', () => {
     const { getByPlaceholderText } = renderWithProviders(<Container />);
