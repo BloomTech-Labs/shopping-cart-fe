@@ -9,6 +9,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 
 describe('Render Tests', () => {
+	//Needed to repliate stripe
 	const stripePromise = loadStripe('pk_test_VHc4fOD3byWy85jOWOYLijhH00OmL57YuX', {
 		stripeAccount: 'acct_1H6LilIrVDEEa5AF'
 	});
