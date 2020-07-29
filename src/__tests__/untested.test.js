@@ -16,7 +16,7 @@ import Stripe from '../components/Stripe/stripe';
 describe('Wrapping up testing', () => {
   test('renders the update', () => {
     const { getByTestId } = renderWithProviders(<Update />);
-    expect(getByTestId('updateComponentWrapper')).toBeVisible();
+    expect(getByTestId('updateProfileWrapper')).toBeVisible();
   });
   test('renders the Dashboard.js', () => {
     const { getByTestId } = renderWithProviders(<Dashboard />);

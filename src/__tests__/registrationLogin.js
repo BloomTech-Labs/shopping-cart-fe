@@ -38,7 +38,7 @@ describe('login screen and registration screens', () => {
   });
   test('renders main login image', () => {
     const { getByAltText } = renderWithProviders(<Login />);
-    expect(getByAltText(/login image/i)).toBeVisible();
+    expect(getByAltText(/login/i)).toBeVisible();
   });
   test('renders colorful image background', () => {
     const { getByTestId } = renderWithProviders(<Login />);

@@ -113,10 +113,10 @@ function UpdateItem(props) {
       });
   }
   return (
-    <div>
-      <Navbar />
+    <div >
+      <Navbar data-testid='updateItemNav' />
       <Message message={message} />
-      <div className='createProductView'>
+      <div  className='createProductView'>
         <div className='createProductHeader'>
           <h1>Edit Product</h1>
           <div className='actionContainer'>
