@@ -13,7 +13,7 @@ const CartView = () => {
 	};
 
 	return (
-		<div className="cartMasterContainer">
+		<div className="cartMasterContainer" data-testid="mainCartView">
 			<div className="cartHeader">
 				<div
 					className="backButton"
